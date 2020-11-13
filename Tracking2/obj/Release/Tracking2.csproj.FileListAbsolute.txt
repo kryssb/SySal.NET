@@ -1,0 +1,9 @@
+/home/kryss/Documenti/SySal/Tracking2/bin/Release/Tracking.dll
+/home/kryss/Documenti/SySal/Tracking2/bin/Release/Tracking2.xml
+/home/kryss/Documenti/SySal/Tracking2/bin/Release/Imaging.dll
+/home/kryss/Documenti/SySal/Tracking2/bin/Release/SySalCore.dll
+/home/kryss/Documenti/SySal/Tracking2/bin/Release/Imaging.xml
+/home/kryss/Documenti/SySal/Tracking2/bin/Release/SySalCore.xml
+/home/kryss/Documenti/SySal/Tracking2/obj/Release/Tracking2.csprojAssemblyReference.cache
+/home/kryss/Documenti/SySal/Tracking2/obj/Release/Tracking2.csproj.CopyComplete
+/home/kryss/Documenti/SySal/Tracking2/obj/Release/Tracking.dll

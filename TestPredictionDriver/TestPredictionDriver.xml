@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TestPredictionDriver</name>
+    </assembly>
+    <members>
+        <member name="F:SySal.DAQSystem.Drivers.TestPredictionDriver.DataSource.Random">
+            <summary>
+            Data come from random generation.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TestPredictionDriver.DataSource.SingleLinkedZone">
+            <summary>
+            Data come from a TLG of real tracks.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.TestPredictionDriver.Config">
+            <summary>
+            Configuration for TestPredictionDriver.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TestPredictionDriver.Config.DataSource">
+            <summary>
+            Data source for candidates.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TestPredictionDriver.Config.RandomEfficiency">
+            <summary>
+            If random data are generated, the efficiency to find a candidate is set by RandomEfficiency.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TestPredictionDriver.Config.RandomPositionRMS">
+            <summary>
+            if random data are generated, this is the RMS of position residuals for generated data.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TestPredictionDriver.Config.RandomSlopeRMS">
+            <summary>
+            if random data are generated, this is the RMS of slope residuals for generated data.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.TestPredictionDriver.Exe">
+            <summary>
+            TestPredictionDriver executor.
+            </summary>
+            <remarks>
+            <para>TestPredictionDriver simulates prediction-driven scanning.</para>
+            <para>All input and output live in the DB. Predictions are read from TB_SCANBACK_PREDICTIONS and results are written to the same table.</para>
+            <para>
+            Candidates for scanning can come from a TLG file or they can be generated at random.
+            </para>
+            <para>
+            Supported Interrupts:
+            <list type="bullet">
+            <item>
+            <description><c>TLG &lt;tlgpath&gt;</c> loads the TLG from which candidates will be taken.</description>
+            </item>
+            </list>
+            </para>
+            <para>
+            A sample XML configuration for TestPredictionDriver follows:
+            <example>
+            <code>
+            &lt;Config&gt;
+             &lt;DataSource&gt;Random&lt;/DataSource&gt;
+             &lt;RandomEfficiency&gt;0.9&lt;/RandomEfficiency&gt;
+             &lt;RandomPositionRMS&gt;10&lt;/RandomPositionRMS&gt;
+             &lt;RandomSlopeRMS&gt;0.006&lt;/RandomSlopeRMS&gt;
+            &lt;/Config&gt;
+            </code>
+            </example>
+            </para>
+            <para>
+            The possible sources are:
+            <list type="table">
+            <item><term>Random</term><description>the candidates are generated randomly, simulating the specified efficiency and errors.</description></item>
+            <item><term>SingleLinkedZone</term><description>the candidates are taken from a TLG file.</description></item>
+            </list>
+            </para>
+            </remarks>	
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.TestPredictionDriver.Exe.InitializeLifetimeService">
+            <summary>
+            Initializes the Lifetime Service.
+            </summary>
+            <returns>the lifetime service object or null.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.TestPredictionDriver.Exe.Main(System.String[])">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.TestPredictionDriver.ExplanationForm">
+            <summary>
+            Summary description for ExplanationForm.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TestPredictionDriver.ExplanationForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.TestPredictionDriver.ExplanationForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.TestPredictionDriver.ExplanationForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+    </members>
+</doc>

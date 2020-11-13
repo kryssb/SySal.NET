@@ -1,0 +1,374 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SySalCore</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.BasicTypes.Vector">
+            <summary>
+            3D vector structure
+            </summary>
+        </member>
+        <member name="M:SySal.BasicTypes.Vector.op_Multiply(SySal.BasicTypes.Vector,SySal.BasicTypes.Vector)">
+            <summary>
+            Inner product of two vectors.
+            </summary>
+            <param name="a">first vector.</param>
+            <param name="b">second vector.</param>
+            <returns>the inner product of the two vectors.</returns>
+        </member>
+        <member name="M:SySal.BasicTypes.Vector.op_ExclusiveOr(SySal.BasicTypes.Vector,SySal.BasicTypes.Vector)">
+            <summary>
+            Outer product of two vectors.
+            </summary>
+            <param name="a">first vector.</param>
+            <param name="b">second vector.</param>
+            <returns>the outer product of the two vectors.</returns>
+        </member>
+        <member name="P:SySal.BasicTypes.Vector.Norm2">
+            <summary>
+            Square of the norm of the vector.
+            </summary>
+        </member>
+        <member name="M:SySal.BasicTypes.Vector.op_Multiply(System.Double,SySal.BasicTypes.Vector)">
+            <summary>
+            Scalar product.
+            </summary>
+            <param name="a">the scalar to multiply the vector.</param>
+            <param name="b">the vector to be multiplied.</param>
+            <returns>the product vector.</returns>
+        </member>
+        <member name="P:SySal.BasicTypes.Vector.UnitVector">
+            <summary>
+            The vector with the same direction and unit norm.
+            </summary>
+        </member>
+        <member name="M:SySal.BasicTypes.Vector.op_Addition(SySal.BasicTypes.Vector,SySal.BasicTypes.Vector)">
+            <summary>
+            Sum of two vectors.
+            </summary>
+            <param name="a">first vector.</param>
+            <param name="b">second vector.</param>
+            <returns>the sum of the two vectors.</returns>
+        </member>
+        <member name="M:SySal.BasicTypes.Vector.op_Subtraction(SySal.BasicTypes.Vector,SySal.BasicTypes.Vector)">
+            <summary>
+            Difference of two vectors.
+            </summary>
+            <param name="a">first vector.</param>
+            <param name="b">second vector.</param>
+            <returns>the difference of the two vectors.</returns>
+        </member>
+        <member name="T:SySal.BasicTypes.Line">
+            <summary>
+            3D line
+            </summary>
+        </member>
+        <member name="T:SySal.BasicTypes.Vector2">
+            <summary>
+            2D vector structure
+            </summary>
+        </member>
+        <member name="T:SySal.BasicTypes.Rectangle">
+            <summary>
+            2D rectangle
+            </summary>
+        </member>
+        <member name="T:SySal.BasicTypes.Cuboid">
+            <summary>
+            3d cuboid
+            </summary>
+        </member>
+        <member name="T:SySal.BasicTypes.RGBColor">
+            <summary>
+            RGB color
+            </summary>
+        </member>
+        <member name="T:SySal.BasicTypes.CVector">
+            <summary>
+            Colored Vector
+            </summary>
+        </member>
+        <member name="T:SySal.BasicTypes.CLine">
+            <summary>
+            Colored Line
+            </summary>
+        </member>
+        <member name="T:SySal.BasicTypes.CCuboid">
+            <summary>
+            Colored Cuboid
+            </summary>
+        </member>
+        <member name="T:SySal.BasicTypes.NamedParameter">
+            <summary>
+            Generic named parameter
+            </summary>
+        </member>
+        <member name="T:SySal.BasicTypes.Identifier">
+            <summary>
+            Generic Identifier
+            </summary>
+        </member>
+        <member name="T:SySal.Management.Configuration">
+            <summary>
+            Object configuration.
+            </summary>
+        </member>
+        <member name="T:SySal.Management.MachineSettings">
+            <summary>
+            Provides unified management of machine settings.
+            </summary>
+            <remarks>A machine setting is a set of configuration parameters that are typical of a machine rather than
+            a user or a configuration. This is the case for the control chain of microscope stage, for a vision processor, etc.
+            The related settings are specific to the machine and not of the user or configuration.</remarks>
+        </member>
+        <member name="P:SySal.Management.MachineSettings.BaseDirectory">
+            <summary>
+            The directory that contains all configuration files.
+            </summary>
+        </member>
+        <member name="M:SySal.Management.MachineSettings.GetSettings(System.Type)">
+            <summary>
+            Get/sets the configuration for a specified class.
+            </summary>
+            <param name="t">the type of the class for which machine settings are to be sought.</param>
+            <returns>the configuration, if present, or a null reference if does not exists.</returns>
+        </member>
+        <member name="T:SySal.Management.IMachineSettingsEditor">
+            <summary>
+            Unified interface for classes to manage their machine settings.
+            </summary>       
+        </member>
+        <member name="M:SySal.Management.IMachineSettingsEditor.EditMachineSettings(System.Type)">
+            <summary>
+            Opens a dialog session with the user to manage machine settings for a class.
+            </summary>
+            <param name="t">the type storing the machine settings.</param>
+            <returns><c>true</c>if the settings have been changed, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="T:SySal.Management.ConnectionException">
+            <summary>
+            Connection exceptions.
+            </summary>
+        </member>
+        <member name="T:SySal.Management.IConnection">
+            <summary>
+            Represents a connection between a client object and a server object.
+            </summary>
+        </member>
+        <member name="P:SySal.Management.IConnection.Name">
+            <summary>
+            Connection name.
+            </summary>
+        </member>
+        <member name="P:SySal.Management.IConnection.Server">
+            <summary>
+            Object connected.
+            </summary>
+        </member>
+        <member name="P:SySal.Management.IConnection.IsOK">
+            <summary>
+            Tells whether the connection is OK.
+            </summary>
+        </member>
+        <member name="T:SySal.Management.IConnectionList">
+            <summary>
+            Connection lists are custom properties of each object.
+            </summary>
+        </member>
+        <member name="P:SySal.Management.IConnectionList.Item(System.Int32)">
+            <summary>
+            Accesses a connection through its index.
+            </summary>
+        </member>
+        <member name="P:SySal.Management.IConnectionList.Item(System.String)">
+            <summary>
+            Accesses a connection through its name (case sensitive).
+            </summary>
+        </member>
+        <member name="P:SySal.Management.IConnectionList.Length">
+            <summary>
+            Number of connections.
+            </summary>
+        </member>
+        <member name="T:SySal.Management.IManageable">
+            <summary>
+            Contains basic operations for object management.
+            </summary>
+        </member>
+        <member name="P:SySal.Management.IManageable.Name">
+            <summary>
+            Name of the object.
+            </summary>
+        </member>
+        <member name="P:SySal.Management.IManageable.Config">
+            <summary>
+            Current object configuration.
+            </summary>
+        </member>
+        <member name="M:SySal.Management.IManageable.EditConfiguration(SySal.Management.Configuration@)">
+            <summary>
+            Uses the object to initialize / edit a configuration.
+            </summary>
+            <param name="c"></param>
+            <returns></returns>
+        </member>
+        <member name="P:SySal.Management.IManageable.Connections">
+            <summary>
+            The connections of this object.
+            </summary>
+        </member>
+        <member name="P:SySal.Management.IManageable.MonitorEnabled">
+            <summary>
+            Enables / disables the object monitor.
+            </summary>
+        </member>
+        <member name="T:SySal.Management.IGraphicallyManageable">
+            <summary>
+            Manageable objects that can be represented graphically
+            </summary>
+        </member>
+        <member name="P:SySal.Management.IGraphicallyManageable.XLocation">
+            <summary>
+            X position in a GUI layout.
+            </summary>
+        </member>
+        <member name="P:SySal.Management.IGraphicallyManageable.YLocation">
+            <summary>
+            Y position in a GUI layout.
+            </summary>
+        </member>
+        <member name="P:SySal.Management.IGraphicallyManageable.Icon">
+            <summary>
+            The object's icon.
+            </summary>
+        </member>
+        <member name="T:SySal.Management.IManageableList">
+            <summary>
+            Each setup has a list of manageable objects.
+            </summary>
+        </member>
+        <member name="P:SySal.Management.IManageableList.Item(System.Int32)">
+            <summary>
+            Accesses a manageable object through its index.
+            </summary>
+        </member>
+        <member name="P:SySal.Management.IManageableList.Item(System.String)">
+            <summary>
+            Accesses a manageable object through its name (case sensitive).
+            </summary>
+        </member>
+        <member name="P:SySal.Management.IManageableList.Length">
+            <summary>
+            Number of manageable objects.
+            </summary>
+        </member>
+        <member name="T:SySal.Management.IExecute">
+            <summary>
+            Allows objects to take control of the execution.
+            </summary>
+        </member>
+        <member name="M:SySal.Management.IExecute.Execute">
+            <summary>
+            Activates the object.
+            </summary>
+        </member>
+        <member name="T:SySal.Management.IManageableGraph">
+            <summary>
+            Stores the list of server objects, along with their connections, and the indication of an "executor".
+            </summary>
+        </member>
+        <member name="P:SySal.Management.IManageableGraph.Name">
+            <summary>
+            Name of the graph.
+            </summary>
+        </member>
+        <member name="P:SySal.Management.IManageableGraph.Objects">
+            <summary>
+            List of the objects of the graph.
+            </summary>
+        </member>
+        <member name="P:SySal.Management.IManageableGraph.Executor">
+            <summary>
+            The object that can take control of the program execution.
+            </summary>
+        </member>
+        <member name="T:SySal.Management.IExposeInfo">
+            <summary>
+            Allows objects to expose additional info about internal operations for debugging and performance monitoring.
+            </summary>
+        </member>
+        <member name="P:SySal.Management.IExposeInfo.Expose">
+            <summary>
+            Exposes / hides generation of additional info.
+            </summary>
+        </member>
+        <member name="P:SySal.Management.IExposeInfo.ExposedInfo">
+            <summary>
+            Gets the additional information.
+            </summary>
+        </member>
+        <member name="T:SySal.Management.FixedTypeConnection">
+            <summary>
+            A connection that can only accept some types.
+            </summary>
+        </member>
+        <member name="T:SySal.Management.FixedTypeConnection.ConnectionDescriptor">
+            <summary>
+            Describes the requirements for this connection.
+            </summary>
+        </member>
+        <member name="M:SySal.Management.FixedTypeConnection.#ctor(SySal.Management.FixedTypeConnection.ConnectionDescriptor)">
+            <summary>
+            Builds a new FixedTypeConnection from a ConnectionDescriptor.
+            </summary>
+            <param name="desc"></param>
+        </member>
+        <member name="P:SySal.Management.FixedTypeConnection.Name">
+            <summary>
+            Name of the connection.
+            </summary>
+        </member>
+        <member name="P:SySal.Management.FixedTypeConnection.Server">
+            <summary>
+            Server object for this connection.
+            </summary>
+        </member>
+        <member name="P:SySal.Management.FixedTypeConnection.IsOK">
+            <summary>
+            Tells whether the connection is OK.
+            </summary>
+        </member>
+        <member name="T:SySal.Management.FixedConnectionList">
+            <summary>
+            Connection list with fixed type constraints.
+            </summary>
+        </member>
+        <member name="F:SySal.Management.FixedConnectionList.Connections">
+            <summary>
+            Keeps track of the connections;
+            </summary>
+        </member>
+        <member name="M:SySal.Management.FixedConnectionList.#ctor(SySal.Management.FixedTypeConnection.ConnectionDescriptor[])">
+            <summary>
+            Builds a list of connections from a list of connection descriptors.
+            </summary>
+            <param name="descriptors"></param>
+        </member>
+        <member name="P:SySal.Management.FixedConnectionList.Item(System.Int32)">
+            <summary>
+            Accesses a connection through its index.
+            </summary>
+        </member>
+        <member name="P:SySal.Management.FixedConnectionList.Item(System.String)">
+            <summary>
+            Accesses a connection through its name (case sensitive).
+            </summary>
+        </member>
+        <member name="P:SySal.Management.FixedConnectionList.Length">
+            <summary>
+            Number of connections.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,9 @@
+/home/kryss/Documenti/SySal/GDIDisplayControl/bin/Release/GDIDisplayControl.dll
+/home/kryss/Documenti/SySal/GDIDisplayControl/bin/Release/GDIDisplayControl.xml
+/home/kryss/Documenti/SySal/GDIDisplayControl/bin/Release/GDI3DCore.dll
+/home/kryss/Documenti/SySal/GDIDisplayControl/bin/Release/GDI3DCore.xml
+/home/kryss/Documenti/SySal/GDIDisplayControl/obj/Release/GDIDisplayControl.csprojAssemblyReference.cache
+/home/kryss/Documenti/SySal/GDIDisplayControl/obj/Release/GDI3D.Control.GDIDisplay.resources
+/home/kryss/Documenti/SySal/GDIDisplayControl/obj/Release/GDIDisplayControl.csproj.GenerateResource.cache
+/home/kryss/Documenti/SySal/GDIDisplayControl/obj/Release/GDIDisplayControl.csproj.CopyComplete
+/home/kryss/Documenti/SySal/GDIDisplayControl/obj/Release/GDIDisplayControl.dll

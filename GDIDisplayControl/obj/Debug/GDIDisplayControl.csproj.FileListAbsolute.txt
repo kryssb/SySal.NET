@@ -1,0 +1,12 @@
+/home/kryss/Documenti/SySal/GDIDisplayControl/bin/Debug/GDIDisplayControl.dll
+/home/kryss/Documenti/SySal/GDIDisplayControl/bin/Debug/GDIDisplayControl.pdb
+/home/kryss/Documenti/SySal/GDIDisplayControl/bin/Debug/GDIDisplayControl.xml
+/home/kryss/Documenti/SySal/GDIDisplayControl/bin/Debug/GDI3DCore.dll
+/home/kryss/Documenti/SySal/GDIDisplayControl/bin/Debug/GDI3DCore.pdb
+/home/kryss/Documenti/SySal/GDIDisplayControl/bin/Debug/GDI3DCore.xml
+/home/kryss/Documenti/SySal/GDIDisplayControl/obj/Debug/GDIDisplayControl.csprojAssemblyReference.cache
+/home/kryss/Documenti/SySal/GDIDisplayControl/obj/Debug/GDI3D.Control.GDIDisplay.resources
+/home/kryss/Documenti/SySal/GDIDisplayControl/obj/Debug/GDIDisplayControl.csproj.GenerateResource.cache
+/home/kryss/Documenti/SySal/GDIDisplayControl/obj/Debug/GDIDisplayControl.csproj.CopyComplete
+/home/kryss/Documenti/SySal/GDIDisplayControl/obj/Debug/GDIDisplayControl.dll
+/home/kryss/Documenti/SySal/GDIDisplayControl/obj/Debug/GDIDisplayControl.pdb

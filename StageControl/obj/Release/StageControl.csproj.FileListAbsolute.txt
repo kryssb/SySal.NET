@@ -1,0 +1,6 @@
+/home/kryss/Documenti/SySal/StageControl/bin/Release/StageControl.dll
+/home/kryss/Documenti/SySal/StageControl/bin/Release/StageControl.xml
+/home/kryss/Documenti/SySal/StageControl/bin/Release/SySalCore.dll
+/home/kryss/Documenti/SySal/StageControl/bin/Release/SySalCore.xml
+/home/kryss/Documenti/SySal/StageControl/obj/Release/StageControl.csproj.CopyComplete
+/home/kryss/Documenti/SySal/StageControl/obj/Release/StageControl.dll

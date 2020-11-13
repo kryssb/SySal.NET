@@ -1,0 +1,1 @@
+/home/kryss/Documenti/SySal/NExTCore/obj/Release/.NETFramework,Version=v4.0.AssemblyAttribute.cs

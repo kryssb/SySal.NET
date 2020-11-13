@@ -1,0 +1,14 @@
+/home/kryss/Documenti/SySal/Controls/bin/Debug/Controls.dll
+/home/kryss/Documenti/SySal/Controls/bin/Debug/Controls.pdb
+/home/kryss/Documenti/SySal/Controls/obj/Debug/SySal.Controls.BackgroundPanel.resources
+/home/kryss/Documenti/SySal/Controls/obj/Debug/SySal.Controls.Button.resources
+/home/kryss/Documenti/SySal/Controls/obj/Debug/SySal.Controls.CheckBox.resources
+/home/kryss/Documenti/SySal/Controls/obj/Debug/SySal.Controls.GroupBox.resources
+/home/kryss/Documenti/SySal/Controls/obj/Debug/SySal.Controls.PercentChart.resources
+/home/kryss/Documenti/SySal/Controls/obj/Debug/SySal.Controls.ProgressBar.resources
+/home/kryss/Documenti/SySal/Controls/obj/Debug/SySal.Controls.RadioButton.resources
+/home/kryss/Documenti/SySal/Controls/obj/Debug/SySal.Controls.StaticText.resources
+/home/kryss/Documenti/SySal/Controls/obj/Debug/Controls.csproj.GenerateResource.cache
+/home/kryss/Documenti/SySal/Controls/obj/Debug/Controls.dll
+/home/kryss/Documenti/SySal/Controls/obj/Debug/Controls.pdb
+/home/kryss/Documenti/SySal/Controls/obj/Debug/Controls.csprojAssemblyReference.cache

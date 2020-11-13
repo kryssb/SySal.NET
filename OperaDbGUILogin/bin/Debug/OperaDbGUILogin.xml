@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OperaDbGUILogin</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Executables.OperaDbGUILogin.MainForm">
+            <summary>
+            OperaDbGUILogin - GUI tool to set the default credential record of the current user.
+            </summary>
+            <remarks>
+            <para>Every user on a workstation/server can have his/her own default credential record for the OPERA DB and Computing Infrastructure. 
+            This records saves continuous login requests on the OPERA DB and on the Computing Infrastructure services.</para>
+            <para>The record is saved in the user profile in encrypted form.</para>
+            <para>OperaDbGUILogin does not alter the record until the OK button is pressed. Pressing Cancel will leave the record unchanged.</para>
+            <para>Pressing the "Verify Credentials" button starts a test login. Notice that in order to verify the Computing Infrastructure credentials, which are stored in the DB, the DB login must be valid.</para>
+            <para>More than one DB server can be specified. The server name is its TNS name. Multiple server names must be separated by commas (',').</para>
+            </remarks>
+        </member>
+        <member name="F:SySal.Executables.OperaDbGUILogin.MainForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaDbGUILogin.MainForm.#ctor">
+            <summary>
+            Creates the form.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaDbGUILogin.MainForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaDbGUILogin.MainForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaDbGUILogin.MainForm.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+    </members>
+</doc>

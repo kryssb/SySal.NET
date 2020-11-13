@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EasyProcess</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Executables.EasyProcess.MainForm">
+            <summary>
+            EasyProcess - GUI application to manage processes running on a remote OperaBatchManager.
+            </summary>
+            <remarks>
+            <para>EasyProcess runs with the credentials specified in the user record. The Computing Infrastructure credentials can be changed, but not the DB access ones. The DB access credentials can be recorded by using OperaDbGUILogin (See <see cref="!:SySal.Executables.OperaDbGUILogin.MainForm"/>) or OperaDbTextLogin (<see cref="!:SySal.Executables.OperaDbTextLogin.Exe"/>).</para>
+            <para>
+            The upper tree view shows hierarchies of process operations. It is initially empty, and is filled or updated each time one of the following buttons is pressed:
+            <list type="table">
+            <listheader><term>Button</term><description>Action</description></listheader>
+            <item><term>Days Ago</term><description>Shows the root process operations started not earlier than the number of days specified in the adjacent box, with their descendants.</description></item>
+            <item><term>In Progress</term><description>Shows the root process operations that are currently running, with their descendants (both running and completed).</description></item>
+            <item><term>All</term><description>Shows all root process operations, with their descendants. Use of this button is discouraged, since it involves downloading the whole TB_PROC_OPERATIONS table, with additional joins, which may take a long time.</description></item>
+            </list>
+            </para>
+            <para>
+            A root process operation is a process operation with no parent operation.
+            </para>
+            <para>The Info button gets detailed information about the currently selected process operation, and opens a ProcOpInfo form (See <see cref="T:SySal.Executables.EasyProcess.ProcOpInfo"/>).</para>
+            <para>In the lower window, running information of the BatchManager specified by its IP or DNS name are shown.</para>
+            <para>
+            Actions of the various buttons are explained as follows:	
+            <list type="table">
+            <listheader><term>Button</term><description>Action</description></listheader>
+            <item><term>Start/Stop</term><description>Starts or stops polling the BatchManager status with the interval specified in seconds in the adjacent box.</description></item>
+            <item><term>Pause</term><description>Pauses the currently selected process operation.</description></item>
+            <item><term>Resume</term><description>Resumes the currently selected process operation.</description></item>
+            <item><term>Abort</term><description>Aborts the currently selected process operation. <b>NOTICE: an aborted process operation can never be resumed and is lost forever.</b> Use Pause to suspend a process operation that you want to resume, even if you want to do so several days later.</description></item>
+            </list>
+            </para>
+            <para>If the user double-clicks on one process operation in the BatchManager window (the lower window), EasyProcess attempts to open the HTML progress information page for it. It is expected to be in the directory specified as "Scratch Directory". If the directory is unspecified, EasyProcess attempts to download it from the DB settings for the current site, but this is not necessarily the right scratch directory for the BatchManager currently under use (in principle, every BatchManager can have its own scratch directory). The Scratch Directory can be set explicitly by the user, in which case the DB is not accessed.</para>
+            </remarks>
+        </member>
+        <member name="M:SySal.Executables.EasyProcess.MainForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyProcess.MainForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyProcess.MainForm.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="T:SySal.Executables.EasyProcess.ProcOpInfo">
+            <summary>
+            Shows detailed information about a process operation. It is a read-only form, whose fields can be copied to the clipboard, but cannot be changed.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.EasyProcess.ProcOpInfo.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyProcess.ProcOpInfo.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyProcess.ProcOpInfo.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Executables.EasyProcess.ProgressInfo">
+            <summary>
+            This class is not used for the moment.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.EasyProcess.ProgressInfo.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyProcess.ProgressInfo.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyProcess.ProgressInfo.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+    </members>
+</doc>

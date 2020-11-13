@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BatchTest</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Executables.BatchTest.Exe">
+            <summary>
+            Main ex.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.BatchTest.Exe.Main(System.String[])">
+            <summary>
+            Batch Test - test program for data processing servers.
+            </summary>
+            <remarks>
+            <para>This is a harmless executable used to test DataProcessingServers.</para>
+            <para>Keeps the CPU busy for the time specified (in seconds).</para>
+            <para>Usage: <c>BatchTest.exe &lt;time to wait in seconds&gt;</c></para>
+            </remarks>
+        </member>
+    </members>
+</doc>

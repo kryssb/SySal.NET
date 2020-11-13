@@ -1,0 +1,232 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Neutral resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)
+#ifdef _WIN32
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// REGISTRY
+//
+
+IDR_SYSALDATAIO         REGISTRY DISCARDABLE    "SySalDataIO.rgs"
+#endif    // Neutral resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON64              ICON    DISCARDABLE     "icon64.ico"
+IDI_ICON32              ICON    DISCARDABLE     "icon32.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_EDIT_CONFIG DIALOG DISCARDABLE  0, 0, 237, 286
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "Data I/O Setup"
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "Input Configuration",IDC_STATIC,7,7,223,74
+    CONTROL         "&Input Enable",IDC_EC_INPUT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,17,19,49,10
+    LTEXT           "At&tempts",IDC_STATIC,94,19,32,10
+    EDITTEXT        IDC_EC_INATTEMPTS,134,18,21,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Select Data &Source",IDC_EC_SELINFILE,17,33,69,12
+    EDITTEXT        IDC_EC_DATASOURCE,94,32,129,13,ES_AUTOHSCROLL
+    LTEXT           "Default Extension",IDC_STATIC,18,48,67,10
+    EDITTEXT        IDC_EC_INDEFEXT,94,46,129,13,ES_AUTOHSCROLL
+    LTEXT           "Default Description",IDC_STATIC,18,62,67,10
+    EDITTEXT        IDC_EC_INDEFDESC,94,60,129,13,ES_AUTOHSCROLL
+    GROUPBOX        "Output Configuration",IDC_STATIC,7,83,223,176
+    CONTROL         "&Output Enable",IDC_EC_OUTPUT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,17,96,55,10
+    LTEXT           "Attem&pts",IDC_STATIC,94,96,32,10
+    EDITTEXT        IDC_EC_OUTATTEMPTS,134,95,21,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Select Data &Dest",IDC_EC_SELOUTFILE,17,110,69,12
+    EDITTEXT        IDC_EC_DATADEST,94,109,129,13,ES_AUTOHSCROLL
+    CONTROL         "&Append Unique Identifier (Batched data files only)",
+                    IDC_EC_AUTOAPPENDUID,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,17,126,163,10
+    LTEXT           "Default Extension",IDC_STATIC,18,139,67,10
+    EDITTEXT        IDC_EC_OUTDEFEXT,94,137,129,13,ES_AUTOHSCROLL
+    LTEXT           "Default Description",IDC_STATIC,18,153,67,10
+    EDITTEXT        IDC_EC_OUTDEFDESC,94,151,129,13,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,7,265,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,180,265,50,14
+    PUSHBUTTON      "Select &Rescue Dest",IDC_EC_SELOUTRESCUEFILE,17,169,69,
+                    12
+    EDITTEXT        IDC_EC_RESCUEDEST,94,168,129,13,ES_AUTOHSCROLL
+    GROUPBOX        "Grain Compression",IDC_STATIC,19,187,204,41
+    CONTROL         "&Grain Compression Enable",IDC_EC_O_GRAINCOMPRESS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,26,199,111,8
+    LTEXT           "Transverse Precision",IDC_STATIC,24,212,76,11
+    EDITTEXT        IDC_EC_O_TRANSVPREC,104,211,21,12,ES_AUTOHSCROLL
+    LTEXT           "Depth Precision",IDC_STATIC,130,212,62,11
+    EDITTEXT        IDC_EC_O_DEPTHPREC,196,211,21,12,ES_AUTOHSCROLL
+    CONTROL         "S&kip Grains",IDC_EC_SKIPGRAINS,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFTTEXT | WS_TABSTOP,173,19,49,10
+    LTEXT           "Async&hronous write buffer (MB - disabled if zero)",
+                    IDC_STATIC,23,237,159,10
+    EDITTEXT        IDC_EC_ASYNCWRITEBUFFERMB,186,235,32,12,ES_AUTOHSCROLL
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_EDIT_CONFIG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 230
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 279
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Italian (Italy) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ITA)
+#ifdef _WIN32
+LANGUAGE LANG_ITALIAN, SUBLANG_ITALIAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "1 TYPELIB ""SySalDataIO.tlb""\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "CompanyName", "\0"
+            VALUE "FileDescription", "SySalDataIO Module\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "SySalDataIO\0"
+            VALUE "LegalCopyright", "Copyright 1999\0"
+            VALUE "OriginalFilename", "SySalDataIO.DLL\0"
+            VALUE "ProductName", "SySalDataIO Module\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+            VALUE "OLESelfRegister", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PROJNAME            "SySalDataIO"
+END
+
+#endif    // Italian (Italy) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+1 TYPELIB "SySalDataIO.tlb"
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

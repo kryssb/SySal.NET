@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B06D68EC-73E4-4597-BD73-4A50C6023B8A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SySal.Executables.NExTScanner</RootNamespace>
+    <AssemblyName>NExTScanner</AssemblyName>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BasicGrain3DMaker.cs" />
+    <Compile Include="CameraDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CameraDisplay.Designer.cs">
+      <DependentUpon>CameraDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CameraDisplaySettings.cs" />
+    <Compile Include="FullSpeedAcqSettings.cs" />
+    <Compile Include="FullSpeedAcquisitionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FullSpeedAcquisitionForm.Designer.cs">
+      <DependentUpon>FullSpeedAcquisitionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditCameraDisplaySettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditCameraDisplaySettingsForm.Designer.cs">
+      <DependentUpon>EditCameraDisplaySettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GPUSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GPUSettingsForm.Designer.cs">
+      <DependentUpon>GPUSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Imaging3D.cs" />
+    <Compile Include="ImagingConfiguration.cs" />
+    <Compile Include="ImagingConfigurationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImagingConfigurationForm.Designer.cs">
+      <DependentUpon>ImagingConfigurationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ISySalCameraDisplay.cs" />
+    <Compile Include="ISySalLog.cs" />
+    <Compile Include="LongOperationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LongOperationForm.Designer.cs">
+      <DependentUpon>LongOperationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MapProvider.cs" />
+    <Compile Include="MarkAcquisitionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MarkAcquisitionForm.Designer.cs">
+      <DependentUpon>MarkAcquisitionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MarkAcquisitionSettings.cs" />
+    <Compile Include="Pixel2MicronComputeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pixel2MicronComputeForm.Designer.cs">
+      <DependentUpon>Pixel2MicronComputeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QuasiStaticAcqSettings.cs" />
+    <Compile Include="QuasiStaticAcquisition.cs" />
+    <Compile Include="QuasiStaticAcquisitionFom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuasiStaticAcquisitionFom.Designer.cs">
+      <DependentUpon>QuasiStaticAcquisitionFom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ScannerSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScannerSettingsForm.Designer.cs">
+      <DependentUpon>ScannerSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InfoPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InfoPanel.Designer.cs">
+      <DependentUpon>InfoPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scanner.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CameraDisplay.resx">
+      <DependentUpon>CameraDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FullSpeedAcquisitionForm.resx">
+      <DependentUpon>FullSpeedAcquisitionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditCameraDisplaySettingsForm.resx">
+      <DependentUpon>EditCameraDisplaySettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MarkAcquisitionForm.resx">
+      <DependentUpon>MarkAcquisitionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="ThresholdImageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ThresholdImageForm.Designer.cs">
+      <DependentUpon>ThresholdImageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="GPUSettingsForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>GPUSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImagingConfigurationForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ImagingConfigurationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LongOperationForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LongOperationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pixel2MicronComputeForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Pixel2MicronComputeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuasiStaticAcquisitionFom.resx">
+      <DependentUpon>QuasiStaticAcquisitionFom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScannerSettingsForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ScannerSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InfoPanel.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>InfoPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ThresholdImageForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ThresholdImageForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAQSystem\DAQSystem.csproj">
+      <Project>{331C05DF-61D6-4955-A56C-E5C81DFDB269}</Project>
+      <Name>DAQSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataStreams\DataStreams.csproj">
+      <Project>{EECD680D-F383-4A1D-B716-050C8B4AEC33}</Project>
+      <Name>DataStreams</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FastImaging\FastImaging.csproj">
+      <Project>{6260C43E-B17B-4272-A161-32AA3310B853}</Project>
+      <Name>FastImaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GDI3DCore\GDI3DCore.csproj">
+      <Project>{A7B9293D-1F97-40AA-90B7-A05CBFC38509}</Project>
+      <Name>GDI3DCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GraphicalAnalysis\GraphicalAnalysis.csproj">
+      <Project>{087288AA-3D99-461C-A7C1-C738E6F8390D}</Project>
+      <Name>GraphicalAnalysis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ImageGrabbing\ImageGrabbing.csproj">
+      <Project>{DE21148C-561F-4AF2-AA11-C8A1C648EA0F}</Project>
+      <Name>ImageGrabbing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Imaging\Imaging.csproj">
+      <Project>{8C580EE0-BFB5-42A7-8C93-26CC681D9030}</Project>
+      <Name>Imaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NumericalTools\NumericalTools.csproj">
+      <Project>{21616A4C-E4BD-4DA3-A7C8-C733DC356DAB}</Project>
+      <Name>NumericalTools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QuickMapper\QuickMapper.csproj">
+      <Project>{3388BBD8-7970-4761-9D7B-8282A0550944}</Project>
+      <Name>QuickMapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Scanning2\Scanning2.csproj">
+      <Project>{5A8C7E01-D228-4400-A652-FE60DD5C5AA9}</Project>
+      <Name>Scanning2</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StageControl\StageControl.csproj">
+      <Project>{644E8A3F-9C80-4468-8A8B-839524D45AF2}</Project>
+      <Name>StageControl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SySalCore\SySalCore.csproj">
+      <Project>{301C136D-DA64-4148-B974-1D1793BBEF96}</Project>
+      <Name>SySalCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SySalNExTControls\SySalNExTControls.csproj">
+      <Project>{CFF1443F-ADE5-4301-A221-CCA200F9A44B}</Project>
+      <Name>SySalNExTControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tracking2\Tracking2.csproj">
+      <Project>{EBE10CB5-8CA5-46A1-8826-526B5C4233DB}</Project>
+      <Name>Tracking2</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

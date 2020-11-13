@@ -1,0 +1,261 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Intercalibration3Driver</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.DAQSystem.Drivers.Intercalibration3Driver.ReferenceDirection">
+            <summary>
+            Defines if reference plates for intercalibration must be upstream or downstream of the current plate.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Intercalibration3Driver.ReferenceDirection.Upstream">
+            <summary>
+            The reference plate must be upstream of the plate being intercalibrated.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Intercalibration3Driver.ReferenceDirection.Downstream">
+            <summary>
+            The reference plate must be downstream of the plate being intercalibrated.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.Intercalibration3Driver.Intercalibration3Settings">
+            <summary>
+            Settings for Intercalibration3Driver.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Intercalibration3Driver.Intercalibration3Settings.ScanningConfigId">
+            <summary>
+            The Id of the scanning program settings.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Intercalibration3Driver.Intercalibration3Settings.LinkConfigId">
+            <summary>
+            The Id of the linking program settings.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Intercalibration3Driver.Intercalibration3Settings.QualityCutId">
+            <summary>
+            The Id for quality cut.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Intercalibration3Driver.Intercalibration3Settings.PositionTolerance">
+            <summary>
+            Position tolerance for pattern matching (at the last iteration).
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Intercalibration3Driver.Intercalibration3Settings.SlopeTolerance">
+            <summary>
+            Slope tolerance for pattern matching.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Intercalibration3Driver.Intercalibration3Settings.MinMatches">
+            <summary>
+            Minimum number of matching tracks to accept the pattern matching.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Intercalibration3Driver.Intercalibration3Settings.MaxOffset">
+            <summary>
+            Maximum absolute offset between zones.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Intercalibration3Driver.Intercalibration3Settings.XZoneDistance">
+            <summary>
+            Minimum distance spanned by zones in the X direction.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Intercalibration3Driver.Intercalibration3Settings.YZoneDistance">
+            <summary>
+            Minimum distance spanned by zones in the Y direction.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Intercalibration3Driver.Intercalibration3Settings.ZoneSize">
+            <summary>
+            Size of each zone in micron.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Intercalibration3Driver.Intercalibration3Settings.Iterations">
+            <summary>
+            Number of iterations for intercalibration refinement (minimum is 1).
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Intercalibration3Driver.Intercalibration3Settings.InitialPositionTolerance">
+            <summary>
+            Position tolerance for pattern matching at the first iteration. The actual position tolerance that is used at each iteration decreases linearly from this value to the value of <c>PositionTolerance</c>. If this is set to zero or a value that is lower than PositionTolerance, it is reset to be equal to PositionTolerance.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Intercalibration3Driver.Intercalibration3Settings.ReferenceDirection">
+            <summary>
+            Defines whether reference plates are to be found among upstream or downstream plates.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.Intercalibration3Driver.MapPos">
+            <summary>
+            Mapping Position.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Intercalibration3Driver.MapPos.X">
+            <summary>
+            X center of the zone.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Intercalibration3Driver.MapPos.Y">
+            <summary>
+            Y center of the zone.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Intercalibration3Driver.MapPos.DX">
+            <summary>
+            X translation for the zone.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Intercalibration3Driver.MapPos.DY">
+            <summary>
+            Y translation for the zone.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.Intercalibration3Driver.MapPos.SetFromPairs(SySal.Scanning.PostProcessing.PatternMatching.TrackPair[])">
+            <summary>
+            Sets the zone translation from pairs of matched tracks.
+            </summary>
+            <param name="pairs">the list of track pairs.</param>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Intercalibration3Driver.MapPos.rP">
+            <summary>
+            Positions of reference tracks
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Intercalibration3Driver.MapPos.rS">
+            <summary>
+            Slopes of reference tracks
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Intercalibration3Driver.MapPos.cP">
+            <summary>
+            Positions of calibration tracks
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.Intercalibration3Driver.IndexPair">
+            <summary>
+            Pair of indices of matching tracks.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Intercalibration3Driver.IndexPair.IdRef">
+            <summary>
+            Index of track on the reference zone.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Intercalibration3Driver.IndexPair.IdCal">
+            <summary>
+            Index of track on the zone to be calibrated.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.Intercalibration3Driver.ZoneMapInfo">
+            <summary>
+            Zone Mapping Information.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Intercalibration3Driver.ZoneMapInfo.Info">
+            <summary>
+            Mapping Position for the zone.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Intercalibration3Driver.ZoneMapInfo.Pairs">
+            <summary>
+            Pairs of matching tracks.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.Intercalibration3Driver.Exe">
+            <summary>
+            Intercalibration3Driver executor.
+            </summary>
+            <remarks>
+            <para>Intercalibration3Driver performs plate calibration.</para>
+            <para>Longitudinal offsets are accounted for in translation computations, but they are not written to the DB to change the plate Z.</para>
+            <para>Results of pattern matching are written to TB_PATTERN_MATCH and the calibration obtained is recorded in VW_PLATES.</para>
+            <para>Intercalibration parameters and pattern matching are performed iteratively, linearly decreasing the mapping tolerances.</para>
+            <para>
+            The following substitutions apply:
+            <list type="table">
+            <item><term><c>%EXEREP%</c></term><description>Executable repository path specified in the Startup file.</description></item>
+            <item><term><c>%SCRATCH%</c></term><description>Scratch directory specified in the Startup file.</description></item>
+            </list>
+            </para>
+            <para>
+            A sample XML configuration for Intercalibration3Driver follows:
+            <example>
+            <code>
+            &lt;Intercalibration3Settings&gt;
+             &lt;ScanningConfigId&gt;1003892834&lt;/ScanningConfigId&gt;
+             &lt;LinkConfigId&gt;1008832388&lt;/LinkConfigId&gt;
+             &lt;QualityCutId&gt;1003892838&lt;/QualityCutId&gt;
+             &lt;PositionTolerance&gt;20&lt;/PositionTolerance&gt;
+             &lt;SlopeTolerance&gt;0.04&lt;/SlopeTolerance&gt;
+             &lt;MinMatches&gt;20&lt;/MinMatches&gt;
+             &lt;MaxOffset&gt;3000&lt;/MaxOffset&gt;
+             &lt;XZoneDistance&gt;80000&lt;/XZoneDistance&gt;
+             &lt;YZoneDistance&gt;60000&lt;/YZoneDistance&gt;
+             &lt;ZoneSize&gt;6000&lt;/ZoneSize&gt;
+             &lt;Iterations&gt;3&lt;/Iterations&gt;
+             &lt;InitialPositionTolerance&gt;40&lt;/InitialPositionTolerance&gt;
+            &lt;/Intercalibration3Settings&gt;
+            </code>
+            </example>
+            </para>
+            <para><b>NOTICE: If the quality cut id is identical to the linker id, no quality cut is applied (unless the linker applies its own quality cuts).</b></para>
+            </remarks>	
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.Intercalibration3Driver.Exe.Main(System.String[])">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.Intercalibration3Driver.ExplanationForm">
+            <summary>
+            Summary description for ExplanationForm.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Intercalibration3Driver.ExplanationForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.Intercalibration3Driver.ExplanationForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.Intercalibration3Driver.ExplanationForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.Intercalibration3Driver.frmConfig">
+            <summary>
+            Summary description for frmConfig.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Intercalibration3Driver.frmConfig.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.Intercalibration3Driver.frmConfig.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.Intercalibration3Driver.frmConfig.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.Intercalibration3Driver.Utilities">
+            <summary>
+            Utility class.
+            </summary>
+        </member>
+    </members>
+</doc>

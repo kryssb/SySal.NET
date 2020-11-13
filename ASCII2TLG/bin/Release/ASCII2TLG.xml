@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ASCII2TLG</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Executables.ASCII2TLG.Exe">
+            <summary>
+            Converts an ASCII file of n-tuples to a TLG file.
+            </summary>
+            <remarks>
+            <para>The n-tuples must be in the format: <c>pts areasum px py sx sy sigma</c></para>
+            <para>
+            Usage example (command line):
+            <example>
+            <c>ASCII2TLG.exe c:\myfile.txt c:\myfile.tlg</c>
+            </example>
+            </para>
+            </remarks>
+        </member>
+        <member name="M:SySal.Executables.ASCII2TLG.Exe.Main(System.String[])">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+    </members>
+</doc>

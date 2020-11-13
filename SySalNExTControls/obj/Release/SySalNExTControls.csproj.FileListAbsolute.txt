@@ -1,0 +1,9 @@
+/home/kryss/Documenti/SySal/SySalNExTControls/bin/Release/SySalNExTControls.dll
+/home/kryss/Documenti/SySal/SySalNExTControls/bin/Release/SySalNExTControls.pdb
+/home/kryss/Documenti/SySal/SySalNExTControls/obj/Release/SySal.SySalNExTControls.SySalDialog.resources
+/home/kryss/Documenti/SySal/SySalNExTControls/obj/Release/SySal.SySalNExTControls.SySalResources.resources
+/home/kryss/Documenti/SySal/SySalNExTControls/obj/Release/SySal.SySalNExTControls.SySalProgressBar.resources
+/home/kryss/Documenti/SySal/SySalNExTControls/obj/Release/SySalNExTControls.csproj.GenerateResource.Cache
+/home/kryss/Documenti/SySal/SySalNExTControls/obj/Release/SySalNExTControls.dll
+/home/kryss/Documenti/SySal/SySalNExTControls/obj/Release/SySalNExTControls.pdb
+/home/kryss/Documenti/SySal/SySalNExTControls/obj/Release/SySalNExTControls.csprojAssemblyReference.cache

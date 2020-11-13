@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TSRDataView</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Executables.TSRDataView.TSRDataViewForm">
+            <summary>
+            TSRDataView is an application to browse TSR files and performing common searches/computations.    
+            </summary>
+            <remarks>
+            After opening one or more TSR file(s) (<c>Load</c> button), data can be searched for the following objects:
+            <list type="table">
+            <item><term>Layer</term><description>A layer is searched for on the basis of its ID/SheetID</description></item>
+            <item><term>Segment</term><description>A segment is searched for on the basis of its ID, the ID of its layer (or the corresponding SheetID), the ID of its track and its position/slope.</description></item>
+            <item><term>Track</term><description>A track is searched for on the basis of its ID, the Up/Downstream vertex ID, and its position/slope (projected to a certain layer, also transforming its geometry back to the original reference of the TLG file).</description></item>
+            <item><term>Vertex</term><description>A vertex is searched for on the basis of its ID and its position.</description></item>
+            <item><term>Volume</term><description>Useful when multiple TSR files are opened to search for a specific volume.</description></item>
+            </list>
+            The meaning of the search field changes slightly depending on the search being performed. The ID is always the sequential identifier of the object, so it means a layer ordinal number for layers, a sequential
+            number within the layer for segments, the ordinal number of the track, and so on. The result of the search has a number of columns that depends on the object searched.
+            <para>
+            <b>Layer</b>:
+            <list type="table">
+            <item><term>ID</term><description>The ID of the layer (sequential number, 0 for the most downstream one).</description></item>
+            <item><term>SheetID</term><description>The ID of the sheet.</description></item>
+            <item><term>RefZ</term><description>The reference Z for the layer.</description></item>
+            <item><term>DownZ</term><description>The downstream Z for the layer.</description></item>
+            <item><term>UpZ</term><description>The upstream Z for the layer.</description></item>
+            <item><term>Segments</term><description>The number of segments contained.</description></item>
+            <item><term>MXX,MXY,MYX,MYY</term><description>The XX,XY,YX,YY component of the transformation matrix.</description></item>
+            <item><term>TX,TY,TZ</term><description>The X,Y,Z component of the translation vector.</description></item>
+            <item><term>MSX,MSY</term><description>The multiplication constant for the X,Y component of slopes.</description></item>
+            <item><term>DSX,DSY</term><description>The additive constant for the X,Y component of slopes.</description></item>
+            </list>
+            </para>
+            <para>
+            <b>Segment</b>:
+            <list type="table">
+            <item><term>LyrID</term><description>The ID of the layer of the segment (sequential number, 0 for the most downstream one).</description></item>
+            <item><term>SheetID</term><description>The ID of the sheet containing the segment.</description></item>
+            <item><term>TkID</term><description>The ID of the track containing the segment.</description></item>
+            <item><term>ID</term><description>The ID of the segment within its layer.</description></item>
+            <item><term>BaseID</term><description>The original ID of the base track in the TLG file (if applicable).</description></item>
+            <item><term>N</term><description>The number of grains of the segment.</description></item>
+            <item><term>PX,PY</term><description>The (aligned) X,Y component of the position.</description></item>
+            <item><term>SX,SY</term><description>The (aligned) X,Y component of the slope.</description></item>
+            <item><term>S</term><description>The <c>Sigma</c> parameter for segment (basetrack/microtrack) quality.</description></item>
+            <item><term>OPX,OPY</term><description>The original X,Y component of the position.</description></item>
+            <item><term>OSX,OSY</term><description>The original X,Y component of the slope.</description></item>
+            </list>
+            </para>
+            <para>
+            <b>Track</b>:
+            <list type="table">
+            <item><term>ID</term><description>The ID of the track.</description></item>
+            <item><term>N</term><description>The number of segments in the track.</description></item>
+            <item><term>DwVID/UpVID</term><description>The ID of the downstream/upstream vertex.</description></item>
+            <item><term>DwIP/UpIP</term><description>The IP of the track w.r.t. the downstream/upstream vertex.</description></item>
+            <item><term>DwZX,DwZY,UpZX,UpZY</term><description>The X,Y component of the track position, taken from the downstream/upstream end, computed at <c>Z = 0</c>.</description></item>
+            <item><term>DwX,DwY,DwZ,UpX,UpY,UpZ</term><description>The X,Y,Z component of the track position, taken from the downstream/upstream end.</description></item>
+            <item><term>DwSX,DwSY,UpSX,UpSY</term><description>The X,Y component of the slope, taken from the downstream/upstream end.</description></item>
+            <item><term>APX,APY</term><description>The X,Y component of the position, computed by interpolation/extrapolation at the specified layer number (Layer ID apply, not Sheet IDs).</description></item>
+            <item><term>ASX,ASY</term><description>The X,Y component of the slope, computed by interpolation/extrapolation at the specified layer number (Layer ID apply, not Sheet IDs).</description></item>
+            </list>
+            </para>
+            <para>
+            <b>Vertex</b>:
+            <list type="table">
+            <item><term>ID</term><description>The ID of the vertex.</description></item>
+            <item><term>N</term><description>The number of tracks attached to the vertex.</description></item>
+            <item><term>AvgD</term><description>Average distance of tracks at the vertex point.</description></item>    
+            <item><term>X,Y,Z</term><description>The X,Y,Z component of the vertex position.</description></item>
+            <item><term>DownID</term><description>The ID of the layer immediately downstream of this vertex.</description></item>
+            <item><term>DownSheetID</term><description>The Sheet ID of the layer immediately downstream of this vertex.</description></item>
+            </list>
+            </para>
+            </remarks>
+        </member>
+        <member name="F:SySal.Executables.TSRDataView.TSRDataViewForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.TSRDataView.TSRDataViewForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.TSRDataView.TSRDataViewForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.TSRDataView.TSRDataViewForm.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+    </members>
+</doc>

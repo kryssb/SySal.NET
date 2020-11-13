@@ -1,0 +1,13 @@
+/home/kryss/Documenti/SySal/GraphicalAnalysis/bin/Debug/GraphicalAnalysis.dll
+/home/kryss/Documenti/SySal/GraphicalAnalysis/bin/Debug/GraphicalAnalysis.pdb
+/home/kryss/Documenti/SySal/GraphicalAnalysis/bin/Debug/GraphicalAnalysis.xml
+/home/kryss/Documenti/SySal/GraphicalAnalysis/bin/Debug/MathExpression.dll
+/home/kryss/Documenti/SySal/GraphicalAnalysis/bin/Debug/NumericalTools.dll
+/home/kryss/Documenti/SySal/GraphicalAnalysis/bin/Debug/MathExpression.pdb
+/home/kryss/Documenti/SySal/GraphicalAnalysis/bin/Debug/MathExpression.xml
+/home/kryss/Documenti/SySal/GraphicalAnalysis/bin/Debug/NumericalTools.pdb
+/home/kryss/Documenti/SySal/GraphicalAnalysis/bin/Debug/NumericalTools.xml
+/home/kryss/Documenti/SySal/GraphicalAnalysis/obj/Debug/GraphicalAnalysis.csprojAssemblyReference.cache
+/home/kryss/Documenti/SySal/GraphicalAnalysis/obj/Debug/GraphicalAnalysis.csproj.CopyComplete
+/home/kryss/Documenti/SySal/GraphicalAnalysis/obj/Debug/GraphicalAnalysis.dll
+/home/kryss/Documenti/SySal/GraphicalAnalysis/obj/Debug/GraphicalAnalysis.pdb

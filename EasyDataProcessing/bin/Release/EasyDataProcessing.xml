@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EasyDataProcessing</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Executables.EasyDataProcessing.BatchInfoForm">
+            <summary>
+            Summary description for BatchInfoForm.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.EasyDataProcessing.BatchInfoForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyDataProcessing.BatchInfoForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyDataProcessing.BatchInfoForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Executables.EasyDataProcessing.MainForm">
+            <summary>
+            EasyDataProcessing is a GUI tool to monitor DataProcessingServers and to schedule computations on servers and clusters of servers.
+            </summary>
+            <remarks>
+            <para>If the Manager flag is selected, the port for the manager of a cluster of DataProcessingServers is queried. If the flag is deselected, a stand-alone DataProcessingServer is queried.</para>
+            <para>The Test button checks the currently available processing power.</para>
+            <para>The Enqueue button queues a new batch to the list of batches of the specified DataProcessingServer. It does not wait for completion.</para>
+            <para>The EnqueueAndWait button queues a new batch and waits for its completion. The application is marked as "not responding" by the OS until the batch is complete.</para>
+            <para>The Remove button attempts to remove a batch from the execution list of the specified DataProcessingServer.</para>
+            <para>The Queue button queues a list of batches to the specified DataProcessingServer.</para>
+            <para>
+            The syntax to specify a batch list for execution is the following:
+            <example>
+            <code>
+            &lt;BatchList&gt;
+             &lt;Batch&gt;
+              &lt;Filename&gt;here goes the full path to the executable to be launched&lt;/Filename&gt;
+              &lt;CommandLineArguments&gt;here go the command line arguments, if any; if this field is missing, no arguments will be passed.&lt;/CommandLineArguments&gt;
+              &lt;Description&gt;the description of the batch.&lt;/Description&gt;
+              &lt;MachinePowerClass&gt;a nonnegative number specifying the minimum power class of the machines to use for this batch.&lt;/MachinePowerClass&gt;
+             &lt;/Batch&gt;
+             &lt;Batch&gt;
+              ...
+             &lt;/Batch&gt;
+             
+             ...
+             
+            &lt;/BatchList&gt;
+            </code>
+            </example>
+            </para>
+            <para>By double-clicking on a batch in the queue of the specified DataProcessingServer, one can learn the associated information (owner, arguments, etc.).</para>
+            </remarks>
+        </member>
+        <member name="F:SySal.Executables.EasyDataProcessing.MainForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyDataProcessing.MainForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyDataProcessing.MainForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyDataProcessing.MainForm.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="T:SySal.Executables.EasyDataProcessing.Batch">
+            <summary>
+            Class that is used to read a single batch descriptors from an XML document.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.EasyDataProcessing.Batch.Filename">
+            <summary>
+            Path to the executable file.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.EasyDataProcessing.Batch.CommandLineArguments">
+            <summary>
+            Command line arguments.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.EasyDataProcessing.Batch.Description">
+            <summary>
+            Description of the batch.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.EasyDataProcessing.Batch.MachinePowerClass">
+            <summary>
+            Machine power class required for the batch.
+            </summary>
+        </member>
+        <member name="T:SySal.Executables.EasyDataProcessing.BatchList">
+            <summary>
+            Class that is used to read a list of batch descriptors from an XML document.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.EasyDataProcessing.BatchList.Description">
+            <summary>
+            General description of the batch.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.EasyDataProcessing.BatchList.List">
+            <summary>
+            List of the batches.
+            </summary>
+        </member>
+    </members>
+</doc>

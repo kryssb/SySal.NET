@@ -1,0 +1,10 @@
+/home/kryss/Documenti/SySal/BatchManagerScheme/bin/Release/BatchManagerScheme.dll
+/home/kryss/Documenti/SySal/BatchManagerScheme/bin/Release/BatchManagerScheme.xml
+/home/kryss/Documenti/SySal/BatchManagerScheme/bin/Release/DAQSystem.dll
+/home/kryss/Documenti/SySal/BatchManagerScheme/bin/Release/SySalCore.dll
+/home/kryss/Documenti/SySal/BatchManagerScheme/bin/Release/Tracking.dll
+/home/kryss/Documenti/SySal/BatchManagerScheme/bin/Release/DAQSystem.xml
+/home/kryss/Documenti/SySal/BatchManagerScheme/bin/Release/SySalCore.xml
+/home/kryss/Documenti/SySal/BatchManagerScheme/obj/Release/BatchManagerScheme.csprojAssemblyReference.cache
+/home/kryss/Documenti/SySal/BatchManagerScheme/obj/Release/BatchManagerScheme.csproj.CopyComplete
+/home/kryss/Documenti/SySal/BatchManagerScheme/obj/Release/BatchManagerScheme.dll

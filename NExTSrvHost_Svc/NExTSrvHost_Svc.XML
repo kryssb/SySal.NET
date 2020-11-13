@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NExTSrvHost_Svc</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Services.NExTSrvHost_Svc.Configuration">
+            <summary>
+            Configuration of the NExT Service Host.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.NExTSrvHost_Svc.Configuration.DBServer">
+            <summary>
+            Encrypted DB server name. If this is a zero-length string, other DB-related fields are ignored, and the configuration is set from the file.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.NExTSrvHost_Svc.Configuration.DBUserName">
+            <summary>
+            Encrypted DB user name.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.NExTSrvHost_Svc.Configuration.DBPassword">
+            <summary>
+            Encrypted DB password.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.NExTSrvHost_Svc.Configuration.DBConfigQuery">
+            <summary>
+            If empty, the configuration is read from the file; otherwise, it specifies the scalar query that retrieves the configuration from the DB.
+            </summary>
+            <remarks>The string _ID_MACHINE_ is replaced with the id of the machine running the query.</remarks>
+        </member>
+        <member name="F:SySal.Services.NExTSrvHost_Svc.Configuration.PollingIntervalMS">
+            <summary>
+            The status of all services is checked periodically after this time interval (in milliseconds).
+            </summary>
+        </member>
+        <member name="F:SySal.Services.NExTSrvHost_Svc.Configuration.WWWPort">
+            <summary>
+            Port for the Web interface.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.NExTSrvHost_Svc.Configuration.Services">
+            <summary>
+            Configuration on NExT services.
+            </summary>        
+        </member>
+        <member name="F:SySal.Services.NExTSrvHost_Svc.NExTSrvHost.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Services.NExTSrvHost_Svc.NExTSrvHost.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SySal.Services.NExTSrvHost_Svc.NExTSrvHost.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:NExTSrvHost_Svc.ProjectInstaller.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:NExTSrvHost_Svc.ProjectInstaller.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:NExTSrvHost_Svc.ProjectInstaller.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:NExTSrvHost_Svc.Program.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+    </members>
+</doc>

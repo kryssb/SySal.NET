@@ -1,0 +1,16 @@
+/home/kryss/Documenti/SySal/PostProcessingManager/bin/Release/PostProcessingManager.exe
+/home/kryss/Documenti/SySal/PostProcessingManager/bin/Release/PostProcessingManager.pdb
+/home/kryss/Documenti/SySal/PostProcessingManager/bin/Release/DAQSystem.dll
+/home/kryss/Documenti/SySal/PostProcessingManager/bin/Release/Imaging.dll
+/home/kryss/Documenti/SySal/PostProcessingManager/bin/Release/Scanning.dll
+/home/kryss/Documenti/SySal/PostProcessingManager/bin/Release/SySalCore.dll
+/home/kryss/Documenti/SySal/PostProcessingManager/bin/Release/SySalWebServer.dll
+/home/kryss/Documenti/SySal/PostProcessingManager/bin/Release/Tracking.dll
+/home/kryss/Documenti/SySal/PostProcessingManager/bin/Release/DAQSystem.xml
+/home/kryss/Documenti/SySal/PostProcessingManager/bin/Release/Imaging.xml
+/home/kryss/Documenti/SySal/PostProcessingManager/bin/Release/SySalCore.xml
+/home/kryss/Documenti/SySal/PostProcessingManager/bin/Release/SySalWebServer.pdb
+/home/kryss/Documenti/SySal/PostProcessingManager/obj/Release/PostProcessingManager.csprojAssemblyReference.cache
+/home/kryss/Documenti/SySal/PostProcessingManager/obj/Release/PostProcessingManager.csproj.CopyComplete
+/home/kryss/Documenti/SySal/PostProcessingManager/obj/Release/PostProcessingManager.exe
+/home/kryss/Documenti/SySal/PostProcessingManager/obj/Release/PostProcessingManager.pdb

@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LinkingConfig</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Executables.BatchLink.Config">
+            <summary>
+            Batch link configuration.
+            </summary>
+        </member>
+        <member name="T:SySal.Executables.LinkingConfig.frmLinkingConfig">
+            <summary>
+            GUI tool to configure options for BatchLink.
+            </summary>
+            <remarks><b>NOTICE: This tool does not support the newest options in BatchLink and should be updated.</b></remarks>
+        </member>
+        <member name="F:SySal.Executables.LinkingConfig.frmLinkingConfig.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.LinkingConfig.frmLinkingConfig.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.LinkingConfig.frmLinkingConfig.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.LinkingConfig.frmLinkingConfig.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="T:SySal.Processing.StripesFragLink2.Configuration">
+            <summary>
+            Configuration for StripesFragmentLinker.
+            </summary>
+        </member>
+    </members>
+</doc>

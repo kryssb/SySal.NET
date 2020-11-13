@@ -1,0 +1,267 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FragShiftCorrection</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Processing.FragShiftCorrection.EditConfigForm">
+            <summary>
+            Summary description for EditConfigForm.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.FragShiftCorrection.EditConfigForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.FragShiftCorrection.EditConfigForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.FragShiftCorrection.EditConfigForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Processing.FragShiftCorrection.Configuration">
+            <summary>
+            Configuration for FragShiftCorrection.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.FragShiftCorrection.Configuration.MinGrains">
+            <summary>
+            Minimum number of grains to consider a track for systematic error computation.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.FragShiftCorrection.Configuration.MinSlope">
+            <summary>
+            Minimum slope to consider a track for systematic error computation.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.FragShiftCorrection.Configuration.MergePosTol">
+            <summary>
+            Position tolerance to merge two tracks in the same field of view.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.FragShiftCorrection.Configuration.MergeSlopeTol">
+            <summary>
+            Slope tolerance to merge two tracks in the same field of view.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.FragShiftCorrection.Configuration.PosTol">
+            <summary>
+            Position tolerance to detect a cross-field doubly reconstructed track, the basis of systematic error correction.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.FragShiftCorrection.Configuration.SlopeTol">
+            <summary>
+            Slope tolerance to detect a cross-field doubly reconstructed track, the basis of systematic error correction.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.FragShiftCorrection.Configuration.MinMatches">
+            <summary>
+            Minimum number of doubly reconstructed tracks in a pair of fields of view.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.FragShiftCorrection.Configuration.MaxMatchError">
+            <summary>
+            Maximum dispersion of matching deviations (in position).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.FragShiftCorrection.Configuration.GrainsOverlapRatio">
+            <summary>
+            Minimum overlap in Z of two measurements of a doubly reconstructed track.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.FragShiftCorrection.Configuration.OverlapTol">
+            <summary>
+            Overlap tolerance in micron between two possible measurements of the same track.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.FragShiftCorrection.Configuration.GrainZTol">
+            <summary>
+            Tolerance in Z for grains of two measurements of the same track.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.FragShiftCorrection.Configuration.IsStep">
+            <summary>
+            If true, hysteresis is accounted for in a single step passing from forward to backward X axis motion, otherwise a sinusoidal profile is used.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.FragShiftCorrection.Configuration.EnableHysteresis">
+            <summary>
+            If true, mechanical hysteresis estimation is activated.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.FragShiftCorrection.Configuration.#ctor">
+            <summary>
+            Builds an empty configuration.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.FragShiftCorrection.Configuration.#ctor(System.String)">
+            <summary>
+            Builds and empty configuration with a name.
+            </summary>
+            <param name="name">the configuration name.</param>
+        </member>
+        <member name="M:SySal.Processing.FragShiftCorrection.Configuration.Clone">
+            <summary>
+            Clones this configuration.
+            </summary>
+            <returns>the object clone.</returns>
+        </member>
+        <member name="T:SySal.Processing.FragShiftCorrection.LinearFragmentCorrectionWithHysteresis">
+            <summary>
+            Linear correction of systematic shifts (mostly camera conversion factors and camera rotation) plus hysteretic contributions.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.FragShiftCorrection.LinearFragmentCorrectionWithHysteresis.MXX">
+            <summary>
+            The components of the deformation matrix.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.FragShiftCorrection.LinearFragmentCorrectionWithHysteresis.MXY">
+            <summary>
+            The components of the deformation matrix.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.FragShiftCorrection.LinearFragmentCorrectionWithHysteresis.MYX">
+            <summary>
+            The components of the deformation matrix.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.FragShiftCorrection.LinearFragmentCorrectionWithHysteresis.MYY">
+            <summary>
+            The components of the deformation matrix.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.FragShiftCorrection.LinearFragmentCorrectionWithHysteresis.XHysteresis">
+            <summary>
+            X mechanical hysteresis.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.FragShiftCorrection.LinearFragmentCorrectionWithHysteresis.XPeriod">
+            <summary>
+            Period of X motion (computed from fragment analysis).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.FragShiftCorrection.LinearFragmentCorrectionWithHysteresis.IsHoriz">
+            <summary>
+            If true, the sequence of views is a zig-zag path with main motion along X; if false, the main motion is along Y.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.FragShiftCorrection.LinearFragmentCorrectionWithHysteresis.IsUp">
+            <summary>
+            If true, the zig-zag path moves towards increasing Y.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.FragShiftCorrection.LinearFragmentCorrectionWithHysteresis.IsStep">
+            <summary>
+            If true, step-correction is used for hysteresis.
+            </summary>
+        </member>
+        <member name="T:SySal.Processing.FragShiftCorrection.LinearFragmentCorrectionWithHysteresis.FieldShift">
+            <summary>
+            Field-to-field shifts that extends the FieldShift found in SySal.Scanning.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.FragShiftCorrection.LinearFragmentCorrectionWithHysteresis.FieldShift.FS">
+            <summary>
+            Field-to-field shift.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.FragShiftCorrection.LinearFragmentCorrectionWithHysteresis.FieldShift.IsHorizontalMatch">
+            <summary>
+            If true, the views share a vertical boundary (i.e., they are adjacent along the X direction).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.FragShiftCorrection.LinearFragmentCorrectionWithHysteresis.FieldShift.IsRightHeadingCoil">
+            <summary>
+            If true, the zig-zag path starts towards increasing X.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.FragShiftCorrection.LinearFragmentCorrectionWithHysteresis.FieldShift.IsUpHeadingCoil">
+            <summary>
+            If true, the zig-zag path moves progressively towards increasing Y.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.FragShiftCorrection.LinearFragmentCorrectionWithHysteresis.FieldShift.CenterDistance">
+            <summary>
+            Distance between centers.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.FragShiftCorrection.LinearFragmentCorrectionWithHysteresis.FieldShift.#ctor(SySal.Scanning.PostProcessing.FieldShiftCorrection.FieldShift,System.Boolean,System.Boolean,System.Boolean,System.Double)">
+            <summary>
+            Initializes a FieldShift.
+            </summary>
+            <param name="fs">the value of the base FieldShift structure.</param>
+            <param name="ishmatch">the value of IsHorizontalMatch.</param>
+            <param name="isright">the value of IsRightHeadingCoil.</param>
+            <param name="isup">the value of IsUpHeadingCoil.</param>
+            <param name="fdist">the value of CenterDistance.</param>
+        </member>
+        <member name="M:SySal.Processing.FragShiftCorrection.LinearFragmentCorrectionWithHysteresis.Correct(SySal.Scanning.Plate.IO.OPERA.RawData.Fragment)">
+            <summary>
+            Applies the correction to a fragment.
+            </summary>
+            <param name="frag">the fragment to be corrected.</param>
+        </member>
+        <member name="M:SySal.Processing.FragShiftCorrection.LinearFragmentCorrectionWithHysteresis.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Used for serialization.
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:SySal.Processing.FragShiftCorrection.LinearFragmentCorrectionWithHysteresis.#ctor">
+            <summary>
+            Creates an empty instance.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.FragShiftCorrection.LinearFragmentCorrectionWithHysteresis.#ctor(System.Double[0:,0:],System.Double,System.UInt32,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes an instance with specific parameters.
+            </summary>
+            <param name="mat">the deformation matrix.</param>
+            <param name="xhyst">the X hysteresis.</param>
+            <param name="xperiod">the X period.</param>
+            <param name="ishoriz">if true, the zig-zag path is horizontal.</param>
+            <param name="isup">if true, the zig-zag path moves towards increasing Y.</param>
+            <param name="isstep">if true, the hysteresis contributio is a step function.</param>
+        </member>
+        <member name="M:SySal.Processing.FragShiftCorrection.LinearFragmentCorrectionWithHysteresis.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Used for serialization.
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="T:SySal.Processing.FragShiftCorrection.FragmentShiftManager">
+            <summary>
+            FragmentShiftManager handles field shifts for whole fragments.
+            </summary>
+            <remarks>
+            <para>
+            The algorithm implemented to compute systematic error corrections works as follows:
+            <list type="bullet">
+            <item><term>For each pair of adjacent views, look for tracks in the overlap region that have been seen in both views.</term></item>
+            <item><term>Measure the position discrepancy between the tracks.</term></item>
+            <item><term>Build distributions of these discrepancies, so that the linear correlations can be extracted.</term></item>
+            <item><term>Compute the deformation matrix, and, if required, the X hysteresis.</term></item>
+            </list>
+            The correlations considered are:
+            <list type="table">
+            <listheader><term>Correlation</term><description>Meaning</description></listheader>
+            <item><term>DeltaX vs. X</term><description>Error in Pixel-to-micron X conversion factor.</description></item>
+            <item><term>DeltaY vs. Y</term><description>Error in Pixel-to-micron X conversion factor.</description></item>
+            <item><term>DeltaX vs. Y</term><description>Camera rotation.</description></item>
+            <item><term>DeltaY vs. X</term><description>Camera rotation.</description></item>
+            </list>
+            Normally, the offset of the DeltaX vs. Y distribution is different for views that are in increasing X sequence and views that are in decreasing X sequence. This effect can be measured and is due to X mechanical hysteresis.
+            </para>	
+            </remarks>
+        </member>
+    </members>
+</doc>

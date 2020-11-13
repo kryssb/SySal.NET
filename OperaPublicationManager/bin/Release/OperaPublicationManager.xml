@@ -1,0 +1,531 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OperaPublicationManager</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Executables.OperaPublicationManager.ActivityForm">
+            <summary>
+            The ActivityForm for a job shows its current activity.
+            </summary>
+            <remarks>
+            <para><i>Job Type</i> shows the type of job (Brick/Operation/System Publishing/Copying/Deleting/etc.)</para>
+            <para><i>Object ID</i> is the ID of the object being handled by the job.</para>
+            <para><i>Status</i> shows the process status (<c>TODO</c>/<c>SCHEDULED</c>/<c>RUNNING</c>/<c>ABORTED</c>/<c>DONE</c>)</para>
+            <para><i>Progress</i> displays detailed information about the tables being accessed and the percentage of work done.</para>
+            <para>The progress bar expresses the fraction of work done in a graphical way.</para>
+            </remarks>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.ActivityForm.#ctor">
+            <summary>
+            Builds the ActivityForm.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.ActivityForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.ActivityForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.ActivityForm.ShowDialog(System.Int64,SySal.OperaDb.OperaDbConnection)">
+            <summary>
+            Sets the job for which the dialog is to be displayed and shows it.
+            </summary>
+            <param name="jobid">the ID of the job for which information is to be displayed.</param>
+            <param name="conn">the DB connection to be used.</param>
+        </member>
+        <member name="T:SySal.Executables.OperaPublicationManager.AddBricksForm">
+            <summary>
+            AddBricksForm is used to specify the bricks for which new publication jobs have to be created.
+            </summary>
+            <remarks>
+            <para>The remote DB link to be involved in the operation is displayed in the related box.</para>
+            <para>The IDs of the bricks to be involved must be entered as a comma-separated list in the related box. Further checks can be added:
+            <list type="bullet">	
+            <item><term>Not published yet</term><description>requires that the bricks haven't yet been published. Enabling this checks the <b><u>local</u></b> publication subsystem.</description></item>
+            <item><term>Missing in destination</term><description>requires that the bricks are not in the destination: if the job type is <c>PUBLISH</c>/<c>UNPUBLISH</c>, <i>destination</i> means the remote DB link; if the job type is <c>COPY</c>/<c>DELETE</c>, <i>destination</i> means the local DB.</description></item>
+            </list>
+            The user clicks the <c>Select</c> button to have the form choose the bricks in the ID list and display them in the <c>Available bricks</c> table; notice that if a brick does not exist in the source DB, it will not appear in the <c>Available bricks</c> table.	
+            </para>
+            <para>The user highlights the bricks for which he/she wants to create jobs; no action will be taken for unselected bricks. The highlighted bricks are then moved to the list of <c>Selected bricks</c> on the right. Individual bricks or brick groups can be removed from that list by clicking on the <c>Remove</c> button, and the list can be cleared by clicking on the <c>Clear</c> button.</para>
+            <para>New jobs are created for selected bricks if the user presses <c>OK</c>; no new jobs will be created if the user presses <c>Cancel</c>.</para>
+            </remarks>
+        </member>
+        <member name="F:SySal.Executables.OperaPublicationManager.AddBricksForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.AddBricksForm.ShowDialog(SySal.OperaDb.OperaDbConnection,System.String,SySal.Executables.OperaPublicationManager.MainForm.JobType)">
+            <summary>
+            Shows the dialog.
+            </summary>
+            <param name="conn">the DB connection to be used.</param>
+            <param name="dblink">the DB link involved in the jobs to be prepared.</param>
+            <param name="jt">the type of job to be created.</param>
+            <returns><c>DialogResult.OK</c> if the user presses <c>OK</c>, other codes otherwise.</returns>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.AddBricksForm.#ctor">
+            <summary>
+            Creates a new AddBricksForm.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.AddBricksForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.AddBricksForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.OperaPublicationManager.AddBricksForm.Ids">
+            <summary>
+            The list of the brick Ids.
+            </summary>
+        </member>
+        <member name="T:SySal.Executables.OperaPublicationManager.AddOperationsForm">
+            <summary>
+            AddOperationsForm is used to specify the process operations for which new publication jobs have to be created.
+            </summary>
+            <remarks>
+            <para>The remote DB link to be involved in the operation is displayed in the related box.</para>
+            <para>The IDs of the operations to be involved must be entered as a comma-separated list or as a single-column-returning SQL statement. Examples:
+            <list type="bullet">
+            <item><term>ID list</term><description><c>435,882,256,883</c></description></item>
+            <item><term>SQL</term><description><c>SELECT DISTINCT ID_SCANBACK_PROCOPID FROM TB_B_SCANBACK_CHECKRESULTS WHERE ID_EVENTBRICK = 10081</c></description></item>
+            </list> 
+            Further checks can be added:
+            <list type="bullet">	
+            <item><term>Not published yet</term><description>requires that the process operations haven't yet been published. Enabling this checks the <b><u>local</u></b> publication subsystem.</description></item>
+            <item><term>Missing in destination</term><description>requires that the process operations are not in the destination: if the job type is <c>PUBLISH</c>/<c>UNPUBLISH</c>, <i>destination</i> means the remote DB link; if the job type is <c>COPY</c>/<c>DELETE</c>, <i>destination</i> means the local DB.</description></item>
+            </list>
+            The user clicks the <c>Select</c> button to have the form choose the process operations in the ID list or in the SQL selection and display them in the <c>Available operations</c> table; notice that if a process operation does not exist in the source DB, it will not appear in the <c>Available operations</c> table.
+            </para>
+            <para>Process operation jobs use to fail when dependent process operations are not present in the destination. In order to avoid skipping dependencies, the user can press the <c>Dependencies</c> button to get a report of process operations that must be involved in the process operation list. Since this can be a long task, a progress bar is on the right of this button. The report is displayed in a <see cref="T:SySal.Executables.OperaPublicationManager.DependencyForm"/>.</para>
+            <para>The user highlights the process operations for which he/she wants to create jobs; no action will be taken for unselected operations. The highlighted bricks are then moved to the list of <c>Selected bricks</c> on the right. Individual operations or operation groups can be removed from that list by clicking on the <c>Remove</c> button, and the list can be cleared by clicking on the <c>Clear</c> button.</para>
+            <para>New jobs are created for selected operations if the user presses <c>OK</c>; no new jobs will be created if the user presses <c>Cancel</c>.</para>
+            </remarks>
+        </member>
+        <member name="F:SySal.Executables.OperaPublicationManager.AddOperationsForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.AddOperationsForm.ShowDialog(SySal.OperaDb.OperaDbConnection,System.String)">
+            <summary>
+            Shows the dialog.
+            </summary>
+            <param name="conn">the DB connection to be used.</param>
+            <param name="dblink">the DB link involved in the jobs to be prepared.</param>		
+            <returns><c>DialogResult.OK</c> if the user presses <c>OK</c>, other codes otherwise.</returns>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.AddOperationsForm.#ctor">
+            <summary>
+            Creates a new AddOperationsForm.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.AddOperationsForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.AddOperationsForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.OperaPublicationManager.AddOperationsForm.Ids">
+            <summary>
+            The list of IDs of the proces operations.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.AddOperationsForm.ShowDialog(SySal.OperaDb.OperaDbConnection,System.String,SySal.Executables.OperaPublicationManager.MainForm.JobType)">
+            <summary>
+            Shows the dialog.
+            </summary>
+            <param name="conn">the DB connection to be used.</param>
+            <param name="dblink">the DB link involved in the jobs to be prepared.</param>
+            <param name="jt">the type of job to be created.</param>
+            <returns><c>DialogResult.OK</c> if the user presses <c>OK</c>, other codes otherwise.</returns>
+        </member>
+        <member name="T:SySal.Executables.OperaPublicationManager.CSCandsForm">
+            <summary>
+            CSCandsForm is used to download CS candidates.
+            </summary>
+            <remarks>
+            <para>The remote DB link to be involved in the operation is displayed in the related box.</para>
+            <para>The IDs of the CS doublets for which the DB link contains predictions are loaded in the left list.</para>
+            <para>The user highlights the bricks for which he/she wants to create jobs; no action will be taken for unselected bricks. The highlighted bricks are then moved to the list of <c>Selected bricks</c> on the right. Individual bricks or brick groups can be removed from that list by clicking on the <c>Remove</c> button, and the list can be cleared by clicking on the <c>Clear</c> button.</para>
+            <para>Predictions are downloaded when the <c>Download</c> button is pressed. CS doublets are removed from the download list as the related candidates are downloaded; in case of errors, only the remaining doublets will be displayed.</para>
+            </remarks>
+        </member>
+        <member name="F:SySal.Executables.OperaPublicationManager.CSCandsForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.CSCandsForm.ShowDialog(SySal.OperaDb.OperaDbConnection,System.String,SySal.Executables.OperaPublicationManager.MainForm.JobType)">
+            <summary>
+            Shows the dialog.
+            </summary>
+            <param name="conn">the DB connection to be used.</param>
+            <param name="dblink">the DB link involved in the jobs to be prepared.</param>
+            <param name="jt">the type of job to be created.</param>
+            <returns><c>DialogResult.OK</c> if the user presses <c>OK</c>, other codes otherwise.</returns>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.CSCandsForm.#ctor">
+            <summary>
+            Creates a new CSCandsForm.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.CSCandsForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.CSCandsForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.OperaPublicationManager.CSCandsForm.Ids">
+            <summary>
+            The list of the brick Ids.
+            </summary>
+        </member>
+        <member name="T:SySal.Executables.OperaPublicationManager.DBLinkForm">
+            <summary>
+            Allows the user to enter data to connect to a DB.
+            </summary>
+            <remarks>
+            <list type="bullet">
+            <item><term>DB Server</term><description>the name of the DB to which a link has to be established.</description></item>
+            <item><term>Username</term><description>the name of the user under whose identity the DB link should be established.</description></item>
+            <item><term>Password</term><description>password of the DB user name.</description></item>	
+            <item><term>DB Link</term><description>the name to be assigned to the DB link.</description></item>
+            </list>
+            </remarks>
+        </member>
+        <member name="F:SySal.Executables.OperaPublicationManager.DBLinkForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.DBLinkForm.#ctor">
+            <summary>
+            Creates a new DBLinkForm.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.DBLinkForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.DBLinkForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Executables.OperaPublicationManager.DependencyForm">
+            <summary>
+            Shows the process operation from which a process operation depends directly or indirectly (e.g. through its children).
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.OperaPublicationManager.DependencyForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.DependencyForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.DependencyForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Executables.OperaPublicationManager.LogForm">
+            <summary>
+            Shows log information for a specified job.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.OperaPublicationManager.LogForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.LogForm.#ctor(System.Int64,System.String,SySal.OperaDb.OperaDbConnection)">
+            <summary>
+            Creates a new LogForm.
+            </summary>
+            <param name="jobid">the ID of the job whose log information must be displayed.</param>
+            <param name="dblink">the DB link involved.</param>
+            <param name="dbconn">the DB connection to be used.</param>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.LogForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.LogForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Executables.OperaPublicationManager.LoginForm">
+            <summary>
+            Allows the user to enter data to connect to a DB.
+            </summary>
+            <remarks>
+            <list type="bullet">
+            <item><term>DB Server</term><description>the name of the DB to connect to.</description></item>
+            <item><term>Username</term><description>the name of the user under whose identity the connection should be established.</description></item>
+            <item><term>Password</term><description>password of the DB user name.</description></item>	
+            </list>
+            </remarks>
+        </member>
+        <member name="F:SySal.Executables.OperaPublicationManager.LoginForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.LoginForm.#ctor">
+            <summary>
+            Builds a new LoginForm.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.LoginForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.LoginForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Executables.OperaPublicationManager.MainForm">
+            <summary>
+            The MainForm of the OperaPublicationManager is where all actions start.
+            </summary>
+            <remarks>The form is divided in five main sections:
+            <para><list type="table">
+            <item><term>Login area</term><description>Here the DB and the login credentials are selected. The DB connection is established after the <i>Connect</i> button is pressed.</description></item>
+            <item><term>General area</term><description>This area is circled by the <i>General</i> group box. DB links and queues are set up here.
+            <para>A <i><b>DB Link</b></i> is the fundamental pillar of Oracle DB-based publication. The local DB communicates with other DBs identified as DB Links. The local DB logs onto the remote DB identifying itself as a specific user on the remote DB.
+            DB Links can be added/deleted, tested (checking access of the TB_SITES table on remote DBs) and their list exported to ASCII files.</para>
+            <para>A <i><b>queue</b></i> is an entity associated to a specific DB Link, and containing a time-ordered list of jobs to be executed against that DB. No job can be created without a related queue. Queue processing starts automatically at regular time intervals.
+            Queues can be added/deleted, their next execution time can be changed, and their list can be exported to ASCII files.</para></description></item>
+            <item><term>Job Management</term><description>This area is circled by the <i>Job Management</i> group box. Jobs can be created/deleted/monitored by tools in this area. In order to create a job of a certain type (<i>System</i>, <i>Brick</i>, <i>Operation</i>), 
+            the corresponding button must be pressed. The job action can be one of the following:
+            <para><b>Compare</b> compares the number of rows related, in each table, directly or indirectly, to the specified operation or brick; the publication GUID is also checked. Row content is <b><u>not checked</u></b>.</para>
+            <para><b>Publish</b> uploads the current local system settings, a brick or an operation (along with all its children) to the remote DB.</para>
+            <para><b>Unpublish</b> removes a brick or an operation (along with all its children) from the remote DB, using the local representation of the brick/operation.</para>
+            <para><b>Copy</b> downloads the current local system settings, a brick or an operation (along with all its children) from the remote DB.</para>
+            <para><b>Delete</b> deletes a brick or an operation (along with all its children) from the local DB.</para>
+            <para><b>CS Candidates</b> downloads CS candidates for a CS doublet along with the geometrical parameters of the doublet. Notice this is a <b>Brick</b> job (the <c>New Brick Job</c> button must be pressed).</para>
+            <para>A new job is always created with the currently selected queue. If no queue is selected, the job is not created.</para>
+            <para>When a new job is created, it is in a <i>TODO</i> status. It must be explicitly scheduled (by means of the proper button). This additional requirement avoids that data be published without explicit human approval. Jobs in an <i>ABORTED</i> status can be 
+            re-scheduled; however, it's important to check the log before rescheduling: if the reason for job abortion is not removed, it will probably fail again. If a <i>COPY</i> or <i>PUBLISH</i> job was interrupted, and some data had been already written by the time of
+            interruption, in most cases manual removal of the relics are needed before the job can be started again; deregistration of the object from the publication subsystem is also needed in this case.</para>
+            <para>The other buttons in this area allow to look at the log entries for the highlighted job (<see cref="T:SySal.Executables.OperaPublicationManager.LogForm"/>), at its current activity (<see cref="T:SySal.Executables.OperaPublicationManager.ActivityForm"/>) 
+            or at execution statistics (<see cref="T:SySal.Executables.OperaPublicationManager.StatsForm"/>).</para>
+            <para>The list of jobs can be exported to ASCII files.</para>	
+            </description></item>
+            <item><term>Object Management</term><description><para>Every object that is handled at least once by the publication subsystem is recorded there with its ID and a GUID. The GUID is a 32-digit hexadecimal code that is generated in such a way that it is statistically 
+            unique all over the world. The Object Management area takes care of these records.</para>
+            <para>The GUID changes every time the object is registered again in the publication system, i.e. at every version change. The <i>Version Check</i> button checks that the local GUID and the remote GUID match. The DB link used for the match is the currently selected DB link.
+            If no DB link is selected, no check is performed.</para>
+            <para>An object can be explicitly deregistered from the local publication system. However, if it has been registered in other DBs publication subsystems, it will no be deleted from there. Valid objects are not eligible for deregistration, nor can they be deregistered 
+            if they're undergoing a write or delete operation. If the user wants to explicitly deregister an object, he/she must put the object in an <i>INVALID</i> status (by the <i>INVALIDATE</i> button); then the object can be deleted (by pressing <i>DEREGISTER</i>). This is a common
+            situation when a very long job is interrupted by network or disk errors; then the job is stopped, but the object status is still in a <i>WRITING</i> or <i>DELETING</i> status, and it cannot be deleted nor overwritten until it is eliminated from the publication subsystem. 
+            In such a situation, the user would mark the object as <i>INVALID</i>, then he/she will deregister it.</para>
+            <para>Finally, the object list can be exported to ASCII files.</para></description></item>
+            <item><term>Miscellanea</term><description>The last area, in the lower-right corner, contains several command buttons. The user can look at aggregated statistics for all jobs, or view all logs. Finally, the log can be purged of old entries (<see cref="T:SySal.Executables.OperaPublicationManager.PurgeLogForm"/>).</description></item>
+            </list></para>
+            </remarks>
+        </member>
+        <member name="F:SySal.Executables.OperaPublicationManager.MainForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.MainForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.MainForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.MainForm.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="T:SySal.Executables.OperaPublicationManager.PurgeLogForm">
+            <summary>
+            The PurgeLogForm is used to clean the OPERAPUB log of useless log entries. 
+            </summary>
+            <remarks>
+            <para>The number of current entries in the log is shown. The log can be purged up to a specified time (<i>Earliest survival time</i>); 
+            before purging the log, the number of survivor entries can be estimated by clicking on the <i>Estimate survivors after purge</i> button.</para>
+            </remarks>
+        </member>
+        <member name="F:SySal.Executables.OperaPublicationManager.PurgeLogForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.PurgeLogForm.#ctor">
+            <summary>
+            Creates a new PurgeLogForm.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.PurgeLogForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.PurgeLogForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.PurgeLogForm.ShowDialog(SySal.OperaDb.OperaDbConnection)">
+            <summary>
+            Shows the dialog.
+            </summary>
+            <param name="conn">the DB connection to be used.</param>
+            <returns><c>DialogResult.OK</c> if the purge log operation has been accepted; other codes otherwise.</returns>
+        </member>
+        <member name="T:SySal.Executables.OperaPublicationManager.QueueForm">
+            <summary>
+            The QueueForm allows a user enter information to set up or reset a job queue (see <see cref="T:SySal.Executables.OperaPublicationManager.MainForm"/> for job queues).
+            </summary>
+            <remarks>
+            <para>The <i>DB Link</i> parameter specifies the DB link the queue refers to. The <i>First time</i> is the first time when the queue will be executed. <i>Repeat after days</i> specifies the time interval, in days, before the next execution.</para>
+            <para>When the QueueForm is opened, <i>First time</i> is initialized to 30s after the currnt time; therefore, in order to schedule a queue to run almost immediately, one just needs to open the QueueForm on that queue and click <i>OK</i>.</para>
+            </remarks>
+        </member>
+        <member name="F:SySal.Executables.OperaPublicationManager.QueueForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.QueueForm.#ctor">
+            <summary>
+            Creates a new QueueForm.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.QueueForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.QueueForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Executables.OperaPublicationManager.StatsForm">
+            <summary>
+            Shows execution statistics for a specified job.
+            </summary>
+            <remarks>
+            <para>For all the tables involved in a certain job, this form shows three quantities (that are logged by the OPERAPUB procedures executing on the DB):
+            <list type="bullet">
+            <item><term>Total times</term><description>the total time spent (in seconds) is shown, together with a bar plot displaying the fraction spent on each table. This is especially useful to optimize DB indices and keys.</description></item>
+            <item><term>Total rows</term><description>the total number of rows involved in the job (i.e. copied/compared/deleted) is shown, together with a bar plot displaying the fraction contributed by each table. This is especially useful for DB sizing computations.</description></item>
+            <item><term>Average cost per row</term><description>the average time spent per each row in each table is shown. The total average time includes also overheads due to PL/SQL procedure processing, whereas the individual averages are computed using SQL statements only; the latter, 
+            in turn, include also the SQL parsing time and SQL*Net TCP/IP round trips. While analyzing these results, one should keep in mind that the average cost per row can be very high for sparse data: e.g. for an INSERT that copies zero rows, parsing and round trips can take 2s, which is
+            roughly the same time needed to copy 500 rows; hence, the average cost per row will be very different.</description></item>
+            </list>
+            </para>
+            <para>The three <i>Export</i> buttons allow to export time data, row count data or row cost data to ASCII files.</para>
+            <para>The <i>Refresh</i> button updates the statistics (if the related job is running).</para>
+            </remarks>
+        </member>
+        <member name="F:SySal.Executables.OperaPublicationManager.StatsForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.StatsForm.#ctor">
+            <summary>
+            Creates a new StatsForm.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.StatsForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.StatsForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.StatsForm.ShowDialog(System.Int64,SySal.OperaDb.OperaDbConnection)">
+            <summary>
+            Shows the dialog, filling the plots with statistics from the specified job.
+            </summary>
+            <param name="jobid">the ID of the job for which statistics are needed.</param>
+            <param name="dbconn">the DB connection to be used.</param>
+        </member>
+        <member name="T:SySal.Executables.OperaPublicationManager.VersionCheckForm">
+            <summary>
+            Shows the results of a version check.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.OperaPublicationManager.VersionCheckForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.VersionCheckForm.#ctor">
+            <summary>
+            Creates a new VersionCheckForm.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.VersionCheckForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.VersionCheckForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaPublicationManager.VersionCheckForm.ShowDialog(System.Data.DataTable)">
+            <summary>
+            Shows the dialog, using a specified DataTable as the data source.
+            </summary>
+            <param name="dt">the DataTable to be used as a data source.</param>
+        </member>
+    </members>
+</doc>

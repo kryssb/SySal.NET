@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OperaDbLoginTools</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.OperaDb.OperaDbCredentials">
+            <summary>
+            Credentials are username/password pairs.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbCredentials.Decode(System.String)">
+            <summary>
+            Decodes an encrypted string.
+            </summary>
+            <param name="instr">string to be decoded.</param>
+            <returns>the decoded string.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbCredentials.Encode(System.String)">
+            <summary>
+            Encodes an encrypted string.
+            </summary>
+            <param name="instr">the string to be encrypted.</param>
+            <returns>the encoded string.</returns>
+        </member>
+        <member name="P:SySal.OperaDb.OperaDbCredentials.Path">
+            <summary>
+            The path of the credential file.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.OperaDbCredentials.DBServer">
+            <summary>
+            DB server to log on to.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.OperaDbCredentials.DBUserName">
+            <summary>
+            Opera DB user name.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.OperaDbCredentials.DBPassword">
+            <summary>
+            Opera DB password.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.OperaDbCredentials.OPERAUserName">
+            <summary>
+            Opera user name.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.OperaDbCredentials.OPERAPassword">
+            <summary>
+            Opera password.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbCredentials.Record">
+            <summary>
+            Records credentials for later use.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbCredentials.RecordToEnvironment(System.Collections.Specialized.StringDictionary)">
+            <summary>
+            Records a set of credentials to an environment variable.
+            </summary>
+            <param name="dict">the dictionary where this information is to be recorded.</param>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbCredentials.RemoveFromEnvironment(System.Collections.Specialized.StringDictionary)">
+            <summary>
+            Removes a set of credentials from an environment variable.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbCredentials.CheckDbAccess">
+            <summary>
+            Checks database access with these credentials.
+            </summary>
+            <returns>the user id associated to these credentials if successful; otherwise, an exception is thrown.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbCredentials.Flush">
+            <summary>
+            Flushes the credentials from the record.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbCredentials.#ctor">
+            <summary>
+            Creates a new, empty set of credentials.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbCredentials.Connect">
+            <summary>
+            Creates a new OperaDbConnection using the DB login information in the set of credentials.
+            </summary>
+            <returns>a new OperaDbConnection (not open yet) to the Opera DB specified in the credentials.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbCredentials.CreateFromRecord">
+            <summary>
+            Creates a new set of credentials or loads credentials previously stored.
+            </summary>
+            <returns>The set of credentials read from the record.</returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,659 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NExTCore</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.NExT.DataEvent">
+            <summary>
+            An event, possibly containing data.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.DataEvent.EventId">
+            <summary>
+            The token that uniquely identifies this data set. A default value is provided, using the system time.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.DataEvent.Emitter">
+            <summary>
+            The URI of the object that emitted this event; exceptions must be notified to this URI.
+            </summary>
+        </member>
+        <member name="T:SySal.NExT.AbortEvent">
+            <summary>
+            Request to abort processing a <see cref="T:SySal.NExT.DataEvent"/>.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.AbortEvent.StopId">
+            <summary>
+            The id of the event to be aborted.
+            </summary>
+        </member>
+        <member name="T:SySal.NExT.DataEventDone">
+            <summary>
+            Information from the completion of processing for a data event.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.DataEventDone.EventId">
+            <summary>
+            Id of the event.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.DataEventDone.Done">
+            <summary>
+            <c>true</c> if the event processing is complete, <c>false</c> otherwise.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.DataEventDone.FinalException">
+            <summary>
+            Final exception raised in processing the event; if <see cref="F:SySal.NExT.DataEventDone.Done"/> is <c>false</c>, this is <c>null</c>.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.DataEventDone.Info">
+            <summary>
+            Additional information; if <see cref="F:SySal.NExT.DataEventDone.Done"/> is <c>false</c>, this is <c>null</c>.
+            </summary>
+        </member>
+        <member name="T:SySal.NExT.NExTException">
+            <summary>
+            An exception arising in the context of a NExT processing task.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.NExTException.Token">
+            <summary>
+            Token of the data set that caused the exception.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.NExTException.RaisedByURI">
+            <summary>
+            The URI of the object that raised the exception.
+            </summary>
+        </member>
+        <member name="M:SySal.NExT.NExTException.#ctor(System.Int64,System.String,System.String)">
+            <summary>
+            Builds a new NExTException.
+            </summary>
+            <param name="token">token of the dataset.</param>
+            <param name="raisedby">URI of the object that raised the exception.</param>
+            <param name="message">exception message.</param>
+        </member>
+        <member name="M:SySal.NExT.NExTException.#ctor">
+            <summary>
+            Builds an empty exception.
+            </summary>
+        </member>
+        <member name="M:SySal.NExT.NExTException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Deserialization constructor for remoting.
+            </summary>
+            <param name="info">serialization information.</param>
+            <param name="context">the streaming context.</param>
+        </member>
+        <member name="M:SySal.NExT.NExTException.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Serializes the NExTException.
+            </summary>
+            <param name="info">serialization information.</param>
+            <param name="context">the streaming context.</param>
+        </member>
+        <member name="T:SySal.NExT.ServerMonitorGauge">
+            <summary>
+            Gauge of a server monitor. The control used to display the value depends on the type of the value.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.ServerMonitorGauge.Name">
+            <summary>
+            The name of the parameter.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.ServerMonitorGauge.Value">
+            <summary>
+            The value of the parameter.
+            </summary>
+            <remarks>The following conversion table applies between value types and controls:
+            <list type="table">
+            <listheader><term>Value type</term><description>Control type</description></listheader>
+            <item><term>Bool</term><description>Check Box</description></item>
+            <item><term>String</term><description>Edit Box</description></item>
+            <item><term>Int32</term><description>Edit Box</description></item>
+            <item><term>Double</term><description>Progress Bar</description></item>
+            </list>
+            </remarks>
+        </member>
+        <member name="P:SySal.NExT.INExTServer.DataConsumerGroups">
+            <summary>
+            Retrieves the list of supported data consumer groups.
+            </summary>
+        </member>
+        <member name="M:SySal.NExT.INExTServer.RegisterDataConsumerGroup(System.String,System.String[])">
+            <summary>
+            Registers a group of data consumers.
+            </summary>
+            <param name="groupname">the name of the group.</param>
+            <param name="uris">URI's of the group members.</param>
+        </member>
+        <member name="M:SySal.NExT.INExTServer.UnregisterDataConsumerGroup(System.String)">
+            <summary>
+            Unregisters a group of data consumers.
+            </summary>
+            <param name="groupname">the name of the group to be deleted.</param>
+        </member>
+        <member name="M:SySal.NExT.INExTServer.OnDataEvent(SySal.NExT.DataEvent)">
+            <summary>
+            Called when new data are available to consume.
+            </summary>
+            <param name="de">the DataEvent containing the new information.</param>
+            <returns><c>true</c> if the data can be processed, <c>false</c> otherwise.</returns>
+            <remarks>
+            <para>Both immediate and delayed processing may be implemented. In the case of immediate processing, the call 
+            will not return until processing is complete, and exceptions might be immediately reported. In the case of delayed 
+            processing, <c>true</c> will be returned if data are only <i><b>formally</b></i> correct, and the actual result will
+            come from a call to <see cref="M:SySal.NExT.INExTServer.DoneWith(System.Int64)"/>. Even in the case of immediate processing, calling DoneWith will work.
+            A robust implementation will anyway switch to DoneWith after a proper time delay elapses, to avoid getting stuck
+            with a server that failed or crashed or was turned off.
+            </para>
+            <para>
+            In case an exception is thrown, it should be checked whether it is a <see cref="T:SySal.NExT.NExTException"/> or not: in the
+            former case, the exception was due to a problem with the communication or to the NExT infrastructure, so data
+            correctness is not questioned, and they can be sent to another machine for proper processing; in the latter
+            case, data have a problem, and it will be pointless to broadcast them again.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:SySal.NExT.INExTServer.DoneWith(System.Int64)">
+            <summary>
+            Checks that a data set has been processed. 
+            </summary>
+            <param name="Id">the id of the data set.</param>
+            <returns>information about the completion status of the processing for a data set.</returns>
+        </member>
+        <member name="P:SySal.NExT.INExTServer.MonitorGauges">
+            <summary>
+            Provides information about the status of the server object.
+            </summary>
+        </member>
+        <member name="T:SySal.NExT.NExTServerSyncWrapper">
+            <summary>
+            Wraps a remote INExTServer to handle possible disconnections due to network errors or to remote server unavailability.
+            </summary>
+        </member>
+        <member name="P:SySal.NExT.NExTServerSyncWrapper.LogFile">
+            <summary>
+            Sets the file where the sync wrapper logs its operations.
+            </summary>
+        </member>
+        <member name="M:SySal.NExT.NExTServerSyncWrapper.#ctor(System.String,System.Int32)">
+            <summary>
+            Wraps a remote INExTServer with a specified URI and timeout in milliseconds.
+            </summary>
+            <param name="uri">URI of the server to wrap.</param>
+            <param name="timeout">timeout in milliseconds.</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:SySal.NExT.NExTServerSyncWrapper.DataConsumerGroups" -->
+        <member name="M:SySal.NExT.NExTServerSyncWrapper.RegisterDataConsumerGroup(System.String,System.String[])">
+            <summary>
+            Wraps <see cref="M:SySal.NExT.INExTServer.RegisterDataConsumerGroup(System.String,System.String[])"/>
+            </summary>
+            <param name="groupname">the name of the group.</param>
+            <param name="uris">URI's of the group members.</param>
+        </member>
+        <member name="M:SySal.NExT.NExTServerSyncWrapper.UnregisterDataConsumerGroup(System.String)">
+            <summary>
+            Unregisters a group of data consumers.
+            </summary>
+            <param name="groupname">the name of the group to be deleted.</param>
+        </member>
+        <member name="M:SySal.NExT.NExTServerSyncWrapper.OnDataEvent(SySal.NExT.DataEvent)">
+            <summary>
+            Wraps <see cref="M:SySal.NExT.INExTServer.OnDataEvent(SySal.NExT.DataEvent)"/>
+            </summary>
+            <param name="de">Data to be sent.</param>
+            <returns><c>true</c> if the data can be processed, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:SySal.NExT.NExTServerSyncWrapper.DoneWith(System.Int64)">
+            <summary>
+            Wraps <see cref="!:INExTServer.DoneWith>"/>
+            </summary>
+            <param name="Id">the data set to be checked.</param>
+            <returns>information about the completion status of the processing for a data set.</returns>
+        </member>
+        <member name="P:SySal.NExT.NExTServerSyncWrapper.MonitorGauges">
+            <summary>
+            Wraps <see cref="!:INExTServer.MonitorGauges>"/>
+            </summary>        
+        </member>
+        <member name="T:SySal.NExT.NExTConfiguration">
+            <summary>
+            Local configuration of the host for NExT services.
+            </summary>
+        </member>
+        <member name="T:SySal.NExT.NExTConfiguration.ServerParameter">
+            <summary>
+            Parameter to be used in the creation of a server.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.NExTConfiguration.ServerParameter.Name">
+            <summary>
+            Name of the parameter.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.NExTConfiguration.ServerParameter.Value">
+            <summary>
+            Value of the parameter.
+            </summary>
+        </member>
+        <member name="T:SySal.NExT.NExTConfiguration.ServerParameterDescriptor">
+            <summary>
+            Describes a <see cref="T:SySal.NExT.NExTConfiguration.ServerParameter"/>.
+            </summary>
+            <remarks>The <c>Value</c> field defines the default value.</remarks>
+        </member>
+        <member name="F:SySal.NExT.NExTConfiguration.ServerParameterDescriptor.Description">
+            <summary>
+            Describes the meaning of the parameter.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.NExTConfiguration.ServerParameterDescriptor.ValueType">
+            <summary>
+            Defines the type of the value.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.NExTConfiguration.ServerParameterDescriptor.CanBeStatic">
+            <summary>
+            Flag that tells whether the parameter can appear as a static parameter.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.NExTConfiguration.ServerParameterDescriptor.CanBeDynamic">
+            <summary>
+            Flag that tells whether the parameter can appear as a dynamic parameter.
+            </summary>
+        </member>
+        <member name="T:SySal.NExT.NExTConfiguration.DataConsumerGroup">
+            <summary>
+            A group of data consumers.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.NExTConfiguration.DataConsumerGroup.Name">
+            <summary>
+            Name of the group.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.NExTConfiguration.DataConsumerGroup.URIs">
+            <summary>
+            URI's of the data consumers.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.NExTConfiguration.DataConsumerGroup.WaitForCompletion">
+            <summary>
+            If <c>true</c>, data are sent and the router waits for batch completion; if <c>false</c>, data are transmitted and forgotten.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.NExTConfiguration.DataConsumerGroup.RetryIntervalMS">
+            <summary>
+            In case a data event is refused or a transmission error occurs, retransmission is not attempted before this interval elapses.
+            </summary>
+        </member>
+        <member name="T:SySal.NExT.NExTConfiguration.ServiceEntry">
+            <summary>
+            Information about a service.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.NExTConfiguration.ServiceEntry.Names">
+            <summary>
+            Names of the services (used to form URI's).
+            </summary>
+            <remarks>Multiple services with identical parameters can be easily created in place of just one. 
+            This makes sense when several processors or cores are available.</remarks>
+        </member>
+        <member name="F:SySal.NExT.NExTConfiguration.ServiceEntry.Publish">
+            <summary>
+            <c>true</c> to make the service publicly available on the local netwrok, <c>false</c> otherwise.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.NExTConfiguration.ServiceEntry.CodeFile">
+            <summary>
+            File containing the class that implements the service.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.NExTConfiguration.ServiceEntry.TypeName">
+            <summary>
+            The class that implements the service.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.NExTConfiguration.ServiceEntry.StaticParameters">
+            <summary>
+            Static server creation parameters.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.NExTConfiguration.ServiceEntry.DataConsumerGroups">
+            <summary>
+            List of data consumers for this service.
+            </summary>
+            <remarks>Data are broadcast to all groups, and within each group, datasets are sent only to one 
+            (randomly selected) member of the group. </remarks>
+        </member>
+        <member name="F:SySal.NExT.NExTConfiguration.ConfigurationName">
+            <summary>
+            Name of the configuration.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.NExTConfiguration.ServiceEntries">
+            <summary>
+            List of the services to be implemented.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.NExTConfiguration.TCPIPPort">
+            <summary>
+            Port to use to publish URI's of publicly available services.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.NExTConfiguration.TimeoutMS">
+            <summary>
+            Timeout in milliseconds for remote calls.
+            </summary>
+        </member>
+        <member name="T:SySal.NExT.NExTServer">
+            <summary>
+            Any NExTServer is derived from this class, which provides useful basic functionalities.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.NExTServer.LogFile">
+            <summary>
+            The log file for this server.
+            </summary>
+        </member>
+        <member name="M:SySal.NExT.NExTServer.Log(System.String)">
+            <summary>
+            Writes a string to the log file.
+            </summary>
+            <param name="text">the message to be written.</param>
+            <remarks>If the message cannot be written, no exception is raised.</remarks>             
+        </member>
+        <member name="F:SySal.NExT.NExTServer.s_Timeout">
+            <summary>
+            Timeout for automatically generated sync wrappers.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.NExTServer.m_DataEvents">
+            <summary>
+            The queue of events to be processed.
+            </summary>
+        </member>
+        <member name="M:SySal.NExT.NExTServer.RegisterDataEvent(SySal.NExT.DataEvent)">
+            <summary>
+            Registers a data event in the queue of events to be processed.
+            </summary>
+            <param name="de">the data event to register.</param>
+        </member>
+        <member name="T:SySal.NExT.NExTServer.DataEventResult">
+            <summary>
+            The result of a data event.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.NExTServer.DataEventResult.Info">
+            <summary>
+            Information about the DataEvent.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.NExTServer.DataEventResult.ExpiryTime">
+            <summary>
+            Time when this result expires.
+            </summary>
+        </member>
+        <member name="M:SySal.NExT.NExTServer.DequeueDataEventAsCompleted(System.Exception,System.Object,System.Int32)">
+            <summary>
+            Declares a data event completed.
+            </summary>
+            <param name="finalexception">final exception of the data event that is first in the data processing queue.</param>
+            <param name="additionalinfo">additional information for the data event.</param>
+            <param name="timeoutms">result duration in ms</param>
+        </member>
+        <member name="F:SySal.NExT.NExTServer.m_DataEventResults">
+            <summary>
+            The list of data event results.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.NExTServer.m_DataEventKeeper">
+            <summary>
+            Timer that triggers the cleanup of <see cref="F:SySal.NExT.NExTServer.m_DataEventResults"/>.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.NExTServer.LocalRegistry">
+            <summary>
+            Local NExT server registry.
+            </summary>
+        </member>
+        <member name="M:SySal.NExT.NExTServer.InitializeLifetimeService">
+            <summary>
+            Initializes the lifetime service.
+            </summary>
+            <returns>always <c>null</c> (unlimited lifetime).</returns>
+        </member>
+        <member name="F:SySal.NExT.NExTServer.m_NExTName">
+            <summary>
+            Property backer for <see cref="P:SySal.NExT.NExTServer.NExTName"/>.
+            </summary>
+        </member>
+        <member name="P:SySal.NExT.NExTServer.NExTName">
+            <summary>
+            The name from which the object is known to NExT services.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.NExTServer.s_KnownParameters">
+            <summary>
+            Static data backer for the <see cref="P:SySal.NExT.NExTServer.KnownParameters"/> property.
+            </summary>
+        </member>
+        <member name="P:SySal.NExT.NExTServer.KnownParameters">
+            <summary>
+            Lists the known parameters.
+            </summary>
+        </member>
+        <member name="M:SySal.NExT.NExTServer.#cctor">
+            <summary>
+            Performs initialization tasks.
+            </summary>
+        </member>
+        <member name="M:SySal.NExT.NExTServer.ConvertValue(System.String,System.Type)">
+            <summary>
+            Converts a string to its value defined by a specified type.
+            </summary>
+            <param name="v">the value to be converted.</param>
+            <param name="t">the type of the parameter.</param>
+            <returns>the value corresponding to the string.</returns>
+        </member>
+        <member name="M:SySal.NExT.NExTServer.InterpretParameters(SySal.NExT.NExTConfiguration.ServerParameter[],SySal.NExT.NExTConfiguration.ServerParameter[])">
+            <summary>
+            Interprets the lists of static and dynamic parameters and produces a unique list with known parameters.
+            </summary>
+            <param name="staticparams">the list of static parameters.</param>
+            <param name="dynamicparams">the list of dynamic parameters.</param>
+            <returns>a list of values for the known parameters.</returns>
+        </member>
+        <member name="M:SySal.NExT.NExTServer.#ctor(System.String,System.Boolean,SySal.NExT.NExTConfiguration.ServerParameter[],SySal.NExT.NExTConfiguration.ServerParameter[])">
+            <summary>
+            Protected constructor that performs common NExT initialization.
+            </summary>
+            <param name="name">the name of the server.</param>
+            <param name="publish"><c>true</c> if the server is to be made publicly available over the network, <c>false</c> otherwise.</param>        
+            <param name="staticserverparams">the list of static server creation parameters.</param>
+            <param name="dynamicserverparams">the list of dynamic server creation parameters.</param>
+            <remarks>The following parameters are currently understood both as static and dynamic:
+            <list type="table">
+            <listheader><term>Parameter</term><description>Meaning</description></listheader>
+            <item><term>MaxQueueLength</term><description>The maximum number of data events that can be in the queue.</description></item>
+            </list>
+            </remarks>
+        </member>
+        <member name="F:SySal.NExT.NExTServer.URITcpString">
+            <summary>
+            The first characters of remote URI's.
+            </summary>
+        </member>
+        <member name="M:SySal.NExT.NExTServer.NExTServerFromURI(System.String)">
+            <summary>
+            Gets a NExT server from its URI.
+            </summary>
+            <param name="uri">the URI of the server being sought.</param>
+            <param name="dataconsumergroups">groups of data consumers.</param>
+            <returns>the <see cref="T:SySal.NExT.INExTServer"/> interface for the server, or an exception if it cannot be found.</returns>        
+        </member>
+        <member name="M:SySal.NExT.NExTServer.Cleanup">
+            <summary>
+            Deletes all objects from the local registrar; normally this should be enough to destroy them.
+            </summary>
+        </member>
+        <member name="M:SySal.NExT.NExTServer.SetupConfiguration(SySal.NExT.NExTConfiguration,SySal.NExT.NExTConfiguration.ServerParameter[])">
+            <summary>
+            Sets up the servers and connections listed in a configuration.
+            </summary>
+            <param name="cfg">the configuration to be realized.</param>
+            <param name="dynamicserverparams">the list of the dynamic server parameters.</param>
+        </member>
+        <member name="P:SySal.NExT.NExTServer.DataConsumerGroups">
+            <summary>
+            Lists the data consumer groups.
+            </summary>
+        </member>
+        <member name="M:SySal.NExT.NExTServer.RegisterDataConsumerGroup(System.String,System.String[])">
+            <summary>
+            Sets the list of servers of a data consumer group.
+            </summary>
+            <param name="groupname">the name of the data consumer group.</param>
+            <param name="uris">the list of servers to be registered.</param>
+        </member>
+        <member name="M:SySal.NExT.NExTServer.UnregisterDataConsumerGroup(System.String)">
+            <summary>
+            Unregisters all servers in a data consumer group.
+            </summary>
+            <param name="groupname">the group to be reset.</param>
+        </member>
+        <member name="M:SySal.NExT.NExTServer.OnDataEvent(SySal.NExT.DataEvent)">
+            <summary>
+            Processes data.
+            </summary>
+        </member>
+        <member name="M:SySal.NExT.NExTServer.DoneWith(System.Int64)">
+            <summary>
+            Checks whether a dataset event is done.
+            </summary>
+        </member>
+        <member name="P:SySal.NExT.NExTServer.MonitorGauges">
+            <summary>
+            Accesses monitoring information.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.NExTServer.ConsumerGroupRouters">
+            <summary>
+            Routers for the consumer groups.
+            </summary>
+        </member>
+        <member name="T:SySal.NExT.NExTServer.ConsumerGroupRouter">
+            <summary>
+            Basic services to broadcast data to a consumer group.
+            </summary>
+        </member>
+        <member name="M:SySal.NExT.NExTServer.ConsumerGroupRouter.Log(System.String)">
+            <summary>
+            Writes a string to the log file.
+            </summary>
+            <param name="text">the message to be written.</param>
+            <remarks>If the message cannot be written, no exception is raised.</remarks>             
+        </member>
+        <member name="T:SySal.NExT.NExTServer.ConsumerGroupRouter.dCheckAffinity">
+            <summary>
+            Delegate to a method that checks the affinity between URI's and data events.
+            </summary>
+            <param name="uri">the URI of the consumer that is expected to receive the data event.</param>
+            <param name="de">the data event to be sent.</param>
+            <returns><c>true</c> if a data event can be sent to a specific URI, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="F:SySal.NExT.NExTServer.ConsumerGroupRouter.m_AffinityChecker">
+            <summary>
+            Property backer of <see cref="P:SySal.NExT.NExTServer.ConsumerGroupRouter.AffinityChecker"/>.
+            </summary>
+        </member>
+        <member name="P:SySal.NExT.NExTServer.ConsumerGroupRouter.AffinityChecker">
+            <summary>
+            Delegate to the method that checks the affinity between data events and URI's.
+            </summary>
+            <remarks>If this is <c>null</c>, all URI's are considered eligible for all data events.</remarks>
+        </member>
+        <member name="T:SySal.NExT.NExTServer.ConsumerGroupRouter.dShouldReroute">
+            <summary>
+            Delegate to a method that checks whether a data event should be rerouted.
+            </summary>
+            <param name="ded">data event completion information.</param>            
+            <returns><c>true</c> if the data event should be sent again, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="F:SySal.NExT.NExTServer.ConsumerGroupRouter.m_ShouldReroute">
+            <summary>
+            Property backer for <see cref="P:SySal.NExT.NExTServer.ConsumerGroupRouter.ShouldReroute"/>.
+            </summary>
+        </member>
+        <member name="P:SySal.NExT.NExTServer.ConsumerGroupRouter.ShouldReroute">
+            <summary>
+            Delegate to the method that checks whether a data event should be rerouted.
+            </summary>
+            <remarks>If this is <c>null</c>, only events <c>DoneWith</c> fails with an exception are rerouted.</remarks>
+        </member>
+        <member name="F:SySal.NExT.NExTServer.ConsumerGroupRouter.GroupName">
+            <summary>
+            The name of the group.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.NExTServer.ConsumerGroupRouter.m_WaitForCompletion">
+            <summary>
+            Property backer for <see cref="P:SySal.NExT.NExTServer.ConsumerGroupRouter.WaitForCompletion"/>.
+            </summary>
+        </member>
+        <member name="P:SySal.NExT.NExTServer.ConsumerGroupRouter.WaitForCompletion">
+            <summary>
+            If <c>true</c>, the router waits for completion; otherwise, data are transmitted and then forgotten.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.NExTServer.ConsumerGroupRouter.m_MaxQueueLength">
+            <summary>
+            Property backer for <see cref="P:SySal.NExT.NExTServer.ConsumerGroupRouter.MaxQueueLength"/>.
+            </summary>
+        </member>
+        <member name="P:SySal.NExT.NExTServer.ConsumerGroupRouter.MaxQueueLength">
+            <summary>
+            Max length of the data distribution queue.
+            </summary>
+        </member>
+        <member name="M:SySal.NExT.NExTServer.ConsumerGroupRouter.#ctor(System.String,System.Int32,System.String)">
+            <summary>
+            Builds a new router with the specified group name and queue length.
+            </summary>
+            <param name="groupname">the name of the consumer group.</param>
+            <param name="maxqueuelength">the maximum queue length.</param>
+            <param name="logfile">the file to log actions to.</param>
+        </member>
+        <member name="P:SySal.NExT.NExTServer.ConsumerGroupRouter.URIs">
+            <summary>
+            The list of URI's to provide data to.
+            </summary>
+        </member>
+        <member name="M:SySal.NExT.NExTServer.ConsumerGroupRouter.RouteDataEvent(SySal.NExT.DataEvent)">
+            <summary>
+            Routes a data event to all URI's in this group.
+            </summary>
+            <param name="de">the data event to be routed.</param>
+            <returns><c>true</c> if successful, <c>false</c> otherwise.</returns>
+            <remarks>If the queue is full, this method waits until it gets empty, hence it may take a long time to complete.</remarks>
+        </member>
+        <member name="P:SySal.NExT.NExTServer.ConsumerGroupRouter.DataEventQueue">
+            <summary>
+            Retrieves the list of the data events that are being routed.
+            </summary>
+        </member>
+        <member name="M:SySal.NExT.NExTServer.ConsumerGroupRouter.CancelRouting(System.Int64)">
+            <summary>
+            Cancels routing a data event.
+            </summary>
+            <param name="eventid">the id of the data event that must be removed from the queue.</param>            
+            <returns><c>true</c> if the event was successfully removed from the queue, <c>false</c> otherwise.</returns>
+        </member>
+    </members>
+</doc>

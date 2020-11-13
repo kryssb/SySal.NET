@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7A75621A-8D62-467B-867E-29DC7D5D7BDF}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OperaBrickManager</RootNamespace>
+    <AssemblyName>OperaBrickManager</AssemblyName>
+    <StartupObject>
+    </StartupObject>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <ApplicationIcon>P_obm.ico</ApplicationIcon>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddBrickSetForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddBrickSetForm.Designer.cs">
+      <DependentUpon>AddBrickSetForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddBrickSpaceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddBrickSpaceForm.Designer.cs">
+      <DependentUpon>AddBrickSpaceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddBrick.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddBrick.Designer.cs">
+      <DependentUpon>frmAddBrick.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddFromDb.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddFromDb.Designer.cs">
+      <DependentUpon>frmAddFromDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInsertMarkFromDB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInsertMarkFromDB.Designer.cs">
+      <DependentUpon>frmInsertMarkFromDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLoadMarkFromFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLoadMarkFromFile.Designer.cs">
+      <DependentUpon>frmLoadMarkFromFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddBrickSetForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AddBrickSetForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddBrickSpaceForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AddBrickSpaceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddBrick.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmAddBrick.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddFromDb.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmAddFromDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInsertMarkFromDB.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmInsertMarkFromDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLoadMarkFromFile.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmLoadMarkFromFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RemoveBrickSpaceForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>RemoveBrickSpaceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="RemoveBrickSpaceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RemoveBrickSpaceForm.Designer.cs">
+      <DependentUpon>RemoveBrickSpaceForm.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OperaDbLoginTools\OperaDbLoginTools.csproj">
+      <Project>{FD2397C2-D245-4B34-9A4C-4FCA8DB9522F}</Project>
+      <Name>OperaDbLoginTools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OperaDbSchemaInterface\OperaDbSchemaInterface.csproj">
+      <Project>{3FF188FB-73AE-452D-8240-F5D8693C6150}</Project>
+      <Name>OperaDbSchemaInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OperaDB\OperaDB.csproj">
+      <Project>{A2993036-3AC8-45AE-B061-B3FD247584C7}</Project>
+      <Name>OperaDB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SySalCore\SySalCore.csproj">
+      <Project>{301C136D-DA64-4148-B974-1D1793BBEF96}</Project>
+      <Name>SySalCore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="P_obm.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>cp "$(TargetPath)" "$(SolutionDir)ExeRepository"</PostBuildEvent>
+  </PropertyGroup>
+</Project>

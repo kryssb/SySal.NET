@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EasySite</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Executables.EasySite.MainForm">
+            <summary>
+            EasySite - GUI tool for easy management of Computing Infrastructure sites.
+            </summary>
+            <remarks>
+            <para>
+            EasySite always loads its OperaDB and Computing Infrastructure credentials from the user credential record. If error messages are displayed, close EasySite, enter your credentials by <see cref="!:SySal.Executables.OperaDbGUILogin.MainForm">OperaDbGUILogin</see> or <see cref="!:SySal.Executables.OperaDbTextLogin.Exe">OperaDbTextLogin</see> and open EasySite again.
+            </para>
+            <para>
+            EasySite is based on two tables that do not exist in the standard OperaDB: LZ_SITEVARS and LZ_MACHINEVARS. 
+            Upon launch, EasySite checks their existence. If they are not found, they are created. (<b>NOTICE: the user must have the DB privileges/permissions to create tables in the OPERA schema.</b>).	
+            </para>
+            <para>
+            The first time EasySite runs, the current site should be set. On doing so, the LZ_SITEVARS table is filled with default values for relevant parameters of BatchManagers and DataProcessingServers.
+            </para>
+            <para>
+            The following items can be administered:
+            <list type="table">
+            <listheader><term>Item</term><description>Actions</description></listheader>
+            <item><term>Site</term><description>site-wide default parameters (i.e. parameters that apply to all machines unless specifically overridden); e.g. the Scratch directory, the ExeRepository, the location of Task Progress files, etc.</description></item>
+            <item><term>Machines</term><description>this view allows you to add/edit/delete machine records in the DB, and to set specific overrides for parameters (e.g. the MachinePowerClass for a DataProcessingServer, which is machine-dependent).</description></item>
+            <item><term>Users</term><description>this view allows you to add/edit/delete user records and permissions.</description></item>
+            <item><term>Program Settings</term><description>this view allows you to add or delete program settings. It is important to specify also the correct driver type (by the list in the lower right corner).</description></item>
+            </list>
+            </para>
+            </remarks>
+        </member>
+        <member name="F:SySal.Executables.EasySite.MainForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasySite.MainForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasySite.MainForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasySite.MainForm.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+    </members>
+</doc>

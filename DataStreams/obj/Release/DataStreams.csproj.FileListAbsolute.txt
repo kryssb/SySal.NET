@@ -1,0 +1,15 @@
+/home/kryss/Documenti/SySal/DataStreams/bin/Release/DataStreams.dll
+/home/kryss/Documenti/SySal/DataStreams/bin/Release/DataStreams.pdb
+/home/kryss/Documenti/SySal/DataStreams/bin/Release/DataStreams.xml
+/home/kryss/Documenti/SySal/DataStreams/bin/Release/DAQSystem.dll
+/home/kryss/Documenti/SySal/DataStreams/bin/Release/Imaging.dll
+/home/kryss/Documenti/SySal/DataStreams/bin/Release/Scanning.dll
+/home/kryss/Documenti/SySal/DataStreams/bin/Release/SySalCore.dll
+/home/kryss/Documenti/SySal/DataStreams/bin/Release/Tracking.dll
+/home/kryss/Documenti/SySal/DataStreams/bin/Release/DAQSystem.xml
+/home/kryss/Documenti/SySal/DataStreams/bin/Release/Imaging.xml
+/home/kryss/Documenti/SySal/DataStreams/bin/Release/SySalCore.xml
+/home/kryss/Documenti/SySal/DataStreams/obj/Release/DataStreams.csprojAssemblyReference.cache
+/home/kryss/Documenti/SySal/DataStreams/obj/Release/DataStreams.csproj.CopyComplete
+/home/kryss/Documenti/SySal/DataStreams/obj/Release/DataStreams.dll
+/home/kryss/Documenti/SySal/DataStreams/obj/Release/DataStreams.pdb

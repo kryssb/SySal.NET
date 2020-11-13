@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GraphicalAnalysis</name>
+    </assembly>
+    <members>
+        <member name="T:NumericalTools.Plot">
+            <summary>
+            A library for producing commonly used plots.
+            </summary>
+        </member>
+    </members>
+</doc>

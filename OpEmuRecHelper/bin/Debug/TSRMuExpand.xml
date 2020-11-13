@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TSRMuExpand</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Executables.TSRMuExpand.Exe">
+            <summary>
+            TSRMuExpand - command line tool to transform basetrack-based TSR files to microtrack-based TSR files, ready for insertion into DB.
+            </summary>
+            <remarks>
+            <para>In common use, TSR files are generated starting from sets of basetracks (and promoted microtracks). In order for these TSR files to be inserted
+            into the DB, they must be converted to files based on microtracks. Since TSRMuExpand does not perform any new reconstruction, the information to
+            work back the path to original microtracks must be present in source TLGs.</para>
+            <para>TSRMuExpand expects the following command line:</para>
+            <para><example><code>TSRMuExpand.exe &lt;input TSR file path&gt; &lt;TLG list file&gt; &lt;output Opera persistence path for TSR&gt;</code></example></para>
+            <para>Notice the input must be a file, whereas the output can be a file as well as a DB persistence path.</para>
+            <para>The TLG list file allows TSRMuExpand to trace back, for each layer, the indices of tracks and their associated microtrack information. The file 
+            should be formatted as a sequence of lines, each line with the format:
+            <c>BrickId SheetId TLGpath</c> where <c>BrickId</c> is the ID of the brick, <c>SheetId</c> is the Id number of the plate, and <c>TLGpath</c> is the path to the TLG file used as the input for reconstruction
+            on that plate.</para>
+            <para>TLG files are valid for TSRMuExpand if they are MultiSection TLGs containing:
+            <list type="bullet">
+            <item>A <see cref="T:SySal.OperaDb.Scanning.DBMIPMicroTrackIndex"/> section with the indices of original microtracks.</item>
+            <item>A <see cref="T:SySal.Scanning.PostProcessing.SlopeCorrections"/> section with the measured thickness of emulsion layers and base, and the adjusted values of 
+            slope correction parameters.</item>
+            </list></para>
+            All other sections are optional and are ignored by TSRMuExpand.
+            </remarks>
+        </member>
+    </members>
+</doc>

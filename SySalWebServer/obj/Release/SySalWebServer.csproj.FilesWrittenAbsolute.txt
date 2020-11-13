@@ -1,0 +1,6 @@
+/home/kryss/Documenti/SySal/SySalWebServer/obj/Release/.NETFramework,Version=v4.0.AssemblyAttribute.cs
+/home/kryss/Documenti/SySal/SySalWebServer/bin/Release/SySalWebServer.pdb
+/home/kryss/Documenti/SySal/SySalWebServer/bin/Release/SySalWebServer.dll
+/home/kryss/Documenti/SySal/SySalWebServer/obj/Release/SySalWebServer.dll
+/home/kryss/Documenti/SySal/SySalWebServer/obj/Release/SySalWebServer.pdb
+/home/kryss/Documenti/SySal/SySalWebServer/obj/Release/.NETFramework,Version=v4.5.AssemblyAttribute.cs

@@ -1,0 +1,7 @@
+/home/kryss/Documenti/SySal/Imaging/bin/Release/Imaging.dll
+/home/kryss/Documenti/SySal/Imaging/bin/Release/Imaging.xml
+/home/kryss/Documenti/SySal/Imaging/bin/Release/SySalCore.dll
+/home/kryss/Documenti/SySal/Imaging/bin/Release/SySalCore.xml
+/home/kryss/Documenti/SySal/Imaging/obj/Release/Imaging.csprojAssemblyReference.cache
+/home/kryss/Documenti/SySal/Imaging/obj/Release/Imaging.csproj.CopyComplete
+/home/kryss/Documenti/SySal/Imaging/obj/Release/Imaging.dll

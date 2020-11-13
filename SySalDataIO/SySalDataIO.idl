@@ -1,0 +1,88 @@
+// SySalDataIO.idl : IDL source for SySalDataIO.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (SySalDataIO.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+import "..\Common\Connection.h";
+import "..\Common\Config.h";
+import "..\Common\GUIdefs.h";
+import "..\Common\datastructs.h";
+	[
+		object,
+		uuid(C022EEAD-748A-11D3-A47B-E89C0BCE9720),
+	
+		helpstring("ISySalObject Interface"),
+		pointer_default(unique)
+	]
+	interface ISySalObject : IUnknown
+	{
+		[helpstring("method SetName")] HRESULT SetName(ConnectionName name);
+		[helpstring("method GetName")] HRESULT GetName(ConnectionName name);
+		[helpstring("method SetConfig")] HRESULT SetConfig(SySalConfig *pConfig);
+		[helpstring("method GetConfig")] HRESULT GetConfig(SySalConfig *pConfig);
+		[helpstring("method EditConfig")] HRESULT EditConfig(SySalConfig *pConfig, HSySalHANDLE hWnd);
+		[helpstring("method EnableMonitor")] HRESULT EnableMonitor(boolean bEnable);
+		[helpstring("method GetNumberOfConnections")] HRESULT GetNumberOfConnections(int *pNumber);
+		[helpstring("method SetConnection")] HRESULT SetConnection(int n, SySalConnection connection);
+		[helpstring("method GetConnection")] HRESULT GetConnection(int n, SySalConnection *pConnection);
+		[helpstring("method GetIcon")] HRESULT GetIcon(int n, HSySalHICON *pHICON);
+		[helpstring("method GetClassName")] HRESULT GetClassName(ConnectionName name);
+		[helpstring("method SyncExec")] HRESULT SyncExec();
+		[helpstring("method AsyncExec")] HRESULT AsyncExec(HSySalHANDLE HNotifyStatusChangeEvent);
+		[helpstring("method AsyncCheckStatus")] HRESULT AsyncCheckStatus(long *pStatus);
+		[helpstring("method AsyncWait")] HRESULT AsyncWait();
+		[helpstring("method AsyncPause")] HRESULT AsyncPause();
+		[helpstring("method AsyncStop")] HRESULT AsyncStop();
+		[helpstring("method AsyncResume")] HRESULT AsyncResume();
+		[helpstring("method IsReady")] HRESULT IsReady(long *pWrongConn, long *pRetCode);
+	};
+	[
+		object,
+		uuid(4B47E8CD-894C-11D3-A47C-9F3735226036),
+	
+		helpstring("ISySalDataIO Interface"),
+		pointer_default(unique)
+	]
+	interface ISySalDataIO : IUnknown
+	{
+		[helpstring("method Write")] HRESULT Write(HSySalHANDLE hWnd, BYTE *pData, UINT *pExtErrorInfo, BYTE *FileName);
+		[helpstring("method Read")] HRESULT Read(HSySalHANDLE hWnd, BYTE *pData, UINT *pExtErrorInfo, BYTE *FileName);
+		[helpstring("method GetStatus")] HRESULT GetStatus(UINT *pExtErrorInfo);
+	};
+	[
+		object,
+		uuid(5892a1f5-5dd9-4fe3-a024-d8b624917c1d),
+	
+		helpstring("ISySalDataIO2 Interface"),
+		pointer_default(unique)
+	]
+	interface ISySalDataIO2 : ISySalDataIO
+	{
+		[helpstring("method Write2")] HRESULT Write2(HSySalHANDLE hWnd, BYTE *pData, UINT *pExtErrorInfo, BYTE *FileName);
+		[helpstring("method Read2")] HRESULT Read2(HSySalHANDLE hWnd, BYTE *pData, UINT *pExtErrorInfo, BYTE *FileName);
+	};
+
+[
+	uuid(4B47E8C0-894C-11D3-A47C-9F3735226036),
+	version(1.1),
+	helpstring("SySalDataIO 1.1 Type Library")
+]
+library SYSALDATAIOLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(4B47E8CE-894C-11D3-A47C-9F3735226036),
+		helpstring("SySalDataIO Class")
+	]
+	coclass SySalDataIO
+	{
+		[default] interface ISySalObject;
+		interface ISySalDataIO;
+		interface ISySalDataIO2;
+	};
+};

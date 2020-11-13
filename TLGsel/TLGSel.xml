@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TLGsel</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Executables.TLGSel.Exe">
+            <summary>
+            TLGSel - Command line tool to select base-tracks in a LinkedZone.
+            </summary>
+            <remarks>
+            <para>Base-tracks are selected on the basis of inclusion/exclusion lists and a user-defined selection function.
+            The known parameters to set up this selection function are shown in the following table:
+            <list type="table">
+            <listheader><term>Name</term><description>Meaning</description></listheader>
+            <item><term>A</term><description>AreaSum of the base-track</description></item>
+            <item><term>TA</term><description>AreaSum of the top microtrack</description></item>
+            <item><term>BA</term><description>AreaSum of the bottom microtrack</description></item>
+            <item><term>N</term><description>Grains in the base-track</description></item>
+            <item><term>TN</term><description>Grains in the top microtrack</description></item>
+            <item><term>BN</term><description>Grains in the bottom microtrack</description></item>
+            <item><term>PX,Y</term><description>X,Y position of the base-track at the top edge of the base.</description></item>
+            <item><term>TPX,Y</term><description>X,Y position of the top microtrack at the top edge of the base.</description></item>
+            <item><term>BPX,Y</term><description>X,Y position of the bottom microtrack at the bottom edge of the base.</description></item>
+            <item><term>PZ</term><description>Z position of the base-track at the top edge of the base.</description></item>
+            <item><term>TPZ</term><description>Z position of the top microtrack at the top edge of the base.</description></item>
+            <item><term>BPZ</term><description>Z position of the bottom microtrack at the bottom edge of the base.</description></item>
+            <item><term>SX,Y</term><description>X,Y slope of the base-track.</description></item>
+            <item><term>TSX,Y</term><description>X,Y slope of the top microtrack.</description></item>
+            <item><term>BSX,Y</term><description>X,Y slope of the bottom microtrack.</description></item>
+            <item><term>S</term><description>Sigma of the base-track.</description></item>
+            <item><term>TS</term><description>Sigma of the top microtrack.</description></item>
+            <item><term>BS</term><description>Sigma of the bottom microtrack.</description></item>
+            <item><term>T,BF</term><description>Fragment index of the top/bottom microtrack.</description></item>
+            <item><term>T,BV</term><description>View index of the top/bottom microtrack.</description></item>
+            <item><term>T,BID</term><description>Number of the top/bottom microtrack in its own view.</description></item>
+            </list>
+            If the <c>/micro</c> option is specified, microtracks not associated with surviving base-tracks are deleted.
+            </para>
+            <para>
+            If no inclusion list is specified, all tracks that are not explicitly excluded by the selection function or one exclusion list are selected. 
+            If one or more inclusion lists are specified, only explicitly included tracks are eligible for selection, unless they are explicitly excluded by an exclusion list or the selection function.
+            </para>
+            <para>
+            Inclusion and exclusion lists are specified using files with ASCII n-tuples. Each ASCII file can be headerless or have a header row with the names of the fields. In the former case, 
+            the <i>field id</i> is specified as a number; in the second case, it is a case-insensitive string that must match one of the column names in the file header.
+            </para>
+            <example>
+            <c>TLGSel.exe myfile.tlg myselfile.tlg "sqrt((sx-0.055)^2+(sy-0.003)^2) &lt; 0.03 /micro /i incl.txt 3 /x erase1.txt PID /x erase2.txt PID</c>
+            <para>This would erase basetracks and microtracks from file <c>myfile.tlg</c>, including only the tracks specified in the 4th column of <c>incl.txt</c>, excluding all tracks that do not satisfy the selection or whose Id is found in the <c>PID</c> column of <c>erase1.txt</c> or <c>erase2.txt</c>.</para>
+            </example>
+            <para>TLGSel recognizes and handles the following TLG sections (only for MultiSection TLG files):
+            <list type="bullet">
+            <item><term><see cref="!:SySal.Scanning.Plate.IO.Opera.LinkedZone.BaseTrackIndex"/>: if the source TLG contains a list of base track indices, the link is maintained after the selection (i.e., the list in the output TLG is consistent with the original file, no double-indexing is needed). 
+            If no BaseTrackIndex list is found, TLGSel appends automatically a section containing the indices of the selected tracks in the original file.</term></item>
+            <item><term><see cref="!:SySal.Scanning.Plate.IO.Opera.LinkedZone.BaseTrackIgnoreAlignment"/></term>: if the source TLG contains a list of tracks to be ignored in alignment, TLGSel updates their indices in the output file, so that the selected tracks are correctly referred to.</item>
+            <item><term><see cref="T:SySal.OperaDb.Scanning.DBMIPMicroTrackIndex"/>: if the source TLG contains a list of microtrack DB indices, and the <c>/micro</c> switch is enabled, the list of microtracks indices is updated to reflect the selection of microtracks.</term></item>
+            </list>
+            </para>
+            </remarks>
+        </member>
+        <member name="M:SySal.Executables.TLGSel.Exe.Main(System.String[])">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.TLGSel.Exe.ProcessData(SySal.Scanning.Plate.IO.OPERA.LinkedZone,System.String,System.Boolean)">
+            <summary>
+            Processes data. Used to access TLGSel functions programmatically.
+            </summary>
+            <param name="lz">the linked zone to be selected.</param>
+            <param name="selstring">the selection string.</param>
+            <param name="cleanmicrotracks">if <c>true</c>, microtracks not attached to any surviving base tracks are deleted too.</param>
+            <returns>a linked zone with the selected base tracks and microtracks.</returns>
+        </member>
+        <member name="M:SySal.Executables.TLGSel.Exe.ProcessDataEx(SySal.Scanning.Plate.IO.OPERA.LinkedZone,System.String,System.Boolean,System.Int32[],System.Int32[])">
+            <summary>
+            Processes data. Used to access TLGSel functions programmatically. Extends <c>ProcessData</c>.
+            </summary>
+            <param name="lz">the linked zone to be selected.</param>
+            <param name="selstring">the selection string.</param>
+            <param name="cleanmicrotracks">if <c>true</c>, microtracks not attached to any surviving base tracks are deleted too.</param>
+            <param name="includelist">list of Ids of base tracks to be included.</param>
+            <param name="excludelist">list of Ids of base tracks to be excluded.</param>
+            <returns>a linked zone with the selected base tracks and microtracks.</returns>
+        </member>
+        <member name="M:SySal.Executables.TLGSel.Exe.ProcessDataEx2(SySal.Scanning.Plate.IO.OPERA.LinkedZone,System.String,System.Boolean,System.Int32[],System.Int32[],System.Int32[]@,System.Int32[]@,System.Int32[]@)">
+            <summary>
+            Processes data. Used to access TLGSel functions programmatically. Extends <c>ProcessDataEx</c>.
+            </summary>
+            <param name="lz">the linked zone to be selected.</param>
+            <param name="selstring">the selection string.</param>
+            <param name="cleanmicrotracks">if <c>true</c>, microtracks not attached to any surviving base tracks are deleted too.</param>
+            <param name="includelist">list of Ids of base tracks to be included.</param>
+            <param name="excludelist">list of Ids of base tracks to be excluded.</param>
+            <param name="basetkremaplist">the Ids in this list allow mapping the base track Ids in the selected linked zone to the original base track Ids.</param>
+            <param name="toptkremaplist">the Ids in this list allow mapping the top microtrack Ids in the selected linked zone to the original top microtrack Ids.</param>
+            <param name="toptkremaplist">the Ids in this list allow mapping the bottom microtrack Ids in the selected linked zone to the original bottom microtrack Ids.</param>
+            <returns>a linked zone with the selected base tracks and microtracks.</returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,5 @@
+/home/kryss/Documenti/SySal/SySalWebServer/bin/Debug/SySalWebServer.dll
+/home/kryss/Documenti/SySal/SySalWebServer/bin/Debug/SySalWebServer.pdb
+/home/kryss/Documenti/SySal/SySalWebServer/obj/Debug/SySalWebServer.csprojAssemblyReference.cache
+/home/kryss/Documenti/SySal/SySalWebServer/obj/Debug/SySalWebServer.dll
+/home/kryss/Documenti/SySal/SySalWebServer/obj/Debug/SySalWebServer.pdb

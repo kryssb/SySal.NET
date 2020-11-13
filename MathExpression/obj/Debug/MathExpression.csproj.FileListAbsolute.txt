@@ -1,0 +1,6 @@
+/home/kryss/Documenti/SySal/MathExpression/bin/Debug/MathExpression.dll
+/home/kryss/Documenti/SySal/MathExpression/bin/Debug/MathExpression.pdb
+/home/kryss/Documenti/SySal/MathExpression/bin/Debug/MathExpression.xml
+/home/kryss/Documenti/SySal/MathExpression/obj/Debug/MathExpression.dll
+/home/kryss/Documenti/SySal/MathExpression/obj/Debug/MathExpression.pdb
+/home/kryss/Documenti/SySal/MathExpression/obj/Debug/MathExpression.csprojAssemblyReference.cache

@@ -1,0 +1,17 @@
+/home/kryss/Documenti/SySal/FastImaging/bin/Debug/FastImaging.dll
+/home/kryss/Documenti/SySal/FastImaging/bin/Debug/FastImaging.pdb
+/home/kryss/Documenti/SySal/FastImaging/bin/Debug/ImageGrabbing.dll
+/home/kryss/Documenti/SySal/FastImaging/bin/Debug/Imaging.dll
+/home/kryss/Documenti/SySal/FastImaging/bin/Debug/SySalCore.dll
+/home/kryss/Documenti/SySal/FastImaging/bin/Debug/NumericalTools.dll
+/home/kryss/Documenti/SySal/FastImaging/bin/Debug/ImageGrabbing.pdb
+/home/kryss/Documenti/SySal/FastImaging/bin/Debug/Imaging.pdb
+/home/kryss/Documenti/SySal/FastImaging/bin/Debug/Imaging.xml
+/home/kryss/Documenti/SySal/FastImaging/bin/Debug/SySalCore.pdb
+/home/kryss/Documenti/SySal/FastImaging/bin/Debug/SySalCore.xml
+/home/kryss/Documenti/SySal/FastImaging/bin/Debug/NumericalTools.pdb
+/home/kryss/Documenti/SySal/FastImaging/bin/Debug/NumericalTools.xml
+/home/kryss/Documenti/SySal/FastImaging/obj/Debug/FastImaging.csprojAssemblyReference.cache
+/home/kryss/Documenti/SySal/FastImaging/obj/Debug/FastImaging.csproj.CopyComplete
+/home/kryss/Documenti/SySal/FastImaging/obj/Debug/FastImaging.dll
+/home/kryss/Documenti/SySal/FastImaging/obj/Debug/FastImaging.pdb

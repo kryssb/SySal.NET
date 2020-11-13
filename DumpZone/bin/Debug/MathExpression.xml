@@ -1,0 +1,702 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MathExpression</name>
+    </assembly>
+    <members>
+        <member name="T:NumericalTools.Parameter">
+            <summary>
+            Function parameter. It holds the name and the value of the parameter.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Generic">
+            <summary>
+            Generic node of an evaluation tree.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.MathNode.Generic.Branches">
+            <summary>
+            The branches of this node.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.MathNode.Generic.Evaluate">
+            <summary>
+            Evaluates the node.
+            </summary>
+            <returns>the value of the node.</returns>
+        </member>
+        <member name="M:NumericalTools.MathNode.Generic.Derivative(System.String)">
+            <summary>
+            Partial derivative of the node with respect to one parameter.
+            </summary>
+            <param name="dparam">the name of the parameter with respect to which the node must be derived.</param>
+            <returns>a new node that is the partial derivative of the current node.</returns>
+        </member>
+        <member name="T:NumericalTools.MathNode.ZeroParameter">
+            <summary>
+            Generic zero-parameter function
+            </summary>
+        </member>
+        <member name="M:NumericalTools.MathNode.ZeroParameter.ParameterCount">
+            <summary>
+            The number of parameters.
+            </summary>
+            <returns>zero.</returns>
+        </member>
+        <member name="T:NumericalTools.MathNode.Const">
+            <summary>
+            Constant node.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Parameter">
+            <summary>
+            Parameter node.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.E">
+            <summary>
+            E number.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.PI">
+            <summary>
+            PI number.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Rnd">
+            <summary>
+            Random number.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.OneParameter">
+            <summary>
+            Generic one-parameter function
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Bool">
+            <summary>
+            Converts an expression to a boolean value (0 or 1).
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Not">
+            <summary>
+            Negates a boolean expression (0 or 1).
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Minus">
+            <summary>
+            Unary minus.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Sign">
+            <summary>
+            Sign.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Abs">
+            <summary>
+            Absolute value.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Asin">
+            <summary>
+            Arcsine.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Sin">
+            <summary>
+            Sine.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Sinh">
+            <summary>
+            Hyperbolic sine.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Acos">
+            <summary>
+            Arccosine.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Cos">
+            <summary>
+            Cosine.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Cosh">
+            <summary>
+            Hyperbolic cosine.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Atan">
+            <summary>
+            Arctangent.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Tan">
+            <summary>
+            Tangent.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Tanh">
+            <summary>
+            Hyperbolic tangent.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Exp">
+            <summary>
+            Exponential.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Log">
+            <summary>
+            Natural logarithm.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Log10">
+            <summary>
+            Base-10 logarithm.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Round">
+            <summary>
+            Rounds to the nearest integer.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Int">
+            <summary>
+            The integer part.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Fract">
+            <summary>
+            The fractional part.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Sqrt">
+            <summary>
+            The square root.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.TwoParameter">
+            <summary>
+            Generic two-parameter function
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Add">
+            <summary>
+            Addition.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Sub">
+            <summary>
+            Subtraction.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Mul">
+            <summary>
+            Multiplication.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Div">
+            <summary>
+            Division.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Eq">
+            <summary>
+            Equality.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Less">
+            <summary>
+            Less-than.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.LessEq">
+            <summary>
+            Less-than or equal.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Greater">
+            <summary>
+            Greater-than.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.GreaterEq">
+            <summary>
+            Greater-than or equal.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.NotEq">
+            <summary>
+            Not equal.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.And">
+            <summary>
+            And.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Or">
+            <summary>
+            Or.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Xor">
+            <summary>
+            Xor.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Max">
+            <summary>
+            Max.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Min">
+            <summary>
+            Min.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Pow">
+            <summary>
+            Pow.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.AtanXY">
+            <summary>
+            AtanXY.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.MathNode.Hypot">
+            <summary>
+            Hypot.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.Function">
+            <summary>
+            A function with several user-defined parameters.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Function.Parameters">
+            <summary>
+            Function parameters.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Function.Tree">
+            <summary>
+            The top node in the evaluation tree.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Function.KnownFunctions">
+            <summary>
+            List of well-known functions
+            </summary>
+        </member>
+        <member name="T:NumericalTools.Function.DisplayKnownFunction">
+            <summary>
+            Public representation of a well-known function.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Function.#ctor">
+            <summary>
+            Null constructor.
+            </summary>
+        </member>
+        <member name="P:NumericalTools.Function.KnownFunctionList">
+            <summary>
+            The list of well-known functions with their number of parameters.
+            </summary>
+        </member>
+        <member name="P:NumericalTools.Function.ParameterList">
+            <summary>
+            The list of parameters to be supplied.
+            </summary>
+        </member>
+        <member name="P:NumericalTools.Function.Item(System.String)">
+            <summary>
+            Accesses the parameters using their name.
+            </summary>
+        </member>
+        <member name="P:NumericalTools.Function.Item(System.Int32)">
+            <summary>
+            Accesses the parameters using their position in the parameter list.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Function.iName">
+            <summary>
+            Internal name of the function.
+            </summary>
+        </member>
+        <member name="P:NumericalTools.Function.Name">
+            <summary>
+            The function name.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Function.Evaluate(System.Double[])">
+            <summary>
+            Evaluates the function.
+            </summary>
+            <param name="paramvalues">the values of the parameters.</param>
+            <returns>the value of the function.</returns>
+        </member>
+        <member name="M:NumericalTools.Function.Evaluate">
+            <summary>
+            Evaluates the function using the current values of the parameters.
+            </summary>
+            <returns>the value of the function.</returns>
+        </member>
+        <member name="M:NumericalTools.Function.FindParameters(System.Collections.ArrayList,NumericalTools.MathNode.Generic)">
+            <summary>
+            Finds parameters in a node and its descendants.
+            </summary>
+            <param name="paramcoll">the list of parameters to be updated.</param>
+            <param name="m">the node.</param>
+        </member>
+        <member name="M:NumericalTools.Function.#ctor(System.String,NumericalTools.MathNode.Generic,NumericalTools.Parameter[])">
+            <summary>
+            Builds a function from the specified node.
+            </summary>
+            <param name="name">the function name.</param>
+            <param name="tree">the evaluation tree to initialize the function.</param>
+            <param name="paramlist">if null, the parameter list is extracted from the tree MathNodes; otherwise, the list is simply validated against the tree (i.e. a parameter that does not appear in the tree may appear in the list).</param>
+        </member>
+        <member name="M:NumericalTools.Function.Derive(System.String)">
+            <summary>
+            Builds the partial derivative of the function with respect to a specified parameter.
+            </summary>
+            <param name="dparam">the name of the parameter with respect to which the derivative is to be executed. The parameter must be in the function parameter list.</param>
+            <returns>the partial derivative of the function with respect to the specified parameter. Notice that even if one or more parameters disappear in the derivation, the parameter list will be inherited from the primitive function.</returns>
+        </member>
+        <member name="T:NumericalTools.MathExpressionException">
+            <summary>
+            The base class for mathematical expression exceptions
+            </summary>
+        </member>
+        <member name="M:NumericalTools.MathExpressionException.#ctor">
+            <summary>
+            Builds a new math expression exception.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.MathExpressionException.#ctor(System.String)">
+            <summary>
+            Builds a new math expression exception with a specified message.
+            </summary>
+            <param name="message">the exception message.</param>
+        </member>
+        <member name="M:NumericalTools.MathExpressionException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Implements ISerializable.
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:NumericalTools.MathExpressionException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Implements ISerializable.
+            </summary>
+            <param name="info"></param>
+            <param name="c"></param>
+        </member>
+        <member name="T:NumericalTools.SyntaxException">
+            <summary>
+            The base class for mathematical expression exceptions
+            </summary>
+        </member>
+        <member name="M:NumericalTools.SyntaxException.#ctor">
+            <summary>
+            Builds a new syntax exception.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.SyntaxException.#ctor(System.Int32)">
+            <summary>
+            Initializes a new syntax exception with the indication of the string position that generated the error.
+            </summary>
+            <param name="i"></param>
+        </member>
+        <member name="M:NumericalTools.SyntaxException.#ctor(System.String)">
+            <summary>
+            Initializes a new syntax exception with an error message.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:NumericalTools.SyntaxException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Implements ISerializable.
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:NumericalTools.SyntaxException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Implements ISerializable.
+            </summary>
+            <param name="info"></param>
+            <param name="c"></param>
+        </member>
+        <member name="T:NumericalTools.WrongParameterValueListException">
+            <summary>
+            Wrong parameter list exception.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.WrongParameterValueListException.#ctor">
+            <summary>
+            Builds a new WrongParameterValueList exception.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.WrongParameterValueListException.#ctor(System.Int32)">
+            <summary>
+            Initializes a new WrongParameterValueList with the indication of the first faulty parameter.
+            </summary>
+            <param name="i">the zero-based index of the faulty parameter.</param>
+        </member>
+        <member name="M:NumericalTools.WrongParameterValueListException.#ctor(System.Int32,System.String)">
+            <summary>
+            Initializes a new WrongParameterValueList with the indication of the first faulty parameter and its name.
+            </summary>
+            <param name="i">the zero-based index of the faulty parameter.</param>
+            <param name="n">the name of the faulty parameter.</param>
+        </member>
+        <member name="M:NumericalTools.WrongParameterValueListException.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes a new WrongParameterValueList with the indication of the first faulty parameter.
+            </summary>
+            <param name="needed">the name of the parameter that was expected.</param>
+            <param name="supplied">the name of the parameter that has been supplied.</param>
+        </member>
+        <member name="M:NumericalTools.WrongParameterValueListException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Implements ISerializable.
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="M:NumericalTools.WrongParameterValueListException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Implements ISerializable.
+            </summary>
+            <param name="info"></param>
+            <param name="c"></param>
+        </member>
+        <member name="T:NumericalTools.CStyleParsedFunction">
+            <summary>
+            A function built from a string expression by a C-style parser.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.CStyleParsedFunction.#ctor(System.String)">
+            <summary>
+            Parses an expression in C style and constructs the function, adding a default name.
+            </summary>
+            <param name="exprtext"></param>
+        </member>
+        <member name="M:NumericalTools.CStyleParsedFunction.#ctor(System.String,System.String)">
+            <summary>
+            Parses an expression in C style and constructs the function, adding a user-specified name.
+            </summary>
+            <param name="exprtext"></param>
+            <param name="name"></param>
+        </member>
+        <member name="M:NumericalTools.CStyleParsedFunction.InternalConstruct(System.String,System.String)">
+            <summary>
+            Parses the expression string in C style and creates the execution tree.
+            </summary>
+            <param name="exprtext"></param>
+            <param name="name"></param>
+        </member>
+        <member name="M:NumericalTools.CStyleParsedFunction.ManageSpaces(System.String@)">
+            <summary>
+            Removes useless spaces
+            </summary>
+            <param name="s"></param>
+        </member>
+        <member name="M:NumericalTools.CStyleParsedFunction.ManageOperators(System.String@)">
+            <summary>
+            Prepares operators for tokenization.
+            </summary>
+            <param name="s"></param>
+        </member>
+        <member name="T:NumericalTools.CStyleParsedFunction.Operator2">
+            <summary>
+            Two-operand operators
+            </summary>
+        </member>
+        <member name="F:NumericalTools.CStyleParsedFunction.Operator2.Chars">
+            <summary>
+            Character representation of the operator.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.CStyleParsedFunction.Operator2.Priority">
+            <summary>
+            Prioriy Level of the operator.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.CStyleParsedFunction.Operator2.OpType">
+            <summary>
+            Type of the operator.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.CStyleParsedFunction.Operator2.#ctor(System.String,NumericalTools.CStyleParsedFunction.Operator2.PriorityLevel,System.Type)">
+            <summary>
+            Builds a new 2-argument operator.
+            </summary>
+            <param name="chars">the character representation of the operator.</param>
+            <param name="priority">the priority level of the operator.</param>
+            <param name="optype">the operator type.</param>
+        </member>
+        <member name="T:NumericalTools.CStyleParsedFunction.Operator2.PriorityLevel">
+            <summary>
+            Operator priority levels.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.CStyleParsedFunction.Operator2.PriorityLevel.OrXor">
+            <summary>
+            Or-Xor priority level.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.CStyleParsedFunction.Operator2.PriorityLevel.And">
+            <summary>
+            And priority level.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.CStyleParsedFunction.Operator2.PriorityLevel.Relational">
+            <summary>
+            Relation operator priority level.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.CStyleParsedFunction.Operator2.PriorityLevel.AddSub">
+            <summary>
+            Additive operation priority level.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.CStyleParsedFunction.Operator2.PriorityLevel.MulDiv">
+            <summary>
+            Multiplicative operation priority level.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.CStyleParsedFunction.Operator2.PriorityLevel.Pow">
+            <summary>
+            Power operation priority level.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.CStyleParsedFunction.Operator2.PriorityLevel.Unknown">
+            <summary>
+            Unknown priority level.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.CStyleParsedFunction.KnownOperators">
+            <summary>
+            Known operators
+            </summary>
+        </member>
+        <member name="T:NumericalTools.BASICStyleParsedFunction">
+            <summary>
+            A function built from a string expression by a BASIC-style parser.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.BASICStyleParsedFunction.#ctor(System.String)">
+            <summary>
+            Parses an expression in BASIC style and constructs the function, adding a default name.
+            </summary>
+            <param name="exprtext"></param>
+        </member>
+        <member name="M:NumericalTools.BASICStyleParsedFunction.#ctor(System.String,System.String)">
+            <summary>
+            Parses an expression in BASIC style and constructs the function, adding a user-specified name.
+            </summary>
+            <param name="exprtext"></param>
+            <param name="name"></param>
+        </member>
+        <member name="M:NumericalTools.BASICStyleParsedFunction.InternalConstruct(System.String,System.String)">
+            <summary>
+            Parses the expression string in BASIC style and creates the execution tree.
+            </summary>
+            <param name="exprtext"></param>
+            <param name="name"></param>
+        </member>
+        <member name="M:NumericalTools.BASICStyleParsedFunction.ManageSpaces(System.String@)">
+            <summary>
+            Removes useless spaces
+            </summary>
+            <param name="s"></param>
+        </member>
+        <member name="M:NumericalTools.BASICStyleParsedFunction.ManageOperators(System.String@)">
+            <summary>
+            Prepares operators for tokenization.
+            </summary>
+            <param name="s"></param>
+        </member>
+        <member name="T:NumericalTools.BASICStyleParsedFunction.Operator2">
+            <summary>
+            Two-operand operators
+            </summary>
+        </member>
+        <member name="F:NumericalTools.BASICStyleParsedFunction.Operator2.Chars">
+            <summary>
+            Character representation of the operator.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.BASICStyleParsedFunction.Operator2.Priority">
+            <summary>
+            Prioriy Level of the operator.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.BASICStyleParsedFunction.Operator2.OpType">
+            <summary>
+            Type of the operator.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.BASICStyleParsedFunction.Operator2.#ctor(System.String,NumericalTools.BASICStyleParsedFunction.Operator2.PriorityLevel,System.Type)">
+            <summary>
+            Builds a new 2-argument operator.
+            </summary>
+            <param name="chars">the character representation of the operator.</param>
+            <param name="priority">the priority level of the operator.</param>
+            <param name="optype">the operator type.</param>
+        </member>
+        <member name="T:NumericalTools.BASICStyleParsedFunction.Operator2.PriorityLevel">
+            <summary>
+            Operator priority levels.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.BASICStyleParsedFunction.Operator2.PriorityLevel.OrXor">
+            <summary>
+            Or-Xor priority level.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.BASICStyleParsedFunction.Operator2.PriorityLevel.And">
+            <summary>
+            And priority level.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.BASICStyleParsedFunction.Operator2.PriorityLevel.Relational">
+            <summary>
+            Relation operator priority level.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.BASICStyleParsedFunction.Operator2.PriorityLevel.AddSub">
+            <summary>
+            Additive operation priority level.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.BASICStyleParsedFunction.Operator2.PriorityLevel.MulDiv">
+            <summary>
+            Multiplicative operation priority level.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.BASICStyleParsedFunction.Operator2.PriorityLevel.Pow">
+            <summary>
+            Power operation priority level.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.BASICStyleParsedFunction.Operator2.PriorityLevel.Unknown">
+            <summary>
+            Unknown priority level.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.BASICStyleParsedFunction.KnownOperators">
+            <summary>
+            Known operators
+            </summary>
+        </member>
+    </members>
+</doc>

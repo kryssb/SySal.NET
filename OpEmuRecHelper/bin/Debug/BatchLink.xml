@@ -1,0 +1,244 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BatchLink</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Executables.BatchLink.MatrixTransform">
+            <summary>
+            Transformation matrix.
+            </summary>
+        </member>
+        <member name="T:SySal.Executables.BatchLink.Config">
+            <summary>
+            Batch link configuration.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.BatchLink.Config.DefaultBaseThickness">
+            <summary>
+            The default base thickness to be used.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.BatchLink.Config.CorrectTrackZFromCenterToBase">
+            <summary>
+            If enabled, tracks are understood to be recorded with Z centered around the middle position of the emulsion layer and need to be shifted to the base surface.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.BatchLink.Config.DefaultEmuThickness">
+            <summary>
+            The default thickness of emulsion layers to be used.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.BatchLink.Config.DBViewSize">
+            <summary>
+            The default size for a DB view size (when linking microtracks from DB). Putting this field to 0 will turn on a default value of 500.0 micron.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.BatchLink.Config.DBViewCorrection">
+            <summary>
+            If <c>true</c>, microtrack correction with respect to the center of the field of view is activated.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.BatchLink.Config.DBViewCorrMinGrains">
+            <summary>
+            Minimum number of grains for a microtrack to be used to estimate the parameters of microtrack. Ignored if <c>DBViewCorrection</c> is <c>false</c>.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.BatchLink.Config.DBViewCorrPosTol">
+            <summary>
+            Position tolerance for double measurements of microtracks across a view edge. Ignored if <c>DBViewCorrection</c> is <c>false</c>.
+            </summary>        
+        </member>
+        <member name="F:SySal.Executables.BatchLink.Config.DBViewCorrSlopeTol">
+            <summary>
+            Slope tolerance for double measurements of microtracks near a view edge. Ignored if <c>DBViewCorrection</c> is <c>false</c>.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.BatchLink.Config.TopMultSlopeX">
+            <summary>
+            Initial multiplier for X component of slope on the top layer.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.BatchLink.Config.TopMultSlopeY">
+            <summary>
+            Initial multiplier for Y component of slope on the top layer.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.BatchLink.Config.BottomMultSlopeX">
+            <summary>
+            Initial multiplier for X component of slope on the bottom layer.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.BatchLink.Config.BottomMultSlopeY">
+            <summary>
+            Initial multiplier for Y component of slope on the bottom layer.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.BatchLink.Config.TopDeltaSlopeX">
+            <summary>
+            Initial X component of linear distortion correction on the top layer.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.BatchLink.Config.TopDeltaSlopeY">
+            <summary>
+            Initial Y component of linear distortion correction on the top layer.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.BatchLink.Config.BottomDeltaSlopeX">
+            <summary>
+            Initial X component of linear distortion correction on the bottom layer.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.BatchLink.Config.BottomDeltaSlopeY">
+            <summary>
+            Initial Y component of linear distortion correction on the bottom layer.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.BatchLink.Config.MaskBinning">
+            <summary>
+            This parameter is involved in detection of camera spots. It defines the size of the bin used to determine peaks of fake tracks.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.BatchLink.Config.MaskPeakHeightMultiplier">
+            <summary>
+            This parameter is involved in detection of camera spots. A camera spot is defined as a bin that has a number of tracks higher than the average by a factor defined by MaskPeakHeightMultiplier.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.BatchLink.Config.AutoCorrectMultipliers">
+            <summary>
+            If true, slope multipliers (and linear distortion corrections) are computed automatically after a first link pass; then linking is performed again with corrected parameters.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.BatchLink.Config.ShrinkLinkerConfig">
+            <summary>
+            Shrinkage correction linker configuration details.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.BatchLink.Config.AutoCorrectMinSlope">
+            <summary>
+            Minimum slope to be used for automatic shrinkage correction.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.BatchLink.Config.AutoCorrectMaxSlope">
+            <summary>
+            Maximum slope to be used for automatic shrinkage correction.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.BatchLink.Config.AutoCorrectIterations">
+            <summary>
+            Iterations for automatic slope correction.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.BatchLink.Config.AutoCorrectStartDeltaAcceptance">
+            <summary>
+            Start acceptance for iterative correction procedure.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.BatchLink.Config.AutoCorrectEndDeltaAcceptance">
+            <summary>
+            End acceptance for iterative correction procedure.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.BatchLink.Config.UseDataStream">
+            <summary>
+            If <c>true</c>, the output is written directly to a data stream.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.BatchLink.Config.LinkerConfig">
+            <summary>
+            Linker configuration details.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.BatchLink.Config.RWDFieldCorrectionMatrix">
+            <summary>
+            Matrix that transforms RWD views by left side multiplication (i.e. M' = A * M, M being the original view matrix).
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.BatchLink.Config.RWDClampTracks">
+            <summary>
+            Maximum number of tracks per side in an RWD view. When 0, track clamping is disabled. When different from 0, the tracks are subsampled if needed by skipping so that they don't exceed the specified number.
+            </summary>
+        </member>
+        <member name="T:SySal.Executables.BatchLink.Exe">
+            <summary>
+            BatchLink - links RWD files into OPERA TLG files.
+            </summary>
+            <remarks>
+            <para>BatchLink uses SySal.Processing.SySal.Processing.StripesFragLink2 for computations. See <see cref="T:SySal.Processing.StripesFragLink2.StripesFragmentLinker"/> for more inforamtion on the algorithm and its parameters.</para>
+            <para>
+            BatchLink can be used in several ways:
+            <list type="bullet">
+            <item><term><c>usage: batchlink [/wait] &lt;input RWC path&gt; &lt;output TLG Opera persistence path&gt; &lt;XML config Opera persistence path&gt; [&lt;XML fragment shift correction file&gt;]</c></term></item>
+            <item><term><c>usage: batchlink /dbquery &lt;DB query to get microtracks&gt; &lt;output TLG Opera persistence path&gt; &lt;XML config Opera persistence path&gt; [&lt;XML fragment shift correction file&gt;]</c></term></item>
+            <item><term><c>usage: batchlink /dbquerysb &lt;DB query to get microtracks&gt; &lt;output TLG Opera persistence path&gt; &lt;XML config Opera persistence path&gt; [&lt;XML fragment shift correction file&gt;]</c></term></item>
+            <item><term><c>usage: batchlink /dbqueryrb &lt;File backer for a previously executed DB query&gt; &lt;output TLG Opera persistence path&gt; &lt;XML config Opera persistence path&gt; [&lt;XML fragment shift correction file&gt;]</c></term></item>
+            </list>
+            The output path is in the <see cref="T:SySal.OperaPersistence">GUFS</see> notation, so it can be a file path as well as a DB access string. The same is true for the configuration file (it can be a ProgramSettings entry from the DB).
+            </para>
+            <para>The <c>/dbquery</c> and <c>/dbquerysb</c> switches behave in the same way, but if <c>/dbquerysb</c> the results of the query to the DB are saved to a file in the temporary directory, so that further access to the DB is not 
+            needed when attempting to link the same data. The full path is shown at the end of BatchLink execution, if successful. That file is to be reused with the <c>/dbqueryrb</c> option (see below).</para>
+            <para>
+            The DB query (activated by <c>/dbquery</c> or <c>/dbquerysb</c>) must return the following fields in the exact order (field name does not matter):
+            <c>ID_ZONE SIDE ID_TRACK GRAINS AREASUM POSX POSY SLOPEX SLOPEY SIGMA ID_VIEW VIEWCENTERX VIEWCENTERY</c>
+            </para>
+            <para>The <c>/dbqueryrb</c> switch uses the temporary query file generated by <c>/dbquerysb</c> in a previous run as if it were the input from the DB. The path to the file (called <i>File backer</i>) is specified as the first argument
+            after the switch, in the place that would otherwise be occupied by the DB query.</para>
+            <para>
+            XML config syntax:
+            <code>
+            &lt;BatchLink.Config&gt;
+             &lt;TopMultSlopeX&gt;1&lt;/TopMultSlopeX&gt;
+             &lt;TopMultSlopeY&gt;1&lt;/TopMultSlopeY&gt;
+             &lt;BottomMultSlopeX&gt;1&lt;/BottomMultSlopeX&gt;
+             &lt;BottomMultSlopeY&gt;1&lt;/BottomMultSlopeY&gt;
+             &lt;TopDeltaSlopeX&gt;0&lt;/TopDeltaSlopeX&gt;
+             &lt;TopDeltaSlopeY&gt;0&lt;/TopDeltaSlopeY&gt;
+             &lt;BottomDeltaSlopeX&gt;0&lt;/BottomDeltaSlopeX&gt;
+             &lt;BottomDeltaSlopeY&gt;0&lt;/BottomDeltaSlopeY&gt;
+             &lt;MaskBinning&gt;30&lt;/MaskBinning&gt;
+             &lt;MaskPeakHeightMultiplier&gt;30&lt;/MaskPeakHeightMultiplier&gt;
+             &lt;AutoCorrectMultipliers&gt;false&lt;/AutoCorrectMultipliers&gt;
+             &lt;AutoCorrectMinSlope&gt;0.03&lt;/AutoCorrectMinSlope&gt;
+             &lt;AutoCorrectMaxSlope&gt;0.4&lt;/AutoCorrectMaxSlope&gt;
+             &lt;LinkerConfig&gt;
+             &lt;Name /&gt;
+             &lt;MinGrains&gt;6&lt;/MinGrains&gt;
+             &lt;MinSlope&gt;0.0&lt;/MinSlope&gt;
+             &lt;MergePosTol&gt;10&lt;/MergePosTol&gt;
+             &lt;MergeSlopeTol&gt;0.02&lt;/MergeSlopeTol&gt;
+             &lt;PosTol&gt;100&lt;/PosTol&gt;
+             &lt;SlopeTol&gt;0.04&lt;/SlopeTol&gt;
+             &lt;SlopeTolIncreaseWithSlope&gt;0.3&lt;/SlopeTolIncreaseWithSlope&gt;
+             &lt;MemorySaving&gt;3&lt;/MemorySaving&gt;
+             &lt;KeepLinkedTracksOnly&gt;true&lt;/KeepLinkedTracksOnly&gt;
+             &lt;PreserveViews&gt;true&lt;/PreserveViews&gt;
+             &lt;QualityCut&gt;S &amp;lt; 0.13 * N - 1.3&lt;/QualityCut&gt;
+             &lt;/LinkerConfig&gt;
+            &lt;/BatchLink.Config&gt;
+            </code>
+            See <see cref="T:SySal.Processing.StripesFragLink2.StripesFragmentLinker"/> for more information on SySal.Processing.StripesFragLink2 parameters.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:SySal.Executables.BatchLink.Exe.UseFileBacker">
+            <summary>
+            If set to <c>true</c>, the input file is a file backer.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.BatchLink.Exe.Main(System.String[])">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.BatchLink.Exe.ProcessData(System.String,System.String,System.String,System.String)">
+            <summary>
+            This method does the actual processing. It can be called explicitly, thus using BatchLink as a computation library instead of an executable.
+            </summary>
+            <param name="input">the input string. Can be an OPERA persistence path or a DB query.</param>
+            <param name="output">the output OPERA persistence path.</param>
+            <param name="programsettings">the string containing the program settings.</param>
+            <param name="corrstring">the path to the fragment correction file. Can be null if not needed.</param>
+            <returns>the <see cref="T:SySal.Scanning.Plate.IO.OPERA.LinkedZone"/> obtained.</returns>
+        </member>
+    </members>
+</doc>

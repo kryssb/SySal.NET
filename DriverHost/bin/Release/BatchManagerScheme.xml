@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BatchManagerScheme</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.DAQSystem.BatchManager">
+            <summary>
+            Batch manager definitions.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.#ctor">
+            <summary>
+            Creates a new BatchManager. 
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.InitializeLifetimeService">
+            <summary>
+            Initializes the Lifetime Service.
+            </summary>
+            <returns>the lifetime service object or null.</returns>
+        </member>
+        <member name="P:SySal.DAQSystem.BatchManager.Machines">
+            <summary>
+            The machine ids handled by this BatchManager.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.BatchManager.Operations">
+            <summary>
+            The ids of the process operations currently handled by this BatchManager.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.GetOperationStartupInfo(System.Int64)">
+            <summary>
+            Retrieves the startup information (except password and alias credentials) for the specified process operation.
+            </summary>
+            <param name="id">id of the process operation for which startup information is required.</param>
+            <returns>the startup information of the process operation.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.GetProgressInfo(System.Int64)">
+            <summary>
+            Retrieves the progress information for the specified process operation.
+            </summary>
+            <param name="id">id of the process operation for which progress information is required.</param>
+            <returns>the progress information of the process operation.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.Start(System.Int64,SySal.DAQSystem.Drivers.TaskStartupInfo)">
+            <summary>
+            Starts a new process operation.
+            </summary>
+            <param name="parentid">id of the parent process operation; if zero or negative, it is treated as NULL.</param>
+            <param name="startupinfo">startup information for the process operation.</param>		
+            <returns>the process operation id that has been allocated to this process operation.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.Pause(System.Int64,System.String,System.String)">
+            <summary>
+            Pauses a process operation.
+            </summary>
+            <param name="id">the id of the process operation to be paused.</param>
+            <param name="username">username to pause the process operation; must match the one used to start the process operation.</param>
+            <param name="password">password to pause the process operation; must match the one used to start the process operation.</param>
+            <returns>the status of the process operation.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.Resume(System.Int64,System.String,System.String)">
+            <summary>
+            Resumes a paused process operation.
+            </summary>
+            <param name="id">the id of the process operation to be resumed.</param>
+            <param name="username">username to resume the process operation; must match the one used to start the process operation.</param>
+            <param name="password">password to resume the process operation; must match the one used to start the process operation.</param>
+            <returns>the status of the process operation.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.Abort(System.Int64,System.String,System.String)">
+            <summary>
+            Aborts a process operation.
+            </summary>
+            <param name="id">the id of the process operation to be aborted.</param>
+            <param name="username">username to abort the process operation; must match the one used to start the process operation.</param>
+            <param name="password">password to abort the process operation; must match the one used to start the process operation.</param>
+            <returns>the status of the process operation.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.GetStatus(System.Int64)">
+            <summary>
+            Retrieves the status of the specified process operation.
+            </summary>
+            <param name="id">the id of the process operation for which execution information is required.</param>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.GetSummary(System.Int64)">
+            <summary>
+            Generates a summary of the specified process operation.
+            </summary>
+            <param name="id">the id of the process operation for which the summary is required.</param>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.TestComm(System.Int32)">
+            <summary>
+            Tests the communication with the BatchManager.
+            </summary>
+            <param name="i">communication parameter.</param>
+            <returns>2 * commpar - 1 if the BatchManager object and the communication are working properly.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.Interrupt(System.Int64,System.String,System.String,System.String)">
+            <summary>
+            Adds an interrupt to the interrupt list of the process. Interrupt data can be passed.
+            </summary>
+            <param name="id">the id of the process to be interrupted.</param>
+            <param name="username">username to interrupt the process operation; must match the one used to start the process operation.</param>
+            <param name="password">password to interrupt the process operation; must match the one used to start the process operation.</param>
+            <param name="interruptdata">interrupt data to be passed to the process; their format and content depend on the specific executable driving the process.</param>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.NextInterrupt(System.Int64)">
+            <summary>
+            Gets the next interrupt for the specified process.
+            </summary>
+            <param name="id">the id of the process whose interrupt list is to be searched.</param>
+            <returns>the next unprocessed interrupt. Null is returned if no unprocessed interrupt exist.</returns>
+        </member>
+    </members>
+</doc>

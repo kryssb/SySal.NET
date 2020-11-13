@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+ <head>
+    <title>Decay Search Step #1</title>
+    <MYSTYLE />    
+ </head>
+ <body>
+  <h1>Decay Search Step #1.1</h1>  
+  <h2>Definition of the Main Vertex (Step 1 of the reference document)</h2>
+  <div class="doforme"><table border="1" style="border-color:navy;"><tr><td align="right"><a href="?do=FindPrimaryTracks"><font color="red">Do&nbsp;for&nbsp;me</font></a><br />SBSF/TSR&nbsp;Pos.&nbsp;tol.<input type="text" name="p0" value="50" size="5" /><br />SBSF/TSR&nbsp;Slope&nbsp;tol.<input type="text" name="p1" value="0.05" size="5" /></td></tr></table></div>
+  <br />
+  <div>
+  In this step you are required to find the "main vertex": this is usually the primary one, but may be a secondary vertex produced in a short &tau; decay.<br />
+  The procedure to obtain this depends on whether you arrived at the vertex along a <a href="#SB">Scanback path</a> or <a href="#NoSB">not</a>.<br />
+  <a id="SB"></a>In case of Scanback, do the following steps:
+  <ol>
+   <li>Select SBSF and CS data sets, deselect all others</li>
+   <li>Select "Tracks" on the main panel and click "Plot"</li>
+   <li>Locate the SB track whose stopping point triggered the TotalScan and click on it</li>
+   <li>Go to the "Neighborhood" tab, and select "Matching tracks from other datasets" (you can adjust <b>DeltaSlope</b> and <b>Radius</b> if you wish)</li>
+   <li>Among the TSR-type tracks, choose the one that is closer to the stopping point; if no track appears, or if the automatic matching is not satisfactory, switch to the procedure for no Scanback track.</li>
+   <li>If the track selected has a vertex attached, this is a good candidate for being the main vertex; if no vertex is attached, the event might have a single prong (which is often the case for QE-like events), or other tracks might have been missed.</li>
+  </ol>  
+  <a id="NoSB"></a>In the case where the probable interaction point was not located using Scanback, do the following steps:  
+  <ol>
+   <li>Select TSR and CS datasets, deselect all others</li>
+   <li>Select "Segments" on the main panel and click "Plot"</li>
+   <li>Look for tracks with specific slopes, using the following search strings (one after the other until something reasonable is obtained):
+    <ul>
+     <li><b>sqrt((<i><font color="fuchsia">XSLOPE</font></i>-sx)^2+(<i><font color="fuchsia">YSLOPE</font></i>-sy)^2)&lt;0.03 &amp;&amp; UVID &gt;= 0 </b> &nbsp;&nbsp;&nbsp;(select segments of tracks with a certain slope attached to vertices upstream - replace XSLOPE and YSLOPE with your values)</li>
+     <li><b>sqrt((<i><font color="fuchsia">XSLOPE</font></i>-sx)^2+(<i><font color="fuchsia">YSLOPE</font></i>-sy)^2)&lt;0.03 &amp;&amp; UVID &gt;= 3 </b> &nbsp;&nbsp;&nbsp;(select segments of tracks with a certain sleop and at least 3 segments - replace XSLOPE and YSLOPE with your values)</li>
+     <li><b>sqrt((<i><font color="fuchsia">XSLOPE</font></i>-sx)^2+(<i><font color="fuchsia">YSLOPE</font></i>-sy)^2)&lt;0.03 </b> &nbsp;&nbsp;&nbsp;(select any segments with a certain slope - replace XSLOPE and YSLOPE with your values)</li>
+    </ul>
+   </li>
+   <li>Choose segments that may be interesting, and browse the related track (promote single segments to tracks if needed)</li>
+  </ol>  
+  <a href="DSApage1_2.htm">Next</a>
+  </div>
+ </body>
+</html>

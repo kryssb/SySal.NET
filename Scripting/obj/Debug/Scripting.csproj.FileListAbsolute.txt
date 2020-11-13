@@ -1,0 +1,6 @@
+/home/kryss/Documenti/SySal/Scripting/bin/Debug/Scripting.dll
+/home/kryss/Documenti/SySal/Scripting/bin/Debug/Scripting.pdb
+/home/kryss/Documenti/SySal/Scripting/bin/Debug/Scripting.xml
+/home/kryss/Documenti/SySal/Scripting/obj/Debug/Scripting.dll
+/home/kryss/Documenti/SySal/Scripting/obj/Debug/Scripting.pdb
+/home/kryss/Documenti/SySal/Scripting/obj/Debug/Scripting.csprojAssemblyReference.cache

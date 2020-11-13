@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ExtractLinkedIndex</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Executables.ExtractLinkedIndex.Exe">
+            <summary>
+            A command-line tool to produce lists of Ids of tracks to be ignored during alignment.
+            </summary>
+            <remarks>
+            <para>ExtractLinkedIndex reads a TotalScan Reconstruction Volume and produces the list of tracks that are found to be linked on a 
+            chosen sheet.</para>
+            <para>The output list can be produced in two formats:
+            <list type="bullet">
+            <item><term>ASCII file (if the output path extension is not .TLG): in this case, the first line will contain the <c>Index</c> word, 
+            and will be followed by lines each one containing one id.</term></item>
+            <item><term>TLG file (requires a MultiSection TLG): in this case, the list of Ids is appended in a 
+            <see cref="T:SySal.Scanning.Plate.IO.OPERA.LinkedZone.BaseTrackIgnoreAlignment"/> section.</term></item>. Notice that the TLG file must already exist.
+            </list>
+            </para>
+            </remarks>
+        </member>
+    </members>
+</doc>

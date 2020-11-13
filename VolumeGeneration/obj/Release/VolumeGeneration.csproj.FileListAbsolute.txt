@@ -1,0 +1,17 @@
+/home/kryss/Documenti/SySal/VolumeGeneration/bin/Release/VolumeGeneration.dll
+/home/kryss/Documenti/SySal/VolumeGeneration/bin/Release/VolumeGeneration.xml
+/home/kryss/Documenti/SySal/VolumeGeneration/bin/Release/NumericalTools.dll
+/home/kryss/Documenti/SySal/VolumeGeneration/bin/Release/Scanning.dll
+/home/kryss/Documenti/SySal/VolumeGeneration/bin/Release/SySalCore.dll
+/home/kryss/Documenti/SySal/VolumeGeneration/bin/Release/Tracking.dll
+/home/kryss/Documenti/SySal/VolumeGeneration/bin/Release/VolumeTracks.dll
+/home/kryss/Documenti/SySal/VolumeGeneration/bin/Release/DAQSystem.dll
+/home/kryss/Documenti/SySal/VolumeGeneration/bin/Release/NumericalTools.xml
+/home/kryss/Documenti/SySal/VolumeGeneration/bin/Release/SySalCore.xml
+/home/kryss/Documenti/SySal/VolumeGeneration/bin/Release/VolumeTracks.xml
+/home/kryss/Documenti/SySal/VolumeGeneration/bin/Release/DAQSystem.xml
+/home/kryss/Documenti/SySal/VolumeGeneration/obj/Release/VolumeGeneration.csprojAssemblyReference.cache
+/home/kryss/Documenti/SySal/VolumeGeneration/obj/Release/SySal.Processing.VolumeGeneration.frmParameters.resources
+/home/kryss/Documenti/SySal/VolumeGeneration/obj/Release/VolumeGeneration.csproj.GenerateResource.cache
+/home/kryss/Documenti/SySal/VolumeGeneration/obj/Release/VolumeGeneration.csproj.CopyComplete
+/home/kryss/Documenti/SySal/VolumeGeneration/obj/Release/VolumeGeneration.dll

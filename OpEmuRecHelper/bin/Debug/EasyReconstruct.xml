@@ -1,0 +1,691 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EasyReconstruct</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Executables.EasyReconstruct.AnalysisForm">
+            <summary>
+            Analysis form - allows quick data analysis of quantities relevant for alignment.
+            </summary>
+            <remarks>
+            <para>The functions supported are those of <see cref="T:NumericalTools.AnalysisControl">StatisticalAnalysisManager</see>.</para>
+            </remarks>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.AnalysisForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.AnalysisForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Executables.EasyReconstruct.DBAccessForm">
+            <summary>
+            DBAccessForm - allows the user to set his/her access credentials to the DB.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.EasyReconstruct.DBAccessForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.DBAccessForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.DBAccessForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Executables.EasyReconstruct.DisplayForm">
+            <summary>
+            Displays 3D views of tracks.
+            </summary>
+            <remarks>
+            <para>
+            The buttons in the Display group perform the following actions:
+            <list type="table">
+            <listheader><term>Button</term><description>Action</description></listheader>
+            <item><term>Default view</term><description>sets the viewing point to its default position.</description></item>
+            <item><term>Zoom +,-</term><description>zooms in/out the view.</description></item>
+            <item><term>Rotation/Panning</term><description>when Rotation is enabled, dragging the image with the right mouse button pressed rotates it; otherwise, it is panned (transverse translation).</description></item>
+            <item><term>Isometric</term><description>when enabled, the view is not in perspective (objects do not shrink with distance), but isometric. Usually, in isometric view, zoom factors must increase in order to have a good image.</description></item>
+            <item><term>Background</term><description>selects the background color.</description></item>
+            </list>
+            </para>
+            <para>
+            The buttons in the Selection group perform the following actions:
+            <list type="table">
+            <listheader><term>Button</term><description>Action</description></listheader>
+            <item><term>Segments</term><description>shows all segments. This is called "Segment display" mode.</description></item>
+            <item><term>Tracks</term><description>shows all tracks (with some constraints, see below). This is called "Track display" mode.</description></item>
+            <item><term>Vertices</term><description>shows all vertices (with some constraints, see below). This is called "Vertex display" mode.</description></item>
+            <item><term>Graph from Track #</term><description>shows the graph starting from the specified track number. This is called "Graph display" mode.</description></item>
+            <item><term>Graph from Vertex #</term><description>shows the graph starting from the specified vertex number. This is called "Graph display" mode.</description></item>
+            <item><term>Show segments</term><description>turns on segment viewing when showing tracks/vertices/graphs.</description></item>
+            <item><term>Min segments</term><description>minimum number of segments to show a track in "Track display" mode.</description></item>
+            <item><term>Min tracks</term><description>minimum number of attached tracks to show a vertex in "Vertex display" mode.</description></item>
+            <item><term>Plot</term><description>refreshes the display.</description></item>
+            <item><term>Save</term><description>saves the plot in a standard 2D format or in the X3L format for 3D viewing and analysis.</description></item>
+            </list>
+            </para>
+            <para>
+            The sliders in the Graphics area tune the following properties:
+            <list type="table">
+            <listheader><term>Slider</term><description>Property</description></listheader>
+            <item><term>Alpha</term><description>the opaqueness of lines and points. 0 means transparent, 1 means opaque.</description></item>
+            <item><term>Lines</term><description>the thickness of lines.</description></item>
+            <item><term>Points</term><description>the size of points.</description></item>
+            </list>
+            </para>
+            <para>
+            A double click with the left mouse button near a graphical element (line or point) opens the corresponding browser (<see cref="T:SySal.Executables.EasyReconstruct.TrackBrowser">TrackBrowser</see> for tracks, <see cref="T:SySal.Executables.EasyReconstruct.VertexBrowser">VertexBrowser</see> for vertices).
+            </para>
+            </remarks>
+        </member>
+        <member name="F:SySal.Executables.EasyReconstruct.DisplayForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.DisplayForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.DisplayForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.EasyReconstruct.DecaySearchAssistantForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.DecaySearchAssistantForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.DecaySearchAssistantForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Executables.EasyReconstruct.EnqueueOpForm">
+            <summary>
+            Provides a simple interface to launch TotalScan jobs.
+            </summary>
+        </member>
+        <member name="T:SySal.Executables.EasyReconstruct.EnqueueOpForm.TrackFollowInfo">
+            <summary>
+            Relevant information for a TrackFollow or TotalScan job.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.EasyReconstruct.EnqueueOpForm.TrackFollowInfo.Id">
+            <summary>
+            Id of the volume to be created.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.EasyReconstruct.EnqueueOpForm.TrackFollowInfo.Position">
+            <summary>
+            Position of the center of the volume at the reference plate.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.EasyReconstruct.EnqueueOpForm.TrackFollowInfo.Slope">
+            <summary>
+            Skewing slopes for the volume.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.EasyReconstruct.EnqueueOpForm.TrackFollowInfo.Plate">
+            <summary>
+            The reference slope.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.EasyReconstruct.EnqueueOpForm.BrickId">
+            <summary>
+            The ID of the brick on which the scanning has to be performed.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.EasyReconstruct.EnqueueOpForm.VolStart">
+            <summary>
+            The VolumeStart information.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.EasyReconstruct.EnqueueOpForm.VolumeStartsFromTrack">
+            <summary>
+            Set to <c>true</c> if the volume starts from a track, <c>false</c> otherwise.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.EnqueueOpForm.#ctor">
+            <summary>
+            Creates a new form.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.EasyReconstruct.EnqueueOpForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.EnqueueOpForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.EnqueueOpForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Executables.EasyReconstruct.IExtendedSegmentInformation">
+            <summary>
+            Extended information stored in a segment.
+            </summary>
+        </member>
+        <member name="P:SySal.Executables.EasyReconstruct.IExtendedSegmentInformation.ExtendedFields">
+            <summary>
+            The list of additional fields.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.IExtendedSegmentInformation.ExtendedField(System.String)">
+            <summary>
+            Returns the value of the field with the specified name.
+            </summary>
+            <param name="name">the name of the field to retrieve.</param>
+            <returns>the value of the field.</returns>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.IExtendedSegmentInformation.ExtendedFieldType(System.String)">
+            <summary>
+            Returns the type of the field with the specified name.
+            </summary>
+            <param name="name">the name of the field.</param>
+            <returns>the type of the field.</returns>
+        </member>
+        <member name="T:SySal.Executables.EasyReconstruct.ExtendedSegInfoProvider">
+            <summary>
+            Allows accessing additional information stored in segments.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.EasyReconstruct.ExtendedSegInfoProvider.m_Segment">
+            <summary>
+            The segment from which data have to be extracted.
+            </summary>
+        </member>
+        <member name="P:SySal.Executables.EasyReconstruct.ExtendedSegInfoProvider.Segment">
+            <summary>
+            Sets the segment from which data have to be extracted.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.ExtendedSegInfoProvider.SetExtendedFieldsList(System.String[],System.Object[])">
+            <summary>
+            Sets the list of extended fields to extract.
+            </summary>
+            <param name="fields">the list of fields to extract.</param>
+            <param name="defaults">the list of default values.</param>
+        </member>
+        <member name="P:SySal.Executables.EasyReconstruct.ExtendedSegInfoProvider.ExtendedFields">
+            <summary>
+            The set of extended fields.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.ExtendedSegInfoProvider.ExtendedField(System.String)">
+            <summary>
+            Returns the value of the field with the specified name.
+            </summary>
+            <param name="name">the name of the field to retrieve.</param>
+            <returns>the value of the field.</returns>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.ExtendedSegInfoProvider.ExtendedFieldType(System.String)">
+            <summary>
+            Returns the type of the field with the specified name.
+            </summary>
+            <param name="name">the name of the field.</param>
+            <returns>the type of the field.</returns>
+        </member>
+        <member name="F:SySal.Executables.EasyReconstruct.GDIPanel.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.GDIPanel.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.GDIPanel.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.EasyReconstruct.MomentumFitForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.MomentumFitForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.MomentumFitForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.EasyReconstruct.MovieForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.MovieForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.MovieForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.EasyReconstruct.QBrowser.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.QBrowser.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.QBrowser.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.EasyReconstruct.SegReplaceForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.SegReplaceForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.SegReplaceForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Executables.EasyReconstruct.dShow">
+            <summary>
+            A generic delegate to be called on each track to check whether it must be shown or not.
+            </summary>
+            <param name="t">the track being examined.</param>
+            <returns><c>true</c> if the track must be shown, <c>false</c> otherwise</returns>
+        </member>
+        <member name="T:SySal.Executables.EasyReconstruct.dShowSeg">
+            <summary>
+            A generic delegate to be called on each segment to check whether it must be shown or not.
+            </summary>
+            <param name="s">the segment being examined.</param>
+            <returns><c>true</c> if the track must be shown, <c>false</c> otherwise</returns>
+        </member>
+        <member name="T:SySal.Executables.EasyReconstruct.dGenericEvent">
+            <summary>
+            A generic delegate for GUI events.
+            </summary>
+            <param name="sender">the event sender.</param>
+            <param name="e">event arguments.</param>
+        </member>
+        <member name="T:SySal.Executables.EasyReconstruct.TrackSelector">
+            <summary>
+            Selects tracks as graphical elements.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.TrackSelector.ShowTracks(SySal.Executables.EasyReconstruct.dShow,System.Boolean,System.Boolean)">
+            <summary>
+            Adds track to the graph, using the specified filter. A null filter selects all tracks.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.TrackSelector.ShowSegments(SySal.Executables.EasyReconstruct.dShowSeg,System.Boolean,System.Boolean)">
+            <summary>
+            Adds track to the graph, using the specified filter. A null filter selects all tracks.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.TrackSelector.ShowSegments(SySal.TotalScan.Segment[],System.Object)">
+            <summary>
+            Adds the segments in the list to the graph. <c>null</c> values are skipped.
+            </summary>
+            <param name="segs">the list of segments to be added to the graph.</param>
+            <param name="owner">the owner to which ancillary graphical elements must be attached.</param>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.TrackSelector.Follow(SySal.TotalScan.Segment,System.Boolean,System.Int32,System.Double,System.Double,System.Double,System.Int32)">
+            <summary>
+            Finds segments in a scanback/scanforth path with respect to a starting segment.
+            </summary>
+            <param name="start">segment to start from.</param>
+            <param name="mingrains">minimum number of grains.</param>
+            <param name="postol">position tolerance for scanback/scanforth.</param>
+            <param name="slopetol">transverse slope tolerance (or longitudinal slope tolerance at 0 slope).</param>
+            <param name="slopetolincrease">longitudinal slope tolerance increase coefficient. The actual longitudinal tolerance is <c>slope * slopetolincrease + slopetol</c>.</param>
+            <param name="maxmiss">maximum number of consecutive layers where no related track is found.</param>
+            <param name="downstream"><c>true</c> for Scanforth, <c>false</c> for Scanback.</param>
+            <returns>a list of segments found related with the starting one.</returns>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.TrackSelector.SubscribeOnAddFit(SySal.Executables.EasyReconstruct.dGenericEvent)">
+            <summary>
+            Subscribe to OnAddFit.
+            </summary>
+            <param name="ge">the delegate to be added.</param>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.TrackSelector.UnsubscribeOnAddFit(SySal.Executables.EasyReconstruct.dGenericEvent)">
+            <summary>
+            Remove subscription to OnAddFit.
+            </summary>
+            <param name="ge">the delegate to be removed.</param>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.TrackSelector.RaiseAddFit(System.Object,System.EventArgs)">
+            <summary>
+            Trigger the AddFit event.
+            </summary>
+            <param name="sender">the object that raises the event.</param>
+            <param name="e">the parameters of the event.</param>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.TrackSelector.ToggleAddReplaceSegments(GDI3D.Control.SelectObject)">
+            <summary>
+            Toggles addition of selected segments.
+            </summary>
+            <param name="so">when <c>null</c>, stops adding new segments; otherwise, points to the method that should be called to add segments.</param>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.TrackSelector.Add(SySal.TotalScan.Track)">
+            <summary>
+            Notifies that a track is added.
+            </summary>
+            <param name="tk">the track to be added.</param>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.TrackSelector.Remove(SySal.TotalScan.Track)">
+            <summary>
+            Notifies that a track is removed.
+            </summary>
+            <param name="tk">the track to be removed.</param>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.TrackSelector.Remove(SySal.TotalScan.Vertex)">
+            <summary>
+            Notifies that a vertex is removed.
+            </summary>
+            <param name="tk">the track to be removed.</param>
+        </member>
+        <member name="T:SySal.Executables.EasyReconstruct.IPSelector">
+            <summary>
+            Selects tracks/vertices for IP computation.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.IPSelector.SelectTrack(SySal.TotalScan.Track,System.Boolean)">
+            <summary>
+            Selects a track as first or second for IP computation.
+            </summary>
+            <param name="tk">the track to be selected.</param>
+            <param name="isfirst"><c>true</c> if the track is the first for IP computation, <c>false</c> if it is the second.</param>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.IPSelector.SelectVertex(SySal.TotalScan.Vertex)">
+            <summary>
+            Selects a vertex for IP computation.
+            </summary>
+            <param name="vtx">the vertex to be selected.</param>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.IPSelector.SetLabel(System.Object,System.String)">
+            <summary>
+            Sets the label of an object.
+            </summary>
+            <param name="owner">the object whose label should be set.</param>
+            <param name="label">the label text to be set.</param>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.IPSelector.EnableLabel(System.Object,System.Boolean)">
+            <summary>
+            Shows/hides label for an object.
+            </summary>
+            <param name="owner">the object whose label should be shown/hidden.</param>
+            <param name="enable"><c>true</c> to show the label, <c>false</c> to hide it.</param>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.IPSelector.Highlight(System.Object,System.Boolean)">
+            <summary>
+            Sets the highlighting status for an object.
+            </summary>
+            <param name="owner">the object whose highlighting status must be set.</param>
+            <param name="hlstatus"><c>true</c> to highlight, <c>false</c> to show in normal fashion.</param>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.IPSelector.DeleteWithOwner(System.Object)">
+            <summary>
+            Removes an object from the display.
+            </summary>
+            <param name="owner">the object to be deleted.</param>
+            <returns><c>true</c> if the object has been found and deleted, <c>false</c> if it was not contained in the plot.</returns>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.IPSelector.Plot(System.Object)">
+            <summary>
+            Adds an object (track) to the display.
+            </summary>
+            <param name="owner">the object to be added.</param>        
+        </member>
+        <member name="T:SySal.Executables.EasyReconstruct.MainForm">
+            <summary>
+            EasyReconstruct - GUI tool to perform reconstructions by AlphaOmegaReconstruction.
+            </summary>
+            <remarks>
+            <para>EasyReconstruct can work on already reconstructed TSR files, or on data that come from files/DB.</para>
+            <para>To load a TSR file, press the Load button in the Reconstruction Input File group.</para>
+            <para>    
+            To load data from an ASCII list file that specifies the zones, do the following steps:
+            <list type="bullet">
+            <item><term>select the file and load the list by clicking on the Load List button</term></item>
+            <item><term>change/reset/set the selection according to your needs</term></item>
+            <item><term>click on Load Zones to actually load the set of zones.</term></item>    
+            </list>    
+            If you want to save your selection, you can do by clicking on the Save List File button.
+            The selection string is a mathematical expression that deselects a track when its value is zero, and selects the track otherwise. The available quantities are shown in the combobox adjacent to the selection text. Click on the Insert button to insert the variable selected in the combobox, or type it manually.
+            </para>
+            <para>The list file should carry be formatted as follows:
+            <list type="bullet">
+            <item><term>On the first line, either <c>FileSystem</c> or <c>Database</c> must appear, to indicate which is the data source.</term></item>
+            <item><term>Zones must be listed in order of decreasing Z, in lines following the first.</term></item>
+            <item><term>Each line must contain the following fields (those in brackets are optional): <c>zone_file_path|dbzone Z [sheet_id] [alignment_ignore_list_file_path]</c>. If data come from files, <c>zone_file_path</c> is the full path to each TLG file.
+            If the source is a DB, dbzone is a string like <c>8\35</c> (meaning brick 8, zoneid = 35). The <c>alignment_ignore_list_file_path</c> is an optional file that contains the list of Ids of tracks to be ignored in alignment.
+            If the extension of the path is ".TLG", the list is extracted from the BaseTrackIgnoreAlignment section of the TLG; if the extension is not ".TLG", the file is assumed to be 
+            an ASCII file, with word <c>Index</c> on the first line, and zero-based Ids of tracks to be ignored during alignment computation on the following lines (one per each line).</term></item>
+            <item><term>The last line must not be empty. It can optionally contain a text beginning with <c>Selection:</c> and followed by a selection string to select/deselect tracks for volume reconstruction.</term></item>
+            </list>
+            <example><code>
+            FileSystem
+            c:\mydata\plate_1.tlg 
+            </code>
+            </example>
+            </para>
+            <para>Loading data can take a long time. In the meanwhile, you can load/edit/save configurations by the associated buttons.</para>
+            <para>Output results can be saved to a TSR file by clicking on the Save button of the Reconstruction Output File group.</para>
+            <para>
+            The action buttons are described as follows:
+            <list type="table">
+            <listheader><term>Button</term><description>Action</description></listheader>
+            <item><term>Process</term><description>processes data from scratch, performing alignment, track connection and topological/vertexing analysis, as defined by the configuration. If you want to reprocess data that have been already processed, reload the zones or the original TSR file.</description></item>
+            <item><term>Vertexing</term><description>performs topological reconstruction only.</description></item>    
+            <item><term>Stop</term><description>interrupts the current processing operation. This command might take some time to execute.</description></item>
+            <item><term>Show data</term><description>shows alignment data for each pair of adjacent plates. The fits are obtained from as many segments as defined in the Fitting Segments box, if available. An <see cref="T:SySal.Executables.EasyReconstruct.AnalysisForm">Analysis Form</see> is opened.</description></item>
+            <item><term>Clear report</term><description>clears the log panel.</description></item>
+            <item><term>Toggle Info</term><description>shows/hides the right panel with internal information about execution.</description></item>
+            <item><term>Efficiency</term><description>starts a computation module that computes the efficiency. <b>This function should be considered obsolete.</b></description></item>
+            <item><term>Display</term><description>opens a <see cref="T:SySal.Executables.EasyReconstruct.DisplayForm">DisplayGDI form</see> to show tracks. Only the tracks that pass the selection defined by the box on the left (if not empty) are used for display. If the box is empty, all tracks are used.</description></item>
+            </list>
+            </para>
+            </remarks>
+        </member>
+        <member name="F:SySal.Executables.EasyReconstruct.MainForm.AORec">
+            <summary>
+            Local Variables
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.MainForm.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.MainForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.MainForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.MainForm.RunDisplay(SySal.TotalScan.Flexi.Volume,System.String)">
+            <summary>
+            Displays tracks in a volume, using a specified selection.
+            </summary>
+            <param name="v">the volume from which tracks have to be picked.</param>
+            <param name="selection">the selection string.</param>
+        </member>
+        <member name="T:SySal.Executables.EasyReconstruct.TrackBrowser">
+            <summary>
+            TrackBrowser - shows information about a volume track.
+            </summary>
+            <remarks>
+            <para>The upper group shows the track parameters, which can be dumped to an ASCII file.</para>
+            <para>The lower group shows the segments, and they can be dumped to an ASCII file.</para>
+            <para>A comment can be set to a track. <b>NOTICE: if <c>NOVERTEX</c> is set, the track is excluded from any possible vertex the next time topological reconstruction is started.</b></para>
+            <para>Two buttons allow one to navigate from a track to its upstream/downstream vertex (if any).</para>
+            </remarks>
+        </member>
+        <member name="F:SySal.Executables.EasyReconstruct.TrackBrowser.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.TrackBrowser.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.TrackBrowser.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Executables.EasyReconstruct.UserProfileInfo">
+            <summary>
+            Stores information on the preferences of the current user.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.EasyReconstruct.UserProfileInfo.MapMergeFilters">
+            <summary>
+            The list of preferred map merging filters.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.EasyReconstruct.UserProfileInfo.DisplayFilters">
+            <summary>
+            The list of preferred track/segement filters.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.EasyReconstruct.UserProfileInfo.ThisProfileInfo">
+            <summary>
+            The instance bound to this process.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.UserProfileInfo.Save">
+            <summary>
+            Saves the current instance to the user profile file.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.UserProfileInfo.Load">
+            <summary>
+            Load user preferences from the user profile file.
+            </summary>
+        </member>
+        <member name="T:SySal.Executables.EasyReconstruct.VertexBrowser">
+            <summary>
+            VertexBrowser - shows information about a vertex.
+            </summary>
+            <remarks>
+            <para>The upper group shows the vertex parameters, which can be dumped to an ASCII file.</para>
+            <para>The lower group shows the tracks, and they can be dumped to an ASCII file.</para>
+            <para>A comment can be set to a vertex.</para>
+            <para>One can navigate from a vertex to any of its tracks.</para>
+            </remarks>
+        </member>
+        <member name="F:SySal.Executables.EasyReconstruct.VertexBrowser.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.VertexBrowser.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.VertexBrowser.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.EasyReconstruct.VertexFitForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.VertexFitForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SySal.Executables.EasyReconstruct.VertexFitForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:EasyReconstruct.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:EasyReconstruct.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:EasyReconstruct.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+    </members>
+</doc>

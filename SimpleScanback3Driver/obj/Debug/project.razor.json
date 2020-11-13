@@ -1,0 +1,14 @@
+{
+  "ProjectFilePath": "/home/kryss/Documenti/SySal/SimpleScanback3Driver/SimpleScanback3Driver.csproj",
+  "TargetFramework": "v4.5",
+  "TagHelpers": [],
+  "Configuration": {
+    "ConfigurationName": "UnsupportedRazor",
+    "LanguageVersion": "1.0",
+    "Extensions": [
+      {
+        "ExtensionName": "UnsupportedRazorExtension"
+      }
+    ]
+  }
+}

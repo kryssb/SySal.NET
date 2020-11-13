@@ -1,0 +1,5 @@
+/home/kryss/Documenti/SySal/NExTCore/bin/Debug/NExTCore.dll
+/home/kryss/Documenti/SySal/NExTCore/bin/Debug/NExTCore.pdb
+/home/kryss/Documenti/SySal/NExTCore/obj/Debug/NExTCore.csprojAssemblyReference.cache
+/home/kryss/Documenti/SySal/NExTCore/obj/Debug/NExTCore.dll
+/home/kryss/Documenti/SySal/NExTCore/obj/Debug/NExTCore.pdb

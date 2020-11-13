@@ -1,0 +1,10 @@
+/home/kryss/Documenti/SySal/GDI3DPlot/bin/Debug/GDI3DPlot.dll
+/home/kryss/Documenti/SySal/GDI3DPlot/bin/Debug/GDI3DPlot.pdb
+/home/kryss/Documenti/SySal/GDI3DPlot/bin/Debug/GDI3DPlot.xml
+/home/kryss/Documenti/SySal/GDI3DPlot/bin/Debug/GDI3DCore.dll
+/home/kryss/Documenti/SySal/GDI3DPlot/bin/Debug/GDI3DCore.pdb
+/home/kryss/Documenti/SySal/GDI3DPlot/bin/Debug/GDI3DCore.xml
+/home/kryss/Documenti/SySal/GDI3DPlot/obj/Debug/GDI3DPlot.csprojAssemblyReference.cache
+/home/kryss/Documenti/SySal/GDI3DPlot/obj/Debug/GDI3DPlot.csproj.CopyComplete
+/home/kryss/Documenti/SySal/GDI3DPlot/obj/Debug/GDI3DPlot.dll
+/home/kryss/Documenti/SySal/GDI3DPlot/obj/Debug/GDI3DPlot.pdb

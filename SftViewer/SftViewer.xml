@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SftViewer</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Executables.SftViewer.frmLogin">
+            <summary>
+            Summary description for frmLogin.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.SftViewer.frmLogin.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.SftViewer.frmLogin.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.SftViewer.frmLogin.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Executables.SftViewer.frmMain">
+            <summary>
+            SftViewer is a GUI tool to display PEANUT events
+            using the OPERA database.
+            </summary>
+            <remarks>
+            The standard usage of this tool requires the following steps:
+            <list type="number">
+            <item><term>connect to a DB (using <see cref="T:SySal.Executables.SftViewer.frmLogin">frmLogin</see>);</term></item>
+            <item>select a process operation;</item>
+            <item>select the run;</item>
+            <item>type in the event # and push Enter;</item>
+            <item>select the elements to display and choose the appropriate colors.</item> 
+            </list>
+            Double-clicking on an element displays information about it.
+            <para>The path view is a 3D view provided by <see cref="T:GDI3D.Scene">GDI3D</see> and its <see cref="T:GDI3D.Control.GDIDisplay">Display Control</see>.</para>
+            <para>By dragging the image with the <u>right mouse button</u> pressed, one can rotate/pan it.</para>
+            <para>Default points of view are available (XY, YZ, XZ).</para>
+            <para>To center the view on a particularly interesting point, click on <i>Set Focus</i> and then <u>left-click</u> on the interesting point.</para>
+            <para>The image obtained can be saved to an <see cref="T:GDI3D.Scene">X3L</see> file, and/or it can be merged with an X3L file. This is typically used to overlap the scanback/scanoforth history with TotalScan results.</para> 
+            </remarks>
+        </member>
+        <member name="F:SySal.Executables.SftViewer.frmMain.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.SftViewer.frmMain.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.SftViewer.frmMain.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.SftViewer.frmMain.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+    </members>
+</doc>

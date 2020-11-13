@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4FFB886E-1C7F-4F86-B61D-D65CFC4506AC}</ProjectGuid>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>p_sbv.ico</ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>ScanbackViewer</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>ScanbackViewer</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>ScanbackViewer.xml</DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>ScanbackViewer.xml</DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DBLoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MomentumForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MomentumForm.Designer.cs">
+      <DependentUpon>MomentumForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="DBLoginForm.resx">
+      <DependentUpon>DBLoginForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MomentumForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MomentumForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="p_sbv.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BatchMCSAnnecy\BatchMCSAnnecy.csproj">
+      <Project>{9202923E-F936-4EC9-9943-4A1A44AFEBD9}</Project>
+      <Name>BatchMCSAnnecy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BatchMomentumEstimation\BatchMomentumEstimation.csproj">
+      <Project>{31FEC399-1186-4B9A-BEC7-B337A0191C08}</Project>
+      <Name>BatchMomentumEstimation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAQSystem\DAQSystem.csproj">
+      <Project>{331C05DF-61D6-4955-A56C-E5C81DFDB269}</Project>
+      <Name>DAQSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GDI3DCore\GDI3DCore.csproj">
+      <Project>{A7B9293D-1F97-40AA-90B7-A05CBFC38509}</Project>
+      <Name>GDI3DCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GDIDisplayControl\GDIDisplayControl.csproj">
+      <Project>{0C09A159-EC77-405F-84D6-A3FF23869E96}</Project>
+      <Name>GDIDisplayControl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GraphicalAnalysis\GraphicalAnalysis.csproj">
+      <Project>{087288AA-3D99-461C-A7C1-C738E6F8390D}</Project>
+      <Name>GraphicalAnalysis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Imaging\Imaging.csproj">
+      <Project>{8C580EE0-BFB5-42A7-8C93-26CC681D9030}</Project>
+      <Name>Imaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NumericalTools\NumericalTools.csproj">
+      <Project>{21616A4C-E4BD-4DA3-A7C8-C733DC356DAB}</Project>
+      <Name>NumericalTools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OperaDbLoginTools\OperaDbLoginTools.csproj">
+      <Project>{FD2397C2-D245-4B34-9A4C-4FCA8DB9522F}</Project>
+      <Name>OperaDbLoginTools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OperaDbSchemaInterface\OperaDbSchemaInterface.csproj">
+      <Project>{3FF188FB-73AE-452D-8240-F5D8693C6150}</Project>
+      <Name>OperaDbSchemaInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OperaDB\OperaDB.csproj">
+      <Project>{A2993036-3AC8-45AE-B061-B3FD247584C7}</Project>
+      <Name>OperaDB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SySalCore\SySalCore.csproj">
+      <Project>{301C136D-DA64-4148-B974-1D1793BBEF96}</Project>
+      <Name>SySalCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tracking2\Tracking2.csproj">
+      <Project>{EBE10CB5-8CA5-46A1-8826-526B5C4233DB}</Project>
+      <Name>Tracking2</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VolumeTracks\VolumeTracks.csproj">
+      <Project>{1739F8EB-BF5D-4371-8D24-C4B0EB58B072}</Project>
+      <Name>VolumeTracks</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>cp "$(TargetPath)" "$(SolutionDir)ExeRepository"</PostBuildEvent>
+  </PropertyGroup>
+</Project>

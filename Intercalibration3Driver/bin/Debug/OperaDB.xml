@@ -1,0 +1,2082 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OperaDB</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.OperaDb.OperaDbType">
+            <summary>
+            Opera DB data types.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.OperaDbType.Int">
+            <summary>
+            Integer data type.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.OperaDbType.Long">
+            <summary>
+            Long integer data type.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.OperaDbType.Float">
+            <summary>
+            Single precision data type.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.OperaDbType.Double">
+            <summary>
+            Double precision data type.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.OperaDbType.String">
+            <summary>
+            String data type.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.OperaDbType.DateTime">
+            <summary>
+            Date/time data type.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.OperaDbType.CLOB">
+            <summary>
+            Large text data type.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.OperaDbType.BLOB">
+            <summary>
+            Large binary data type.
+            </summary>
+        </member>
+        <member name="T:SySal.OperaDb.DBSchemaVersion">
+            <summary>
+            Schema version of the DB.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.DBSchemaVersion.Unknown">
+            <summary>
+            Unknown DB schema.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.DBSchemaVersion.Basic_V1">
+            <summary>
+            Basic DB schema, with TB_ZONES, TB_MIPMICROTRACKS and TB_MIPBASETRACKS. Unused Reconstruction tables.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.DBSchemaVersion.HasViews_V2">
+            <summary>
+            DB schema Version 2, with TB_ZONES, TB_VIEWS, TB_MIPMICROTRACKS and TB_MIPBASETRACKS. Working Reconstruction tables.
+            </summary>
+        </member>
+        <member name="T:SySal.OperaDb.OperaDbConnection">
+            <summary>
+            A connection to an Opera DB.
+            </summary>
+            <remarks>Opera Connection objects act as wrappers for the connections in the underlying access library. </remarks>
+            <remarks>Using OperaDbConnection objects allows developers to write code that is independent of the specific technology used to access the OPERA DB.</remarks>
+        </member>
+        <member name="F:SySal.OperaDb.OperaDbConnection.Conn">
+            <summary>
+            The underlying connection object.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.OperaDbConnection.m_PossibleConnections">
+            <summary>
+            The possible connections that can be used.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.OperaDbConnection.DbConnection">
+            <summary>
+            Yields access to the connection object for use with custom access functions.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbConnection.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Builds a new connection to the Opera DB specified in the dbname, using the username and password supplied.
+            </summary>
+            <param name="dbname">name of the Opera DB instance to connect to.</param>
+            <param name="username">username to connect.</param>
+            <param name="password">password to connect.</param>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbConnection.#ctor(System.String)">
+            <summary>
+            Builds a new connection to the Opera DB using a provider-specific connection string.
+            </summary>
+            <param name="connstring">the provider-specific connection string.</param>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbConnection.Open">
+            <summary>
+            Opens the connection.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbConnection.Close">
+            <summary>
+            Closes the connection.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbConnection.BeginTransaction">
+            <summary>
+            Opens a transaction.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:SySal.OperaDb.OperaDbConnection.TimeFormat">
+            <summary>
+            The string format used for dates.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbConnection.ToTimeFormat(System.DateTime)">
+            <summary>
+            Formats a Date/Time according to the required TimeFormat.
+            </summary>
+            <param name="d">the Date/Time to be formatted.</param>
+            <returns>the formatted date/time string.</returns>
+        </member>
+        <member name="F:SySal.OperaDb.OperaDbConnection.m_DBSchemaVersion">
+            <summary>
+            Member data on which the DBSchemaVersion property relies. 
+            Set to "Unknown" at the beginning: the DB Schema for zones is checked upon the first access.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.OperaDbConnection.DBSchemaVersion">
+            <summary>
+            The current DB schema version.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.OperaDbConnection.m_HasBufferTables">
+            <summary>
+            Member data on which HasBufferTables relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.OperaDbConnection.HasBufferTables">
+            <summary>
+            <c>True</c> if buffer tables are present in this DB, false otherwise.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbConnection.FlushBufferTables">
+            <summary>
+            Flushes buffer tables. Is automatically called by <see cref="M:SySal.OperaDb.OperaDbTransaction.Commit"/>.
+            </summary>
+        </member>
+        <member name="T:SySal.OperaDb.Convert">
+            <summary>
+            General conversion class for DB return types.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.Convert.ToInt64(System.Object)">
+            <summary>
+            Converts the object to Int64. If the object is null an exception is thrown.
+            </summary>
+            <param name="o">object to be converted.</param>
+            <returns>the value of the object.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.Convert.ToUInt64(System.Object)">
+            <summary>
+            Converts the object to UInt64. If the object is null an exception is thrown.
+            </summary>
+            <param name="o">object to be converted.</param>
+            <returns>the value of the object.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.Convert.ToInt32(System.Object)">
+            <summary>
+            Converts the object to Int32. If the object is null an exception is thrown.
+            </summary>
+            <param name="o">object to be converted.</param>
+            <returns>the value of the object.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.Convert.ToUInt32(System.Object)">
+            <summary>
+            Converts the object to UInt32. If the object is null an exception is thrown.
+            </summary>
+            <param name="o">object to be converted.</param>
+            <returns>the value of the object.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.Convert.ToInt16(System.Object)">
+            <summary>
+            Converts the object to Int16. If the object is null an exception is thrown.
+            </summary>
+            <param name="o">object to be converted.</param>
+            <returns>the value of the object.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.Convert.ToUInt16(System.Object)">
+            <summary>
+            Converts the object to UInt16. If the object is null an exception is thrown.
+            </summary>
+            <param name="o">object to be converted.</param>
+            <returns>the value of the object.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.Convert.ToBoolean(System.Object)">
+            <summary>
+            Converts the object to Boolean. If the object is null an exception is thrown.
+            </summary>
+            <param name="o">object to be converted.</param>
+            <returns>the value of the object.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.Convert.ToDouble(System.Object)">
+            <summary>
+            Converts the object to Double. If the object is null an exception is thrown.
+            </summary>
+            <param name="o">object to be converted.</param>
+            <returns>the value of the object.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.Convert.ToBytes(System.Object)">
+            <summary>
+            Converts a BLOB object to an array of bytes. If the object is null an exception is thrown.
+            </summary>
+            <param name="o">BLOB object to be converted.</param>
+            <returns>the byte content of the BLOB.</returns>
+        </member>
+        <member name="T:SySal.OperaDb.OperaDbTransaction">
+            <summary>
+            A transaction in an Opera DB context.
+            </summary>
+            <remarks>Opera Transaction objects act as wrappers for the transactions in the underlying access library. </remarks>
+            <remarks>Using OperaDbTransaction objects allows developers to write code that is independent of the specific technology used to access the OPERA DB.</remarks>
+        </member>
+        <member name="F:SySal.OperaDb.OperaDbTransaction.Trans">
+            <summary>
+            The underlying transaction object.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.OperaDbTransaction.m_Conn">
+            <summary>
+            Keeps track of the owner DB connection.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbTransaction.Commit">
+            <summary>
+            Commits the transaction.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbTransaction.Rollback">
+            <summary>
+            Cancels the transaction.
+            </summary>
+        </member>
+        <member name="T:SySal.OperaDb.OperaDbDataReader">
+            <summary>
+            A DataReader for OperaDb.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.OperaDbDataReader.m_DataReader">
+            <summary>
+            The underlying DataReader object.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.OperaDbDataReader.DataReader">
+            <summary>
+            Yields access to the underlying DataReader object.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbDataReader.#ctor(System.Object)">
+            <summary>
+            Creates a new OperaDbDataReader using a DataReader that has been previously created.
+            </summary>
+            <param name="r">the DataReader object to be wrapped.</param>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbDataReader.Close">
+            <summary>
+            Closes the DataReader.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbDataReader.Read">
+            <summary>
+            Reads a new row from the result set. It must be called to get the first row.
+            </summary>
+            <returns>true if the row has been read, false if no more rows are available.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbDataReader.NextResult">
+            <summary>
+            Reads a new row from the result set. It must be called to get the first row. This method must be used with REF CURSORs.
+            </summary>
+            <returns>true if the row has been read, false if no more rows are available.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbDataReader.IsDBNull(System.Int32)">
+            <summary>
+            Checks whether a field is <c>DBNull</c>.
+            </summary>
+            <param name="i">the number of the field to be checked.</param>
+            <returns><c>true</c> if the field is <c>DBNull</c>, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="P:SySal.OperaDb.OperaDbDataReader.IsClosed">
+            <summary>
+            <c>true</c> if the DataReader is closed, <c>false</c> otherwise.
+            </summary>        
+        </member>
+        <member name="P:SySal.OperaDb.OperaDbDataReader.HasRows">
+            <summary>
+            <c>true</c> if the statement returned any row, <c>false</c> otherwise.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.OperaDbDataReader.FieldCount">
+            <summary>
+            The number of fields in the result set.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.OperaDbDataReader.VisibleFieldCount">
+            <summary>
+            The number of visible fields in the result set.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.OperaDbDataReader.RecordsAffected">
+            <summary>
+            The number of records updated, inserted or deleted.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbDataReader.GetName(System.Int32)">
+            <summary>
+            Gets the name of the specified column.
+            </summary>
+            <param name="i">the zero-based index of the column for which the name is sought.</param>
+            <returns>the name of the column.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbDataReader.GetOrdinal(System.String)">
+            <summary>
+            Gets the ordinal number of a column, given the name.
+            </summary>
+            <param name="name">the name of the column.</param>
+            <returns>the zero-based index of the column with the specified name.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbDataReader.GetString(System.Int32)">
+            <summary>
+            Gets a string from the specified column.
+            </summary>
+            <param name="i">the zero-based index of the column for which the string value is sought.</param>
+            <returns>the value of the column as a string.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbDataReader.GetInt32(System.Int32)">
+            <summary>
+            Gets an <c>Int32</c> from the specified column.
+            </summary>
+            <param name="i">the zero-based index of the column for which the <c>Int32</c> value is sought.</param>
+            <returns>the value of the column as an <c>Int32</c>.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbDataReader.GetInt64(System.Int32)">
+            <summary>
+            Gets an <c>Int64</c> from the specified column.
+            </summary>
+            <param name="i">the zero-based index of the column for which the <c>Int64</c> value is sought.</param>
+            <returns>the value of the column as an <c>Int64</c>.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbDataReader.GetDouble(System.Int32)">
+            <summary>
+            Gets a <c>Double</c> from the specified column.
+            </summary>
+            <param name="i">the zero-based index of the column for which the <c>Double</c> value is sought.</param>
+            <returns>the value of the column as a <c>Double</c>.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbDataReader.GetDateTime(System.Int32)">
+            <summary>
+            Gets a <c>DateTime</c> from the specified column.
+            </summary>
+            <param name="i">the zero-based index of the column for which the <c>DateTime</c> value is sought.</param>
+            <returns>the value of the column as a <c>DateTime</c>.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbDataReader.GetValue(System.Int32)">
+            <summary>
+            Gets an <c>object</c> from the specified column in its native format.
+            </summary>
+            <param name="i">the zero-based index of the column for which the value is sought.</param>
+            <returns>the value of the column as an <c>object</c>.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbDataReader.Dispose">
+            <summary>
+            Disposes the object.
+            </summary>
+        </member>
+        <member name="T:SySal.OperaDb.OperaDbDataAdapter">
+            <summary>
+            A DataAdapter for OperaDb.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.OperaDbDataAdapter.m_DataAdapter">
+            <summary>
+            The underlying DataAdapter object.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.OperaDbDataAdapter.DataAdapter">
+            <summary>
+            Yields access to the underlying DataAdapter object.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbDataAdapter.#ctor(System.String,SySal.OperaDb.OperaDbConnection)">
+            <summary>
+            Builds a new OperaDbDataAdapter.
+            </summary>
+            <param name="commandtext">SQL query string.</param>
+            <param name="conn">DB to connect to.</param>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbDataAdapter.#ctor(System.String,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Builds a new OperaDbDataAdapter.
+            </summary>
+            <param name="commandtext">SQL query string.</param>
+            <param name="conn">DB to connect to.</param>
+            <param name="trans">transaction context in which the query is to be executed.</param>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbDataAdapter.Fill(System.Data.DataSet)">
+            <summary>
+            Fills a DataSet.
+            </summary>
+            <param name="ds">data set to be filled.</param>
+            <returns>the number of rows affected.</returns>
+        </member>
+        <member name="T:SySal.OperaDb.OperaDbParameter">
+            <summary>
+            A parameter for an SQL command.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.OperaDbParameter.m_Parameter">
+            <summary>
+            The underlying parameter object.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbParameter.#ctor(Oracle.ManagedDataAccess.Client.OracleParameter)">
+            <summary>
+            Builds an OperaDbParameter wrapper for an Oracle parameter.
+            </summary>
+            <param name="parameter">the parameter object being wrapped.</param>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbParameter.#ctor(System.String,SySal.OperaDb.OperaDbType,System.Data.ParameterDirection)">
+            <summary>
+            Builds a new OperaDbParameter.
+            </summary>
+            <param name="name">parameter name.</param>
+            <param name="dbtype">the data type of the parameter.</param>
+            <param name="dir">the parameter direction</param>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbParameter.#ctor(System.String,SySal.OperaDb.OperaDbType,System.Int32,System.Data.ParameterDirection)">
+            <summary>
+            Builds a new OperaDbParameter.
+            </summary>
+            <param name="name">parameter name.</param>
+            <param name="dbtype">the data type of the parameter.</param>
+            <param name="size">the data size of the parameter.</param>
+            <param name="dir">the parameter direction</param>
+        </member>
+        <member name="P:SySal.OperaDb.OperaDbParameter.Value">
+            <summary>
+            The value of the parameter.
+            </summary>
+        </member>
+        <member name="T:SySal.OperaDb.OperaDbParameterCollection">
+            <summary>
+            A collection of parameters for an SQL statement.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.OperaDbParameterCollection.m_ParameterCollection">
+            <summary>
+            The underlying ParameterCollection object.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbParameterCollection.#ctor(Oracle.ManagedDataAccess.Client.OracleParameterCollection)">
+            <summary>
+            Builds an OperaDbParameterCollection wrapper for an Oracle parameter collection.
+            </summary>
+            <param name="parametercollection">the parameter collection object being wrapped.</param>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbParameterCollection.Add(System.String,SySal.OperaDb.OperaDbType,System.Int32,System.Data.ParameterDirection)">
+            <summary>
+            Adds a new parameter.
+            </summary>
+            <param name="name">parameter name.</param>
+            <param name="dbtype">parameter type.</param>
+            <param name="size">parameter size.</param>
+            <param name="dir">parameter direction.</param>
+            <returns>the parameter that has been created and added to the collection.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbParameterCollection.Add(System.String,SySal.OperaDb.OperaDbType,System.Data.ParameterDirection)">
+            <summary>
+            Adds a new parameter.
+            </summary>
+            <param name="name">parameter name.</param>
+            <param name="dbtype">parameter type.</param>		
+            <param name="dir">parameter direction.</param>
+            <returns>the parameter that has been created and added to the collection.</returns>
+        </member>
+        <member name="P:SySal.OperaDb.OperaDbParameterCollection.Item(System.Int32)">
+            <summary>
+            Accesses the i-th parameter in the collection.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.OperaDbParameterCollection.Item(System.String)">
+            <summary>
+            Accesses a parameter in the collection through its name.
+            </summary>
+        </member>
+        <member name="T:SySal.OperaDb.OperaDbCommand">
+            <summary>
+            A command to be executed in an Opera DB.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.OperaDbCommand.m_Command">
+            <summary>
+            The underlying command object.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.OperaDbCommand.Command">
+            <summary>
+            Yields access to the underlying Command object.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.OperaDbCommand.m_Connection">
+            <summary>
+            The underlying Connection object.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.OperaDbCommand.Connection">
+            <summary>
+            Gets / sets the command connection.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.OperaDbCommand.m_Transaction">
+            <summary>
+            The underlying Transaction object.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.OperaDbCommand.Transaction">
+            <summary>
+            Gets / sets the command transaction context.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbCommand.#ctor(System.String)">
+            <summary>
+            Builds a new command object.
+            </summary>
+            <param name="commandtext">SQL query text for the command.</param>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbCommand.#ctor(System.String,SySal.OperaDb.OperaDbConnection)">
+            <summary>
+            Builds a new command object.
+            </summary>
+            <param name="commandtext">SQL query text for the command.</param>
+            <param name="conn">connection to be used for the query.</param>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbCommand.#ctor(System.String,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Builds a new command object.
+            </summary>
+            <param name="commandtext">SQL query text for the command.</param>
+            <param name="conn">connection to be used for the query.</param>
+            <param name="trans">transaction context to be used for the query.</param>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbCommand.ExecuteNonQuery">
+            <summary>
+            Executes a query without return values.
+            </summary>
+            <returns>the number of rows affected.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbCommand.ExecuteScalar">
+            <summary>
+            Executes a query that returns a single value.
+            </summary>
+            <returns>the return object.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbCommand.ExecuteReader">
+            <summary>
+            Executes the command and returns a reader to get the result set.
+            </summary>
+            <returns>the <c>OperaDbDataReader</c> objects that reads the result set.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.OperaDbCommand.Prepare">
+            <summary>
+            Prepares (compiles) a command for faster execution.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.OperaDbCommand.Parameters">
+            <summary>
+            The parameters for the SQL statement.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.OperaDbCommand.ArrayBindCount">
+            <summary>
+            Number of items for array binding.
+            </summary>
+        </member>
+        <member name="T:SySal.OperaDb.TotalScan.DBMIPMicroTrackIndex">
+            <summary>
+            Index for a Segment related to an m.i.p. microtrack in the DB. Stores information about zone, side, and microtrack Id.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.TotalScan.DBMIPMicroTrackIndex.Signature">
+            <summary>
+            The signature of the DBMIPMicroTrackIndex class.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.TotalScan.DBMIPMicroTrackIndex.RegisterFactory">
+            <summary>
+            Registers the Index factory for DBMIPMicroTrackIndex.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.TotalScan.DBMIPMicroTrackIndex.m_ZoneId">
+            <summary>
+            Member data on which the ZoneId property relies.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.TotalScan.DBMIPMicroTrackIndex.ZoneId">
+            <summary>
+            The Id of the zone the microtrack belongs to.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.TotalScan.DBMIPMicroTrackIndex.m_Side">
+            <summary>
+            Member data on which the Side property relies.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.TotalScan.DBMIPMicroTrackIndex.Side">
+            <summary>
+            The side of the MIP Microtrack.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.TotalScan.DBMIPMicroTrackIndex.m_Id">
+            <summary>
+            Member data on which the Id property relies.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.TotalScan.DBMIPMicroTrackIndex.Id">
+            <summary>
+            The Id of the microtrack in its side.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.TotalScan.DBMIPMicroTrackIndex.#ctor(System.Int64,System.Int16,System.Int32)">
+            <summary>
+            Constructs a DBMIPMicroTrackIndex.
+            </summary>
+            <param name="zoneid">the id of the zone of the microtrack.</param>
+            <param name="side">the side of the microtrack.</param>
+            <param name="id">the index of the microtrack.</param>
+        </member>
+        <member name="M:SySal.OperaDb.TotalScan.DBMIPMicroTrackIndex.Write(System.IO.BinaryWriter)">
+            <summary>
+            Saves a DBMIPMicroTrackIndex to a BinaryWriter.
+            </summary>
+            <param name="b">the BinaryWriter to be used for saving.</param>
+        </member>
+        <member name="M:SySal.OperaDb.TotalScan.DBMIPMicroTrackIndex.ToString">
+            <summary>
+            Converts a DBMIPMicroTrackIndex to text form.
+            </summary>
+            <returns>a string of the form "zoneid\side\id".</returns>
+        </member>
+        <member name="M:SySal.OperaDb.TotalScan.DBMIPMicroTrackIndex.SaveToWriter(SySal.TotalScan.Index,System.IO.BinaryWriter)">
+            <summary>
+            Saves a DBMIPMicroTrackIndex to a BinaryWriter.
+            </summary>
+            <param name="i">the index to be saved.</param>
+            <param name="w">the BinaryWriter to be used for writing.</param>
+        </member>
+        <member name="M:SySal.OperaDb.TotalScan.DBMIPMicroTrackIndex.CreateFromReader(System.IO.BinaryReader)">
+            <summary>
+            Reads a DBMIPMicroTrackIndex from a BinaryReader.
+            </summary>
+            <param name="r">the BinaryReader to read the DBMIPMicroTrackIndex from.</param>
+            <returns>the index read from the BinaryReader.</returns>
+        </member>
+        <member name="P:SySal.OperaDb.TotalScan.DBMIPMicroTrackIndex.Factory">
+            <summary>
+            Returns the IndexFactory for the MIPMicroTrackIndex class.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.TotalScan.DBMIPMicroTrackIndex.Clone">
+            <summary>
+            Clones a DBMIPMicroTrackIndex.
+            </summary>
+            <returns>the cloned object.</returns>
+        </member>
+        <member name="T:SySal.OperaDb.TotalScan.Segment">
+            <summary>
+            A segment stored in an Opera DB.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.TotalScan.Segment.m_DB_Id">
+            <summary>
+            Member data on which the DB_Id property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.TotalScan.Segment.DB_Id">
+            <summary>
+            The Id of the segment in the Opera DB.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.TotalScan.Segment.#ctor">
+            <summary>
+            Protected constructor. Prevents users from creating OperaDb.Segments without deriving the class. Is implicitly called by constructors in derived classes.
+            </summary>
+        </member>
+        <member name="T:SySal.OperaDb.TotalScan.Layer">
+            <summary>
+            A layer stored in an Opera DB.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.TotalScan.Layer.#ctor">
+            <summary>
+            Protected constructor. Prevents users from creating OperaDb.Layers without deriving the class. Is implicitly called by constructors in derived classes.
+            </summary>
+        </member>
+        <member name="T:SySal.OperaDb.TotalScan.DBNamedAttributeIndex">
+            <summary>
+            Index class for attributes identified with a name and a process operation id.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.TotalScan.DBNamedAttributeIndex.Signature">
+            <summary>
+            The signature of the DBNamedAttributeIndex class.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.TotalScan.DBNamedAttributeIndex.RegisterFactory">
+            <summary>
+            Registers the Index factory for DBNamedAttributeIndex.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.TotalScan.DBNamedAttributeIndex.m_Name">
+            <summary>
+            Member data on which the Name property relies.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.TotalScan.DBNamedAttributeIndex.Name">
+            <summary>
+            Name of the attribute.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.TotalScan.DBNamedAttributeIndex.m_ProcOpId">
+            <summary>
+            Member data on which the ProcOpId property relies.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.TotalScan.DBNamedAttributeIndex.ProcOpId">
+            <summary>
+            Process operation Id of the attribute.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.TotalScan.DBNamedAttributeIndex.#ctor(System.String,System.Int64)">
+            <summary>
+            Constructs a DBNamedAttributeIndex from an attribute name (max 32 chars) and a process operation id.
+            </summary>
+            <param name="name">the name to be assigned to the attribute</param>
+            <param name="procopid">the id of the process operation that computed the attribute.</param>
+        </member>
+        <member name="M:SySal.OperaDb.TotalScan.DBNamedAttributeIndex.Write(System.IO.BinaryWriter)">
+            <summary>
+            Saves a DBNamedAttributeIndex to a BinaryWriter.
+            </summary>
+            <param name="b">the BinaryWriter to be used for saving.</param>
+        </member>
+        <member name="M:SySal.OperaDb.TotalScan.DBNamedAttributeIndex.ToString">
+            <summary>
+            Converts the DBNamedAttributeIndex to a text form.
+            </summary>
+            <returns>the Name and the ProcOpId in text form.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.TotalScan.DBNamedAttributeIndex.SaveToWriter(SySal.TotalScan.Index,System.IO.BinaryWriter)">
+            <summary>
+            Saves a DBNamedAttributeIndex to a BinaryWriter.
+            </summary>
+            <param name="i">the index to be saved. Must be a DBNamedAttributeIndex.</param>
+            <param name="w">the BinaryWriter to be used for saving.</param>
+        </member>
+        <member name="M:SySal.OperaDb.TotalScan.DBNamedAttributeIndex.CreateFromReader(System.IO.BinaryReader)">
+            <summary>
+            Reads a DBNamedAttributeIndex from a BinaryReader.
+            </summary>
+            <param name="r">the BinaryReader to read from.</param>
+            <returns>the DBNamedAttributeIndex read from the stream.</returns>
+        </member>
+        <member name="P:SySal.OperaDb.TotalScan.DBNamedAttributeIndex.Factory">
+            <summary>
+            Returns the IndexFactory for a DBNamedAttributeIndex.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.TotalScan.DBNamedAttributeIndex.Clone">
+            <summary>
+            Clones this DBNamedAttributeIndex.
+            </summary>
+            <returns>a clone of the DBNamedAttributeIndex.</returns>
+        </member>
+        <member name="T:SySal.OperaDb.TotalScan.Track">
+            <summary>
+            A track stored in an Opera DB.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.TotalScan.Track.#ctor">
+            <summary>
+            Protected constructor. Prevents users from creating OperaDb.Tracks without deriving the class. Is implicitly called by constructors in derived classes.
+            </summary>
+        </member>
+        <member name="T:SySal.OperaDb.TotalScan.Vertex">
+            <summary>
+            A vertex stored in an Opera DB.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.TotalScan.Vertex.#ctor">
+            <summary>
+            Protected constructor. Prevents users from creating OperaDb.Vertices without deriving the class. Is implicitly called by constructors in derived classes.
+            </summary>
+        </member>
+        <member name="T:SySal.OperaDb.TotalScan.Volume">
+            <summary>
+            A volume stored in an Opera DB.
+            </summary>
+        </member>
+        <member name="T:SySal.OperaDb.TotalScan.Volume.DBLayerList">
+            <summary>
+            Layer list in an OperaDb.Volume.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.TotalScan.Volume.DBLayerList.#ctor(SySal.OperaDb.TotalScan.Layer[])">
+            <summary>
+            Constructor. Builds a DBLayerList with the specified Layer array.
+            </summary>
+            <param name="layers">array of layers to initialize the DBLayerList.</param>
+        </member>
+        <member name="T:SySal.OperaDb.TotalScan.Volume.DBTrackList">
+            <summary>
+            Track list in an OperaDb.Volume.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.TotalScan.Volume.DBTrackList.#ctor(SySal.OperaDb.TotalScan.Track[])">
+            <summary>
+            Constructor. Builds a DBTrackList with the specified Track array.
+            </summary>
+            <param name="tracks">array of Tracks to initialize the DBTrackList.</param>
+        </member>
+        <member name="T:SySal.OperaDb.TotalScan.Volume.DBVertexList">
+            <summary>
+            Vertex list in an OperaDb.Volume.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.TotalScan.Volume.DBVertexList.#ctor(SySal.OperaDb.TotalScan.Vertex[])">
+            <summary>
+            Constructor. Builds a DBVertexList with the specified Track array.
+            </summary>
+            <param name="vertices">array of Vertices to initialize the DBVertexList.</param>
+        </member>
+        <member name="F:SySal.OperaDb.TotalScan.Volume.m_DB_Id">
+            <summary>
+            Member data on which the DB_Id property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.TotalScan.Volume.DB_Id">
+            <summary>
+            The Id of the volume in the Opera DB.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.TotalScan.Volume.m_Option_Id">
+            <summary>
+            Member data on which the Option_Id property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.TotalScan.Volume.Option_Id">
+            <summary>
+            The Option Id of the volume in the Opera DB.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.TotalScan.Volume.#ctor">
+            <summary>
+            Protected constructor. Prevents users from creating OperaDb.Volumes without deriving the class. Is implicitly called by constructors in derived classes.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.TotalScan.Volume.#ctor(SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction,System.Int64,System.Int64,System.Int64)">
+            <summary>
+            Reads a TotalScan volume with a specified id from an Opera DB.
+            Optionally restores also segment references to base tracks.
+            </summary>
+            <param name="conn">open connection to the Opera DB.</param>
+            <param name="trans">transaction context to be used. Can be null.</param>
+            <param name="brick_id">DB identification number of the brick where the volume is found.</param>
+            <param name="db_id">DB identification number of the TotalScan volume to be restored.</param>
+            <param name="opt_id">Option Id. If zero, volume tracks and vertices are not read. If nonzero, volume tracks and vertices of the corresponding reconstruction option are read.</param>
+        </member>
+        <member name="M:SySal.OperaDb.TotalScan.Volume.SaveGeometry(SySal.TotalScan.Volume,System.Int64,System.Int64,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Saves the geometry (i.e. Layers and Segments) of a TotalScan volume to an Opera DB and returns the associated id.
+            It is assumed that the Segment indices are objects of DBMIPMicroTrackIndex type (or a derived one), so that links can be established.
+            NullIndex indices are not allowed, as well as other Index types.
+            Tracks and vertices (i.e. the topology) are not saved.
+            </summary>
+            <param name="v">the TotalScan Volume object to be saved to the Opera DB.</param>
+            <param name="id_brick">the DB identification number of the brick.</param>
+            <param name="id_proc">the DB identification number of the process operation.</param>
+            <param name="conn">DB connection to the Opera Db.</param>
+            <param name="trans">DB transaction to be used. Should not be null, since the TotalScan reconstruction usually needs several tables.</param>
+            <returns>the DB identification number that has been associated to the reconstruction.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.TotalScan.Volume.SaveTopology(SySal.TotalScan.Volume,System.Int64,System.Int64,System.Int64,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Saves the topology (i.e., Tracks and Vertices) of a TotalScan volume to an Opera DB and returns the associated id.
+            It is assumed that the geometry (i.e. Layers and Segments) have already been saved by a call from SaveGeometry, which should also provide the reconstruction Id.
+            Also track attributes and vertex attributes are saved. It is assumed that attribute index types are only DBNamedAttributeIndex type.
+            </summary>
+            <param name="v">the TotalScan Volume object to be saved to the Opera DB.</param>
+            <param name="id_brick">the DB identification number of the brick.</param>
+            <param name="id_rec">the DB identification number of the reconstruction for which topology information is to be saved.</param>
+            <param name="id_opt">the option identifier.</param>
+            <param name="conn">DB connection to the Opera Db.</param>
+            <param name="trans">DB transaction to be used. Should not be null, since the TotalScan reconstruction usually needs several tables.</param>
+            <returns>the DB identification number of the newly created option.</returns>
+        </member>
+        <member name="T:SySal.OperaDb.Scanning.MIPIndexedEmulsionTrack">
+            <summary>
+            A minimum ionizing particle track stored in an Opera DB.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.Scanning.MIPIndexedEmulsionTrack.m_DB_Id">
+            <summary>
+            Member data on which the DB_Id property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.Scanning.MIPIndexedEmulsionTrack.DB_Id">
+            <summary>
+            The DB identifier of the MIPIndexedEmulsionTrack.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.Scanning.MIPIndexedEmulsionTrack.#ctor">
+            <summary>
+            Protected constructor. Prevents users from creating instances of MIPIndexedEmulsionTrack without deriving the class. Is implicitly called by constructors in derived classes.
+            </summary>
+        </member>
+        <member name="T:SySal.OperaDb.Scanning.MIPBaseTrack">
+            <summary>
+            A base track stored in an Opera DB.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.Scanning.MIPBaseTrack.m_DB_Id">
+            <summary>
+            Member data on which the DB_Id property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.Scanning.MIPBaseTrack.DB_Id">
+            <summary>
+            The DB identifier of the MIPBaseTrack.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.Scanning.MIPBaseTrack.#ctor">
+            <summary>
+            Protected constructor. Prevents users from creating instances of MIPBaseTrack without deriving the class. Is implicitly called by constructors in derived classes.
+            </summary>
+        </member>
+        <member name="T:SySal.OperaDb.Scanning.Procedures">
+            <summary>
+            DB procedure calls commonly used in scanning.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.Scanning.Procedures.SetVolumeSliceZone(System.Int64,System.Int32,System.Int64,System.Int64,System.Char,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Associates a zone to a volume slice.
+            </summary>
+            <param name="brickid">the brick being scanned.</param>
+            <param name="plateid">the plate being scanned.</param>
+            <param name="volid">the ID_VOLUME of the volume slice.</param>
+            <param name="zoneid">the ID of the zone - use 0 for NULL.</param>
+            <param name="damaged">the damage code - use 'N' for no damage.</param>
+            <param name="conn">the OperaDbConnection to be used.</param>
+            <param name="trans">the OperaDbTransaction to be used.</param>
+        </member>
+        <member name="M:SySal.OperaDb.Scanning.Procedures.ScanbackDamagedZone(System.Int64,System.Int32,System.Int64,System.Char,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Marks a scanback zone as damaged.
+            </summary>
+            <param name="brickid">the brick being scanned.</param>
+            <param name="plateid">the plate being scanned.</param>
+            <param name="pathid">the scanback path being followed.</param>
+            <param name="damage">the damaged code ('N' = no damage).</param>
+            <param name="conn">the OperaDbConnection to be used.</param>
+            <param name="trans">the OperaDbTransaction to be used.</param>
+        </member>
+        <member name="M:SySal.OperaDb.Scanning.Procedures.ScanbackNoCandidate(System.Int64,System.Int32,System.Int64,System.Int64,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Defines a zone as correctly scanned, without finding a candidate.
+            </summary>
+            <param name="brickid">the brick being scanned.</param>
+            <param name="plateid">the plate being scanned.</param>
+            <param name="pathid">the scanback path being followed.</param>
+            <param name="zoneid">the id of the zone scanned.</param>
+            <param name="conn">the OperaDbConnection to be used.</param>
+            <param name="trans">the OperaDbTransaction to be used.</param>
+        </member>
+        <member name="M:SySal.OperaDb.Scanning.Procedures.ScanbackCandidate(System.Int64,System.Int32,System.Int64,System.Int64,System.Int64,System.Boolean,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Defines a zone as correctly scanned, adding the link to the found candidate.
+            </summary>
+            <param name="brickid">the brick being scanned.</param>
+            <param name="plateid">the plate being scanned.</param>
+            <param name="pathid">the scanback path being followed.</param>
+            <param name="zoneid">the id of the zone scanned.</param>
+            <param name="candid">the id of the base track identified as the candidate.</param>
+            <param name="conn">the OperaDbConnection to be used.</param>
+            <param name="trans">the OperaDbTransaction to be used.</param>
+        </member>
+        <member name="M:SySal.OperaDb.Scanning.Procedures.ScanbackFork(System.Int64,System.Int32,System.Int64,System.Int64,System.Int64,System.Int64,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Forks a scanback path.
+            </summary>
+            <param name="brickid">the brick being scanned.</param>
+            <param name="plateid">the plate being scanned.</param>
+            <param name="pathid">the scanback path being followed, from which the new path originates.</param>
+            <param name="zoneid">the id of the zone scanned.</param>
+            <param name="candid">the id of the base track identified as the candidate.</param>
+            <param name="forkid">the value of PATH for the new path to be created.</param>
+            <param name="conn">the OperaDbConnection to be used.</param>
+            <param name="trans">the OperaDbTransaction to be used.</param>
+        </member>
+        <member name="M:SySal.OperaDb.Scanning.Procedures.ScanbackCancelPath(System.Int64,System.Int64,System.Int32,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Cancels a scanback path.
+            </summary>
+            <param name="brickid">the brick being scanned.</param>
+            <param name="pathid">the path to be cancelled.</param>
+            <param name="pathid">the scanback path being followed.</param>
+            <param name="conn">the OperaDbConnection to be used.</param>
+            <param name="trans">the OperaDbTransaction to be used.</param>
+        </member>
+        <member name="T:SySal.OperaDb.Scanning.LinkedZone">
+            <summary>
+            An Opera LinkedZone stored in an Opera DB.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.Scanning.LinkedZone.m_DB_Brick_Id">
+            <summary>
+            Member data on which the DB_Brick_Id property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.Scanning.LinkedZone.DB_Brick_Id">
+            <summary>
+            The DB identifier of the brick to which the zone belongs.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.Scanning.LinkedZone.m_DB_Plate_Id">
+            <summary>
+            Member data on which the DB_Plate_Id property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.Scanning.LinkedZone.DB_Plate_Id">
+            <summary>
+            The DB identifier of the plate to which the zone belongs.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.Scanning.LinkedZone.m_DB_Id">
+            <summary>
+            Member data on which the DB_Id property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.Scanning.LinkedZone.DB_Id">
+            <summary>
+            The DB identifier of the LinkedZone.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.Scanning.LinkedZone.m_DB_ProcessOperation_Id">
+            <summary>
+            Member data on which the DB_ProcessOperation_Id property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.Scanning.LinkedZone.DB_ProcessOperation_Id">
+            <summary>
+            The DB identifier of the process operation to which the LinkedZone belongs.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.Scanning.LinkedZone.m_Series">
+            <summary>
+            Member data on which the Series property relies. Can be accessed by derived classes.
+            </summary>			
+        </member>
+        <member name="P:SySal.OperaDb.Scanning.LinkedZone.Series">
+            <summary>
+            The serial number of the LinkedZone.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.Scanning.LinkedZone.m_RawDataPath">
+            <summary>
+            Member data on which the RawDataPath property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.Scanning.LinkedZone.RawDataPath">
+            <summary>
+            Path of the raw data files from which this scanning zone originates.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.Scanning.LinkedZone.m_StartTime">
+            <summary>
+            Member data on which the StartTime property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.Scanning.LinkedZone.StartTime">
+            <summary>
+            Date and time when the scanning of this zone started.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.Scanning.LinkedZone.m_EndTime">
+            <summary>
+            Member data on which the EndTime property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.Scanning.LinkedZone.EndTime">
+            <summary>
+            Date and time when the scanning of this zone ended.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.Scanning.LinkedZone.#ctor">
+            <summary>
+            Protected constructor. Prevents users from creating instances of LinkedZone without deriving the class. Is implicitly called by constructors in derived classes.
+            </summary>
+        </member>
+        <member name="T:SySal.OperaDb.Scanning.LinkedZone.DetailLevel">
+            <summary>
+            The detail level desired when restoring LinkedZones from the DB.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.Scanning.LinkedZone.DetailLevel.Full">
+            <summary>
+            Restore all information, including relationships between base tracks and microtracks.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.Scanning.LinkedZone.DetailLevel.BaseFull">
+            <summary>
+            Restore geometrical and quality parameters of base tracks.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.Scanning.LinkedZone.DetailLevel.BaseGeom">
+            <summary>
+            Restore only geometrical parameters of base tracks.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.Scanning.LinkedZone.#ctor(SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction,System.Int64,System.Int64,SySal.OperaDb.Scanning.LinkedZone.DetailLevel)">
+            <summary>
+            Reads a LinkedZone from the OperaDb, using the specified connection, transaction, and the DB identifier for the zone to be read.
+            </summary>
+            <param name="conn">the DB connection to be used.</param>
+            <param name="trans">the transaction to be used. Can be null.</param>
+            <param name="db_brick_id">the DB identifier of the brick to which the zone belongs.</param>
+            <param name="db_id">the DB identifier of the zone to be read.</param>
+            <param name="detail">the detail level required for the zone information.</param>
+        </member>
+        <member name="M:SySal.OperaDb.Scanning.LinkedZone.Save(SySal.Scanning.Plate.IO.OPERA.LinkedZone,System.Int64,System.Int64,System.Int64,System.Int64,System.String,System.DateTime,System.DateTime,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Saves a LinkedZone to the specified OperaDb and associates it to a specified batch.
+            </summary>
+            <param name="lz">the LinkedZone to be saved.</param>
+            <param name="db_brick_id">the brick to which the LinkedZone belongs.</param>
+            <param name="db_plate_id">the plate to which the LinkedZone belongs.</param>
+            <param name="db_procop_id">the process operation that required this LinkedZone to be scanned.</param>
+            <param name="series">the series number of the zone.</param>
+            <param name="rawdatapath">the path to the raw data files from which the linked zone originates.</param>
+            <param name="starttime">date and time when the scanning started for this linked zone.</param>
+            <param name="endtime">date and time when the scanning ended for this linked zone.</param>
+            <param name="conn">the DB connection to be used.</param>
+            <param name="trans">the DB transaction to be used. Should not be null, since the TotalScan reconstruction usually needs several tables.</param>
+            <returns>the DB identifier that has been assigned to the stored LinkedZone.</returns>
+        </member>
+        <member name="T:SySal.OperaDb.Scanning.DBMIPMicroTrackIndex">
+            <summary>
+            A class for serializing/deserializing <see cref="T:SySal.OperaDb.TotalScan.DBMIPMicroTrackIndex"/> objects to TLG files.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.Scanning.DBMIPMicroTrackIndex.SectionTag">
+            <summary>
+            Section tag for this class in multi-section TLG files.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.Scanning.DBMIPMicroTrackIndex.TopTracksIndex">
+            <summary>
+            Index of DB Ids for microtracks on top side.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.Scanning.DBMIPMicroTrackIndex.BottomTracksIndex">
+            <summary>
+            Index of DB Ids for microtracks on bottom side.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.Scanning.DBMIPMicroTrackIndex.#ctor">
+            <summary>
+            Builds an empty DBMIPMicroTrackIndex
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.Scanning.DBMIPMicroTrackIndex.Save(System.IO.Stream)">
+            <summary>
+            Saves a pair of index arrays to a section in a TLG file.
+            </summary>
+            <param name="str">the stream to which data are to be written.</param>
+        </member>
+        <member name="M:SySal.OperaDb.Scanning.DBMIPMicroTrackIndex.#ctor(System.IO.Stream)">
+            <summary>
+            Builds a DBMIPMicroTrackIndex from the proper section in a TLG file. An exception is thrown if the section is not found or is corrupt.
+            </summary>
+            <param name="str">the stream from which data are to be read.</param>
+        </member>
+        <member name="T:SySal.OperaDb.Scanning.Utilities">
+            <summary>
+            A class that contains general purpose procedures.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.Scanning.Utilities.GetMapString(System.Int64,System.Int64,System.Boolean,SySal.DAQSystem.Drivers.MarkType,System.Int64@,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Retrieves the map string for a plate.
+            </summary>
+            <param name="brickid">the brick to which the plate belongs.</param>
+            <param name="plateid">the plate for which the map string is sought.</param>
+            <param name="calibrated">true if the calibrated map is sought, false if nominal marks are to be used.</param>
+            <param name="shapetype">shape and type of the mark set.</param>
+            <param name="calibrationid">the Id of the calibration used or zero if no calibration is found/sought.</param>
+            <param name="conn">the DB connection to be used.</param>
+            <param name="trans">the DB transaction in which the command is to be executed.</param>
+            <returns>the map string for the plate.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.Scanning.Utilities.GetMapString(System.Int64,System.Int64,System.Int64,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Retrieves the map string for a plate, using a specified calibration.
+            </summary>
+            <param name="brickid">the brick to which the plate belongs.</param>
+            <param name="plateid">the plate for which the map string is sought.</param>
+            <param name="calibration">the Id of the calibration operation to be used.</param>
+            <param name="conn">the DB connection to be used.</param>
+            <param name="trans">the DB transaction in which the command is to be executed.</param>
+            <returns>the map string for the plate.</returns>
+        </member>
+        <member name="T:SySal.OperaDb.ComputingInfrastructure.ProcessOperation">
+            <summary>
+            Helps creating and querying process operations.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.m_DB_Id">
+            <summary>
+            The member on which DB_Id relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.DB_Id">
+            <summary>
+            Opera DB identifier of the operation.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.m_ProgramSettings_Id">
+            <summary>
+            The member on which ProgramSettings_Id relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.ProgramSettings_Id">
+            <summary>
+            Opera DB identifier of the program settings for this operation.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.m_DriverLevel">
+            <summary>
+            The member on which DriverLevel relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.DriverLevel">
+            <summary>
+            Level of the driver to be executed.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.m_UsesTemplateMarks">
+            <summary>
+            The member on which UsesTemplateMarks relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.UsesTemplateMarks">
+            <summary>
+            Tells whether this operation uses template marks. It is meaningful only for Scanning drivers.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.m_Requester_Id">
+            <summary>
+            The member on which Requester_Id relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.Requester_Id">
+            <summary>
+            Opera DB identifier of the user that requested this operation.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.m_Machine_Id">
+            <summary>
+            The member on which Machine_Id relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.Machine_Id">
+            <summary>
+            Opera DB identifier of the machine on which the operation was scheduled.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.m_Parent_Id">
+            <summary>
+            The member on which Parent_Id relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.Parent_Id">
+            <summary>
+            Identifier of the process operation that spawned this process operation.
+            If this operation does not depend on any process operation, Parent_Id is a non-positive number.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.m_EventBrick_Id">
+            <summary>
+            The member on which EventBrick_Id relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.EventBrick_Id">
+            <summary>
+            The Opera DB identifier of the Event/Brick. Zero if meaningless for this operation.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.m_Plate_Id">
+            <summary>
+            The member of which Plate_Id relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.Plate_Id">
+            <summary>
+            The Opera DB identifier of the plate. Zero if meaningless for this operation.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.m_IsStarted">
+            <summary>
+            The member on which IsStarted relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.IsStarted">
+            <summary>
+            True if the operation started, false otherwise.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.m_StartTime">
+            <summary>
+            The member on which m_StartTime relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.StartTime">
+            <summary>
+            The start time of the operation.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.m_IsComplete">
+            <summary>
+            The member on which IsComplete relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.IsComplete">
+            <summary>
+            True if the operation completed, false if it is still going on.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.m_FinishTime">
+            <summary>
+            The member on which m_FinishTime relies. Can be accessed by derived classes.
+            </summary>			
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.FinishTime">
+            <summary>
+            The finish time of the operation. 
+            An exception is thrown if the operation is not complete.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.m_Success">
+            <summary>
+            The member on which m_Success relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.Success">
+            <summary>
+            True if the operation completed successfully, false if it failed. 
+            An exception is thrown if the operation is not complete.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.Start(System.Int64,System.Int64,System.Int64,System.Int64,System.String,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Starts a new process operation that does not require brick/plate information.
+            </summary>
+            <param name="idparent">process operation that spawned this operation. Zero or negative means NULL.</param>
+            <param name="idmachine">machine on which the operation is to be performed.</param>
+            <param name="idprogramsettings">program settings for this operation.</param>
+            <param name="iduser">the user that requests the new operation.</param>
+            <param name="notes">notes to be added to the process operation. Can be null.</param>
+            <param name="conn">the DB connection to be used.</param>
+            <param name="trans">the DB transaction to be used.</param>
+            <returns>the id of the new operation.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.StartTokenized(System.Int64,System.Int64,System.Int64,System.String,System.String,System.String@,System.Int64@,System.String,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Starts a new process operation that does not require brick/plate information. Checks user privileges and associates a token to the new operation.
+            </summary>
+            <param name="idparent">process operation that spawned this operation. Zero or negative means NULL.</param>
+            <param name="idmachine">machine on which the operation is to be performed.</param>
+            <param name="idprogramsettings">program settings for this operation.</param>
+            <param name="username">the name of the user that attempts to start the operation. Ignored if the operation is a child of another operation (idparent nonzero).</param>
+            <param name="password">the password of the user that attempts to start the operation. Ignored if the operation is a child of another operation (idparent nonzero).</param>
+            <param name="token">on completion, this output parameter is the token assigned to the operation.</param>
+            <param name="iduser">on completion, this output parameter is the user that requests the new operation.</param>
+            <param name="notes">notes to be added to the process operation. Can be null.</param>
+            <param name="conn">the DB connection to be used.</param>
+            <param name="trans">the DB transaction to be used.</param>
+            <returns>the id of the new operation.</returns>
+            <remarks>The user credentials are relevant only for topmost operations (parentless operations). For children operations, the username/password pair is ignored, and security checks are performed only using the token of the parent operation (which the children will inherit).</remarks>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.Start(System.Int64,System.Int64,System.Int64,System.Int64,System.Int64,System.String,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Starts a new process operation that requires brick information.
+            </summary>
+            <param name="idparent">process operation that spawned this operation. Zero or negative means NULL.</param>
+            <param name="idmachine">machine on which the operation is to be performed.</param>
+            <param name="idprogramsettings">program settings for this operation.</param>
+            <param name="iduser">the user that requests the new operation.</param>
+            <param name="idbrick">the brick on which the operation is to be performed.</param>
+            <param name="notes">notes to be added to the process operation. Can be null.</param>
+            <param name="conn">the DB connection to be used.</param>
+            <param name="trans">the DB transaction to be used.</param>
+            <returns>the id of the new operation.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.StartTokenized(System.Int64,System.Int64,System.Int64,System.String,System.String,System.String@,System.Int64@,System.Int64,System.String,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Starts a new process operation that requires brick information. Checks user privileges and associates a token to the new operation.
+            </summary>
+            <param name="idparent">process operation that spawned this operation. Zero or negative means NULL.</param>
+            <param name="idmachine">machine on which the operation is to be performed.</param>
+            <param name="idprogramsettings">program settings for this operation.</param>
+            <param name="username">the name of the user that attempts to start the operation. Ignored if the operation is a child of another operation (idparent nonzero).</param>
+            <param name="password">the password of the user that attempts to start the operation. Ignored if the operation is a child of another operation (idparent nonzero).</param>
+            <param name="token">on completion, this output parameter is the token assigned to the operation.</param>
+            <param name="iduser">on completion, this output parameter is the user that requests the new operation.</param>
+            <param name="idbrick">the brick on which the operation is to be performed.</param>
+            <param name="notes">notes to be added to the process operation. Can be null.</param>
+            <param name="conn">the DB connection to be used.</param>
+            <param name="trans">the DB transaction to be used.</param>
+            <returns>the id of the new operation.</returns>
+            <remarks>The user credentials are relevant only for topmost operations (parentless operations). For children operations, the username/password pair is ignored, and security checks are performed only using the token of the parent operation (which the children will inherit).</remarks>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.Start(System.Int64,System.Int64,System.Int64,System.Int64,System.Int64,System.Int64,System.Int64,System.String,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Starts a new process operation that requires plate information.
+            </summary>
+            <param name="idparent">process operation that spawned this operation. Zero or negative means NULL.</param>
+            <param name="idcalibration">calibration used by this operation. Zero or negative means NULL.</param>
+            <param name="idmachine">machine on which the operation is to be performed.</param>
+            <param name="idprogramsettings">program settings for this operation.</param>
+            <param name="iduser">the user that requests the new operation.</param>
+            <param name="idbrick">the brick on which the operation is to be performed.</param>
+            <param name="idplate">the plate on which the operation is to be performed.</param>
+            <param name="notes">notes to be added to the process operation. Can be null.</param>
+            <param name="conn">the DB connection to be used.</param>
+            <param name="trans">the DB transaction to be used.</param>
+            <returns>the id of the new operation.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.StartTokenized(System.Int64,System.Int64,System.Int64,System.Int64,System.String,System.String,System.String@,System.Int64@,System.Int64,System.Int64,System.String,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Starts a new process operation that requires plate information. Checks user privileges and associates a token to the new operation.
+            </summary>
+            <param name="idparent">process operation that spawned this operation. Zero or negative means NULL.</param>
+            <param name="idcalibration">calibration used by this operation. Zero or negative means NULL.</param>
+            <param name="idmachine">machine on which the operation is to be performed.</param>
+            <param name="idprogramsettings">program settings for this operation.</param>
+            <param name="username">the name of the user that attempts to start the operation. Ignored if the operation is a child of another operation (idparent nonzero).</param>
+            <param name="password">the password of the user that attempts to start the operation. Ignored if the operation is a child of another operation (idparent nonzero).</param>
+            <param name="token">on completion, this output parameter is the token assigned to the operation.</param>
+            <param name="iduser">on completion, this output parameter is the user that requests the new operation.</param>
+            <param name="idbrick">the brick on which the operation is to be performed.</param>
+            <param name="idplate">the plate on which the operation is to be performed.</param>
+            <param name="notes">notes to be added to the process operation. Can be null.</param>
+            <param name="conn">the DB connection to be used.</param>
+            <param name="trans">the DB transaction to be used.</param>
+            <returns>the id of the new operation.</returns>
+            <remarks>The user credentials are relevant only for topmost operations (parentless operations). For children operations, the username/password pair is ignored, and security checks are performed only using the token of the parent operation (which the children will inherit).</remarks>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.End(System.Int64,System.Boolean,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Completes a process operation.
+            </summary>
+            <param name="id">the process operation to be completed.</param>
+            <param name="success">true if the operation completed successfully, false if it failed.</param>
+            <param name="conn">DB connection to be used.</param>
+            <param name="trans">DB transaction to be used.</param>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.EndTokenized(System.Int64,System.Boolean,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Completes a process operation. The reference count of the associated token is updated, and the token is released if no more references exist.
+            </summary>
+            <param name="id">the process operation to be completed.</param>
+            <param name="success">true if the operation completed successfully, false if it failed.</param>
+            <param name="conn">DB connection to be used.</param>
+            <param name="trans">DB transaction to be used.</param>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.End(System.Boolean,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Completes a process operation.
+            </summary>
+            <param name="success">true if the operation completed successfully, false if it failed.</param>
+            <param name="conn">DB connection to be used.</param>
+            <param name="trans">DB transaction to be used.</param>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.Status(System.Int64,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Returns the completion status of the specified operation.
+            </summary>
+            <param name="id">id of the operation to be queried.</param>
+            <param name="conn">DB connection to be used.</param>
+            <param name="trans">DB transaction to be used.</param>
+            <returns>the completion status of the specified operation.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.#ctor">
+            <summary>
+            Protected constructor. Prevents users from creating an instance of ProcessOperation without initializing it. Is implicitly called by constructors in derived classes.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.ProcessOperation.#ctor(System.Int64,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Reads a process operation from the Opera DB.
+            </summary>
+            <param name="id">the Opera DB identifier of the ProcessOperation to be read.</param>
+            <param name="conn">DB connection to be used.</param>
+            <param name="trans">DB transaction to be used.</param>
+        </member>
+        <member name="T:SySal.OperaDb.ComputingInfrastructure.Machine">
+            <summary>
+            A machine entry in the DB.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.Machine.m_Address">
+            <summary>
+            Protected data member on which the Address property relies. Can be accessed from derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.Machine.Address">
+            <summary>
+            Address of the user's office.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.Machine.m_DB_Id">
+            <summary>
+            Protected data member on which the DB_Id property relies. Can be accessed from derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.Machine.DB_Id">
+            <summary>
+            Opera DB identifier of the user entry.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.Machine.m_DB_Id_Site">
+            <summary>
+            Protected data member on which the DB_Id_Site property relies. Can be accessed from derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.Machine.DB_Id_Site">
+            <summary>
+            Opera DB identifier of the site the user belongs to.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.Machine.m_Name">
+            <summary>
+            Protected data member on which the Name property relies. Can be accessed from derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.Machine.Name">
+            <summary>
+            Friendly name of the machine.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.Machine.m_IsScanningServer">
+            <summary>
+            Protected data member on which the IsScanningServer property relies. Can be accessed from derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.Machine.IsScanningServer">
+            <summary>
+            Tells whether the machine can run scanning tasks.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.Machine.m_IsBatchServer">
+            <summary>
+            Protected data member on which the IsBatchServer property relies. Can be accessed from derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.Machine.IsBatchServer">
+            <summary>
+            Tells whether the machine can control several scanning servers and manage scanning batches.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.Machine.m_IsDataProcessingServer">
+            <summary>
+            Protected data member on which the IsDataProcessingServer property relies. Can be accessed from derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.Machine.IsDataProcessingServer">
+            <summary>
+            Tells whether the machine can perform batch data processing.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.Machine.m_IsDataBaseServer">
+            <summary>
+            Protected data member on which the IsDataBaseServer property relies. Can be accessed from derived classes.
+            </summary>			
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.Machine.IsDataBaseServer">
+            <summary>
+            Tells whether the machine hosts a local instance of the Opera DB.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.Machine.m_IsWebServer">
+            <summary>
+            Protected data member on which the IsWebServer property relies. Can be accessed from derived classes.
+            </summary>			
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.Machine.IsWebServer">
+            <summary>
+            Tells whether the machine is a local Web server that can manage the scanning cluster.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.Machine.#ctor">
+            <summary>
+            Protected constructor. Prevents users from creating instances of the Machine class without deriving it. Is implicitly called by constructors in derived classes.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.Machine.#ctor(System.Int64,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Reads a machine from an Opera DB.
+            </summary>
+            <param name="id">the DB identifier for the machine entry to be read.</param>
+            <param name="conn">the DB connection to be used.</param>
+            <param name="trans">the DB transaction to be used. Can be null.</param>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.Machine.Add(SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Adds a machine entry to an Opera DB.
+            </summary>
+            <param name="conn">the DB connection to be used.</param>
+            <param name="trans">the DB transaction to be used.</param>
+            <returns>the DB identifier that has been assigned to the machine.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.Machine.Synchronize(SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Synchronizes a modified machine with its DB entry.
+            The DB_Id must have been left unmodified.
+            </summary>
+            <param name="conn">the DB connection to be used.</param>
+            <param name="trans">the DB transaction to be used. Cannot be null.</param>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.Machine.Delete(System.Int64,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Deletes a machine from the Opera DB.
+            </summary>
+            <param name="id">the DB identifier of the machine to be deleted.</param>
+            <param name="conn">the DB connection to be used.</param>
+            <param name="trans">the DB transaction to be used. Cannot be null.</param>
+        </member>
+        <member name="T:SySal.OperaDb.ComputingInfrastructure.UserPermissionTriState">
+            <summary>
+            User permission values.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.UserPermissionTriState.Deny">
+            <summary>
+            The permission is denied.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.UserPermissionTriState.Grant">
+            <summary>
+            The permission is granted.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.UserPermissionTriState.DontCare">
+            <summary>
+            The permission can be disregarded.
+            This is only for permission checking, not for assignment.
+            </summary>
+        </member>
+        <member name="T:SySal.OperaDb.ComputingInfrastructure.UserPermissionDesignator">
+            <summary>
+            User permission designators.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.UserPermissionDesignator.Scan">
+            <summary>
+            Permission to request scanning tasks.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.UserPermissionDesignator.WebAnalysis">
+            <summary>
+            Permission to analyze data through the Web sites.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.UserPermissionDesignator.ProcessData">
+            <summary>
+            Permission to process data in batch mode by the data processing servers.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.UserPermissionDesignator.DownloadData">
+            <summary>
+            Permission to download large batches of data.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.UserPermissionDesignator.StartupProcess">
+            <summary>
+            Permission to start brick processing.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.UserPermissionDesignator.Administer">
+            <summary>
+            Permission to administer the site.
+            </summary>
+        </member>
+        <member name="T:SySal.OperaDb.ComputingInfrastructure.UserPermission">
+            <summary>
+            User permission.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.UserPermission.DB_Site_Id">
+            <summary>
+            DB identifier of the site this permission refers to.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.UserPermission.Designator">
+            <summary>
+            Permission designator.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.UserPermission.Value">
+            <summary>
+            Permission value.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.UserPermission.LongName(SySal.OperaDb.ComputingInfrastructure.UserPermissionDesignator)">
+            <summary>
+            Retrieves an explanation of the permission designator.
+            </summary>
+            <param name="d">permission designator to be explained.</param>
+            <returns>an explanation of the permission designator.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.UserPermission.ShortName(SySal.OperaDb.ComputingInfrastructure.UserPermissionDesignator)">
+            <summary>
+            Retrieves a short code for a permission designator.
+            </summary>
+            <param name="d">permission designator to be coded.</param>
+            <returns>code for the permission designator.</returns>
+        </member>
+        <member name="T:SySal.OperaDb.ComputingInfrastructure.User">
+            <summary>
+            A user of the Opera European Computing Infrastructure.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.User.m_UserName">
+            <summary>
+            Protected data member on which the UserName property relies. Can be accessed from derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.User.UserName">
+            <summary>
+            Login name for the user.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.User.m_Password">
+            <summary>
+            Protected data member on which the Password property relies. Can be accessed from derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.User.Password">
+            <summary>
+            Login password for the user.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.User.m_Name">
+            <summary>
+            Protected data member on which the Name property relies. Can be accessed from derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.User.Name">
+            <summary>
+            The first name (given name) of the user.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.User.m_Surname">
+            <summary>
+            Protected data member on which the Surname property relies. Can be accessed from derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.User.Surname">
+            <summary>
+            The surname (family name) of the user.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.User.m_Institution">
+            <summary>
+            Protected data member on which the Institution property relies. Can be accessed from derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.User.Institution">
+            <summary>
+            The name of the institution the user belongs to.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.User.m_EMailAddress">
+            <summary>
+            Protected data member on which the EMailAddress property relies. Can be accessed from derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.User.EMailAddress">
+            <summary>
+            E-Mail address of the user.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.User.m_PhoneNumber">
+            <summary>
+            Protected data member on which the PhoneNumber property relies. Can be accessed from derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.User.PhoneNumber">
+            <summary>
+            Phone number of the user.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.User.m_Address">
+            <summary>
+            Protected data member on which the Address property relies. Can be accessed from derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.User.Address">
+            <summary>
+            Address of the user's office.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.User.m_DB_Id">
+            <summary>
+            Protected data member on which the DB_Id property relies. Can be accessed from derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.User.DB_Id">
+            <summary>
+            Opera DB identifier of the user entry.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.User.m_DB_Id_Site">
+            <summary>
+            Protected data member on which the DB_Id_Site property relies. Can be accessed from derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.User.DB_Id_Site">
+            <summary>
+            Opera DB identifier of the site the user belongs to.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.User.Permissions">
+            <summary>
+            Permissions owned by the user.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.User.CheckLogin(System.String,System.String,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Checks a user's login.
+            </summary>
+            <param name="username">login name of the user.</param>
+            <param name="password">user login password.</param>
+            <param name="conn">the DB connection to be used.</param>
+            <param name="trans">the DB transaction to be used. Can be null.</param>
+            <returns>the DB identifier for the user if the user exists; otherwise, an exception is thrown.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.User.CheckTokenAccess(System.String,SySal.OperaDb.ComputingInfrastructure.UserPermission[],SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Checks that a token owns specific privileges.
+            </summary>
+            <param name="token">the token to be checked.</param>
+            <param name="rights">the set of access rights to be verified.</param>
+            <param name="conn">the DB connection to be used.</param>
+            <param name="trans">the DB transaction to be used.</param>
+            <returns>true if all the specified privileges are owned, false otherwise.</returns>
+            <remarks>
+            <para><b>NOTICE: this method DOES NOT check that the site fields included in the <c>rights</c> actually match the ID_SITE of the accessed DB.</b> It is the responsibility of the caller to ensure that the requested access rights really refer to the accessed DB.</para>			
+            </remarks>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.User.CleanOrphanTokens(SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Cleans orphan tokens.
+            </summary>
+            <param name="conn">the DB connection to be used.</param>
+            <param name="trans">the DB transaction to be used.</param>
+            <remarks>
+            Releasing tokens is in the responsibility of OperaBatchManager. However, in specific conditions (typically after manual administrator interventions) it might happen that a process operation is closed and its token is not released. This function ensures that no orphan tokens are left.
+            </remarks>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.User.CheckTokenOwnership(System.String,System.Int64,System.String,System.String,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Ensures that a token has a specified owner.
+            </summary>
+            <param name="token">the token to be checked.</param>
+            <param name="id_user">the Opera Id of the user whose ownership is to be verified. If this parameter is zero or negative, the username and password are used for verification.</param>
+            <param name="username">the username of the user that claims ownership of the token. Ignored if <c>id_user</c> is positive.</param>
+            <param name="password">the password of the user that claims ownership of the token. Ignored if <c>id_user</c> is positive.</param>
+            <param name="conn">the DB connection to be used.</param>
+            <param name="trans">the DB transaction to be used.</param>
+            <remarks>If the verification fails, an exception is generated.</remarks>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.User.CheckAccess(System.Int64,SySal.OperaDb.ComputingInfrastructure.UserPermission[],System.Boolean,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Checks that a user has specific permissions.
+            </summary>
+            <param name="iduser">the DB identification number of the user.</param>
+            <param name="rights">the list of the rights to be checked.</param>
+            <param name="checkall">if true, the method checks that all permissions are granted; otherwise it checks that at least one of the permission is granted.</param>
+            <param name="conn">the DB connection to be used.</param>
+            <param name="trans">the DB transaction to be used. Can be null.</param>
+            <returns>true if the user has the specified access, false otherwise.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.User.#ctor">
+            <summary>
+            Protected constructor. Prevents users from creating instances of the User class without deriving it. Is implicitly called by constructors in derived classes.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.User.#ctor(System.Int64,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Reads a user from an Opera DB.
+            </summary>
+            <param name="id">the DB identifier for the user entry to be read.</param>
+            <param name="conn">the DB connection to be used.</param>
+            <param name="trans">the DB transaction to be used. Can be null.</param>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.User.#ctor(System.Int64,System.String,System.Int64,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Reads a user from an Opera DB without accessing TB_USERS.
+            This method needs the password and the site Id of the specific user.
+            </summary>
+            <param name="id">the DB identifier for the user entry to be read.</param>
+            <param name="pwd">the Password for the user entry to be read.</param>
+            <param name="site_id">the site identifier for the user entry to be read.</param>
+            <param name="conn">the DB connection to be used.</param>
+            <param name="trans">the DB transaction to be used. Can be null.</param>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.User.#ctor(System.Int64,System.String,System.Int64,System.Int64,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Reads a user from an Opera DB without accessig TB_USERS.
+            This method needs the password and the site Id of the specific user.
+            </summary>
+            <param name="adm_id">the DB identifier for the administrator.</param>
+            <param name="adm_pwd">the Password for the administrator.</param>
+            <param name="u_id">the DB identifier for the user entry to be read.</param>
+            <param name="site_id">the site identifier for the user entry to be read.</param>
+            <param name="conn">the DB connection to be used.</param>
+            <param name="trans">the DB transaction to be used. Can be null.</param>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.User.Add(SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Adds a user entry to an Opera DB.
+            </summary>
+            <param name="conn">the DB connection to be used.</param>
+            <param name="trans">the DB transaction to be used.</param>
+            <returns>the DB identifier that has been assigned to the user.</returns>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.User.Synchronize(SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Synchronizes a modified user with its DB entry.
+            The DB_Id must have been left unmodified.
+            </summary>
+            <param name="conn">the DB connection to be used.</param>
+            <param name="trans">the DB transaction to be used. Cannot be null.</param>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.User.Delete(System.Int64,System.Int64,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Deletes a user from the Opera DB using oracle stored procedure.
+            </summary>
+            <param name="id">the DB identifier of the user to be deleted.</param>
+            <param name="siteId">the DB site identifier of the user to be deleted.</param>
+            <param name="conn">the DB connection to be used.</param>
+            <param name="trans">the DB transaction to be used. Cannot be null.</param>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.User.Delete(System.Int64,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Deletes a user from the Opera DB.
+            </summary>
+            <param name="id">the DB identifier of the user to be deleted.</param>
+            <param name="conn">the DB connection to be used.</param>
+            <param name="trans">the DB transaction to be used. Cannot be null.</param>
+        </member>
+        <member name="T:SySal.OperaDb.ComputingInfrastructure.ProgramSettings">
+            <summary>
+            A complex of program settings for scanning or data processing in an OperaDb.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.ProgramSettings.m_DB_Id">
+            <summary>
+            Protected data member on which the DB_Id property relies. Can be accessed from derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.ProgramSettings.DB_Id">
+            <summary>
+            Opera DB identifier of the program settings entry.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.ProgramSettings.m_DB_Id_Author">
+            <summary>
+            Protected data member on which the DB_Id_Author property relies. Can be accessed from derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.ProgramSettings.DB_Id_Author">
+            <summary>
+            Opera DB identifier of the author that produced the settings.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.ProgramSettings.m_Description">
+            <summary>
+            Protected data member on which the Description property relies. Can be accessed from derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.ProgramSettings.Description">
+            <summary>
+            Description of the program settings.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.ProgramSettings.m_Executable">
+            <summary>
+            Protected data member on which the Executable property relies. Can be accessed from derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.ProgramSettings.Executable">
+            <summary>
+            Executable of the program settings.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.ProgramSettings.m_DriverLevel">
+            <summary>
+            The member on which DriverLevel relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.ProgramSettings.DriverLevel">
+            <summary>
+            Level of the driver to be executed.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.ProgramSettings.m_UsesTemplateMarks">
+            <summary>
+            The member on which UsesTemplateMarks relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.ProgramSettings.UsesTemplateMarks">
+            <summary>
+            Tells whether this operation uses template marks. It is meaningful only for Scanning drivers.
+            </summary>
+        </member>
+        <member name="F:SySal.OperaDb.ComputingInfrastructure.ProgramSettings.m_Settings">
+            <summary>
+            Protected data member on which the ModuleName property relies. Can be accessed from derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.OperaDb.ComputingInfrastructure.ProgramSettings.Settings">
+            <summary>
+            Data that specify executable assemblies and configuration parameters.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.ProgramSettings.#ctor">
+            <summary>
+            Protected constructor. Prevents users from creating instances of the ProgramSettings class without deriving it. Is implicitly called by constructors in derived classes.
+            </summary>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.ProgramSettings.#ctor(System.Int64,SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Reads program settings from an Opera DB.
+            </summary>
+            <param name="id">the DB identifier for the program settings entry to be read.</param>
+            <param name="conn">the DB connection to be used.</param>
+            <param name="trans">the DB transaction to be used. Can be null.</param>
+        </member>
+        <member name="M:SySal.OperaDb.ComputingInfrastructure.ProgramSettings.Add(SySal.OperaDb.OperaDbConnection,SySal.OperaDb.OperaDbTransaction)">
+            <summary>
+            Adds a program settings entry to an Opera DB.
+            </summary>
+            <param name="conn">the DB connection to be used.</param>
+            <param name="trans">the DB transaction to be used.</param>
+            <returns>the DB identifier that has been assigned to the program settings.</returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,6 @@
+/home/kryss/Documenti/SySal/NumericalTools/bin/Debug/NumericalTools.dll
+/home/kryss/Documenti/SySal/NumericalTools/bin/Debug/NumericalTools.pdb
+/home/kryss/Documenti/SySal/NumericalTools/bin/Debug/NumericalTools.xml
+/home/kryss/Documenti/SySal/NumericalTools/obj/Debug/NumericalTools.dll
+/home/kryss/Documenti/SySal/NumericalTools/obj/Debug/NumericalTools.pdb
+/home/kryss/Documenti/SySal/NumericalTools/obj/Debug/NumericalTools.csprojAssemblyReference.cache

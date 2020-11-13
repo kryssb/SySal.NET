@@ -1,0 +1,14 @@
+/home/kryss/Documenti/SySal/ASCII2TLG/bin/Release/ASCII2TLG.exe
+/home/kryss/Documenti/SySal/ASCII2TLG/bin/Release/ASCII2TLG.xml
+/home/kryss/Documenti/SySal/ASCII2TLG/bin/Release/DAQSystem.dll
+/home/kryss/Documenti/SySal/ASCII2TLG/bin/Release/Imaging.dll
+/home/kryss/Documenti/SySal/ASCII2TLG/bin/Release/MathExpression.dll
+/home/kryss/Documenti/SySal/ASCII2TLG/bin/Release/Scanning.dll
+/home/kryss/Documenti/SySal/ASCII2TLG/bin/Release/SySalCore.dll
+/home/kryss/Documenti/SySal/ASCII2TLG/bin/Release/Tracking.dll
+/home/kryss/Documenti/SySal/ASCII2TLG/bin/Release/DAQSystem.xml
+/home/kryss/Documenti/SySal/ASCII2TLG/bin/Release/Imaging.xml
+/home/kryss/Documenti/SySal/ASCII2TLG/bin/Release/MathExpression.xml
+/home/kryss/Documenti/SySal/ASCII2TLG/bin/Release/SySalCore.xml
+/home/kryss/Documenti/SySal/ASCII2TLG/obj/Release/ASCII2TLG.csproj.CopyComplete
+/home/kryss/Documenti/SySal/ASCII2TLG/obj/Release/ASCII2TLG.exe

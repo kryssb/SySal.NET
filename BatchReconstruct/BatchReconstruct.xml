@@ -1,0 +1,184 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BatchReconstruct</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Executables.BatchReconstruct.Config">
+            <summary>
+            Batch reconstruct configuration.
+            </summary>
+        </member>
+        <member name="T:SySal.Executables.BatchReconstruct.Zone">
+            <summary>
+            Zone specifier that defines the source and placement of a LinkedZone.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.BatchReconstruct.Zone.Source">
+            <summary>
+            Opera persistence path for the LinkedZone.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.BatchReconstruct.Zone.SheetId">
+            <summary>
+            Sheet identifier.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.BatchReconstruct.Zone.Z">
+            <summary>
+            Initial Z position of the LinkedZone in the volume.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.BatchReconstruct.Zone.AlignmentIgnoreListPath">
+            <summary>
+            Path to the file with the Ids of tracks to be ignored in alignment. This file is optional and can be <c>null</c> if no track is to be ignored.
+            If not <c>null</c>, the file must contain the word <c>Index</c> on the first line, and, on each following line, a zero-based index of a track to be ignored for alignment computation.
+            </summary>
+        </member>
+        <member name="T:SySal.Executables.BatchReconstruct.Input">
+            <summary>
+            Input for BatchReconstruct.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.BatchReconstruct.Input.Zones">
+            <summary>
+            List of zones.
+            </summary>
+        </member>
+        <member name="T:SySal.Executables.BatchReconstruct.Exe">
+            <summary>
+            BatchReconstruct - performs volume reconstruction using LinkedZones from TLG files or OPERA DB tables.
+            </summary>
+            <remarks>
+            <para>
+            BatchReconstruct uses AlphaOmegaReconstructor. See <see cref="T:SySal.Processing.AlphaOmegaReconstruction.AlphaOmegaReconstructor"/> for more details about the meaning of the fields of the configuration file.
+            </para>
+            <para>
+            Usage modes:
+            <list type="bullet">
+            <item><term><c>BatchReconstruct.exe &lt;XML list file&gt; &lt;output Opera persistence path&gt; &lt;XML config Opera persistence path&gt;</c></term></item>
+            <item><term><c>BatchReconstruct.exe &lt;DB volume&gt; &lt;output Opera persistence path&gt; &lt;XML config Opera persistence path&gt;</c></term></item>
+            <item><term><c>BatchReconstruct.exe &lt;input OPERA persistence path&gt; &lt;output Opera persistence path&gt; &lt;XML config Opera persistence path&gt;</c></term></item>
+            </list>
+            Notice: full volumes are reprocessed for topological reconstruction only.
+            </para>
+            <para>
+            Full reconstruction example:
+            <example>
+            <code>
+            &lt;Input&gt;
+             &lt;Zones&gt;
+              &lt;Zone&gt;
+               &lt;Source&gt;\\myserver.mydomain\myshare\plate_08.tlg&lt;/Source&gt;
+               &lt;SheetId&gt;8&lt;/SheetId&gt;
+               &lt;Z&gt;0&lt;/Z&gt;
+               &lt;AlignmentIgnoreListPath&gt;\\myserver.mydomain\myshare\plate_08.tlg&lt;/AlignmentIgnoreListPath&gt;
+              &lt;/Zone&gt;
+              &lt;Zone&gt;
+               &lt;Source&gt;\\myserver.mydomain\myshare\plate_09.tlg&lt;/Source&gt;
+               &lt;SheetId&gt;9&lt;/SheetId&gt;
+               &lt;Z&gt;-1300&lt;/Z&gt;
+              &lt;/Zone&gt;
+              &lt;Zone&gt;
+               &lt;Source&gt;\\myserver.mydomain\myshare\plate_10.tlg&lt;/Source&gt;
+               &lt;SheetId&gt;10&lt;/SheetId&gt;
+               &lt;Z&gt;-2600&lt;/Z&gt;
+              &lt;/Zone&gt;
+             &lt;/Zones&gt;
+            &lt;/Input&gt;
+            </code>
+            </example>
+            </para>
+            <para>
+            DB volume example:
+            <example><c>db:\8\17723900.vol</c> The first number is the brick number, the second is the id_volume to be analyzed.</example>
+            </para>
+            <para>
+            XML config file syntax:
+            <code>
+            &lt;BatchReconstruct.Config&gt;
+             &lt;ReconstructorConfig&gt;
+              &lt;Name&gt;Default AlphaOmega Configuration&lt;/Name&gt;
+              &lt;TopologyV&gt;true&lt;/TopologyV&gt;
+              &lt;TopologyKink&gt;true&lt;/TopologyKink&gt;
+              &lt;TopologyX&gt;false&lt;/TopologyX&gt;
+              &lt;TopologyY&gt;false&lt;/TopologyY&gt;
+              &lt;TopologyLambda&gt;false&lt;/TopologyLambda&gt;
+              &lt;MinVertexTracksSegments&gt;3&lt;/MinVertexTracksSegments&gt;
+              &lt;Initial_D_Pos&gt;40&lt;/Initial_D_Pos&gt;
+              &lt;Initial_D_Slope&gt;0.04&lt;/Initial_D_Slope&gt;
+              &lt;MaxIters&gt;5&lt;/MaxIters&gt;
+              &lt;D_PosIncrement&gt;20&lt;/D_PosIncrement&gt;
+              &lt;D_SlopeIncrement&gt;0.025&lt;/D_SlopeIncrement&gt;
+              &lt;D_Pos&gt;30&lt;/D_Pos&gt;
+              &lt;D_Slope&gt;0.03&lt;/D_Slope&gt;
+              &lt;LocalityCellSize&gt;250&lt;/LocalityCellSize&gt;
+              &lt;AlignBeamSlope&gt;
+              &lt;X&gt;0&lt;/X&gt;
+              &lt;Y&gt;0&lt;/Y&gt;
+              &lt;/AlignBeamSlope&gt;	
+              &lt;AlignBeamWidth&gt;1&lt;/AlignBeamWidth&gt;
+              &lt;FreezeZ&gt;false&lt;/FreezeZ&gt;
+              &lt;CorrectSlopesAlign&gt;false&lt;/CorrectSlopesAlign&gt;
+              &lt;AlignOnLinked&gt;false&lt;/AlignOnLinked&gt;
+              &lt;MaxMissingSegments&gt;1&lt;/MaxMissingSegments&gt;
+              &lt;PrescanMode&gt;Rototranslation&lt;/PrescanMode&gt;
+              &lt;LeverArm&gt;1500&lt;/LeverArm&gt;
+              &lt;ZoneWidth&gt;2500&lt;/ZoneWidth&gt;
+              &lt;Extents&gt;1000&lt;/Extents&gt;
+              &lt;RiskFactor&gt;0.01&lt;/RiskFactor&gt;
+              &lt;SlopesCellSize&gt;
+              &lt;X&gt;0.05&lt;/X&gt;
+              &lt;Y&gt;0.05&lt;/Y&gt;
+              &lt;/SlopesCellSize&gt;
+              &lt;MaximumShift&gt;
+              &lt;X&gt;1000&lt;/X&gt;
+              &lt;Y&gt;1000&lt;/Y&gt;
+              &lt;/MaximumShift&gt;
+              &lt;CrossTolerance&gt;10&lt;/CrossTolerance&gt;
+              &lt;MaximumZ&gt;6000&lt;/MaximumZ&gt;
+              &lt;MinimumZ&gt;-6000&lt;/MinimumZ&gt;
+              &lt;StartingClusterToleranceLong&gt;300&lt;/StartingClusterToleranceLong&gt;
+              &lt;MaximumClusterToleranceLong&gt;600&lt;/MaximumClusterToleranceLong&gt;
+              &lt;StartingClusterToleranceTrans&gt;30&lt;/StartingClusterToleranceTrans&gt;
+              &lt;MaximumClusterToleranceTrans&gt;60&lt;/MaximumClusterToleranceTrans&gt;
+              &lt;MinimumTracksPairs&gt;20&lt;/MinimumTracksPairs&gt;
+              &lt;MinimumSegmentsNumber&gt;5&lt;/MinimumSegmentsNumber&gt;
+              &lt;UpdateTransformations&gt;true&lt;/UpdateTransformations&gt;
+              &lt;Matrix&gt;1.8&lt;/Matrix&gt;
+              &lt;XCellSize&gt;250&lt;/XCellSize&gt;
+              &lt;YCellSize&gt;250&lt;/YCellSize&gt;
+              &lt;ZCellSize&gt;1300&lt;/ZCellSize&gt;
+              &lt;UseCells&gt;true&lt;/UseCells&gt;
+              &lt;KalmanFilter&gt;false&lt;/KalmanFilter&gt;
+              &lt;FittingTracks&gt;3&lt;/FittingTracks&gt;
+              &lt;MinKalman&gt;4&lt;/MinKalman&gt;
+              &lt;MinimumCritical&gt;1&lt;/MinimumCritical&gt;
+              &lt;KinkDetection&gt;false&lt;/KinkDetection&gt;
+              &lt;KinkMinimumSegments&gt;6&lt;/KinkMinimumSegments&gt;
+              &lt;KinkMinimumDeltaS&gt;0.02&lt;/KinkMinimumDeltaS&gt;
+              &lt;KinkFactor&gt;1.1&lt;/KinkFactor&gt;
+              &lt;FilterThreshold&gt;500&lt;/FilterThreshold&gt;
+              &lt;FilterLength&gt;10&lt;/FilterLength&gt;
+              &lt;VtxAlgorithm&gt;None&lt;/VtxAlgorithm&gt;
+              &lt;GVtxMaxSlopeDivergence&gt;1.2&lt;/GVtxMaxSlopeDivergence&gt;
+              &lt;GVtxRadius&gt;30&lt;/GVtxRadius&gt;
+              &lt;GVtxMaxExt&gt;3900&lt;/GVtxMaxExt&gt;
+              &lt;GVtxMinCount&gt;2&lt;/GVtxMinCount&gt;
+              &lt;VtxFitWeightEnable&gt;true&lt;/VtxFitWeightEnable&gt;
+              &lt;VtxFitWeightTol&gt;0.1&lt;/VtxFitWeightTol&gt;
+              &lt;VtxFitWeightOptStepXY&gt;1&lt;/VtxFitWeightOptStepXY&gt;
+              &lt;VtxFitWeightOptStepZ&gt;5&lt;/VtxFitWeightOptStepZ&gt;
+             &lt;/ReconstructorConfig&gt;
+            &lt;/BatchReconstruct.Config&gt;
+            </code>
+            </para>
+            </remarks>
+        </member>
+        <member name="M:SySal.Executables.BatchReconstruct.Exe.Main(System.String[])">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+    </members>
+</doc>

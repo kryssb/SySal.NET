@@ -1,0 +1,15 @@
+/home/kryss/Documenti/SySal/SimpleTrackPostProcessor/bin/Release/SimpleTrackPostProcessor.exe
+/home/kryss/Documenti/SySal/SimpleTrackPostProcessor/bin/Release/SimpleTrackPostProcessor.xml
+/home/kryss/Documenti/SySal/SimpleTrackPostProcessor/bin/Release/Imaging.dll
+/home/kryss/Documenti/SySal/SimpleTrackPostProcessor/bin/Release/NumericalTools.dll
+/home/kryss/Documenti/SySal/SimpleTrackPostProcessor/bin/Release/SySalCore.dll
+/home/kryss/Documenti/SySal/SimpleTrackPostProcessor/bin/Release/Tracking.dll
+/home/kryss/Documenti/SySal/SimpleTrackPostProcessor/bin/Release/Imaging.xml
+/home/kryss/Documenti/SySal/SimpleTrackPostProcessor/bin/Release/NumericalTools.xml
+/home/kryss/Documenti/SySal/SimpleTrackPostProcessor/bin/Release/SySalCore.xml
+/home/kryss/Documenti/SySal/SimpleTrackPostProcessor/obj/Release/SimpleTrackPostProcessor.csprojAssemblyReference.cache
+/home/kryss/Documenti/SySal/SimpleTrackPostProcessor/obj/Release/SySal.Processing.SimpleTrackPostProcessing.EditConfigForm.resources
+/home/kryss/Documenti/SySal/SimpleTrackPostProcessor/obj/Release/SimpleTrackPostProcessor.SimpleTrackPostProcessorIcon.resources
+/home/kryss/Documenti/SySal/SimpleTrackPostProcessor/obj/Release/SimpleTrackPostProcessor.csproj.GenerateResource.cache
+/home/kryss/Documenti/SySal/SimpleTrackPostProcessor/obj/Release/SimpleTrackPostProcessor.csproj.CopyComplete
+/home/kryss/Documenti/SySal/SimpleTrackPostProcessor/obj/Release/SimpleTrackPostProcessor.exe

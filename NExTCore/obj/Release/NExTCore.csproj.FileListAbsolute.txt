@@ -1,0 +1,6 @@
+/home/kryss/Documenti/SySal/NExTCore/obj/Release/NExTCore.csprojAssemblyReference.cache
+/home/kryss/Documenti/SySal/NExTCore/bin/Release/NExTCore.dll
+/home/kryss/Documenti/SySal/NExTCore/bin/Release/NExTCore.pdb
+/home/kryss/Documenti/SySal/NExTCore/bin/Release/NExTCore.XML
+/home/kryss/Documenti/SySal/NExTCore/obj/Release/NExTCore.dll
+/home/kryss/Documenti/SySal/NExTCore/obj/Release/NExTCore.pdb

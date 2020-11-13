@@ -1,0 +1,16 @@
+/home/kryss/Documenti/SySal/FlexiVolume/bin/Release/FlexiVolume.dll
+/home/kryss/Documenti/SySal/FlexiVolume/bin/Release/FlexiVolume.pdb
+/home/kryss/Documenti/SySal/FlexiVolume/bin/Release/FlexiVolume.xml
+/home/kryss/Documenti/SySal/FlexiVolume/bin/Release/Scanning.dll
+/home/kryss/Documenti/SySal/FlexiVolume/bin/Release/SySalCore.dll
+/home/kryss/Documenti/SySal/FlexiVolume/bin/Release/Tracking.dll
+/home/kryss/Documenti/SySal/FlexiVolume/bin/Release/VolumeTracks.dll
+/home/kryss/Documenti/SySal/FlexiVolume/bin/Release/DAQSystem.dll
+/home/kryss/Documenti/SySal/FlexiVolume/bin/Release/NumericalTools.dll
+/home/kryss/Documenti/SySal/FlexiVolume/bin/Release/SySalCore.xml
+/home/kryss/Documenti/SySal/FlexiVolume/bin/Release/VolumeTracks.xml
+/home/kryss/Documenti/SySal/FlexiVolume/bin/Release/DAQSystem.xml
+/home/kryss/Documenti/SySal/FlexiVolume/bin/Release/NumericalTools.xml
+/home/kryss/Documenti/SySal/FlexiVolume/obj/Release/FlexiVolume.csproj.CopyComplete
+/home/kryss/Documenti/SySal/FlexiVolume/obj/Release/FlexiVolume.dll
+/home/kryss/Documenti/SySal/FlexiVolume/obj/Release/FlexiVolume.pdb

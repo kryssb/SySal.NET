@@ -1,0 +1,474 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PredictionScan3Driver</name>
+    </assembly>
+    <members>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.CSBrickSelProcOp.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.PredictionScan3Driver.CSBrickSelProcOp.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.PredictionScan3Driver.CSBrickSelProcOp.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.CSToBrickForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.PredictionScan3Driver.CSToBrickForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.PredictionScan3Driver.CSToBrickForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.EnqueueOpForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.PredictionScan3Driver.EnqueueOpForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.PredictionScan3Driver.EnqueueOpForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.PredictionScan3Driver.IntercalibrationMode">
+            <summary>
+            Intercalibration modes.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.IntercalibrationMode.None">
+            <summary>
+            No local intercalibration is performed.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.IntercalibrationMode.RotoTranslationDeltaZ">
+            <summary>
+            Local rototranslation and Z displacement are computed.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.IntercalibrationMode.AffineDeltaZ">
+            <summary>
+            Local affine transformation and Z displacement are computed.
+            <b>NOTICE: This mode is not yet implemented.</b>
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings">
+            <summary>
+            Settings for PredictionScan3Driver.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings.ScanningConfigId">
+            <summary>
+            The Id of the scanning program settings.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings.LinkConfigId">
+            <summary>
+            The Id of the linking program settings.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings.QualityCutId">
+            <summary>
+            The Id for quality cut.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings.SlopeTolerance">
+            <summary>
+            Slope tolerance for candidate selection (transverse component and tolerance at zero slope).
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings.SlopeToleranceIncreaseWithSlope">
+            <summary>
+            Slope tolerance increase factor. The actual longitudinal tolerance is "SlopeTolerance + Slope * SlopeToleranceIncreaseWithSlope".
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings.PositionTolerance">
+            <summary>
+            Position tolerance for candidate selection (transverse component and tolerance at zero slope). 
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings.PositionToleranceIncreaseWithSlope">
+            <summary>
+            Position tolerance increase factor. The actual longitudinal tolerance is "PositionTolerance + Slope * PositionToleranceIncreaseWithSlope".
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings.BaseThickness">
+            <summary>
+            Expected base thickness. This is used to set the center of the field of view halfway between the two microtracks of the scanback track.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings.ReadTolerancesFromPredictionTable">
+            <summary>
+            If true, the tolerance settings in this configuration are ignored, and tolerances are read from the prediction table.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings.SelectionFunction">
+            <summary>
+            The selection function to be minimized to select the candidate.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings.SelectionFunctionMin">
+            <summary>
+            Minimum acceptable bound for the value of the selection function.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings.SelectionFunctionMax">
+            <summary>
+            Maximum acceptable bound for the value of the selection function.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings.MaxTrials">
+            <summary>
+            Maximum number of trials to search the candidate.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings.RecalibrationSelectionText">
+            <summary>
+            SQL query to select recalibration tracks. If left empty or null, no recalibration is done. The query must return the following fields (in the exact order): <c>POSX POSY SLOPEX SLOPEY</c>. 
+            The query can use <c>_BRICK_</c> and <c>_PLATE_</c> to denote the current brick and the current plate.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings.LocalIntercalibration">
+            <summary>
+            If set to a value different than <c>None</c>, local intercalibration around average prediction position is performed. In this case, <c>RecalibrationSelectionText</c> is overridden. 
+            The size of the area to be used for intercalibration is defined by <c>RecalibrationMinXDistance</c> and <c>RecalibrationMinYDistance</c>. 
+            The position tolerance used for pattern matching is <c>RecalibrationPosTolerance</c>. Pattern matching is considered successful if at least <c>RecalibrationMinTracks</c> matches are found.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings.LocalDeltaZ">
+            <summary>
+            This array is used when <c>LocalIntercalibration</c> is different from <c>None</c>. It contains the list of test values for DeltaZ difference from the nominal value.
+            <example>If 		
+            <code>LocalDeltaZ =
+            &lt;LocalDeltaZ&gt;
+             &lt;double&gt;100&lt;/double&gt;
+             &lt;double&gt;0&lt;/double&gt;
+             &lt;double&gt;-100&lt;/double&gt;
+            &lt;/LocalDeltaZ&gt;</code>
+            and the nominal DeltaZ is 1300, intercalibration will be attempted with DeltaZ = 1200, 1300, 1400.</example>
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings.LocalExcludedDeltaZ">
+            <summary>
+            This array is used when <c>LocalIntercalibration</c> is different from <c>None</c>. It contains the list of values for DeltaZ for alignments to be excluded.
+            <example>If 
+            <code>LocalExcludedDeltaZ = 
+            &lt;LocalExcludedDeltaZ&gt;
+             &lt;double&gt;300&lt;/double&gt;
+            &lt;/LocalExcludedDeltaZ&gt;</code>
+            then tracks that map with DeltaZ = 300 will be excluded from intercalibration (this is the case for transport alignment in OPERA).</example>
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings.LocalIntercalibrationLinkConfigId">
+            <summary>
+            The Id of the linking program settings for local intercalibration (ignored if <c>LocalIntercalibration</c> = <c>None</c>).
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings.LocalIntercalibrationQualityCutId">
+            <summary>
+            The Id for quality cut for local intercalibration (ignored if <c>LocalIntercalibration</c> = <c>None</c>).
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings.LocalIntercalibrationMaxSlope">
+            <summary>
+            Maximum slope accepted for intercalibration. (ignored if <c>LocalIntercalibration</c> = <c>None</c>).
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings.LocalIntercalibrationSlopeTolerance">
+            <summary>
+            Slope tolerance for intercalibration. (ignored if <c>LocalIntercalibration</c> = <c>None</c>).
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings.RecalibrationMinXDistance">
+            <summary>
+            The tracks selected for recalibration must span in the X direction at least a distance equal to RecalibrationMinXDistance. Ignored if no recalibration is to be done.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings.RecalibrationMinYDistance">
+            <summary>
+            The tracks selected for recalibration must span in the Y direction at least a distance equal to RecalibrationMinYDistance. Ignored if no recalibration is to be done.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings.RecalibrationMinTracks">
+            <summary>
+            Recalibration is successful if at least RecalibrationMinTracks are found. Ignored if no recalibration is to be done.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings.RecalibrationPosTolerance">
+            <summary>
+            Position tolerance to find recalibration candidates. Ignored if no recalibration is to be done.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings.EnableForking">
+            <summary>
+            When set to <c>true</c>, enables forking, i.e. yielding multiple candidates for a single prediction.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings.EnableSlopePresetting">
+            <summary>
+            When set to <c>true</c>, tracks are searched using slope preselection.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings.SlopePresetXYTolerance">
+            <summary>
+            Tolerance on microtrack to be applied separately on each projection (X and Y), at slopeX/Y = 0, when slope presetting is enabled. This member is ignored if <c>EnableSlopePresetting</c> is <c>false</c>. 
+            The resulting tolerance is <c>SlopePresetXYTolerance + SlopePresetXYToleranceIncreaseWithSlope * abs(Slope[X|Y])</c>.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings.SlopePresetXYToleranceIncreaseWithSlope">
+            <summary>
+            Tolerance increase on microtrack to be applied separately on each projection (X and Y) when slope presetting is enabled. This member is ignored if <c>EnableSlopePresetting</c> is <c>false</c>. 
+            The resulting tolerance is <c>SlopePresetXYTolerance + SlopePresetXYToleranceIncreaseWithSlope * abs(Slope[X|Y])</c>.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings.AskManualScanIfMissing">
+            <summary>
+            When this flag is set to <c>true</c>, if a scanback track is not found in automatic mode, at the end of the last trial a manual scanning is required. 
+            <u>This requires operator presence during scanning.</u>
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings.ResultFile">
+            <summary>
+            If <c>null</c> (the default), PredictionScan3Driver will write the results of the search to TB_SCANBACK_PREDICTIONS (if allowed by <see cref="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings.AvoidWritingScanbackPredictions"/>). If <c>true</c>, the candidates will be written to a file in the <c>Scratch</c> 
+            directory, named "AAAAAAA_XXXXXX_YY_ZZZZZZ.txt", where AAAAA stands for the value of ResultFile, XXXX for the brick number, YY for the plate number, and ZZZZZZZZ for the process operation id.
+            </summary>
+            <remarks>The syntax used for the result file is:
+            <para><c>ID_EVENTBRICK ID_PLATE PATH ID_PROCESSOPERATION PPX PPY PSX PSY GRAINS AREASUM FPX FPY FSX FSY SIGMA DPX DPY DSX DSY</c></para></remarks>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings.DisableScanAndMoveToNext">
+            <summary>
+            If <c>false</c>(default), the microscope is directed to go to the next prediction immediately after finishing the scanning. Set to <c>true</c> if this causes mechanical stresses or erratic motion.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.PredictionScan3Settings.AvoidWritingScanbackPredictions">
+            <summary>
+            If <c>true</c>, scanning data are written to the DB, but the TB_SCANBACK_PREDICTIONS table is not updated; if <c>false</c>, the TB_SCANBACK_PREDICTIONS table is updated with the found candidates.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.PredictionScan3Driver.Exe">
+            <summary>
+            PredictionScan3Driver executor.
+            </summary>
+            <remarks>
+            <para>PredictionScan3Driver searches for predicted tracks.</para>
+            <para>All input and output live in the DB. Predictions are read from TB_SCANBACK_PREDICTIONS and results are written to the same table.</para>
+            <para>If needed, forking can be activated to provide multiple results for a single prediction search.</para>
+            <para>
+            Before real scanning, a recalibration can be computed using "safe" tracks.
+            The selection must return the following columns, in this order:
+            <c>POSX POSY SLOPEX SLOPEY</c>
+            </para>
+            <para>
+            <c>_BRICK_</c> will be replaced with the brick ID.
+            <c>_PLATE_</c> will be replaced with the plate ID.
+            </para>
+            <para>
+            Supported Interrupts:
+            <list type="bullet">
+            <item>
+            <description><c>IgnoreScanFailure False|True</c> instructs PredictionScan3Driver to stop on failed predictions or to skip them and go on.</description>
+            </item>
+            <item>
+            <description><c>IgnoreRecalFailure False|True</c> instructs PredictionScan3Driver to stop on failed recalibration tracks or to skip them and go on.</description>
+            </item>
+            </list>
+            Type: <c>PredictionScan3Driver /EasyInterrupt</c> for a graphical user interface to send interrupts.
+            Type: <c>PredictionScan3Driver /CSBrick &lt;brick&gt; [&lt;candidate file&gt;]</c> for a graphical user interface to choose candidate tracks in the brick to connect to CS or TT predictions, or try to guess vertices.
+            </para>
+            <para>
+            The following substitutions apply:
+            <list type="table">
+            <item><term><c>%EXEREP%</c></term><description>Executable repository path specified in the Startup file.</description></item>
+            <item><term><c>%RWDDIR%</c></term><description>Output directory for Raw Data.</description></item>
+            <item><term><c>%TLGDIR%</c></term><description>Output directory for linked zones.</description></item>
+            <item><term><c>%RWD%</c></term><description>Scanning output file name (not including extension).</description></item>
+            <item><term><c>%TLG%</c></term><description>Linked zone file name (not including extension).</description></item>
+            <item><term><c>%SCRATCH%</c></term><description>Scratch directory specified in the Startup file.</description></item>
+            <item><term><c>%ZONEID%</c></term><description>Hexadecimal file name for a zone.</description></item>
+            </list>
+            </para>
+            <para>
+            Known parameters for selection function:
+            <list type="table">
+            <item><term>PLATE</term><description>Current Plate.</description></item>
+            <item><term>N</term><description>Grains.</description></item>
+            <item><term>A</term><description>AreaSum.</description></item>
+            <item><term>S</term><description>Sigma.</description></item>
+            <item><term>PPX/Y</term><description>Predicted X/Y position.</description></item>
+            <item><term>PSX/Y</term><description>Predicted X/Y slope.</description></item>
+            <item><term>PSL </term><description>Predicted slope.</description></item>
+            <item><term>FPX/Y</term><description>Found X/Y position.</description></item>
+            <item><term>FSX/Y</term><description>Found X/Y slope.</description></item>
+            <item><term>FSL</term><description>Found slope.</description></item>
+            <item><term>TX/Y</term><description>X/Y component of transverse unit vector.</description></item>
+            <item><term>LX/Y</term><description>X/Y component of longitudinal unit vector.</description></item>
+            <item><term>DPX/Y</term><description>Found - Predicted X/Y position.</description></item>
+            <item><term>DSX/Y</term><description>Found - Predicted X/Y slope.</description></item>
+            <item><term>DPT/L</term><description>Found - Predicted Transverse/Longitudinal position.</description></item>
+            <item><term>DST/L</term><description>Found - Predicted Transverse/Longitudinal slope.</description></item>
+            <item><term>TRIALS</term><description>Number of remaining trials for the current prediction.</description></item>
+            </list>
+            </para>
+            <para>
+            A sample XML configuration for PredictionScan3Driver follows:
+            <example>
+            <code>
+            &lt;PredictionScan3Settings&gt;
+             &lt;ScanningConfigId&gt;1000000001587817&lt;/ScanningConfigId&gt;
+             &lt;LinkConfigId&gt;1000000000000018&lt;/LinkConfigId&gt;
+             &lt;QualityCutId&gt;1000000000000020&lt;/QualityCutId&gt;
+             &lt;SlopeTolerance&gt;0.03&lt;/SlopeTolerance&gt;
+             &lt;SlopeToleranceIncreaseWithSlope&gt;0.05&lt;/SlopeToleranceIncreaseWithSlope&gt;
+             &lt;PositionTolerance&gt;70&lt;/PositionTolerance&gt;
+             &lt;PositionToleranceIncreaseWithSlope&gt;6&lt;/PositionToleranceIncreaseWithSlope&gt;
+             &lt;MaxTrials&gt;2&lt;/MaxTrials&gt;
+             &lt;BaseThickness&gt;210&lt;/BaseThickness&gt;
+             &lt;SelectionFunction&gt;(DST / 0.005)^2 + (DSL / (0.005 + PSL * 0.05))^2 + (DPT/20)^2+(DPL/(20+6*PSL))^2&lt;/SelectionFunction&gt;
+             &lt;SelectionFunctionMin&gt;0&lt;/SelectionFunctionMin&gt;
+             &lt;SelectionFunctionMax&gt;18&lt;/SelectionFunctionMax&gt;  &lt;RecalibrationSelectionText&gt;select POSX, POSY, SLOPEX, SLOPEY from (select ID_ZONE, POSX, POSY, SLOPEX, SLOPEY, ROW_NUMBER() OVER (PARTITION BY ID_ZONE ORDER
+             BY ID) AS RNUM from TB_MIPBASETRACKS where ID_EVENTBRICK = _BRICK_ and ID_ZONE in (select ID from TB_ZONES where ID_EVENTBRICK = _BRICK_ and ID_PROCESSOPERATION
+             in (select CALIBRATION from VW_PLATES where ID_EVENTBRICK = _BRICK_ and ID = _PLATE_)) and GRAINS &amp;gt; 27 and SQRT(SLOPEX*SLOPEX+SLOPEY*SLOPEY) &amp;lt; 
+             0.25 and SQRT(SLOPEX*SLOPEX+SLOPEY*SLOPEY) &amp;gt; 0.05) where RNUM &amp;lt;= 5&lt;/RecalibrationSelectionText&gt;
+             &lt;RecalibrationMinXDistance&gt;30000&lt;/RecalibrationMinXDistance&gt;
+             &lt;RecalibrationMinYDistance&gt;30000&lt;/RecalibrationMinYDistance&gt;
+             &lt;RecalibrationMinTracks&gt;8&lt;/RecalibrationMinTracks&gt;
+             &lt;RecalibrationPosTolerance&gt;60&lt;/RecalibrationPosTolerance&gt;
+             &lt;ReadTolerancesFromPredictionTable&gt;False&lt;/ReadTolerancesFromPredictionTable&gt;
+             &lt;EnableForking&gt;False&lt;/EnableForking&gt;
+            &lt;/PredictionScan3Settings&gt;	
+            </code>
+            </example>
+            </para>
+            <para><b>NOTICE: If the quality cut id is identical to the linker id, no quality cut is applied (unless the linker applies its own quality cuts).</b></para>
+            <para>A dump file is generated in the <c>Scratch</c> directory, with the name <c>predictionscan3driver_<i>operationid</i>_<i>brick</i>_<i>plate</i>.txt</c> and containing an n-tuple with the following fields:
+            <list type="table">
+            <item><term>BRICK</term><description>The id of the brick.</description></item>
+            <item><term>PLATE</term><description>The id of the plate.</description></item>
+            <item><term>PATH</term><description>The path number.</description></item>
+            <item><term>TRIALS</term><description>The trials <b>remaining</b> (not the trials done).</description></item>
+            <item><term>GRAINS</term><description>The number of grains of the candidate (or zero if no candidate is found).</description></item>
+            <item><term>SIGMA</term><description>The <c>Sigma</c> of the candidate (negative for microtracks, positive for base tracks, zero for no candidate).</description></item>
+            </list>
+            </para>
+            </remarks>	
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.PredictionScan3Driver.Exe.InitializeLifetimeService">
+            <summary>
+            Initializes the Lifetime Service.
+            </summary>
+            <returns>the lifetime service object or null.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.PredictionScan3Driver.Exe.Main(System.String[])">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.PredictionScan3Driver.Exe.NotifyInterrupt(SySal.DAQSystem.Drivers.Interrupt)">
+            <summary>
+            Notifies incoming interrupts.
+            </summary>
+            <param name="nextint">the next interrupt to be processed.</param>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.PredictionScan3Driver.Exe.HttpPost(SySal.Web.Session,System.String,System.String[])">
+            <summary>
+            Processes HTTP POST method calls.
+            </summary>
+            <param name="sess">the user session.</param>
+            <param name="page">the page requested (ignored).</param>
+            <param name="postfields">commands sent to the page.</param>
+            <returns>an HTML string with the page to be shown.</returns>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.PredictionScan3Driver.ExplanationForm">
+            <summary>
+            Summary description for ExplanationForm.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.ExplanationForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.PredictionScan3Driver.ExplanationForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.PredictionScan3Driver.ExplanationForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.PredictionScan3Driver.frmEasyInterrupt">
+            <summary>
+            Interrupt Form.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.frmEasyInterrupt.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.PredictionScan3Driver.frmEasyInterrupt.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.PredictionScan3Driver.frmEasyInterrupt.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.PredictionScan3Driver.frmConfig">
+            <summary>
+            Summary description for frmConfig.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.PredictionScan3Driver.frmConfig.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.PredictionScan3Driver.frmConfig.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.PredictionScan3Driver.frmConfig.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.PredictionScan3Driver.Utilities">
+            <summary>
+            Utility class.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,6 @@
+/home/kryss/Documenti/SySal/DataProcessingServerScheme/bin/Debug/DataProcessingServerScheme.dll
+/home/kryss/Documenti/SySal/DataProcessingServerScheme/bin/Debug/DataProcessingServerScheme.pdb
+/home/kryss/Documenti/SySal/DataProcessingServerScheme/bin/Debug/DataProcessingServerScheme.xml
+/home/kryss/Documenti/SySal/DataProcessingServerScheme/obj/Debug/DataProcessingServerScheme.dll
+/home/kryss/Documenti/SySal/DataProcessingServerScheme/obj/Debug/DataProcessingServerScheme.pdb
+/home/kryss/Documenti/SySal/DataProcessingServerScheme/obj/Debug/DataProcessingServerScheme.csprojAssemblyReference.cache

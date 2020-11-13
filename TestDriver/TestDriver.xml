@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TestDriver</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.DAQSystem.Drivers.TestDriver.Config">
+            <summary>
+            Configuration for TestDriver.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TestDriver.Config.SecondsToWait">
+            <summary>
+            The number of seconds to wait for each step.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.TestDriver.Exe">
+            <summary>
+            TestDriver executor.
+            </summary>
+            <remarks>
+            <para>
+            TestDriver helps testing that BatchManager works correctly.
+            </para>
+            <para>
+            It is intended as a diagnostic and debugging tool.
+            </para>
+            <para>
+            Sample configuration for TestDriver:
+            <example>
+            <code>
+            &lt;Config&gt;
+             &lt;SecondsToWait&gt;3&lt;/SecondsToWait&gt;
+            &lt;/Config&gt;
+            </code>
+            </example>
+            </para>
+            </remarks>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.TestDriver.Exe.InitializeLifetimeService">
+            <summary>
+            Initializes the Lifetime Service.
+            </summary>
+            <returns>the lifetime service object or null.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.TestDriver.Exe.Main(System.String[])">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.TestDriver.ExplanationForm">
+            <summary>
+            Summary description for ExplanationForm.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TestDriver.ExplanationForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.TestDriver.ExplanationForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.TestDriver.ExplanationForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+    </members>
+</doc>

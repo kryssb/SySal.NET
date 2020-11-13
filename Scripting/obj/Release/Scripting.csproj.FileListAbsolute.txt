@@ -1,0 +1,4 @@
+/home/kryss/Documenti/SySal/Scripting/obj/Release/Scripting.csprojAssemblyReference.cache
+/home/kryss/Documenti/SySal/Scripting/bin/Release/Scripting.dll
+/home/kryss/Documenti/SySal/Scripting/bin/Release/Scripting.xml
+/home/kryss/Documenti/SySal/Scripting/obj/Release/Scripting.dll

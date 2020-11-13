@@ -1,0 +1,514 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GDI3DPlot</name>
+    </assembly>
+    <members>
+        <member name="T:GDI3D.Plot.Plot">
+            <summary>
+            A GDI-based 3D Plot.
+            </summary>
+        </member>
+        <member name="P:GDI3D.Plot.Plot.BackColor">
+            <summary>
+            Gets/sets the back color of the plot.
+            </summary>
+        </member>
+        <member name="M:GDI3D.Plot.Plot.#ctor">
+            <summary>
+            Initializes an empty plot.
+            </summary>
+        </member>
+        <member name="M:GDI3D.Plot.Plot.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes an empty plot.
+            </summary>
+        </member>
+        <member name="M:GDI3D.Plot.Plot.Clear">
+            <summary>
+            Clears the plot.
+            </summary>
+        </member>
+        <member name="M:GDI3D.Plot.Plot.DeleteWithOwner(System.Object)">
+            <summary>
+            Deletes all elements associated with the specified owner.
+            </summary>
+            <param name="owner">Owner whose graphical representation should be deleted.</param>
+        </member>
+        <member name="M:GDI3D.Plot.Plot.RecolorWithOwner(System.Object,System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Changes the color of all elements associated with the specified owner.
+            </summary>
+            <param name="owner">Owner whose graphical representation should be changed.</param>
+            <param name="r">the new red component.</param>
+            <param name="g">the new green component.</param>
+            <param name="b">the new blue component.</param>
+            <param name="preserveneutral">if <c>true</c>, the neutral (grey) component is preserved; with this parameter set, objects tend to become lighter.</param>
+        </member>
+        <member name="M:GDI3D.Plot.Plot.Contains(System.Object)">
+            <summary>
+            Checks whether the plot contains references to an owner.
+            </summary>
+            <param name="owner">Owner whose graphical elements are being sought.</param>
+            <returns><c>true</c> if the owner is present, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:GDI3D.Plot.Plot.Add(GDI3D.Plot.Line)">
+            <summary>
+            Adds a line.
+            </summary>
+            <param name="l">Line to be added.</param>
+        </member>
+        <member name="M:GDI3D.Plot.Plot.Add(GDI3D.Plot.Point)">
+            <summary>
+            Adds a point.
+            </summary>
+            <param name="p">Point to be added.</param>
+        </member>
+        <member name="P:GDI3D.Plot.Plot.AutoRender">
+            <summary>
+            Tells whether changes should be immediately reflected to the plot.
+            </summary>
+        </member>
+        <member name="P:GDI3D.Plot.Plot.Zoom">
+            <summary>
+            Gets/sets the zoom factor.
+            </summary>
+        </member>
+        <member name="P:GDI3D.Plot.Plot.Infinity">
+            <summary>
+            Gets/sets the infinity projection flag: if set, an isometric view instead of a perspective is produced.
+            </summary>
+        </member>
+        <member name="M:GDI3D.Plot.Plot.GetCameraPosition(System.Double@,System.Double@,System.Double@)">
+            <summary>
+            Gets the camera position.
+            </summary>
+            <param name="X">X component</param>
+            <param name="Y">Y component</param>
+            <param name="Z">Z component</param>
+        </member>
+        <member name="M:GDI3D.Plot.Plot.SetCameraPosition(System.Double,System.Double,System.Double)">
+            <summary>
+            Sets the camera position
+            </summary>
+            <param name="X">X component</param>
+            <param name="Y">Y component</param>
+            <param name="Z">Z component</param>
+        </member>
+        <member name="M:GDI3D.Plot.Plot.SetCameraOrientation(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Sets the camera orientation.
+            </summary>
+            <param name="DX">X component of camera direction</param>
+            <param name="DY">Y component of camera direction</param>
+            <param name="DZ">Z component of camera direction</param>
+            <param name="NX">X component of camera normal</param>
+            <param name="NY">Y component of camera normal</param>
+            <param name="NZ">Z component of camera normal</param>
+        </member>
+        <member name="M:GDI3D.Plot.Plot.GetCameraOrientation(System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@)">
+            <summary>
+            Gets the camera orientation.
+            </summary>
+            <param name="DX">X component of camera direction</param>
+            <param name="DY">Y component of camera direction</param>
+            <param name="DZ">Z component of camera direction</param>
+            <param name="NX">X component of camera normal</param>
+            <param name="NY">Y component of camera normal</param>
+            <param name="NZ">Z component of camera normal</param>
+            <param name="BX">X component of camera binormal</param>
+            <param name="BY">Y component of camera binormal</param>
+            <param name="BZ">Z component of camera binormal</param>
+        </member>
+        <member name="P:GDI3D.Plot.Plot.Distance">
+            <summary>
+            Gets/sets the distance from the camera.
+            </summary>
+        </member>
+        <member name="M:GDI3D.Plot.Plot.GetScene">
+            <summary>
+            Gets the scene.
+            </summary>
+        </member>
+        <member name="M:GDI3D.Plot.Plot.Save(System.IO.Stream,System.Drawing.Imaging.ImageFormat)">
+            <summary>
+            Saves the image in the specified format.
+            </summary>
+            <param name="stream">Stream to save the image to.</param>
+            <param name="format">Image format.</param>
+        </member>
+        <member name="M:GDI3D.Plot.Plot.Save(System.String,System.Drawing.Imaging.ImageFormat)">
+            <summary>
+            Saves the image in the specified format.
+            </summary>
+            <param name="filename">Name of the file to save the image to.</param>
+            <param name="format">Image format.</param>
+        </member>
+        <member name="M:GDI3D.Plot.Plot.Save(System.String)">
+            <summary>
+            Saves the image in a default format.
+            </summary>
+            <param name="filename">Name of the file to save the image to.</param>
+        </member>
+        <member name="M:GDI3D.Plot.Plot.GetCameraSpotting(System.Double@,System.Double@,System.Double@)">
+            <summary>
+            Gets the camera spotting point.
+            </summary>
+            <param name="X">X component</param>
+            <param name="Y">Y component</param>
+            <param name="Z">Z component</param>
+        </member>
+        <member name="M:GDI3D.Plot.Plot.SetCameraSpotting(System.Double,System.Double,System.Double)">
+            <summary>
+            Sets the camera spotting point.
+            </summary>
+            <param name="X">X component</param>
+            <param name="Y">Y component</param>
+            <param name="Z">Z component</param>
+        </member>
+        <member name="P:GDI3D.Plot.Plot.LineWidth">
+            <summary>
+            Gets/sets the width of lines.
+            </summary>
+        </member>
+        <member name="P:GDI3D.Plot.Plot.PointSize">
+            <summary>
+            Gets/sets the size of points;
+            </summary>
+        </member>
+        <member name="P:GDI3D.Plot.Plot.BorderWidth">
+            <summary>
+            The width of border; setting this number to 0 disables borders.
+            </summary>
+        </member>
+        <member name="P:GDI3D.Plot.Plot.Alpha">
+            <summary>
+            Alpha component of all lines and points. Ranges from 0 to 1.
+            </summary>
+        </member>
+        <member name="P:GDI3D.Plot.Plot.LabelFontName">
+            <summary>
+            Font name to be used for labels.
+            </summary>
+        </member>
+        <member name="P:GDI3D.Plot.Plot.LabelFontSize">
+            <summary>
+            Font size to be used for labels.
+            </summary>
+        </member>
+        <member name="M:GDI3D.Plot.Plot.SetLabelOffset(System.Int32,System.Int32)">
+            <summary>
+            Sets the graphical offset in points between an object and its label.
+            </summary>
+            <param name="xoff">x offset.</param>
+            <param name="yoff">y offset.</param>
+        </member>
+        <member name="M:GDI3D.Plot.Plot.Highlight(System.Object,System.Boolean)">
+            <summary>
+            Sets the highlight status for all graphical objects associated to a specified owner.
+            </summary>
+            <param name="owner">the owner whose object should change status.</param>
+            <param name="hlstatus"><c>true</c> to highlight, <c>false</c> to show in normal fashion</param>
+        </member>
+        <member name="M:GDI3D.Plot.Plot.EnableLabel(System.Object,System.Boolean)">
+            <summary>
+            Sets the label status for all graphical objects associated to a specified owner.
+            </summary>
+            <param name="owner">the owner whose label should change status.</param>
+            <param name="hlstatus"><c>true</c> to show label, <c>false</c> to hide label.</param>
+        </member>
+        <member name="M:GDI3D.Plot.Plot.SetLabel(System.Object,System.String)">
+            <summary>
+            Sets the label or all graphical objects associated to a specified owner.
+            </summary>
+            <param name="owner">the owner whose label should be set.</param>
+            <param name="hlstatus">the new label text.</param>
+            <remarks>If an object was created with its label = <c>null</c>, its label will never change. 
+            In order to set an object with an empty label that can be set later, its label must be set to the empty string (<c>""</c>).
+            </remarks>
+        </member>
+        <member name="M:GDI3D.Plot.Plot.Record(GDI3D.Movie)">
+            <summary>
+            Records the current image to a movie.
+            </summary>
+            <param name="mv">the movie to record the image to.</param>
+            <returns>the number of frames in the movie.</returns>
+        </member>
+        <member name="M:GDI3D.Plot.Plot.RemoveOwned(System.Object)">
+            <summary>
+            Removes all graphical objects owned by the specified owner.
+            </summary>
+            <param name="o">the owner whose objects have to be removed.</param>
+            <returns>the number of elements deleted.</returns>
+        </member>
+        <member name="M:GDI3D.Plot.Plot.Transform">
+            <summary>
+            Transforms 3D coordinates for all objects to 2D coordinates for drawing.
+            </summary>
+        </member>
+        <member name="M:GDI3D.Plot.Plot.SetScene(GDI3D.Scene)">
+            <summary>
+            Sets the scene.
+            </summary>
+            <param name="value">the new scene to be set.</param>
+        </member>
+        <member name="M:GDI3D.Plot.Plot.FindNearestObject(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Finds the object that is nearest to a certain x,y position.
+            </summary>
+            <param name="pos_x">the x coordinate of the point being searched (in graphical coordinates).</param>
+            <param name="pos_y">the y coordinate of the point being searched (in graphical coordinates).</param>
+            <param name="centerwhenfound">if <c>true</c>, the plot is centered on the object selected (and left unchanged if no selectable object is found).</param>
+            <returns>if an object is found, its string representation is returned, <c>null</c> otherwise.</returns>
+        </member>
+        <member name="T:GDI3D.Plot.GDI3DObject">
+            <summary>
+            A generic graphical object.
+            </summary>        
+        </member>
+        <member name="F:GDI3D.Plot.GDI3DObject.Owner">
+            <summary>
+            Owner object.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Plot.GDI3DObject.Label">
+            <summary>
+            Label for the graphical object.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Plot.GDI3DObject.EnableLabel">
+            <summary>
+            <c>true</c> if the label is to be shown, <c>false</c> otherwise.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Plot.GDI3DObject.Highlight">
+            <summary>
+            <c>true</c> if the object is to be highlighted, <c>false</c> otherwise;
+            </summary>
+        </member>
+        <member name="T:GDI3D.Plot.Point">
+            <summary>
+            A display point.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Plot.Point.X">
+            <summary>
+            X component.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Plot.Point.Y">
+            <summary>
+            Y component.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Plot.Point.Z">
+            <summary>
+            Z component.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Plot.Point.R">
+            <summary>
+            Red component.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Plot.Point.G">
+            <summary>
+            Green component.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Plot.Point.B">
+            <summary>
+            Blue component.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Plot.Point.TX">
+            <summary>
+            Transformed X.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Plot.Point.TY">
+            <summary>
+            Transformed Y;
+            </summary>
+        </member>
+        <member name="F:GDI3D.Plot.Point.Show">
+            <summary>
+            Set if the line can be shown (i.e. it is inside viewport).
+            </summary>
+        </member>
+        <member name="F:GDI3D.Plot.Point.DefaultR">
+            <summary>
+            Default Red component.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Plot.Point.DefaultG">
+            <summary>
+            Default Green component.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Plot.Point.DefaultB">
+            <summary>
+            Default Blue component.
+            </summary>
+        </member>
+        <member name="M:GDI3D.Plot.Point.#ctor(System.Double,System.Double,System.Double,System.Object)">
+            <summary>
+            Constructs a new white point.
+            </summary>
+            <param name="x">X component.</param>
+            <param name="y">Y component.</param>
+            <param name="z">Z component.</param>
+            <param name="owner">Owner object.</param>
+        </member>
+        <member name="M:GDI3D.Plot.Point.#ctor(System.Double,System.Double,System.Double,System.Object,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Constructs a colored point.
+            </summary>
+            <param name="x">X component.</param>
+            <param name="y">Y component.</param>
+            <param name="z">Z component.</param>
+            <param name="owner">Owner object.</param>
+            <param name="r">Red component.</param>
+            <param name="g">Green component.</param>
+            <param name="b">Blue component.</param>
+        </member>
+        <member name="M:GDI3D.Plot.Point.Distance2(System.Int32,System.Int32)">
+            <summary>
+            Distance-squared from a graphical point.
+            </summary>
+            <param name="XD">X component of point from which to distance is to be computed.</param>
+            <param name="YD">Y component of point from which to distance is to be computed.</param>
+            <returns></returns>
+        </member>
+        <member name="T:GDI3D.Plot.Line">
+            <summary>
+            A display line.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Plot.Line.Dashed">
+            <summary>
+            <c>true</c> for dashed lines, <c>false</c> otherwise;
+            </summary>
+        </member>
+        <member name="F:GDI3D.Plot.Line.XF">
+            <summary>
+            First point X component;
+            </summary>
+        </member>
+        <member name="F:GDI3D.Plot.Line.YF">
+            <summary>
+            First point Y component;
+            </summary>
+        </member>
+        <member name="F:GDI3D.Plot.Line.ZF">
+            <summary>
+            First point Z component;
+            </summary>
+        </member>
+        <member name="F:GDI3D.Plot.Line.XS">
+            <summary>
+            Second point X component;
+            </summary>
+        </member>
+        <member name="F:GDI3D.Plot.Line.YS">
+            <summary>
+            Second point Y component;
+            </summary>
+        </member>
+        <member name="F:GDI3D.Plot.Line.ZS">
+            <summary>
+            Second point Z component;
+            </summary>
+        </member>
+        <member name="F:GDI3D.Plot.Line.R">
+            <summary>
+            Red component;
+            </summary>
+        </member>
+        <member name="F:GDI3D.Plot.Line.G">
+            <summary>
+            Green component;
+            </summary>
+        </member>
+        <member name="F:GDI3D.Plot.Line.B">
+            <summary>
+            Blue component;
+            </summary>
+        </member>
+        <member name="F:GDI3D.Plot.Line.TXF">
+            <summary>
+            Transformed X component of first point.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Plot.Line.TYF">
+            <summary>
+            Transformed Y component of first point.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Plot.Line.TXS">
+            <summary>
+            Transformed X component of second point.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Plot.Line.TYS">
+            <summary>
+            Transformed Y component of second point.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Plot.Line.Show">
+            <summary>
+            Set if the line can be shown (i.e. it is inside viewport).
+            </summary>
+        </member>
+        <member name="F:GDI3D.Plot.Line.DefaultR">
+            <summary>
+            Default Red component.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Plot.Line.DefaultG">
+            <summary>
+            Default Green component.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Plot.Line.DefaultB">
+            <summary>
+            Default Blue component.
+            </summary>
+        </member>
+        <member name="M:GDI3D.Plot.Line.#ctor(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Object)">
+            <summary>
+            Constructs a line with default color.
+            </summary>
+            <param name="xf">X component of first point.</param>
+            <param name="yf">Y component of first point.</param>
+            <param name="zf">Z component of first point.</param>
+            <param name="xs">X component of second point.</param>
+            <param name="ys">Y component of second point.</param>
+            <param name="zs">Z component of second point.</param>
+            <param name="owner">Owner object.</param>
+        </member>
+        <member name="M:GDI3D.Plot.Line.#ctor(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Object,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Constructs a colored line.
+            </summary>
+            <param name="xf">X component of first point.</param>
+            <param name="yf">Y component of first point.</param>
+            <param name="zf">Z component of first point.</param>
+            <param name="xs">X component of second point.</param>
+            <param name="ys">Y component of second point.</param>
+            <param name="zs">Z component of second point.</param>
+            <param name="owner">Owner object.</param>
+            <param name="r">Red component.</param>
+            <param name="g">Green component.</param>
+            <param name="b">Blue component.</param>
+        </member>
+        <member name="M:GDI3D.Plot.Line.Distance2(System.Int32,System.Int32)">
+            <summary>
+            Distance-squared from a graphical point.
+            </summary>
+            <param name="XD">X component of point from which to distance is to be computed.</param>
+            <param name="YD">Y component of point from which to distance is to be computed.</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,350 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OperaDataProcessingServer_CLV</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.DAQSystem.MyDataProcessingServer">
+            <summary>
+            Implementation of the Data Processing Server.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.m_IsWillingToProcess">
+            <summary>
+            A lockable boolean telling whether the DataProcessingServer is willing to process new batches.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.MyDataProcessingServer.IsWillingToProcess">
+            <summary>
+            Checks whether the machine is willing to accept new requests of batch data processing.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer.SetIsWillingToProcess(System.Boolean)">
+            <summary>
+            Changes the state of willingness to process.
+            </summary>
+            <param name="iswilling">the state the DataProcessingServer must enter.</param>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.Terminate">
+            <summary>
+            Tells whether the process is terminating. It's used to abort the execution thread.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.m_ExecThread">
+            <summary>
+            Execution thread.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.m_ResultCleanerThread">
+            <summary>
+            Thread that maintains the result list, cleaning old batches.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.m_ResultLiveTime">
+            <summary>
+            Time duration of a result in the result list.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.m_QueueNotEmpty">
+            <summary>
+            Signals that there is a new entry in the processing queue.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.m_Queue">
+            <summary>
+            The queue of data processing batches to be executed.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.m_ResultList">
+            <summary>
+            The list of batches for which result information is sought.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.m_ExecProc">
+            <summary>
+            The process in which the current batch is being executed.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.m_ExecProcKilled">
+            <summary>
+            Tells whether the process has been terminated by a kill command.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.MyDataProcessingServer.DataProcessingResult">
+            <summary>
+            Result of execution for a data processing batch.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.DataProcessingResult.Desc">
+            <summary>
+            The batch descriptor that initiated the processing.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.DataProcessingResult.X">
+            <summary>
+            Possible exception that terminates the processing.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.DataProcessingResult.Processed">
+            <summary>
+            Tells whether the batch has been processed.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.DataProcessingResult.ExpirationTime">
+            <summary>
+            Time when this result will expire.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer.DataProcessingResult.#ctor(SySal.DAQSystem.DataProcessingBatchDesc,System.TimeSpan)">
+            <summary>
+            Public constructor.
+            </summary>
+            <param name="desc">the batch descriptor that initiates the processing.</param>		
+            <param name="resultduration">time duration of this result.</param>	
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer.#ctor(System.Diagnostics.EventLog)">
+            <summary>
+            Creates a new data processing server.
+            </summary>
+            <param name="evlog">The system event log to write events to.</param>
+        </member>
+        <member name="P:SySal.DAQSystem.MyDataProcessingServer.ParallelJobs">
+            <summary>
+            The number of jobs that can be performed in parallel. 
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.EventLog">
+            <summary>
+            The event log to be used to record anomalous behaviours.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.MyDataProcessingServer.Queue">
+            <summary>
+            Gets the queue of data processing batches to be executed. 
+            Notice that in case of quick transitions, a subsequent QueueLength query might return an inconsistent result.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.MyDataProcessingServer.QueueLength">
+            <summary>
+            Gets the number of data processing batches to be executed.
+            Notice that in case of quick transitions, a subsequent Queue query might return an inconsistent result.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer.Remove(System.UInt64,System.String,System.String,System.String)">
+            <summary>
+            Draws a batch out ouf the queue or aborts it if it is already being executed.
+            A non-null token or a username/password pair must be supplied that matches the one with which the batch was started.
+            If the token is supplied, the username/password pair is ignored.
+            </summary>
+            <param name="id">identifier of the batch to be removed.</param>
+            <param name="token">the process token to be used.</param>
+            <param name="user">username of the user that started the batch. Ignored if <c>token</c> is non-null.</param>
+            <param name="password">password of the user that started the batch. Ignored if <c>token</c> is non-null.</param>
+        </member>
+        <member name="P:SySal.DAQSystem.MyDataProcessingServer.MachinePowerClass">
+            <summary>
+            Gets the power class of the machine.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer.Enqueue(SySal.DAQSystem.DataProcessingBatchDesc)">
+            <summary>
+            Enqueues a batch.
+            </summary>
+            <param name="desc">the descriptor of the batch. If the batch is rejected because another batch in the queue already has the same id, the Id member is set to 0.</param>
+            <returns>true if the batch has been accepted, false otherwise.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer.DoneWith(System.UInt64)">
+            <summary>
+            Checks for execution completion.
+            </summary>
+            <param name="id">the id of the batch.</param>
+            <returns>true if the batch has been completed, false if it is in progress.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer.Result(System.UInt64)">
+            <summary>
+            Gets the result for a batch.
+            </summary>
+            <param name="id">the id of the batch.</param>
+            <returns>the batch descriptor. It is modified to reflect the batch output. An exception is thrown if the batch terminated with an exception.</returns>
+        </member>
+        <member name="P:SySal.DAQSystem.MyDataProcessingServer.SuggestId">
+            <summary>
+            Provides an Id for a new batch to be enqueued.
+            Batch Id clashing is a reason for rejection of well-formed batch descriptors.
+            Use of this property does not completely guarantee that the batch id does not clash with another Id in the queue, because another process could schedule another batch with the same Id.
+            However, the Ids generated by this property all come from the same sequence and are very likely not to be duplicated within a reasonable amount of time.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer.#ctor">
+            <summary>
+            Creates a new DataProcessingServer.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer.InitializeLifetimeService">
+            <summary>
+            Initializes the Lifetime Service.
+            </summary>
+            <returns>the lifetime service object or null.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer.TestComm(System.Int32)">
+            <summary>
+            Tests the communication with the DataProcessingServer.
+            </summary>
+            <param name="commpar">communication parameter.</param>
+            <returns>2 * commpar - 1 if the DataProcessingServer object and the communication are working properly.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer.AbortAllBatches">
+            <summary>
+            Aborts all processing batches and terminates the execution thread.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer.ResultCleanerThread">
+            <summary>
+            Result cleaner thread method.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer.ExecThread">
+            <summary>
+            Execution thread method.
+            </summary>
+        </member>
+        <member name="T:SySal.Services.OperaDataProcessingServer_CLV.OperaDataProcessingServer">
+            <summary>
+            OperaDataProcessingServer - Command Line Version implementation.
+            </summary>
+            <remarks>
+            <para>The DataProcessingServer is at the foundation of the Computing Infrastructure. Data Processing Servers provide the computing power that is needed for lengthy calculations on a well defined cluster of interchangeable machines.</para>
+            <para>Some time is required for permission checks and calculation setup. Therefore, use of Data Processing Servers for quick, small units of computing is discouraged.</para>
+            <para>Data Processing Servers are very well suited for heavy computations, such as fragment linking on large areas or volume reconstructions.</para>
+            <para>The service stores the credentials for each computation in the default credential record for the user account in which it runs. Therefore, it is strongly recommended to create a user account to run this executable. 
+            Every computation batch launched will alter the credentials, so it would be very uncomfortable (and prone to security breaches) to run the service in an administrative account, or in a common user account.</para>
+            <para>The service must be accompanied by a configuration file with the name <c>OperaDataProcessingServer.exe.config</c> in the same directory. This file stores the access credentials to access the DB to validate user requests. 
+            The configuration file should be shaped as shown in the following example:
+            <example><code>
+            &lt;?xml version="1.0" encoding="utf-8" ?&gt; 
+            &lt;configuration&gt;
+             &lt;appSettings&gt;
+              &lt;add key="DBServer" value="OPERADB.SCANNING.MYSITE.EU" /&gt;
+              &lt;add key="DBUserName" value="DPSMGR" /&gt;
+              &lt;add key="DBPassword" value="DPSPWD" /&gt;
+             &lt;/appSettings&gt;
+            &lt;/configuration&gt;
+            </code></example>
+            More parameters are needed for complete configuration of the OperaDataProcessingServer. They can be put in this file, but they can also be stored in the DB site configuration, and this is the recommended practice,
+            since it allows unified management of the Computing Infrastructure site. These parameters can be put into <c>LZ_SITEVARS</c>, <c>LZ_MACHINEVARS</c>, or in the configuration file. The configuration file overrides any other
+            setting (and is deprecated, unless used for debugging purposes) and <c>LZ_MACHINEVARS</c> overrides <c>LZ_SITEVARS</c>. Here follows the list of the remaining parameters:
+            <list type="table">
+            <listheader><term>Name</term><description>Description</description></listheader>
+            <item><term>PeakWorkingSetMB</term><description>The maximum working set allowed for a process, in MB. If the server is a dedicated machine, set this number as high as possible, even as high as the total available virtual memory. If the machine is used for other purposes, a recommended value for this parameter is 128 (meaning 128 MB), but this might be too small for some large computation batch.</description></item>
+            <item><term>MachinePowerClass</term><description>The power class of the machine, i.e. a number in an arbitrary scale of computing power, starting from 0. This is actually used to avoid launching batches that will need too much memory on machines with little RAM, whereas other machine are available. For example, running a batch with a peak working set of 2.3 GB on a machine with 512 MB RAM will take an unacceptable time to complete because of disk swap, even if the processor is very powerful; a machine with 4 GB RAM will take much shorter time. Set this parameter to <c>5</c> if you have not yet defined a power class scale for your site.</description></item>
+            <item><term>LowPriority</term><description>If set to <c>true</c> (the recommended value), the processes on the DataProcessingServer, and the Server itself, run in low priority, so that interactive use of the machine is still reasonable. Turning this parameter to <c>false</c> is recommended only if this is a dedicated machine with very large RAM.</description></item>
+            <item><term>ResultLiveSeconds</term><description>The time interval in seconds during which the results of a computation are kept available (this only means that completion information is available; any output files would not be deleted in any case). A recommended value for this parameter to 600 (seconds), corresponding to 10 minutes. The result is forgotten upon expiration of this time.</description></item>
+            </list>
+            The recommended place for these settings is the DB machine configuration table (<c>LZ_MACHINEVARS</c>).
+            </para>
+            <para>The OperaDataProcessingServer is typically used in a cluster configuration, where it serves as a working machine for a central manager.</para>
+            <para>Since the OperaDataProcessingServer has no memory of the computations it performs, stopping the service or shutting down the machine results in a loss of data. This is acceptable if the DataProcessingServer is a worker server, because the manager is expected to detect the unavailability of the server and reschedule the computation on another machine.</para>
+            <para><b>NOTICE: if a computation executable creates temporary files, it is its own responsibility to clean them. OperaDataProcessingServer does not perform disk/disk space maintenance.</b> A full disk is a very common source of problems for DataProcessingServers that continuously hang. If this happens, clean your disk of orphaned temporary files.</para>
+            <para><b>Installation hints for the OperaDataProcessingServer_CLV executable.</b>
+            <list type="bullet">
+            <item><term>Login as an administrator and start the service. Review possible errors in the Event Viewer.</term></item>
+            <item><term>Ensure the Opera log exists in the Event Viewer. Repeat the previous step if the Opera log does not exist.</term></item>
+            <item><term>Login as the user that will run the service.</term></item>
+            <item><term>Try and start the service and ensure it runs normally.</term></item>
+            <item><term>If you have a firewall installed, unblock the service from gaining access to the network. If you have a DMZ (De-Militarized Zone), the OperaDataProcessingServer should be seen without restrictions in the DMZ and completely hidden on other network interface cards.</term></item>
+            </list>
+            </para>
+            </remarks>
+        </member>
+        <member name="F:SySal.Services.OperaDataProcessingServer_CLV.OperaDataProcessingServer.ResultLiveTime">
+            <summary>
+            The time duration of a result.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaDataProcessingServer_CLV.OperaDataProcessingServer.LowPriority">
+            <summary>
+            Tells whether the computing thread must be in a priority below normal.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaDataProcessingServer_CLV.OperaDataProcessingServer.DBServer">
+            <summary>
+            Connection String for the DB.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaDataProcessingServer_CLV.OperaDataProcessingServer.DBUserName">
+            <summary>
+            User that the OperaBatchServer shall impersonate.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaDataProcessingServer_CLV.OperaDataProcessingServer.DBPassword">
+            <summary>
+            Password to access the DB.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaDataProcessingServer_CLV.OperaDataProcessingServer.IdSite">
+            <summary>
+            Site identifier read from the DB.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaDataProcessingServer_CLV.OperaDataProcessingServer.SiteName">
+            <summary>
+            Site name read from the DB.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaDataProcessingServer_CLV.OperaDataProcessingServer.IdMachine">
+            <summary>
+            Machine identifier read from the DB.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaDataProcessingServer_CLV.OperaDataProcessingServer.MachineAddress">
+            <summary>
+            Machine address that matches the DB registration entry.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaDataProcessingServer_CLV.OperaDataProcessingServer.MachineName">
+            <summary>
+            Machine name read from the DB.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaDataProcessingServer_CLV.OperaDataProcessingServer.PeakWorkingSetMB">
+            <summary>
+            Peak working set in MB.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaDataProcessingServer_CLV.OperaDataProcessingServer.MachinePowerClass">
+            <summary>
+            Machine power class.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaDataProcessingServer_CLV.OperaDataProcessingServer.DPS">
+            <summary>
+            The Data Processing Server instance.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaDataProcessingServer_CLV.OperaDataProcessingServer.EventLog">
+            <summary>
+            The event logger.
+            </summary>
+        </member>
+        <member name="M:SySal.Services.OperaDataProcessingServer_CLV.OperaDataProcessingServer.#ctor">
+            <summary>
+            Creates a new OperaDataProcessingServer service.
+            </summary>
+        </member>
+        <member name="M:SySal.Services.OperaDataProcessingServer_CLV.OperaDataProcessingServer.Main(System.String[])">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="M:SySal.Services.OperaDataProcessingServer_CLV.OperaDataProcessingServer.OnStart(System.String[])">
+            <summary>
+            Set things in motion.
+            </summary>
+        </member>
+        <member name="M:SySal.Services.OperaDataProcessingServer_CLV.OperaDataProcessingServer.OnStop">
+            <summary>
+            Stop this service.
+            </summary>
+        </member>
+    </members>
+</doc>

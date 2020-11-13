@@ -1,0 +1,87 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C0739D43-9E78-4A32-8719-193C04776536}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FlattenTLG</RootNamespace>
+    <AssemblyName>FlattenTLG</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DAQSystem, Version=2.7.4265.18755, Culture=neutral, PublicKeyToken=5f548726f7b6fad6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ExeRepository\DAQSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="DataStreams, Version=2.7.4265.18766, Culture=neutral, PublicKeyToken=5f548726f7b6fad6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ExeRepository\DataStreams.dll</HintPath>
+    </Reference>
+    <Reference Include="Imaging, Version=2.7.4265.18753, Culture=neutral, PublicKeyToken=5f548726f7b6fad6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ExeRepository\Imaging.dll</HintPath>
+    </Reference>
+    <Reference Include="MathExpression, Version=2.7.4220.20739, Culture=neutral, PublicKeyToken=5f548726f7b6fad6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ExeRepository\MathExpression.dll</HintPath>
+    </Reference>
+    <Reference Include="NumericalTools, Version=2.7.4220.20738, Culture=neutral, PublicKeyToken=5f548726f7b6fad6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ExeRepository\NumericalTools.dll</HintPath>
+    </Reference>
+    <Reference Include="QuickMapper, Version=2.7.4265.18762, Culture=neutral, PublicKeyToken=5f548726f7b6fad6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ExeRepository\QuickMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Scanning, Version=2.7.4265.18756, Culture=neutral, PublicKeyToken=5f548726f7b6fad6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ExeRepository\Scanning.dll</HintPath>
+    </Reference>
+    <Reference Include="SySalCore, Version=2.7.4220.20734, Culture=neutral, PublicKeyToken=5f548726f7b6fad6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ExeRepository\SySalCore.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Tracking, Version=2.7.4265.18754, Culture=neutral, PublicKeyToken=5f548726f7b6fad6, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ExeRepository\Tracking.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

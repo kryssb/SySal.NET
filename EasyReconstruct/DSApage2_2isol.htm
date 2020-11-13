@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+ <head>
+    <title>Decay Search Step #1</title>
+    <MYSTYLE />
+ </head>
+ <body>
+  <h1>Decay Search Step #2.4</h1>
+  <h2>Extra-track search for isolated muons and hadrons (Step 2.4 of the reference document)</h2>  
+  <div class="doforme"><table border="1" style="border-color:navy;"><tr><td align="right"><a href="?do=IsolatedTrackEventExtraTrackSearch"><font color="red">Do&nbsp;for&nbsp;me</font></a></td></tr></table></div>
+  <div>
+  <b>Notice: this step applies to 1&mu; and 0&mu; events with isolated muon or hadron; if this is not your case, go <a href="DSApage1_2.htm">back</a></b><br />
+  Apply the following steps to search for partners of the isolated track:
+      <ol>
+          <li>Select "Tracks" on the main panel </li>
+          <li>Write "3" in the "Min Segments" edit box </li>
+          <li>Browse the Main Vertex and go to the "Neighborhood" tab </li>
+          <li>Click "Quick Upstream Parents" </li>
+          <li>Click "Quick Downstream Decays" </li>
+          <li><i>Optional</i>: the "quick" selection implements cuts that are looser than those used in the official procedure; however, you can tighten them after first survey by tuning <b>Radius</b> and <b>DeltaZ</b> </li>
+      </ol>
+  For each new track that has been displayed, apply the following steps to validate/discard it:
+      <ol>
+          <li>Open the TrackBrowser for the track. </li>
+          <li>Go to the "Neighborhood" tab. </li>
+          <li>Check "Upstream" both for "End" and "Direction". </li>
+          <li>Ensure that <b>Opening</b>=0.05, <b>Radius</b>=100.0, <b>DeltaSlope</b>=0.05, <b>
+              DeltaZ</b>=100000.0, <b>Max Misses</b>=3. </li>
+          <li>Click on "Scanback/Scanforth": this performs "Virtual Scanback". </li>
+          <li>If only one segment appears, then the track stops there; if more segments appear, accept the request to include the segment to the track, and then look carefully at them (going to the "Segments" tab) to 
+   determine whether they are really part of the track or not; this step saves manual checks at the microscope. If the track extends more than 3 plates upstream of the vertex, it is not to be checked any more. If it has an upstream vertex, 
+   open the VertexBrowser for that vertex and click on "Kill" on the "General" tab. Repeat for the next track (you can use the "Highlight" function to keep memory of checked tracks). </li>
+          <li>Go to the "Feedback" tab and provisionally add the track to feedback. </li>
+          <li>If the additional track has enough segments, EasyReconstruct will automatically compute the RMS&delta;&theta;<sub>transv</sub> and RMS&delta;&theta;<sub>long</sub>: go to the "General" tab to look at them. 
+   If either RMS exceeds 0.020, go to the "Feedback" tab and mark the track as "Low Momentum" in the <b>Decay Search</b> dropdown list; such tracks are not to be checked any more. </li>
+          <li>If the track survives all these filters, it is to be visually inspected to check it is not an artifact of reconstruction. Go to the "Projection" tab and append segment search lines to the file for manual checks; 
+   it is recommended to check the track at least in the most upstream plate where it has been found, and in the other upstream plates, up to one or two plates before the vertex. </li>
+      </ol>
+      You may face three cases:
+      <ol>
+          <li>No new track added.</li>
+          <li>Another isolated track is found. In this case, <a href="DSApage2_1isol.htm">apply the parent search for the isolated track</a>.</li>
+          <li>The new track(s) make(s) a vertex-like topology with the isolated muon or hadron:
+              in this case, go to the main panel and create a new Vertex Fit; attach the tracks
+              and convert the fit to a vertex; include this vertex to the feedback and flag it
+              as primary ("Feedback" tab of the VertexBrowser); then <a href="DSApage1_1.htm">restart
+                  the procedure</a>. </li>
+      </ol>
+      <b>Notice that the output file is always appended and never overwritten.</b><br />  
+  <a href="DSApage1_2.htm">Previous</a>&nbsp;<a href="DSApage2_3isol.htm?chk=CheckPrimaryVertexSet">Next</a>
+  </div>
+ </body>
+</html>

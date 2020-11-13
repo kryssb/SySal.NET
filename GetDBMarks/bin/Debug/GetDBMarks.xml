@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GetDBMarks</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Executables.GetDBMarks.Exe">
+            <summary>
+            GetDBMarks - Command line tool to read mark sets from the DB in a format that can be used for scanning.
+            </summary>
+            <remarks>
+            <para>Usage: <c>GetDBMarks.exe &lt;brick id&gt; &lt;plate id&gt; &lt;type-or-id&gt;</c></para>
+            <para><c>type</c> can be either <c>nominal</c> or <c>calibrated</c>. The explicit Id of the calibration can be given as an alternative.</para>
+            </remarks>
+        </member>
+        <member name="M:SySal.Executables.GetDBMarks.Exe.Main(System.String[])">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+    </members>
+</doc>

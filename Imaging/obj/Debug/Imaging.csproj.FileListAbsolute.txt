@@ -1,0 +1,10 @@
+/home/kryss/Documenti/SySal/Imaging/bin/Debug/Imaging.dll
+/home/kryss/Documenti/SySal/Imaging/bin/Debug/Imaging.pdb
+/home/kryss/Documenti/SySal/Imaging/bin/Debug/Imaging.xml
+/home/kryss/Documenti/SySal/Imaging/bin/Debug/SySalCore.dll
+/home/kryss/Documenti/SySal/Imaging/bin/Debug/SySalCore.pdb
+/home/kryss/Documenti/SySal/Imaging/bin/Debug/SySalCore.xml
+/home/kryss/Documenti/SySal/Imaging/obj/Debug/Imaging.csprojAssemblyReference.cache
+/home/kryss/Documenti/SySal/Imaging/obj/Debug/Imaging.csproj.CopyComplete
+/home/kryss/Documenti/SySal/Imaging/obj/Debug/Imaging.dll
+/home/kryss/Documenti/SySal/Imaging/obj/Debug/Imaging.pdb

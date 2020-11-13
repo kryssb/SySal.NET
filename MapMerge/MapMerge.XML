@@ -1,0 +1,290 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MapMerge</name>
+    </assembly>
+    <members>
+        <member name="F:SySal.Processing.MapMerge.EditConfigForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.MapMerge.EditConfigForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SySal.Processing.MapMerge.EditConfigForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Processing.MapMerge.Configuration">
+            <summary>
+            Configuration of a map-merging object.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.MapMerge.Configuration.PosTol">
+            <summary>
+            Position tolerance for merging.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.MapMerge.Configuration.SlopeTol">
+            <summary>
+            Slope tolerance for merging.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.MapMerge.Configuration.MapSize">
+            <summary>
+            X-Y size of the map.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.MapMerge.Configuration.MaxPosOffset">
+            <summary>
+            Maximum position offset.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.MapMerge.Configuration.MinMatches">
+            <summary>
+            Minimum number of matching tracks.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.MapMerge.Configuration.FavorSpeedOverAccuracy">
+            <summary>
+            Set to <c>true</c> to use partial statistics in mapping, <c>false</c> otherwise.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.MapMerge.Configuration.#ctor(System.String)">
+            <summary>
+            Creates a new configuration with the specified name.
+            </summary>
+            <param name="name">the name to be assigned.</param>
+        </member>
+        <member name="M:SySal.Processing.MapMerge.Configuration.#ctor">
+            <summary>
+            Creates a new configuration with an empty name.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.MapMerge.Configuration.Clone">
+            <summary>
+            Copies the configuration.
+            </summary>
+            <returns>the new configuration.</returns>
+        </member>
+        <member name="T:SySal.Processing.MapMerge.MapResult">
+            <summary>
+            Result of a mapping operation.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.MapMerge.MapResult.Matches">
+            <summary>
+            Number of matching track pairs.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.MapMerge.MapResult.DeltaPos">
+            <summary>
+            Position difference (average).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.MapMerge.MapResult.DeltaPosRMS">
+            <summary>
+            RMS of position differences.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.MapMerge.MapResult.DeltaSlope">
+            <summary>
+            Slope difference (average).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.MapMerge.MapResult.DeltaSlopeRMS">
+            <summary>
+            RMS of slope difference.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.MapMerge.MapResult.Valid">
+            <summary>
+            <c>true</c> if the mapping procedure succeeded, <c>false</c> otherwise.
+            </summary>
+        </member>
+        <member name="T:SySal.Processing.MapMerge.MapSide">
+            <summary>
+            Plate side to be used for mapping.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.MapMerge.MapSide.Base">
+            <summary>
+            Use base tracks.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.MapMerge.MapSide.Top">
+            <summary>
+            Use microtracks from top side.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.MapMerge.MapSide.Bottom">
+            <summary>
+            Use microtracks from bottom side.
+            </summary>    
+        </member>
+        <member name="T:SySal.Processing.MapMerge.MapManager">
+            <summary>
+            Manages track maps.
+            </summary>
+        </member>
+        <member name="T:SySal.Processing.MapMerge.MapManager.dMapFilter">
+            <summary>
+            Generic map filter. 
+            </summary>
+            <param name="t">the track to be checked.</param>
+            <returns><c>true</c> if the track is to be kept, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:SySal.Processing.MapMerge.MapManager.ExtractMap(System.Object,SySal.Processing.MapMerge.MapSide,SySal.Processing.MapMerge.MapManager.dMapFilter,System.Boolean)">
+            <summary>
+            Extracts a track map from the data.
+            </summary>
+            <param name="data">the input data; can be an array of microtracks, a linked zone or a TotalScan volume.</param>
+            <param name="side">the side to be used.</param>
+            <param name="flt">the track filter; leave <c>null</c> to skip filtering.</param>
+            <param name="useoriginal">if <c>true</c>, the original (anti-transformed) tracks are used; ignored if the input data is other than a TotalScan volume.</param>
+            <returns>the subset of tracks to be used for mapping.</returns>        
+        </member>
+        <member name="M:SySal.Processing.MapMerge.MapManager.ExtractMap(System.Object,SySal.Processing.MapMerge.MapSide,SySal.BasicTypes.Rectangle,SySal.Processing.MapMerge.MapManager.dMapFilter,System.Boolean)">
+            <summary>
+            Extracts a track map from the data.
+            </summary>
+            <param name="data">the input data; can be an array of microtracks, a linked zone or a TotalScan volume.</param>
+            <param name="side">the side to be used.</param>
+            <param name="r">the rectangle that sets the bounds for the track map to be extracted.</param>
+            <param name="flt">the track filter; leave <c>null</c> to skip filtering.</param>
+            <param name="useoriginal">if <c>true</c>, the original (anti-transformed) tracks are used; ignored if the input data is other than a TotalScan volume.</param>
+            <returns>the subset of tracks to be used for mapping.</returns>
+        </member>
+        <member name="T:SySal.Processing.MapMerge.TransformFitter">
+            <summary>
+            Works out parameters for 2D transformation from mapping data.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.MapMerge.TransformFitter.FindTranslation(System.Double[0:,0:],System.Double[0:,0:])">
+            <summary>
+            Computes the transformation parameters for a translation.
+            </summary>
+            <param name="xypairs">the set of x,y pairs where displacements are known.</param>
+            <param name="dxdypairs">the set of deltax,deltay pairs measured.</param>
+            <returns>the transformation parameters.</returns>
+        </member>
+        <member name="M:SySal.Processing.MapMerge.TransformFitter.FindRototranslation(System.Double[0:,0:],System.Double[0:,0:])">
+            <summary>
+            Computes the transformation parameters for a rototranslation with expansion.
+            </summary>
+            <param name="xypairs">the set of x,y pairs where displacements are known.</param>
+            <param name="dxdypairs">the set of deltax,deltay pairs measured.</param>
+            <returns>the transformation parameters.</returns>
+        </member>
+        <member name="M:SySal.Processing.MapMerge.TransformFitter.FindAffineTransformation(System.Double[0:,0:],System.Double[0:,0:])">
+            <summary>
+            Computes the transformation parameters for a full affine transformation.
+            </summary>
+            <param name="xypairs">the set of x,y pairs where displacements are known.</param>
+            <param name="dxdypairs">the set of deltax,deltay pairs measured.</param>
+            <returns>the transformation parameters.</returns>
+        </member>
+        <member name="T:SySal.Processing.MapMerge.MapMerger">
+            <summary>
+            Map Merger.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.MapMerge.MapMerger.ToString">
+            <summary>
+            Retrieves the class name.
+            </summary>
+            <returns>the class type.</returns>
+        </member>
+        <member name="M:SySal.Processing.MapMerge.MapMerger.#ctor">
+            <summary>
+            Builds a new Map Merger object.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.MapMerge.MapMerger.m_Config">
+            <summary>
+            Internal configuration.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.MapMerge.MapMerger.m_QM">
+            <summary>
+            Internal QuickMapper.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.MapMerge.MapMerger.m_Name">
+            <summary>
+            Member field on which the Name property relies.
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.MapMerge.MapMerger.Name">
+            <summary>
+            The name of the Map Merger.
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.MapMerge.MapMerger.Config">
+            <summary>
+            Gets/sets the object configuration.
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.MapMerge.MapMerger.Connections">
+            <summary>
+            List of connections. It is always empty for MapMerge.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.MapMerge.MapMerger.EditConfiguration(SySal.Management.Configuration@)">
+            <summary>
+            GUI editor to configure the algorithm parameters.
+            </summary>
+            <param name="c">the configuration to be edited.</param>
+            <returns><c>true</c> if the configuration is accepted, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="P:SySal.Processing.MapMerge.MapMerger.MonitorEnabled">
+            <summary>
+            Gets/sets the monitor.
+            </summary>
+            <remarks>Only <c>false</c> is a persistent status.</remarks>
+        </member>
+        <member name="M:SySal.Processing.MapMerge.MapMerger.Map(SySal.Tracking.MIPEmulsionTrackInfo[],SySal.Tracking.MIPEmulsionTrackInfo[][])">
+            <summary>
+            Performs multiple matching.
+            </summary>
+            <param name="refmap">the reference map.</param>
+            <param name="mmaps">the list of track maps to be merged.</param>
+            <returns>the result of pattern matching with each track pattern.</returns>
+        </member>
+        <member name="M:SySal.Processing.MapMerge.MapMerger.MapTransform(SySal.Tracking.MIPEmulsionTrackInfo[],SySal.Tracking.MIPEmulsionTrackInfo[],SySal.Processing.MapMerge.MapManager.dMapFilter,System.IO.TextWriter)">
+            <summary>
+            Maps a pattern of tracks onto another one.
+            </summary>
+            <param name="refpattern">the reference pattern.</param>
+            <param name="mappattern">the pattern to be mapped.</param>
+            <param name="flt">the filter function for mapping.</param>
+            <param name="logstrw">the output stream where logging information is written; set to <c>null</c> to disable logging.</param>
+            <returns>the transformation obtained.</returns>
+        </member>
+        <member name="M:SySal.Processing.MapMerge.MapMerger.AddToLayer(SySal.TotalScan.Flexi.Layer,SySal.TotalScan.Flexi.Segment[],SySal.DAQSystem.Scanning.IntercalibrationInfo)">
+            <summary>
+            Adds segments to an existing layer with a specified mapping transformation.
+            </summary>
+            <param name="lay">the layer that is to receive the new segments.</param>
+            <param name="addsegs">the segments to be added.</param>
+            <param name="calinfo">the mapping transformation to be used.</param>
+        </member>
+        <member name="M:SySal.Processing.MapMerge.MapMerger.AddToVolume(SySal.TotalScan.Flexi.Volume,SySal.TotalScan.Flexi.Volume,SySal.TotalScan.Flexi.DataSet,SySal.TotalScan.Flexi.DataSet,SySal.Processing.MapMerge.MapManager.dMapFilter,System.IO.TextWriter)">
+            <summary>
+            Adds segments, tracks and vertices of a volume to another one.
+            </summary>
+            <param name="refvol">the volume to be augmented with the content of the other.</param>
+            <param name="addvol">segments, tracks and vertices from this volume are added to the other.</param>
+            <param name="ds">the dataset that should be assigned to imported tracks.</param>
+            <param name="fds">the dataset that should be imported; if this parameter is <c>null</c>, all datasets are imported.</param>
+            <param name="flt">track mapping filter function.</param>
+            <param name="logstrw">the stream where logging information is to be dumped; set to <c>null</c> to disable logging.</param>
+        </member>
+    </members>
+</doc>

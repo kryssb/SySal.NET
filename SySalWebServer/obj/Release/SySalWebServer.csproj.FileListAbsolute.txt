@@ -1,0 +1,3 @@
+/home/kryss/Documenti/SySal/SySalWebServer/obj/Release/SySalWebServer.dll
+/home/kryss/Documenti/SySal/SySalWebServer/obj/Release/SySalWebServer.csprojAssemblyReference.cache
+/home/kryss/Documenti/SySal/SySalWebServer/bin/Release/SySalWebServer.dll

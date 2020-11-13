@@ -1,0 +1,1417 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OperaBatchManager_Win</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.DAQSystem.IProcessEventNotifier">
+            <summary>
+            IProcessEventNotifier defines methods for process monitoring.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.IProcessEventNotifier.ProcessStart(SySal.DAQSystem.BatchManager.HostEnv,System.String,System.String,System.String)">
+            <summary>
+            Signals process startup.
+            </summary>
+            <param name="h">the HostEnv that hosts the process operation.</param>
+            <param name="description">description of the process operation driver.</param>
+            <param name="machinename">the name of the machine on which the process operation runs.</param>
+            <param name="notes">notes to the process operation.</param>
+        </member>
+        <member name="M:SySal.DAQSystem.IProcessEventNotifier.ProcessEnd(System.Int64)">
+            <summary>
+            Signals process termination.
+            </summary>
+            <param name="id">the id of the process operation that is terminated.</param>
+        </member>
+        <member name="T:SySal.DAQSystem.BatchManager">
+            <summary>
+            Batch manager implementation for OperaBatchManager_Win.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.BatchManager.m_EventLog">
+            <summary>
+            The event logger.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.OnDriverExit(SySal.DAQSystem.BatchManager.HostEnv)">
+            <summary>
+            Called when a process in the task list exits.
+            </summary>
+            <param name="h">the HostEnv of the process operation that completed.</param>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.LockedScanSrv(System.Int64)">
+            <summary>
+            Retrieves a ScanServer that is not used by any HostEnv. This actually realizes an implicit lock.
+            An exception is thrown if the ScanServer is locked or the machine is not a ScanServer.
+            </summary>
+            <param name="machineid">the id of the machine that should be used as ScanServer</param>
+            <returns>the ScanServer for the specified machine.</returns>
+        </member>
+        <member name="T:SySal.DAQSystem.BatchManager.HostEnv">
+            <summary>
+            Host environment for a process driver.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.HostEnv.InitializeLifetimeService">
+            <summary>
+            Initializes the Lifetime Service.
+            </summary>
+            <returns>null to obtain an everlasting HostEnv.</returns>
+        </member>
+        <member name="F:SySal.DAQSystem.BatchManager.HostEnv.InterruptNotificationThread">
+            <summary>
+            Thread that routes interrupt notifications.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.BatchManager.HostEnv.StopEvent">
+            <summary>
+            Event that signals a stop.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.BatchManager.HostEnv.CF_thread">
+            <summary>
+            Thread that handles GUI windows.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.BatchManager.HostEnv.FinalStatus">
+            <summary>
+            Completion status of the process.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.BatchManager.HostEnv.CompletionEvent">
+            <summary>
+            Event that marks completion of the task.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.BatchManager.HostEnv.ScanServerFreeEvent">
+            <summary>
+            Event that signals freeing of microscope.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.BatchManager.HostEnv.CF">
+            <summary>
+            The console associated to the process operation.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.BatchManager.HostEnv.Domain">
+            <summary>
+            The domain in which the process operation runs.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.BatchManager.HostEnv.m_Parent">
+            <summary>
+            The HostEnv of the parent process operation, if any.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.BatchManager.HostEnv.m_Token">
+            <summary>
+            The token associated to the process operation.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.BatchManager.HostEnv.Token">
+            <summary>
+            Gets the Computing Infrastructure security token associated to this process operation.
+            </summary>			
+        </member>
+        <member name="F:SySal.DAQSystem.BatchManager.HostEnv.m_StartupInfo">
+            <summary>
+            Cached information about task startup.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.BatchManager.HostEnv.m_StartupFile">
+            <summary>
+            Startup file.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.BatchManager.HostEnv.m_ProgressInfo">
+            <summary>
+            Cached information about task progress.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.HostEnv.Finalize">
+            <summary>
+            Destroys the HostEnv after stopping the associated threads.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.HostEnv.LoadProgress">
+            <summary>
+            Loads the progress information for this task.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.HostEnv.LoadInterruptQueue">
+            <summary>
+            Loads the interrupt queue.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.HostEnv.WriteProgress">
+            <summary>
+            Writes progress info to the progress file.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.HostEnv.WriteInterruptQueue">
+            <summary>
+            Writes interrupt queue to the interrupt file.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.HostEnv.WriteStartupFile">
+            <summary>
+            Writes startup info to the startup file.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.HostEnv.DeleteFiles">
+            <summary>
+            Deletes process files.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.BatchManager.HostEnv.Machines">
+            <summary>
+            The machine ids handled by this BatchManager.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.BatchManager.HostEnv.Operations">
+            <summary>
+            The ids of the process operations currently handled by this BatchManager.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.HostEnv.GetOperationStartupInfo(System.Int64)">
+            <summary>
+            Retrieves the startup information (except password and alias credentials) for the specified process operation.
+            </summary>
+            <param name="id">id of the process operation for which startup information is required.</param>
+            <returns>the startup information of the process operation.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.HostEnv.GetProgressInfo(System.Int64)">
+            <summary>
+            Retrieves the progress information for the specified process operation.
+            </summary>
+            <param name="id">id of the process operation for which progress information is required.</param>
+            <returns>the progress information of the process operation.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.HostEnv.Start(SySal.DAQSystem.Drivers.TaskStartupInfo)">
+            <summary>
+            Starts a new process operation, which will automatically be a child operation of the current one.
+            </summary>
+            <param name="startupinfo">startup information for the process operation.</param>		
+            <returns>the process operation id that has been allocated to this process operation.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.HostEnv.Start(SySal.DAQSystem.Drivers.TaskStartupInfo,System.Object)">
+            <summary>
+            Starts a new process operation, which will automatically be a child operation of the current one, adding fast input. Prepared input may be used to avoid querying the DB, but the callee retains complete responsibility about the correctness of the prepared input.
+            </summary>
+            <param name="startupinfo">startup information for the process operation.</param>
+            <param name="fastinput">the fast input for the process operation. Correctness and consistency of this input cannot be guaranteed.</param>			
+            <returns>the process operation id that has been allocated to this process operation.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.HostEnv.Wait(System.Int64)">
+            <summary>
+            Stops execution of the current driver until the specified process operation returns.
+            </summary>
+            <param name="procopid">the Id of the process operation whose completion is being awaited.</param>
+            <returns>the status of the operation after completion.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.HostEnv.WaitForOpOrScanServer(System.Int64)">
+            <summary>
+            Stops execution of the current driver until the specified process operation returns or frees its scan server.
+            </summary>
+            <param name="procopid">the Id of the process operation whose completion is being awaited.</param>
+            <returns>the status of the operation after completion.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.HostEnv.Pause(System.Int64)">
+            <summary>
+            Pauses a process operation using the credentials of the current process operation.
+            </summary>
+            <param name="id">the id of the process operation to be paused.</param>
+            <returns>the status of the process operation.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.HostEnv.Resume(System.Int64)">
+            <summary>
+            Resumes a paused process operation using the credentials of the current process operation..
+            </summary>
+            <param name="id">the id of the process operation to be resumed.</param>
+            <returns>the status of the process operation.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.HostEnv.Abort(System.Int64)">
+            <summary>
+            Aborts a process operation using the credentials of the current process operation..
+            </summary>
+            <param name="id">the id of the process operation to be aborted.</param>
+            <returns>the status of the process operation.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.HostEnv.GetStatus(System.Int64)">
+            <summary>
+            Retrieves the status of the specified process operation.
+            </summary>
+            <param name="id">the id of the process operation for which execution information is required.</param>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.HostEnv.GetSummary(System.Int64)">
+            <summary>
+            Generates a summary of the specified process operation.
+            </summary>
+            <param name="id">the id of the process operation for which the summary is required.</param>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.HostEnv.Interrupt(System.Int64,System.String)">
+            <summary>
+            Adds an interrupt to the interrupt list of the process using the credentials of the current process operation. Interrupt data can be passed.
+            </summary>
+            <param name="id">the id of the process to be interrupted.</param>
+            <param name="interruptdata">interrupt data to be passed to the process; their format and content depend on the specific executable driving the process.</param>
+        </member>
+        <member name="P:SySal.DAQSystem.BatchManager.HostEnv.StartupInfo">
+            <summary>
+            Startup information for the process.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.BatchManager.HostEnv.FastInput">
+            <summary>
+            Reads the prepared input for this process operation. Consistency with the general logic (in particular, with the OperaDB) is not guaranteed: it depends on the caller, but the responsibility to accept the prepared input depends on the callee.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.BatchManager.HostEnv.FastOutput">
+            <summary>
+            Sets the prepared output for this process operation. Consistency with the general logic (in particular, with the OperaDB) is not guaranteed: it depends on the callee, but the responsibility to accept the prepared output depends on the caller.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.BatchManager.HostEnv.FastResult">
+            <summary>
+            Gets the prepared output from the child operation of this process operation. Consistency with the general logic (in particular, with the OperaDB) is not guaranteed: it depends on the callee, but the responsibility to accept the prepared output depends on the caller.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.BatchManager.HostEnv.m_ProgramSettings">
+            <summary>
+            Cached copy of program settings.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.BatchManager.HostEnv.ProgramSettings">
+            <summary>
+            Program settings for the process operation.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.BatchManager.HostEnv.ProgressInfo">
+            <summary>
+            Progress information about the process operation.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.BatchManager.HostEnv.Progress">
+            <summary>
+            Provides quick write access to the Progress field of the progress info.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.BatchManager.HostEnv.CustomInfo">
+            <summary>
+            Provides quick write access to the CustomInfo field of the progress info.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.BatchManager.HostEnv.Complete">
+            <summary>
+            Provides quick write access to the Complete field of the progress info.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.BatchManager.HostEnv.LastProcessedInterruptId">
+            <summary>
+            Provides quick write access to the LastProcessedInterruptId of the progress info.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.BatchManager.HostEnv.ExitException">
+            <summary>
+            Provides quick write access to the ExitException of the progress info.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.BatchManager.HostEnv.NextInterrupt">
+            <summary>
+            Gets the next interrupt for the specified process.
+            </summary>
+            <returns>the next unprocessed interrupt. Null is returned if no unprocessed interrupt exists.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.HostEnv.Write(System.String)">
+            <summary>
+            Writes text to the host environment logger.
+            </summary>
+            <param name="text">the text to be written.</param>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.HostEnv.WriteLine(System.String)">
+            <summary>
+            Writes text to the host environment logger and advances to the next line.
+            </summary>
+            <param name="text">the text to be written.</param>
+        </member>
+        <member name="P:SySal.DAQSystem.BatchManager.HostEnv.InterruptNotifier">
+            <summary>
+            Registers an interrupt notifier interface for the driver process.
+            Upon registration the driver process should be sent notifications about the first interrupt, if any.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.BatchManager.HostEnv.DataProcSrv">
+            <summary>
+            Gets the DataProcessingServer (usually hosted by the BatchManager) that serves process running on the current BatchManager.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.BatchManager.HostEnv.ScanSrv">
+            <summary>
+            Gets the ScanServer associated to this process operation. 
+            The ScanServer is locked when the process operation starts and is in a running state. No other process referring to the same ScanServer can be running at the same moment.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.BatchManager.m_TaskList">
+            <summary>
+            The list of tasks currently being executed.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.BatchManager.DBConn">
+            <summary>
+            The unique DB connection.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.#ctor(System.Diagnostics.EventLog,SySal.DAQSystem.IProcessEventNotifier)">
+            <summary>
+            Creates a new BatchManager.
+            </summary>
+            <param name="eventlog">the event logger to use.</param>
+            <param name="pev">the interface to be called on process events.</param>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.#ctor">
+            <summary>
+            Creates a new BatchManager. This is only for conformance to the BatchManagerScheme.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.InitializeLifetimeService">
+            <summary>
+            Initializes the Lifetime Service.
+            </summary>
+            <returns>the lifetime service object or null.</returns>
+        </member>
+        <member name="F:SySal.DAQSystem.BatchManager.MachineIds">
+            <summary>
+            The internal member on which Machines relies.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.BatchManager.Machines">
+            <summary>
+            The machine ids handled by this BatchManager.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.BatchManager.Operations">
+            <summary>
+            The ids of the process operations currently handled by this BatchManager.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.GetOperationStartupInfo(System.Int64)">
+            <summary>
+            Retrieves the startup information (except password and alias credentials) for the specified process operation.
+            </summary>
+            <param name="id">id of the process operation for which startup information is required.</param>
+            <returns>the startup information of the process operation. If the process operation is complete or unknown, returns null.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.GetTaskInfo(System.Int64)">
+            <summary>
+            Retrieves the task information for the specified process operation.
+            </summary>
+            <param name="id">id of the process operation for which task information is required.</param>
+            <returns>the task information of the process operation. If the process operation is complete or unknown, returns null.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.GetProgressInfo(System.Int64)">
+            <summary>
+            Retrieves the progress information for the specified process operation.
+            </summary>
+            <param name="id">id of the process operation for which progress information is required.</param>
+            <returns>the progress information of the process operation. If the process operation is complete or unknown, returns null.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.Start(System.Int64,SySal.DAQSystem.Drivers.TaskStartupInfo)">
+            <summary>
+            Starts a new process operation.
+            </summary>
+            <param name="parentid">id of the parent process operation; if zero or negative, it is treated as NULL.</param>
+            <param name="startupinfo">startup information for the process operation.</param>		
+            <returns>the process operation id that has been allocated to this process operation.</returns>		
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.Start(System.Int64,SySal.DAQSystem.Drivers.TaskStartupInfo,System.Object,SySal.DAQSystem.BatchManager.HostEnv)">
+            <summary>
+            Starts a new process operation, including possible fast input.
+            </summary>
+            <param name="parentid">id of the parent process operation; if zero or negative, it is treated as NULL.</param>
+            <param name="startupinfo">startup information for the process operation.</param>		
+            <param name="fastinput">the fast input object.</param>
+            <param name="parent">the parent process operation, if any.</param>
+            <returns>the process operation id that has been allocated to this process operation.</returns>		
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.Pause(System.Int64,System.String,System.String)">
+            <summary>
+            Pauses a process operation.
+            </summary>
+            <param name="id">the id of the process operation to be paused.</param>
+            <param name="username">username to pause the process operation; must match the one used to start the process operation.</param>
+            <param name="password">password to pause the process operation.</param>
+            <returns>the status of the process operation.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.Reconfig(System.Int64)">
+            <summary>
+            Internal method to reload the configuration for a process operation.
+            </summary>
+            <param name="id">the process operation to be reconfigured.</param>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.Pause(System.Int64,System.String)">
+            <summary>
+            Internal method to pause an operation from the Windows interface or from a HostEnv.
+            </summary>
+            <param name="id">the process operation to be paused.</param>
+            <param name="token">the token of the calling process operation.</param>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.Resume(System.Int64,System.String,System.String)">
+            <summary>
+            Resumes a paused process operation.
+            </summary>
+            <param name="id">the id of the process operation to be resumed.</param>
+            <param name="username">username to resume the process operation; must match the one used to start the process operation.</param>
+            <param name="password">password to resume the process operation; must match the one used to start the process operation.</param>
+            <returns>the status of the process operation.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.Resume(System.Int64,System.String)">
+            <summary>
+            Internal method to resume an operation from the Windows interface or from a HostEnv.
+            </summary>
+            <param name="id">the process operation to be resumed.</param>
+            <param name="token">the token of the calling process operation.</param>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.Show(System.Int64)">
+            <summary>
+            Shows a hidden console form.
+            </summary>
+            <param name="id">the id of the process whose console form must be shown.</param>		
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.Abort(System.Int64,System.String,System.String)">
+            <summary>
+            Aborts a process operation.
+            </summary>
+            <param name="id">the id of the process operation to be aborted.</param>
+            <param name="username">username to abort the process operation; must match the one used to start the process operation.</param>
+            <param name="password">password to abort the process operation; must match the one used to start the process operation.</param>
+            <returns>the status of the process operation.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.Abort(System.Int64,System.String)">
+            <summary>
+            Internal method to abort an operation from the Windows interface or from a HostEnv.
+            </summary>
+            <param name="id">the process operation to be aborted..</param>
+            <param name="token">the token of the calling process operation.</param>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.GetStatus(System.Int64)">
+            <summary>
+            Retrieves the status of the specified process operation.
+            </summary>
+            <param name="id">the id of the process operation for which execution information is required.</param>
+        </member>
+        <member name="P:SySal.DAQSystem.BatchManager.BusyMachines">
+            <summary>
+            The list of busy machines.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.GetSummary(System.Int64)">
+            <summary>
+            Generates a summary of the specified process operation.
+            </summary>
+            <param name="id">the id of the process operation for which the summary is required.</param>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.TestComm(System.Int32)">
+            <summary>
+            Tests the communication with the BatchManager.
+            </summary>
+            <param name="commpar">communication parameter.</param>
+            <returns>2 * commpar - 1 if the BatchManager object and the communication are working properly.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.Interrupt(System.Int64,System.String,System.String,System.String)">
+            <summary>
+            Adds an interrupt to the interrupt list of the process. Interrupt data can be passed.
+            </summary>
+            <param name="id">the id of the process to be interrupted.</param>
+            <param name="username">username to interrupt the process operation; must match the one used to start the process operation.</param>
+            <param name="password">password to interrupt the process operation; must match the one used to start the process operation.</param>
+            <param name="interruptdata">interrupt data to be passed to the process; their format and content depend on the specific executable driving the process.</param>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.Interrupt(System.Int64,System.String,System.String)">
+            <summary>
+            Internal method to interrupt an operation from the Windows interface or from a HostEnv.
+            </summary>
+            <param name="id">the process operation to be interrupt.</param>
+            <param name="intdata">the interrupt data associated to the interrupt.</param>
+            <param name="token">the token of the calling process operation.</param>
+        </member>
+        <member name="M:SySal.DAQSystem.BatchManager.NextInterrupt(System.Int64)">
+            <summary>
+            Gets the next interrupt id for the specified process.
+            </summary>
+            <param name="id">the id of the process whose interrupt list is to be searched.</param>
+            <returns>the id of the next unprocessed interrupt.</returns>
+        </member>
+        <member name="T:SySal.DAQSystem.MyDataProcessingServer">
+            <summary>
+            Data Processing Server (Manager). 
+            </summary>
+            <remarks>
+            This class implements a DataProcessingServer cluster manager. The list of available worker DataProcessingServer machines is obtained from the DB.
+            </remarks>
+        </member>
+        <member name="P:SySal.DAQSystem.MyDataProcessingServer.ParallelJobs">
+            <summary>
+            The number of jobs that can be performed in parallel. 
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.MyDataProcessingServer.ExeBatch">
+            <summary>
+            A batch being executed.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.ExeBatch.Desc">
+            <summary>
+            Original description of the batch.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.ExeBatch.MappedDesc">
+            <summary>
+            Description of the batch being executed by the DataProcessingServer.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.ExeBatch.DPSW">
+            <summary>
+            DataProcessingServer that is handling the batch.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.m_ExeList">
+            <summary>
+            List of the batches being executed.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.m_ExeThread">
+            <summary>
+            Thread that controls execution on DataProcessingServers.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer.ExploreConnections">
+            <summary>
+            Checks each DataProcessingServer for connection.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer.MonitorBatches">
+            <summary>
+            Checks the execution status of all batches.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer.FeedDataProcessingServers">
+            <summary>
+            Schedules batches onto DataProcessingServers.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer.ExeThread">
+            <summary>
+            Execution method.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.m_DPSHandlers">
+            <summary>
+            The list of handlers of remote DataProcessingServers.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.MyDataProcessingServer.DataProcSrvHandler">
+            <summary>
+            Class that handles one remote Data Processing Server.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.DataProcSrvHandler.Rnd">
+            <summary>
+            Random generator. It's currently used to generate TestComm numbers.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.DataProcSrvHandler.m_Address">
+            <summary>
+            Network address of the DataProcessingServer machine.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.DataProcSrvHandler.IsAvailable">
+            <summary>
+            Tells whether the machine is available.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.DataProcSrvHandler.MachinePowerClass">
+            <summary>
+            Power class of the machine. This number is read upon first connection and subsequent reconnections, and then it's cached.
+            Quick variation of the DataProcessingServer side could result in an inconsistent value. In this case, it suffices to turn off the DataProcessingServer for a time twice as long as the reconnection interval, so the cache is flushed.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.DataProcSrvHandler.Srv">
+            <summary>
+            The DataProcessingServer that actually performs the batches.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.Terminate">
+            <summary>
+            Signals that all execution threads must terminate for server shutdown and must not respawn.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.MyDataProcessingServer.DataProcessingResult">
+            <summary>
+            Class holding the results of the processing of a batch.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.DataProcessingResult.Desc">
+            <summary>
+            Id of the batch.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.DataProcessingResult.X">
+            <summary>
+            Exception generated during the batch execution.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.DataProcessingResult.Processed">
+            <summary>
+            Tells whether the batch has been processed or is still awaiting execution.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.DataProcessingResult.ExpirationTime">
+            <summary>
+            Expiration time of this result.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer.DataProcessingResult.#ctor(SySal.DAQSystem.DataProcessingBatchDesc,System.Exception,System.TimeSpan)">
+            <summary>
+            Public constructor.
+            </summary>
+            <param name="desc">Descriptor of the batch.</param>
+            <param name="x">Resulting exception.</param>
+            <param name="resultlivetime">Time to live of the result.</param>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.m_Queue">
+            <summary>
+            The internal queue of batches to be executed.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.m_ResultList">
+            <summary>
+            The internal list of completed batches.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.m_ResultLiveTime">
+            <summary>
+            Time duration of each result in the result list.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer.EventLog">
+            <summary>
+            Event logger.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer.CleanResults">
+            <summary>
+            Cleaner method.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer.#ctor(System.Diagnostics.EventLog)">
+            <summary>
+            Creates a new data processing server.
+            </summary>
+            <param name="evlog">The system event log to write events to.</param>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer.RestartExeThread">
+            <summary>
+            Restarts the execution thread if it is stopped.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.MyDataProcessingServer.IsWillingToProcess">
+            <summary>
+            Checks whether the machine is willing to accept new requests of batch data processing.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.MyDataProcessingServer.QueueLength">
+            <summary>
+            Gets the number of data processing batches to be executed.
+            Notice that in case of quick transitions, a subsequent Queue query might return an inconsistent result.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.MyDataProcessingServer.Queue">
+            <summary>
+            Gets the queue of data processing batches to be executed. 
+            Notice that in case of quick transitions, a subsequent QueueLength query might return an inconsistent result.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.MyDataProcessingServer.MachinePowerClass">
+            <summary>
+            The power class of the machine, computed as the highest value of machine power class presently supplied by the DataProcessingServer machines.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer.Remove(System.UInt64,System.String,System.String,System.String)">
+            <summary>
+            Draws a batch out ouf the queue or aborts it if it is already being executed.
+            A non-null token or a username/password pair must be supplied that matches the one with which the batch was started.
+            If the token is supplied, the username/password pair is ignored.
+            </summary>
+            <param name="id">identifier of the batch to be removed.</param>
+            <param name="token">the process token to be used.</param>
+            <param name="user">username of the user that started the batch. Ignored if <c>token</c> is non-null.</param>
+            <param name="password">password of the user that started the batch. Ignored if <c>token</c> is non-null.</param>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer.DoneWith(System.UInt64)">
+            <summary>
+            Checks for execution completion.
+            </summary>
+            <param name="id">the id of the batch.</param>
+            <returns>true if the batch has been completed, false if it is in progress.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer.Result(System.UInt64)">
+            <summary>
+            Gets the result for a batch.
+            </summary>
+            <param name="id">the id of the batch.</param>
+            <returns>the batch descriptor. It is modified to reflect the batch output. An exception is thrown if the batch terminated with an exception.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer.Enqueue(SySal.DAQSystem.DataProcessingBatchDesc)">
+            <summary>
+            Enqueues a batch without waiting for its execution.
+            </summary>
+            <param name="desc">the descriptor of the batch. If the batch is rejected because another batch in the queue already has the same id, the Id member is set to 0.</param>
+            <returns>true if the batch has been accepted, false otherwise.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer.#ctor">
+            <summary>
+            Creates a new DataProcessingServer.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer.InitializeLifetimeService">
+            <summary>
+            Initializes the Lifetime Service.
+            </summary>
+            <returns>the lifetime service object or null.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer.TestComm(System.Int32)">
+            <summary>
+            Tests the communication with the DataProcessingServer.
+            </summary>
+            <param name="commpar">communication parameter.</param>
+            <returns>2 * commpar - 1 if the DataProcessingServer object and the communication are working properly.</returns>
+        </member>
+        <member name="P:SySal.DAQSystem.MyDataProcessingServer.SuggestId">
+            <summary>
+            Provides an Id for a new batch to be enqueued.
+            Batch Id clashing is a reason for rejection of well-formed batch descriptors.
+            Use of this property does not completely guarantee that the batch id does not clash with another Id in the queue, because another process could schedule another batch with the same Id.
+            However, the Ids generated by this property all come from the same sequence and are very likely not to be duplicated within a reasonable amount of time.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.MyDataProcessingServer2">
+            <summary>
+            Data Processing Server (Manager). 
+            </summary>
+            <remarks>
+            This class implements a DataProcessingServer cluster manager. The list of available worker DataProcessingServer machines is obtained from the DB.
+            </remarks>
+        </member>
+        <member name="P:SySal.DAQSystem.MyDataProcessingServer2.ParallelJobs">
+            <summary>
+            The number of jobs that can be performed in parallel. 
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.MyDataProcessingServer2.DataProcessingResult">
+            <summary>
+            Class holding the results of the processing of a batch.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer2.DataProcessingResult.Desc">
+            <summary>
+            Id of the batch.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer2.DataProcessingResult.X">
+            <summary>
+            Exception generated during the batch execution.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer2.DataProcessingResult.Processed">
+            <summary>
+            Tells whether the batch has been processed or is still awaiting execution.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer2.DataProcessingResult.ExpirationTime">
+            <summary>
+            Expiration time of this result.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer2.DataProcessingResult.#ctor(SySal.DAQSystem.DataProcessingBatchDesc,System.Exception,System.TimeSpan)">
+            <summary>
+            Public constructor.
+            </summary>
+            <param name="desc">Descriptor of the batch.</param>
+            <param name="x">Resulting exception.</param>
+            <param name="resultlivetime">Time to live of the result.</param>
+        </member>
+        <member name="T:SySal.DAQSystem.MyDataProcessingServer2.ExeThread">
+            <summary>
+            A thread that handles a slave DPS.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer2.ExeThread.ServerName">
+            <summary>
+            DataProcessingServer that is handling the batch.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer2.ExeThread.Desc">
+            <summary>
+            Batch being executed.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer2.ExeThread.JobQueue">
+            <summary>
+            The queue of batches to be executed.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer2.ExeThread.ExeList">
+            <summary>
+            List of the batches being executed.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer2.ExeThread.ResultList">
+            <summary>
+            List of results.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer2.ExeThread.DataReady">
+            <summary>
+            Fires when the job queue is not empty.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer2.ExeThread.MachinePowerClass">
+            <summary>
+            Power class of the associated machine.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer2.ExeThread.XThread">
+            <summary>
+            The execution thread.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer2.ExeThread.#ctor(System.String,System.Collections.ArrayList,System.Collections.ArrayList,System.Threading.ManualResetEvent,System.Collections.ArrayList)">
+            <summary>
+            Builds a new execution thread.
+            </summary>
+            <param name="sname">the server this thread monitors.</param>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer2.ExeThread.Execute">
+            <summary>
+            The execution method, ran by the execution thread.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer2.m_Queue">
+            <summary>
+            The internal queue of batches to be executed.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer2.m_ExeList">
+            <summary>
+            The internal queue of batches being executed.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer2.m_ResultList">
+            <summary>
+            The internal list of completed batches.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer2.m_ExeThreads">
+            <summary>
+            Threads that handle the slave DPS.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer2.m_DataReady">
+            <summary>
+            Event firing when the execution queue is not empty.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.MyDataProcessingServer2.EventLog">
+            <summary>
+            Event logger.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer2.CleanResults">
+            <summary>
+            Cleaner method.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer2.#ctor(System.Diagnostics.EventLog)">
+            <summary>
+            Creates a new data processing server.
+            </summary>
+            <param name="evlog">The system event log to write events to.</param>
+        </member>
+        <member name="P:SySal.DAQSystem.MyDataProcessingServer2.IsWillingToProcess">
+            <summary>
+            Checks whether the machine is willing to accept new requests of batch data processing.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.MyDataProcessingServer2.QueueLength">
+            <summary>
+            Gets the number of data processing batches to be executed.
+            Notice that in case of quick transitions, a subsequent Queue query might return an inconsistent result.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.MyDataProcessingServer2.Queue">
+            <summary>
+            Gets the queue of data processing batches to be executed. 
+            Notice that in case of quick transitions, a subsequent QueueLength query might return an inconsistent result.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.MyDataProcessingServer2.MachinePowerClass">
+            <summary>
+            The power class of the machine, computed as the highest value of machine power class presently supplied by the DataProcessingServer machines.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer2.Remove(System.UInt64,System.String,System.String,System.String)">
+            <summary>
+            Removes a batch from the queue or aborts it if it is already being executed.
+            A non-null token or a username/password pair must be supplied that matches the one with which the batch was started.
+            If the token is supplied, the username/password pair is ignored.
+            </summary>
+            <param name="id">identifier of the batch to be removed.</param>
+            <param name="token">the process token to be used.</param>
+            <param name="user">username of the user that started the batch. Ignored if <c>token</c> is non-null.</param>
+            <param name="password">password of the user that started the batch. Ignored if <c>token</c> is non-null.</param>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer2.DoneWith(System.UInt64)">
+            <summary>
+            Checks for execution completion.
+            </summary>
+            <param name="id">the id of the batch.</param>
+            <returns>true if the batch has been completed, false if it is in progress.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer2.Result(System.UInt64)">
+            <summary>
+            Gets the result for a batch.
+            </summary>
+            <param name="id">the id of the batch.</param>
+            <returns>the batch descriptor. It is modified to reflect the batch output. An exception is thrown if the batch terminated with an exception.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer2.Enqueue(SySal.DAQSystem.DataProcessingBatchDesc)">
+            <summary>
+            Enqueues a batch without waiting for its execution.
+            </summary>
+            <param name="desc">the descriptor of the batch. If the batch is rejected because another batch in the queue already has the same id, the Id member is set to 0.</param>
+            <returns>true if the batch has been accepted, false otherwise.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer2.#ctor">
+            <summary>
+            Creates a new DataProcessingServer.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer2.InitializeLifetimeService">
+            <summary>
+            Initializes the Lifetime Service.
+            </summary>
+            <returns>the lifetime service object or null.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.MyDataProcessingServer2.TestComm(System.Int32)">
+            <summary>
+            Tests the communication with the DataProcessingServer.
+            </summary>
+            <param name="commpar">communication parameter.</param>
+            <returns>2 * commpar - 1 if the DataProcessingServer object and the communication are working properly.</returns>
+        </member>
+        <member name="P:SySal.DAQSystem.MyDataProcessingServer2.SuggestId">
+            <summary>
+            Provides an Id for a new batch to be enqueued.
+            Batch Id clashing is a reason for rejection of well-formed batch descriptors.
+            Use of this property does not completely guarantee that the batch id does not clash with another Id in the queue, because another process could schedule another batch with the same Id.
+            However, the Ids generated by this property all come from the same sequence and are very likely not to be duplicated within a reasonable amount of time.
+            </summary>
+        </member>
+        <member name="T:SySal.Services.OperaBatchManager_Win.ConsoleForm">
+            <summary>
+            ConsoleForm shows log information about an associated process operation.
+            </summary>
+            <remarks>
+            <para>Every implementation of BatchManager supports a log for process operations. OperaBatchManager_Win uses logger windows, a.k.a. ConsoleForm instances, to show a text format log of each process operation activity.</para>
+            <para>Normally, the ConsoleForm would be hidden when a process is paused, and closed when the process is completed or aborted.</para>
+            <para>Its data are available only as long as the OperaBatchManager itself is running, being lost on OperaBatchManager shutdown.</para>
+            <para>It is possible to save the results of the log: by specifying a proper file path to store the output, and checking the "Save on close" checkbox, the user directs the ConsoleForm to dump its content automatically to a file when it is closed.</para>
+            </remarks>
+        </member>
+        <member name="F:SySal.Services.OperaBatchManager_Win.ConsoleForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Services.OperaBatchManager_Win.ConsoleForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Services.OperaBatchManager_Win.ConsoleForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Services.OperaBatchManager_Win.InterruptForm">
+            <summary>
+            InterruptForm is used to specify a data-string for a new interrupt.
+            </summary>
+            <remarks>
+            <para>When the user is ready to send an interrupt to an operation, he/she selects the operation in the MainForm, and then clicks the Interrupt button. On doing so, the InterruptForm is opened, and interrupt data can be entered.</para>
+            <para>The format of the interrupt data string is completely free, as it depends exclusively on the driver executable that is to receive these data.</para>
+            <para>A null interrupt (interrupt with a null data-string) is of little use, although it may not be excluded that some driver uses such signals (e.g. for synchronization or similar tasks).</para>
+            <para>Refer to the documentation of the specific driver being interrupted for its supported interrupts and their syntax.</para>
+            </remarks>
+        </member>
+        <member name="F:SySal.Services.OperaBatchManager_Win.InterruptForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Services.OperaBatchManager_Win.InterruptForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Services.OperaBatchManager_Win.InterruptForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Services.OperaBatchManager_Win.MainForm">
+            <summary>
+            OperaBatchManager_Win - GUI implementation of the BatchManager and cluster DataProcessing services.
+            </summary>
+            <remarks>
+            <para>This executable hosts both an implementation of BatchManager and a manager of DataProcessing servers. The manager itself does no processing, but it allocates work to the worker DataProcessingServers, so if one of them is taken offline its work is reallocated to other available machines.</para>
+            <para>
+            The MainForm is the startup object. It creates and launches the BatchManager and DataProcessingServer services. MainForm supports the following actions on process operations:
+            <list type="table">
+            <listheader><term>Action</term><description>Explanation</description></listheader>
+            <item><term>Start</term><description>creates a new process operation. Opens <see cref="T:SySal.Services.OperaBatchManager_Win.StartForm">StartForm</see> to set the needed parameters.</description></item>
+            <item><term>Pause</term><description>pauses the currently selected process operation. No specific credentials are needed when accessing this BatchManager directly from its console. <b>NOTICE: if you want to suspend a process operation even for a long time, but you think it will be resumed in the future, use "Pause", not "Abort".</b></description></item>
+            <item><term>Resume</term><description>resumes the currently selected process operation. No specific credentials are needed when accessing this BatchManager directly from its console.</description></item>
+            <item><term>Interrupt</term><description>opens the <see cref="T:SySal.Services.OperaBatchManager_Win.InterruptForm">InterruptForm</see> to enter a string of data to be sent as an interrupt to the currently selected process operation. No specific credentials are needed when accessing this BatchManager directly from its console.</description></item>
+            <item><term>Abort</term><description>aborts the currently selected process operation. <b>CAUTION: an aborted operation cannot be resumed in the future: it is closed forever. If you mean to continue a process operation, use "Pause" instead.</b></description></item>
+            <item><term>Reconfig</term><description>Reloads the configuration for a process operation. It is intended for use in testing environments, when configurations can be changed in the DB.</description></item>
+            <item><term>DPX Restart</term><description>Restarts the Execute thread of the DataProcessingServer. The thread may be closed in severe malfunction cases, when the Event Log is full and limited disk space is available. Using this function makes sense only after the cause of malfunction is detected and removed. Clicking this button when it's not really needed makes no harm: if the thread is properly running, no action is taken.</description></item>
+            </list>
+            </para>
+            <para>
+            The MainForm takes care of reading the configuration file and/or retrieving settings from the DB. Here is a sample configuration file.
+            <example>
+            <code>
+            &lt;?xml version="1.0" encoding="utf-8" ?&gt; 
+            &lt;configuration&gt;
+             &lt;appSettings&gt;
+              &lt;add key="DBServer" value="OPERADB" /&gt;
+              &lt;add key="DBUserName" value="BATCHMGR" /&gt;
+              &lt;add key="DBPassword" value="MGRPWD" /&gt;
+              &lt;add key="OPERAUserName" value="batchsrv" /&gt;
+              &lt;add key="OPERAPassword" value="opmgrpwd" /&gt;
+             &lt;/appSettings&gt;
+            &lt;/configuration&gt;
+            </code>
+            </example>
+            </para>
+            <para>
+            There are other parameters that can be read from global site variables in the DB (<c>LZ_SITEVARS</c>), machine variables in the DB (<c>LZ_MACHINEVARS</c>) or from the application configuration file. 
+            As a rule, the more local setting overrides the others. In general, the preferred practice should be to use <c>LZ_SITEVARS</c>, then to use <c>LZ_MACHINEVARS</c>, and the application configuration file should only be used for debugging purposes: 
+            indeed, storing the settings into the DB allows the administrator to manage them in a unified way; scattering them over local files makes it difficult to track changes and settings, and may lead to puzzling situations.
+            </para>
+            <para>
+            Here follows the list of the parameters needed for complete configuration of this BatchManager and DataProcessingServer.
+            <list type="table">
+            <listheader><term>Parameter</term><description>Explanation</description></listheader>
+            <item><term><c>BM_DataProcSrvMonitorInterval</c></term><description>Time interval in seconds between two polling queries to a worker DataProcessingServer in the cluster managed by this DataProcessingServer.</description></item>
+            <item><term><c>BM_ImpersonateBatchUser</c></term><description>If true, the DataProcessingServer uses the calling user's credentials to run the processing tasks; if false, the BatchManager's credentials are used. <b>CAUTION: since the BatchManager credentials allow processes to write to the OPERA DB, it is recommended that this variable be always set to true, except for temporary debugging purposes.</b></description></item>
+            <item><term><c>BM_ResultLiveSeconds</c></term><description>Time interval in seconds that defines how long a processing result will be kept in memory before being forgotten.</description></item>
+            <item><term><c>ExeRepository</c></term><description>Full path (usually a network path) to the directory where processing executables and commonly used assemblies are hosted.</description></item>
+            <item><term><c>ScratchDir</c></term><description>Full path (usually a network path) to the directory to be used as a scratch area for temporary files.</description></item>
+            <item><term><c>RawDataDir</c></term><description>Full path (usually a network path) to the directory where raw data are stored.</description></item>
+            <item><term><c>TaskDir</c></term><description>Full path (<b>it is strongly recommended to use a local, non-shared path</b>) to the directory where task files are stored. See below for a discussion of task files.</description></item>
+            <item><term><c>ArchivedTaskDir</c></term><description>Full path to the directory where task files of completed/aborted tasks are archived.</description></item>	
+            <item><term><c>DriverDir</c></term><description>Full path (<b>it is strongly recommended to use a local, non-shared path</b>) where driver executables are found.</description></item>
+            </list>
+            In common practice, <c>ExeRepository</c>, <c>ScratchDir</c> and <c>RawDataDir</c> are network paths. For obvious safety and security reasons, <c>TaskDir</c>, <c>ArchivedTaskDir</c> and <c>DriverDir</c> should be local paths, not reachable through network access.
+            </para>
+            <para><b>Task files</b></para>
+            <para>For each process operation that is running or paused, the BatchManager keeps track of the current status of the process by means of 4 files:
+            <list type="bullet">
+            <item><term>the <c>.startup</c> file</term></item>
+            <item><term>the <c>.progress</c> file</term></item>
+            <item><term>the <c>.progress_backup</c> file</term></item>
+            <item><term>the <c>.interrupts</c> file</term></item>
+            </list>
+            </para>
+            <para>
+            The startup file (<c>.startup</c>) holds startup information about the process operation. Most of this information is duplicated in the DB, but some specific driver
+            might need additional parameters that do not fit in the current DB schema. 
+            This file is cached in the HostEnv for the process operation driver, so it is written when the process operation is created, and read only if the BatchManager restarts after shutdown.
+            If this file is missing, the process operation cannot be restarted, and the BatchManager restart process is aborted. It should <b><u>never</u></b> be changed by hand.
+            </para>
+            <para>
+            The progress files (<c>.progress</c> and <c>.progress_backup</c>) are a pair of files that hold the same information. They are duplicated because they are continuously overwritten,
+            and sometimes even the BatchManager administrator might modify them by hand (this is a deprecated practice, but it is the only way to "help" some old drivers that do not support interrupts). 
+            They are cached in the BatchManager memory, and are actually read only when the OperaBatchManager restarts. When doing so, if the <c>.progress</c> file is unreadable, the <c>.progress_backup</c>
+            is tried.
+            </para>
+            <para>
+            The interrupt file (<c>.interrupts</c>) holds the interrupt queue of the process operation. It is a copy of the BatchManager interrupt queue, written every time the queue changes;
+            the BatchManager reads this file on restart.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:SySal.Services.OperaBatchManager_Win.MainForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Services.OperaBatchManager_Win.MainForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:SySal.Services.OperaBatchManager_Win.MainForm.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaBatchManager_Win.MainForm.ScratchDir">
+            <summary>
+            Scratch directory.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaBatchManager_Win.MainForm.RawDataDir">
+            <summary>
+            Raw data directory.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaBatchManager_Win.MainForm.TaskDir">
+            <summary>
+            Directory where task startup and progress files are put.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaBatchManager_Win.MainForm.ArchivedTaskDir">
+            <summary>
+            Directory where task startup and progress files are archived upon completion.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaBatchManager_Win.MainForm.DriverDir">
+            <summary>
+            Directory of driver executables.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaBatchManager_Win.MainForm.ExeRepository">
+            <summary>
+            Directory of executables for the DataProcessingServer.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaBatchManager_Win.MainForm.ResultLiveTime">
+            <summary>
+            Time duration of each result in the result list.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaBatchManager_Win.MainForm.ImpersonateBatchUser">
+            <summary>
+            If true, the Batch Manager impersonates the user that originally requests the batch when scheduling it on Data Processing Servers.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaBatchManager_Win.MainForm.DataProcSrvMonitorInterval">
+            <summary>
+            Data processing server monitoring interval in seconds.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaBatchManager_Win.MainForm.DBServer">
+            <summary>
+            Connection String for the DB.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaBatchManager_Win.MainForm.DBUserName">
+            <summary>
+            DB User that the OperaBatchServer shall impersonate.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaBatchManager_Win.MainForm.DBPassword">
+            <summary>
+            DB Password to access the DB.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaBatchManager_Win.MainForm.OPERAUserName">
+            <summary>
+            OPERA User that the OperaBatchServer shall impersonate.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaBatchManager_Win.MainForm.OPERAPassword">
+            <summary>
+            OPERA Password to access the DB.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaBatchManager_Win.MainForm.IdSite">
+            <summary>
+            Site identifier read from the DB.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaBatchManager_Win.MainForm.SiteName">
+            <summary>
+            Site name read from the DB.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaBatchManager_Win.MainForm.IdMachine">
+            <summary>
+            Machine identifier read from the DB.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaBatchManager_Win.MainForm.MachineAddress">
+            <summary>
+            Machine address that matches the DB registration entry.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaBatchManager_Win.MainForm.MachineName">
+            <summary>
+            Machine name read from the DB.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaBatchManager_Win.MainForm.BM">
+            <summary>
+            The Batch Manager instance.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaBatchManager_Win.MainForm.DPS">
+            <summary>
+            The Data Processing Server instance.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaBatchManager_Win.MainForm.WA">
+            <summary>
+            The Web Access provider.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaBatchManager_Win.MainForm.WebPort">
+            <summary>
+            The port to be used for Web access.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaBatchManager_Win.MainForm.AutoStartFile">
+            <summary>
+            The file containing a queue of processes to be started.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaBatchManager_Win.MainForm.MonitoringFile">
+            <summary>
+            File hosting the list of tables to be queried for the monitoring page.
+            </summary>
+        </member>
+        <member name="M:SySal.Services.OperaBatchManager_Win.MainForm.OnStart">
+            <summary>
+            Set things in motion so your service can do its work.
+            </summary>
+        </member>
+        <member name="M:SySal.Services.OperaBatchManager_Win.MainForm.OnStop">
+            <summary>
+            Stop this service.
+            </summary>
+        </member>
+        <member name="M:SySal.Services.OperaBatchManager_Win.MainForm.ProcessStart(SySal.DAQSystem.BatchManager.HostEnv,System.String,System.String,System.String)">
+            <summary>
+            Notifies the GUI interface that a new process operation starts.
+            </summary>
+            <param name="h">the HostEnv of the process operation.</param>
+            <param name="description">the description of the process operation.</param>
+            <param name="machinename">the name of the machine that runs the operation.</param>
+            <param name="notes">notes about the process operation.</param>
+        </member>
+        <member name="M:SySal.Services.OperaBatchManager_Win.MainForm.ProcessEnd(System.Int64)">
+            <summary>
+            Notifies the GUI interface that a process operation has ended.
+            </summary>
+            <param name="id">the Id of the process operation that has ended.</param>
+        </member>
+        <member name="T:SySal.Services.OperaBatchManager_Win.ProgressForm">
+            <summary>
+            Summary description for ProgressForm.
+            </summary>
+        </member>
+        <member name="F:SySal.Services.OperaBatchManager_Win.ProgressForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Services.OperaBatchManager_Win.ProgressForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Services.OperaBatchManager_Win.ProgressForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Services.OperaBatchManager_Win.StartForm">
+            <summary>
+            StartForm is used to start a new process operation.	
+            </summary>
+            <remarks>
+            <para>
+            The process operation must start with a definite set of credentials. 
+            The OPERA Computing Infrastructure credentials are set in this form. 
+            The DB access credentials are null (empty boxes), since the BatchManager will replace them with its own DB access credentials.
+            </para>
+            <para>
+            This form shows four list boxes to select:
+            <list type="bullet">
+            <item><term>the driver executable</term></item>
+            <item><term>the machine to run the process operation (for drivers of level 1,2,3 select an appropriate ScanningServer; for higher levels, select a BatchManager)</term></item>
+            <item><term>the brick involved in the process operation (if applicable)</term></item>
+            <item><term>the plate involved in the process operation (if applicable)</term></item>
+            </list>
+            </para>
+            <para>Depending on the operation driver selected, the brick and plate selections may or may not be applicable.</para>
+            <para>For a level-1 operation (<c>Scanning</c> level), both brick and plate must be selected.</para>
+            <para>For a level-2 operation (<c>Volume</c> level), the brick must be selected.</para>
+            <para>For a level-3 operation (<c>Brick</c> level), the brick must be selected.</para>
+            <para>For a level-4 or higher operation (<c>System</c> level), neither the brick nor the plate must be selected.</para>
+            </remarks>
+        </member>
+        <member name="F:SySal.Services.OperaBatchManager_Win.StartForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Services.OperaBatchManager_Win.StartForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Services.OperaBatchManager_Win.StartForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:SySal.Services.OperaBatchManager_Win.WebAccess.ShowExceptions">
+            <summary>
+            Defines whether exceptions should be shown.
+            </summary>
+        </member>
+        <member name="P:SySal.Services.OperaBatchManager_Win.WebAccess.ApplicationName">
+            <summary>
+            The name of the Web Application.
+            </summary>
+        </member>
+        <member name="M:SySal.Services.OperaBatchManager_Win.WebAccess.HttpGet(SySal.Web.Session,System.String,System.String[])">
+            <summary>
+            Routes GET methods as POST methods.
+            </summary>
+            <param name="sess">Session information.</param>
+            <param name="page">ignored.</param>
+            <param name="queryget">the action parameters passed.</param>
+            <returns>the status page.</returns>
+        </member>
+        <member name="M:SySal.Services.OperaBatchManager_Win.WebAccess.HttpPost(SySal.Web.Session,System.String,System.String[])">
+            <summary>
+            Handles POST methods.
+            </summary>
+            <param name="sess">Session information.</param>
+            <param name="page">ignored.</param>
+            <param name="postfields">the action parameters passed.</param>
+            <returns>the status page.</returns>
+        </member>
+    </members>
+</doc>

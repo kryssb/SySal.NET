@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+ <head>
+    <title>Decay Search Step #5</title>
+    <MYSTYLE />
+ </head>
+ <body>
+  <h1>Decay Search Step #5</h1>
+  <h2>Refining the definition of the Primary Vertex and Extra-tracks; In-track decay search (Step 2.3 of the reference document)</h2>
+  <div>
+      Clear the plot, type "event" in the "With Attribute" box of the main panel, select "Tracks" and click "Plot".<br />
+      For each track shown, do the following steps:<br />
+      <ol>       
+       <li>If the track is an isolated muon or hadron track, believed to come from the primary interaction, open the TrackBrowser and go to the "Feedback" tab and create an upstream vertex; if there are tracks downstream of it, put the vertex at Z = -1000; otherwise put the vertex at Z = -500;</li>
+       <li>On the TrackBrowser form for the track, and go to the "General" tab. If RMS&delta;&theta;<sub>transv</sub>&gt;0.020 or RMS&delta;&theta;<sub>long</sub>&gt;0.020, go to the "Feedback" tab and flag the track as "LowMomentum"; go to the next track.</li>
+       <li>If the <b>Kink/Layer</b> box is orange, the track is suspected to hide a kink; in this case, go to the "Feedback" tab and flag the track with "Scanforth to be done"; go to the "Projection" tab, define a plate from which you want to start the Scanforth, and append the corresponding projection to the file for Scanforth initialization; go to the next track.</li>
+       <li>If the track is attached to the primary vertex, go to the "Feedback" tab and flag it as "PrimaryVertexTrack"; also fill other information about the track. If you apply systematic Scanforth, go to the "Projection" tab, define a plate from which you want to start the Scanforth, and append the corresponding projection to the file for Scanforth initialization; go to the next track.</li>
+       <li>For each track that is not attached to the primary vertex, go to the "Feedback" tab, fill the relevant information, and click on "Add single-prong vertex"; use Z = -1000 if the track is upstream of the primary vertex, -1 if it is downstream of it. </li>
+      </ol>            
+  <a href="DSApage4.htm">Previous</a>&nbsp;&nbsp;<a href="DSApage6.htm?chk=CheckPrimaryVertexSet">Next</a>
+  </div>
+ </body>
+</html>

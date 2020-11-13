@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SimpleTrackPostProcessor</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Processing.SimpleTrackPostProcessing.EditConfigForm">
+            <summary>
+            Summary description for EditConfigForm.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.SimpleTrackPostProcessing.EditConfigForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.SimpleTrackPostProcessing.EditConfigForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.SimpleTrackPostProcessing.EditConfigForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Processing.SimpleTrackPostProcessing.Configuration">
+            <summary>
+            Configuration class for SimpleTrackPostProcessor
+            </summary>
+        </member>
+        <member name="T:SySal.Processing.SimpleTrackPostProcessing.TrivialDistortionCorrection">
+            <summary>
+            Trivial distortion correction. Only shrinkage is accounted for.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.SimpleTrackPostProcessing.TrivialDistortionCorrection.Correct(SySal.Tracking.Grain[])">
+            <summary>
+            Corrects the grains using shrinkage information.
+            </summary>
+            <param name="grains"></param>
+        </member>
+        <member name="M:SySal.Processing.SimpleTrackPostProcessing.TrivialDistortionCorrection.#ctor(System.Double,System.Double,System.Double)">
+            <summary>
+            Initializes the distortion correction with shrinkage and reference depths information.
+            </summary>
+            <param name="shrinkage"></param>
+            <param name="zbasesurface"></param>
+            <param name="zexternalsurface"></param>
+        </member>
+        <member name="T:SySal.Processing.SimpleTrackPostProcessing.SimpleTrackPostProcessor">
+            <summary>
+            Computes the geometrical parameters of tracks from their grains and optionally sweeps out double measurements.
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.SimpleTrackPostProcessing.SimpleTrackPostProcessor.Expose">
+            <summary>
+            Exposes / hides generation of additional info. This is a dummy implementation, since this class has no information to expose.
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.SimpleTrackPostProcessing.SimpleTrackPostProcessor.ExposedInfo">
+            <summary>
+            Gets the additional information. This is a dummy implementation, since this class has no information to expose.
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.SimpleTrackPostProcessing.SimpleTrackPostProcessor.DistortionInfo">
+            <summary>
+            Retrieves the DistortionCorrection the PostProcessor used to correct the grains.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.SimpleTrackPostProcessing.SimpleTrackPostProcessor.Process(SySal.Tracking.Grain[][],System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            Processes the grain sequences supplied, optionally corrects them, and computes the geometrical parameters of each track.
+            </summary>
+        </member>
+    </members>
+</doc>

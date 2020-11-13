@@ -1,0 +1,12 @@
+/home/kryss/Documenti/SySal/DAQSystem/bin/Debug/DAQSystem.dll
+/home/kryss/Documenti/SySal/DAQSystem/bin/Debug/DAQSystem.pdb
+/home/kryss/Documenti/SySal/DAQSystem/bin/Debug/DAQSystem.xml
+/home/kryss/Documenti/SySal/DAQSystem/bin/Debug/SySalCore.dll
+/home/kryss/Documenti/SySal/DAQSystem/bin/Debug/Tracking.dll
+/home/kryss/Documenti/SySal/DAQSystem/bin/Debug/SySalCore.pdb
+/home/kryss/Documenti/SySal/DAQSystem/bin/Debug/SySalCore.xml
+/home/kryss/Documenti/SySal/DAQSystem/bin/Debug/Tracking.pdb
+/home/kryss/Documenti/SySal/DAQSystem/obj/Debug/DAQSystem.csprojAssemblyReference.cache
+/home/kryss/Documenti/SySal/DAQSystem/obj/Debug/DAQSystem.csproj.CopyComplete
+/home/kryss/Documenti/SySal/DAQSystem/obj/Debug/DAQSystem.dll
+/home/kryss/Documenti/SySal/DAQSystem/obj/Debug/DAQSystem.pdb

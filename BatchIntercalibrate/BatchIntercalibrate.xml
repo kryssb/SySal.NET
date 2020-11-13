@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BatchIntercalibrate</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Executables.BatchIntercalibrate.Exe">
+            <summary>
+            BatchIntercalibrate - performs intercalibration of two plates by one or three reference zones.	
+            </summary>
+            <remarks>
+            <para>The number of zones is extracted from the mode parameter.</para>
+            <para>usage (1 zone): <c>BatchIntercalibrate.exe &lt;mode&gt; &lt;outmap&gt; &lt;refzone&gt; &lt;calibzone&gt; &lt;zproj&gt; &lt;postol&gt; &lt;slopetol&gt; &lt;maxoffset&gt; &lt;leverarm&gt; &lt;minmatches&gt; [&lt;refcenterX&gt; &lt;refcenterY&gt;]</c></para>
+            <para>usage (3 zones): <c>BatchIntercalibrate &lt;mode&gt; &lt;outmap&gt; &lt;refzone1&gt; &lt;calibzone1&gt; &lt;refzone2&gt; &lt;calibzone2&gt; &lt;refzone3&gt; &lt;calibzone3&gt; &lt;zproj&gt; &lt;postol&gt; &lt;slopetol&gt; &lt;maxoffset&gt; &lt;minmatches&gt; [&lt;refcenterX&gt; &lt;refcenterY&gt;]</c></para>
+            <para>
+            Available modes:
+            <list type="table">
+            <listheader><term>Code</term><description>Meaning</description></listheader>
+            <item><term><c>1</c></term><description>1 zone, just compute calibration.</description></item>
+            <item><term><c>1r</c></term><description>1 zone, compute calibration and rewrite the zone file using the transformation found.</description></item>
+            <item><term><c>3</c></term><description>3 zones, just compute calibration.</description></item>
+            <item><term><c>3r</c></term><description>3 zones, compute calibration and rewrite the zone files using the transformation found.</description></item>
+            </list>
+            </para>
+            <para>
+            Meaning of the other parameters:
+            <list type="table">
+            <listheader><term>Parameter</term><description>Meaning</description></listheader>
+            <item><term><c>outmap</c></term><description>path to the output file (map file in text format)</description></item>
+            <item><term><c>refzone(#)</c></term><description>Opera persistence path of the #th linkedzone with the reference zone</description></item>
+            <item><term><c>calibzone(#)</c></term><description>Opera persistence path of the #th linkedzone on the sheet to be calibrated</description></item>
+            <item><term><c>zproj</c></term><description>Z of the sheet to be calibrated - Z of the reference sheet</description></item>
+            <item><term><c>postol</c></term><description>position tolerance for pattern matching</description></item>
+            <item><term><c>slopetol</c></term><description>slope tolerance for pattern matching</description></item>
+            <item><term><c>leverarm</c></term><description>maximum expected variation of position match due to rotation (1-zone version only)</description></item>
+            <item><term><c>maxoffset</c></term><description>maximum offset</description></item>	
+            <item><term><c>minmatches</c></term><description>minimum number of matching tracks</description></item>	
+            <item><term><c>refcenterX</c></term><description>(optional) X coordinate of the reference center</description></item>	
+            <item><term><c>refcenterY</c></term><description>(optional) Y coordinate of the reference center</description></item>	
+            </list>
+            BatchIntercalibrate uses QuickMapper for pattern matching computations. See <see cref="T:SySal.Processing.QuickMapping.QuickMapper"/> for more information.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:SySal.Executables.BatchIntercalibrate.Exe.CheckIntercalibration(SySal.DAQSystem.Scanning.IntercalibrationInfo)">
+            <summary>
+            Checks the intercalibration.
+            </summary>
+            <param name="info">the intercalibration to be checked.</param>
+        </member>
+        <member name="M:SySal.Executables.BatchIntercalibrate.Exe.Main(System.String[])">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+    </members>
+</doc>

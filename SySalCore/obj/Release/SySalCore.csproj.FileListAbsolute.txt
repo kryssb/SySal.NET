@@ -1,0 +1,4 @@
+/home/kryss/Documenti/SySal/SySalCore/obj/Release/SySalCore.csprojAssemblyReference.cache
+/home/kryss/Documenti/SySal/SySalCore/bin/Release/SySalCore.dll
+/home/kryss/Documenti/SySal/SySalCore/bin/Release/SySalCore.xml
+/home/kryss/Documenti/SySal/SySalCore/obj/Release/SySalCore.dll

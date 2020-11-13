@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Imaging</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Imaging.PixelFormatType">
+            <summary>
+            Pixel format specification
+            </summary>
+        </member>
+        <member name="T:SySal.Imaging.ImageInfo">
+            <summary>
+            Image format descriptor
+            </summary>
+        </member>
+        <member name="T:SySal.Imaging.IImagePixels">
+            <summary>
+            Image pixel accessor interface
+            </summary>
+        </member>
+        <member name="T:SySal.Imaging.Image">
+            <summary>
+            Image class
+            </summary>
+        </member>
+        <member name="T:SySal.Imaging.ObjectiveSpecifications">
+            <summary>
+            Describes objective characteristics
+            </summary>
+        </member>
+        <member name="T:SySal.Imaging.Cluster">
+            <summary>
+            A cluster of interesting pixels in an image
+            </summary>
+        </member>
+        <member name="T:SySal.Imaging.ColorCode">
+            <summary>
+            Basic colors that every frame grabber should support
+            </summary>
+        </member>
+        <member name="T:SySal.Imaging.RGBColor">
+            <summary>
+            RGB color code
+            </summary>
+        </member>
+        <member name="T:SySal.Imaging.GrabModeCode">
+            <summary>
+            Grabbing modes
+            </summary>
+        </member>
+        <member name="T:SySal.Imaging.CursorCode">
+            <summary>
+            Codes that identify standard cursors
+            </summary>
+        </member>
+        <member name="T:SySal.Imaging.ZoomCode">
+            <summary>
+            Standard zoom factors
+            </summary>
+        </member>
+        <member name="T:SySal.Imaging.Image2DToWorld">
+            <summary>
+            Transformation from pixels to micron (emulsion or stage coordinates).
+            </summary>
+        </member>
+        <member name="F:SySal.Imaging.Image2DToWorld.Id">
+            <summary>
+            Identifier. A common usage is:
+            <list type="table">
+            <listheader><term>Part</term><description>Usage</description></listheader>
+            <item><term>0</term><description>Brick number.</description></item>
+            <item><term>1</term><description>Plate.</description></item>
+            <item><term>2</term><description>High dword of Zone Id.</description></item>
+            <item><term>3</term><description>Low dword of Zone Id.</description></item>
+            </list>        
+            </summary>
+            <remarks>Parts 2 and 3 of the identifier are often set to 0.</remarks>
+        </member>
+        <member name="F:SySal.Imaging.Image2DToWorld.Center">
+            <summary>
+            Center of the field of view.
+            </summary>
+        </member>
+        <member name="F:SySal.Imaging.Image2DToWorld.PixelToMicronXX">
+            <summary>
+            Pixel-to-micron matrix, XX component.
+            </summary>
+        </member>
+        <member name="F:SySal.Imaging.Image2DToWorld.PixelToMicronXY">
+            <summary>
+            Pixel-to-micron matrix, XY component.
+            </summary>
+        </member>
+        <member name="F:SySal.Imaging.Image2DToWorld.PixelToMicronYX">
+            <summary>
+            Pixel-to-micron matrix, YX component.
+            </summary>
+        </member>
+        <member name="F:SySal.Imaging.Image2DToWorld.PixelToMicronYY">
+            <summary>
+            Pixel-to-micron matrix, YY component.
+            </summary>
+        </member>
+        <member name="T:SySal.Imaging.ImageDepthInfo">
+            <summary>
+            Depth information of images.
+            </summary>
+        </member>
+        <member name="F:SySal.Imaging.ImageDepthInfo.Z">
+            <summary>
+            The Z coordinate where this image has been taken.
+            </summary>
+        </member>
+        <member name="T:SySal.Imaging.EmulsionLayerImageDepthInfo">
+            <summary>
+            Depth information for images in an emulsion layer.
+            </summary>
+        </member>
+        <member name="F:SySal.Imaging.EmulsionLayerImageDepthInfo.TopZ">
+            <summary>
+            Top Z of the emulsion layer.
+            </summary>
+        </member>
+        <member name="F:SySal.Imaging.EmulsionLayerImageDepthInfo.BottomZ">
+            <summary>
+            Bottom Z of the emulsion layer.
+            </summary>
+        </member>
+        <member name="F:SySal.Imaging.EmulsionLayerImageDepthInfo.DepthInfo">
+            <summary>
+            Depth information for each image.
+            </summary>
+        </member>
+        <member name="T:SySal.Imaging.ImageSequenceInfo">
+            <summary>
+            Information about a tomographic sequence of images.
+            </summary>
+        </member>
+        <member name="F:SySal.Imaging.ImageSequenceInfo.Info2D">
+            <summary>
+            Transformation parameters of 2D images.
+            </summary>
+        </member>
+        <member name="F:SySal.Imaging.ImageSequenceInfo.EmulsionLayers">
+            <summary>
+            Depth information for all emulsion layers.
+            </summary>
+        </member>
+        <member name="F:SySal.Imaging.ImageSequenceInfo.Comment">
+            <summary>
+            Comment about the image sequence.
+            </summary>
+        </member>
+    </members>
+</doc>

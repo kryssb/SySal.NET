@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Kalman</name>
+    </assembly>
+    <members>
+        <member name="T:NumericalTools.FilterStepList">
+            <summary>
+            A list of Kalman Steps. 
+            </summary>
+        </member>
+        <member name="F:NumericalTools.FilterStepList.FilterSteps">
+            <summary>
+            Member data holding the list of steps. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:NumericalTools.FilterStepList.Item(System.Int32)">
+            <summary>
+            Accesses the index-th step.
+            </summary>
+        </member>
+        <member name="P:NumericalTools.FilterStepList.Length">
+            <summary>
+            Number of steps in the list.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.KalmanFilter">
+            <summary>
+            Summary description for Kalman.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,376 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B84B0CCA-D46C-4BFE-A417-58077E34BD53}</ProjectGuid>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>P_er.ico</ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>EasyReconstruct</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>EasyReconstruct</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <OldToolsVersion>2.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>EasyReconstruct.xml</DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>EasyReconstruct.xml</DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap">
+      <Name>System.Runtime.Serialization.Formatters.Soap</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\AlphaOmegaReconstructor\AlphaOmegaReconstructor.csproj">
+      <Project>{283db798-23bb-4f71-8040-dbc7d11dbcda}</Project>
+      <Name>AlphaOmegaReconstructor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BatchMCSAnnecy\BatchMCSAnnecy.csproj">
+      <Project>{9202923E-F936-4EC9-9943-4A1A44AFEBD9}</Project>
+      <Name>BatchMCSAnnecy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BatchMomentumEstimation\BatchMomentumEstimation.csproj">
+      <Project>{31FEC399-1186-4B9A-BEC7-B337A0191C08}</Project>
+      <Name>BatchMomentumEstimation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Controls\Controls.csproj">
+      <Project>{8A3588CA-86CC-4678-80E9-3637562BB20A}</Project>
+      <Name>Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataStreams\DataStreams.csproj">
+      <Project>{EECD680D-F383-4A1D-B716-050C8B4AEC33}</Project>
+      <Name>DataStreams</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DecaySearchVSept09\DecaySearchVSept09.csproj">
+      <Project>{8207EB61-F7DB-43D0-872E-34308DAAB323}</Project>
+      <Name>DecaySearchVSept09</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FlexiVolume\FlexiVolume.csproj">
+      <Project>{11F29342-3443-4E5E-9801-720B4601517A}</Project>
+      <Name>FlexiVolume</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GDI3DCore\GDI3DCore.csproj">
+      <Project>{A7B9293D-1F97-40AA-90B7-A05CBFC38509}</Project>
+      <Name>GDI3DCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GDIDisplayControl\GDIDisplayControl.csproj">
+      <Name>GDIDisplayControl</Name>
+      <Project>{0C09A159-EC77-405F-84D6-A3FF23869E96}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\GraphicalAnalysis\GraphicalAnalysis.csproj">
+      <Project>{087288AA-3D99-461C-A7C1-C738E6F8390D}</Project>
+      <Name>GraphicalAnalysis</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MapMerge\MapMerge.csproj">
+      <Project>{85746CC3-B52D-4635-AAB0-0574CCB045A8}</Project>
+      <Name>MapMerge</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MathExpression\MathExpression.csproj">
+      <Name>MathExpression</Name>
+      <Project>{6A38042F-F826-41EE-A774-F833D2D66429}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\NumericalTools\NumericalTools.csproj">
+      <Name>NumericalTools</Name>
+      <Project>{21616A4C-E4BD-4DA3-A7C8-C733DC356DAB}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\OperaDbLoginTools\OperaDbLoginTools.csproj">
+      <Project>{FD2397C2-D245-4B34-9A4C-4FCA8DB9522F}</Project>
+      <Name>OperaDbLoginTools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OperaDB\OperaDB.csproj">
+      <Name>OperaDB</Name>
+      <Project>{A2993036-3AC8-45AE-B061-B3FD247584C7}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\OperaFeedback\OperaFeedback.csproj">
+      <Project>{89534149-CDF2-42C8-98C6-5A22C4B87FF1}</Project>
+      <Name>OperaFeedback</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Scanning2\Scanning2.csproj">
+      <Name>Scanning2</Name>
+      <Project>{5A8C7E01-D228-4400-A652-FE60DD5C5AA9}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\StatisticalAnalysisManager\StatisticalAnalysisManager.csproj">
+      <Name>StatisticalAnalysisManager</Name>
+      <Project>{3B621475-6F46-4D7C-A771-738901983EE5}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\StatisticalGraphics\StatisticalGraphics.csproj">
+      <Name>StatisticalGraphics</Name>
+      <Project>{098C6939-A646-43CF-8FDE-9AA98414AF16}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\SySalCore\SySalCore.csproj">
+      <Name>SySalCore</Name>
+      <Project>{301C136D-DA64-4148-B974-1D1793BBEF96}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\TagPrimary\TagPrimary.csproj">
+      <Project>{7B6D5AE4-CDE1-4C8A-8512-DCDC784B4AAA}</Project>
+      <Name>TagPrimary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tracking2\Tracking2.csproj">
+      <Name>Tracking2</Name>
+      <Project>{EBE10CB5-8CA5-46A1-8826-526B5C4233DB}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\VolumeGeneration\VolumeGeneration.csproj">
+      <Name>VolumeGeneration</Name>
+      <Project>{4F27A95C-F3D5-4912-9090-D9FB1FC5348C}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\VolumeTracks\VolumeTracks.csproj">
+      <Name>VolumeTracks</Name>
+      <Project>{1739F8EB-BF5D-4371-8D24-C4B0EB58B072}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Analysis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="dbaccessform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DisplayGDI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DecaySearchAssistantForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DecaySearchAssistantForm.Designer.cs">
+      <DependentUpon>DecaySearchAssistantForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EnqueueOpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EnqueueOpForm.Designer.cs">
+      <DependentUpon>EnqueueOpForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExtendedSegInfo.cs" />
+    <Compile Include="GDIPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GDIPanel.Designer.cs">
+      <DependentUpon>GDIPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MCSMomentumHelper.cs" />
+    <Compile Include="MomentumFitForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MomentumFitForm.Designer.cs">
+      <DependentUpon>MomentumFitForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MovieForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MovieForm.Designer.cs">
+      <DependentUpon>MovieForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="QBrowser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QBrowser.Designer.cs">
+      <DependentUpon>QBrowser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SegReplaceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SegReplaceForm.Designer.cs">
+      <DependentUpon>SegReplaceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TrackSelector.cs" />
+    <Compile Include="IPSelector.cs" />
+    <Compile Include="mform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TrackBrowser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserProfileInfo.cs" />
+    <Compile Include="VertexBrowser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VertexFitForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VertexFitForm.Designer.cs">
+      <DependentUpon>VertexFitForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Analysis.resx">
+      <DependentUpon>Analysis.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dbaccessform.resx">
+      <DependentUpon>dbaccessform.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DisplayGDI.resx">
+      <DependentUpon>DisplayGDI.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DecaySearchAssistantForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DecaySearchAssistantForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GDIPanel.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>GDIPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mform.resx">
+      <DependentUpon>mform.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MomentumFitForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MomentumFitForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QBrowser.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>QBrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrackBrowser.resx">
+      <DependentUpon>TrackBrowser.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VertexBrowser.resx">
+      <DependentUpon>VertexBrowser.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VertexFitForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>VertexFitForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DSApage1_1.htm" />
+    <EmbeddedResource Include="DSApage1_2.htm" />
+    <EmbeddedResource Include="DSApage2_3isol.htm" />
+    <EmbeddedResource Include="DSApage2_2isol.htm" />
+    <EmbeddedResource Include="DSApage2_1isol.htm" />
+    <EmbeddedResource Include="DSApage2nc.htm" />
+    <EmbeddedResource Include="DSApage2cc.htm" />
+    <EmbeddedResource Include="DSApage3.htm" />
+    <EmbeddedResource Include="DSApage4.htm" />
+    <EmbeddedResource Include="DSApage5.htm" />
+    <EmbeddedResource Include="DSApage6.htm" />
+    <EmbeddedResource Include="DSApage7.htm" />
+    <EmbeddedResource Include="DSApage8.htm" />
+    <EmbeddedResource Include="EnqueueOpForm.resx">
+      <DependentUpon>EnqueueOpForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MovieForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MovieForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SegReplaceForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SegReplaceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DSApage2_6.htm" />
+    <Content Include="P_er.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>cp "$(TargetPath)" "$(SolutionDir)ExeRepository"</PostBuildEvent>
+  </PropertyGroup>
+</Project>

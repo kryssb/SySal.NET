@@ -1,0 +1,191 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StageControl</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.StageControl.Axis">
+            <summary>
+            Axis constants
+            </summary>
+        </member>
+        <member name="T:SySal.StageControl.AxisStatus">
+            <summary>
+            Stage status constants
+            </summary>
+        </member>
+        <member name="T:SySal.StageControl.TrajectorySample">
+            <summary>
+            A sample in a trajectory.
+            </summary>
+        </member>
+        <member name="F:SySal.StageControl.TrajectorySample.TimeMS">
+            <summary>
+            Time in milliseconds.
+            </summary>
+        </member>
+        <member name="F:SySal.StageControl.TrajectorySample.Position">
+            <summary>
+            Position.
+            </summary>
+        </member>
+        <member name="T:SySal.StageControl.IStageWithoutTimesource">
+            <summary>
+            Stage control interface.
+            </summary>
+        </member>
+        <member name="P:SySal.StageControl.IStageWithoutTimesource.LightLevel">
+            <summary>
+            Intensity of the illumination.
+            </summary>
+        </member>
+        <member name="M:SySal.StageControl.IStageWithoutTimesource.GetPos(SySal.StageControl.Axis)">
+            <summary>
+            Retrieves the position of an axis.
+            </summary>
+            <param name="ax">the axis whose position is sought.</param>
+            <returns>the position of the axis in micron.</returns>
+        </member>
+        <member name="M:SySal.StageControl.IStageWithoutTimesource.GetStatus(SySal.StageControl.Axis)">
+            <summary>
+            Retrieves the status of an axis.
+            </summary>
+            <param name="ax">the axis whose status is sought.</param>
+            <returns>the status of the axis.</returns>
+        </member>
+        <member name="M:SySal.StageControl.IStageWithoutTimesource.Reset(SySal.StageControl.Axis)">
+            <summary>
+            Resets an axis.
+            </summary>
+            <param name="ax">the axis to be reset.</param>
+        </member>
+        <member name="M:SySal.StageControl.IStageWithoutTimesource.Stop(SySal.StageControl.Axis)">
+            <summary>
+            Stops an axis.
+            </summary>
+            <param name="ax">the axis to be stopped.</param>
+        </member>
+        <member name="M:SySal.StageControl.IStageWithoutTimesource.PosMove(SySal.StageControl.Axis,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Moves an axis to a specified position.
+            </summary>
+            <param name="ax">the axis to be moved.</param>
+            <param name="pos">the position to reach.</param>
+            <param name="speed">the travelling speed.</param>
+            <param name="acc">the acceleration to be used.</param>
+            <param name="dec">the deceleration to be used.</param>
+        </member>
+        <member name="M:SySal.StageControl.IStageWithoutTimesource.SawToothPosMove(SySal.StageControl.Axis,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Moves an axis in sawtooth mode (between two positions).
+            </summary>
+            <param name="ax">the axis to be moved.</param>
+            <param name="pos1">the first position to reach.</param>
+            <param name="speed1">the first travelling speed.</param>
+            <param name="acc1">the first acceleration to be used.</param>
+            <param name="dec1">the first deceleration to be used.</param>
+            <param name="checkpos">the checkpoint where motion is inverted to reach position #2.</param>
+            <param name="pos2">the second position to reach.</param>
+            <param name="speed2">the second travelling speed.</param>
+            <param name="acc2">the second acceleration to be used.</param>
+            <param name="dec2">the second deceleration to be used.</param>
+            <remarks>The checkpoint should be in a position between the current and the first; if it is not reached, the command will never transition to the second target.</remarks>
+        </member>
+        <member name="M:SySal.StageControl.IStageWithoutTimesource.SpeedMove(SySal.StageControl.Axis,System.Double,System.Double)">
+            <summary>
+            Moves an axis at a constant speed.
+            </summary>
+            <param name="ax">the axis to be moved.</param>
+            <param name="speed">the travelling speed.</param>
+            <param name="acc">the acceleration to use to reach the specified speed.</param>
+        </member>
+        <member name="M:SySal.StageControl.IStageWithoutTimesource.StartRecording(System.Double,System.Double)">
+            <summary>
+            Starts recording a trajectory.
+            </summary>
+            <param name="mindeltams">minimum time interval in milliseconds between two samples.</param>
+            <param name="totaltimems">the total time to be recorded.</param>
+        </member>
+        <member name="M:SySal.StageControl.IStageWithoutTimesource.CancelRecording">
+            <summary>
+            Stops recording a trajectory.
+            </summary>
+        </member>
+        <member name="P:SySal.StageControl.IStageWithoutTimesource.Trajectory">
+            <summary>
+            The recorded trajectory.
+            </summary>
+            <remarks>If the trajectory is not complete, invoking this property returns only when recording is complete.</remarks>
+        </member>
+        <member name="M:SySal.StageControl.IStageWithoutTimesource.GetNamedReferencePosition(System.String)">
+            <summary>
+            Retrieves the value of a reference position.
+            </summary>
+            <param name="name">the name of the reference position to be retrieved.</param>
+            <returns>the value of the reference position.</returns>
+            <remarks>If the reference position is not available or is undefined, an exception is thrown.</remarks>
+        </member>
+        <member name="T:SySal.StageControl.IStage">
+            <summary>
+            Allows specifying a time source for trajectory sampling.
+            </summary>
+        </member>
+        <member name="P:SySal.StageControl.IStage.TimeSource">
+            <summary>
+            Sets the source of time sampling for recorded trajectories.
+            </summary>
+        </member>
+        <member name="T:SySal.StageControl.IStageWithTimer">
+            <summary>
+            Enables functions with timer.
+            </summary>
+        </member>
+        <member name="M:SySal.StageControl.IStageWithTimer.Idle">
+            <summary>
+            Specifies that no functions will be called in a while, so internal management is allowed now.
+            </summary>
+        </member>
+        <member name="M:SySal.StageControl.IStageWithTimer.AtTimePosMove(System.Int64,SySal.StageControl.Axis,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Moves an axis to a specified position when the timesource reaches a specified time.
+            </summary>
+            <param name="timems">the time when motion has to start</param>
+            <param name="ax">the axis to be moved.</param>
+            <param name="pos">the position to reach.</param>
+            <param name="speed">the travelling speed.</param>
+            <param name="acc">the acceleration to be used.</param>
+            <param name="dec">the deceleration to be used.</param>
+        </member>
+        <member name="M:SySal.StageControl.IStageWithTimer.AtTimeMoveProfile(System.Int64,SySal.StageControl.Axis,System.Boolean[],System.Double[],System.Double[],System.Int64[],System.Double,System.Double)">
+            <summary>
+            When the timesource reaches a specified time, begins a motion profile.
+            </summary>
+            <param name="timems">the time when motion has to start</param>
+            <param name="ax">the axis to be moved.</param>
+            <param name="ispos">the flags that specify if the move is a position move or a speed move. 
+            <c>true</c> is used for position moves, <c>false</c> for speed moves.</param>
+            <param name="pos">the positions to reach in position moves. Ignored for speed moves.</param>
+            <param name="speed">the travelling speed in each segment. The sign is ignored in position moves. 
+            In speed moves, the sign also encodes the direction of motion.</param>
+            <param name="waitms">in position moves, the number of milliseconds to wait after each move; 
+            in speed moves, the duration of the speed move.</param>
+            <param name="acc">the acceleration to be used.</param>
+            <param name="dec">the deceleration to be used.</param>
+            <remarks>the numbers of flags, positions, speeds and wait times must be equal.</remarks>        
+        </member>
+        <member name="T:SySal.StageControl.IStageWithDirectTrajectoryData">
+            <summary>
+            Enables direct access to trajectory data without allocating new memory.
+            </summary>
+        </member>
+        <member name="M:SySal.StageControl.IStageWithDirectTrajectoryData.GetTrajectoryData(System.UInt32,SySal.StageControl.TrajectorySample@)">
+            <summary>
+            Reads a sample in trajectory data.
+            </summary>
+            <param name="s">the index (0-based) of the sample to read.</param>
+            <param name="ts">the variable where sample data are to be written.</param>
+            <returns><c>true</c> if the trajectory sample is valid, <c>false</c> if the sample is beyond the last one.</returns>
+            <remarks>If the sample sought is beyond the last, the return value and the result are both undefined.</remarks>
+        </member>
+    </members>
+</doc>

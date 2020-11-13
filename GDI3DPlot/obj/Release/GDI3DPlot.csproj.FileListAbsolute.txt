@@ -1,0 +1,7 @@
+/home/kryss/Documenti/SySal/GDI3DPlot/bin/Release/GDI3DPlot.dll
+/home/kryss/Documenti/SySal/GDI3DPlot/bin/Release/GDI3DPlot.xml
+/home/kryss/Documenti/SySal/GDI3DPlot/bin/Release/GDI3DCore.dll
+/home/kryss/Documenti/SySal/GDI3DPlot/bin/Release/GDI3DCore.xml
+/home/kryss/Documenti/SySal/GDI3DPlot/obj/Release/GDI3DPlot.csprojAssemblyReference.cache
+/home/kryss/Documenti/SySal/GDI3DPlot/obj/Release/GDI3DPlot.csproj.CopyComplete
+/home/kryss/Documenti/SySal/GDI3DPlot/obj/Release/GDI3DPlot.dll

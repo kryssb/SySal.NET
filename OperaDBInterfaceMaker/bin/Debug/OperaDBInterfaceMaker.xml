@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OperaDBInterfaceMaker</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Executables.OperaDBInterfaceMaker.Exe">
+            <summary>
+            OperaDBInterfaceMaker.
+            </summary>
+            <remarks>
+            <para>This is an utility executable. It is intended to run very seldom, normally for code development purposes. It is automatically run on build success, to generate updated DB <see cref="!:SySal.OperaDb.Schema">schema</see> classes.</para>
+            <para>OperaDBInterfaceMaker reads metadata views (the <c>ALL_...</c> views in the SYS account) to browse the OPERA schema and generate interface classes for tables and procedures.</para>
+            <para>The output is normally sent to the output stream (the console), but it is a common practice to redirect it to a file in C#, which can be then compiled.</para>
+            <para>The executable receives no parameters. The DB is browsed by using the current default credential record.</para>
+            </remarks>
+        </member>
+        <member name="M:SySal.Executables.OperaDBInterfaceMaker.Exe.Main(System.String[])">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,204 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DataStreams</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.DataStreams.OPERALinkedZone">
+            <summary>
+            Allows accessing LinkedZone data from TLG files without loading the full information in memory.
+            </summary>
+        </member>
+        <member name="T:SySal.DataStreams.OPERALinkedZone.MIPBaseTrack">
+            <summary>
+            File-resident MIPBaseTrack.
+            </summary>
+        </member>
+        <member name="M:SySal.DataStreams.OPERALinkedZone.MIPBaseTrack.#ctor(SySal.DataStreams.OPERALinkedZone.Side,SySal.DataStreams.OPERALinkedZone.Side,System.Int32,System.IO.BinaryReader)">
+            <summary>
+            Reads a MIPBaseTrack from file, along with its associated microtracks.
+            </summary>
+            <param name="t">the top Side of the LinkedZone.</param>
+            <param name="b">the bottom Side of the LinkedZone.</param>
+            <param name="id">the Id of the track to be read.</param>
+            <param name="r">the <c>BinaryReader</c> wrapping the data containing file.</param>
+        </member>
+        <member name="P:SySal.DataStreams.OPERALinkedZone.MIPBaseTrack.Top">
+            <summary>
+            Yields the top microtrack of the MIPBaseTrack.
+            </summary>
+        </member>
+        <member name="P:SySal.DataStreams.OPERALinkedZone.MIPBaseTrack.Bottom">
+            <summary>
+            Yields the bottom microtrack of the MIPBaseTrack.
+            </summary>
+        </member>
+        <member name="F:SySal.DataStreams.OPERALinkedZone.MIPBaseTrack.Size">
+            <summary>
+            The size of the MIPBaseTrack in bytes.
+            </summary>
+        </member>
+        <member name="F:SySal.DataStreams.OPERALinkedZone.m_LastTrack">
+            <summary>
+            The last MIPBaseTrack loaded. Used to quickly retrieve recently used information without disk access.
+            </summary>
+        </member>
+        <member name="T:SySal.DataStreams.OPERALinkedZone.MIPIndexedEmulsionTrack">
+            <summary>
+            File-resident MIPIndexedEmulsionTrack (i.e. a microtrack).
+            </summary>
+        </member>
+        <member name="M:SySal.DataStreams.OPERALinkedZone.MIPIndexedEmulsionTrack.#ctor(SySal.DataStreams.OPERALinkedZone.Side,System.Int32,System.IO.BinaryReader)">
+            <summary>
+            Reads a microtrack from disk.
+            </summary>
+            <param name="s">the Side that contains the microtrack.</param>
+            <param name="id">the Id of the microtrack to be accessed.</param>
+            <param name="r">the <c>BinaryReader</c> wrapping the data containing file.</param>
+        </member>
+        <member name="P:SySal.DataStreams.OPERALinkedZone.MIPIndexedEmulsionTrack.View">
+            <summary>
+            Reads the View containing the microtrack.
+            </summary>
+        </member>
+        <member name="P:SySal.DataStreams.OPERALinkedZone.MIPIndexedEmulsionTrack.OriginalRawData">
+            <summary>
+            Reads index information pointing to the original raw data files.
+            </summary>
+        </member>
+        <member name="F:SySal.DataStreams.OPERALinkedZone.MIPIndexedEmulsionTrack.Size">
+            <summary>
+            The size of the MIPIndexedEmulsionTrack in bytes.
+            </summary>
+        </member>
+        <member name="F:SySal.DataStreams.OPERALinkedZone.MIPIndexedEmulsionTrack.IndexSize">
+            <summary>
+            The size of each Index information entry.
+            </summary>
+        </member>
+        <member name="T:SySal.DataStreams.OPERALinkedZone.View">
+            <summary>
+            File-persistent View.
+            </summary>
+        </member>
+        <member name="M:SySal.DataStreams.OPERALinkedZone.View.#ctor(SySal.DataStreams.OPERALinkedZone.Side,System.IO.BinaryReader)">
+            <summary>
+            Reads a view from file.
+            </summary>
+            <param name="s">the Side containing the view.</param>
+            <param name="r">the <c>BinaryReader</c> wrapping the data containing file.</param>
+        </member>
+        <member name="T:SySal.DataStreams.OPERALinkedZone.Side">
+            <summary>
+            File-persistent Side.
+            </summary>
+        </member>
+        <member name="M:SySal.DataStreams.OPERALinkedZone.Side.#ctor(System.Double,System.Double,System.Int32,System.Int64,System.Int32,System.Int64,System.Int64,System.IO.Stream)">
+            <summary>
+            Prepares a side for coming access requests.
+            </summary>
+            <param name="topz">the Z of the top edge of the side.</param>
+            <param name="bottomz">the Z of the bottom edge of the side.</param>
+            <param name="nviews">the number of views in the side.</param>
+            <param name="view_sp">the file position where View information begins.</param>
+            <param name="ntracks">the number of tracks in the side.</param>
+            <param name="track_sp">the file position where Track information begins.</param>
+            <param name="index_sp">the file position where Index information begins.</param>
+            <param name="strm">the data containing stream.</param>
+        </member>
+        <member name="F:SySal.DataStreams.OPERALinkedZone.Side.m_LastView">
+            <summary>
+            Last view loaded. Used to quickly retrieve recently used information without disk access.
+            </summary>
+        </member>
+        <member name="M:SySal.DataStreams.OPERALinkedZone.Side.View(System.Int32)">
+            <summary>
+            Reads a View.
+            </summary>
+            <param name="id">the Id of the view to be read.</param>
+            <returns>the requested view.</returns>
+        </member>
+        <member name="P:SySal.DataStreams.OPERALinkedZone.Side.ViewCount">
+            <summary>
+            The number of views in the Side.
+            </summary>
+        </member>
+        <member name="F:SySal.DataStreams.OPERALinkedZone.Side.m_LastTrack">
+            <summary>
+            Last microtrack loaded. Used to quickly retrieve recently used information without disk access.
+            </summary>
+        </member>
+        <member name="P:SySal.DataStreams.OPERALinkedZone.Side.Length">
+            <summary>
+            The number of microtracks in the side.
+            </summary>
+        </member>
+        <member name="P:SySal.DataStreams.OPERALinkedZone.Side.Item(System.Int32)">
+            <summary>
+            Allows accessing microtracks in an array-like fashion.
+            </summary>
+            <param name="index">the Id of the track to be retrieved.</param>
+            <returns>the requested microtrack.</returns>
+        </member>
+        <member name="P:SySal.DataStreams.OPERALinkedZone.Length">
+            <summary>
+            The number of MIPBaseTracks in the LinkedZone.
+            </summary>
+        </member>
+        <member name="P:SySal.DataStreams.OPERALinkedZone.Item(System.Int32)">
+            <summary>
+            Allows accessing base tracks in an array-like fashion.
+            </summary>
+            <param name="index">the Id of the track to be retrieved.</param>
+            <returns>the requested microtrack.</returns>
+        </member>
+        <member name="M:SySal.DataStreams.OPERALinkedZone.#ctor(System.String)">
+            <summary>
+            Opens a file for data retrieval.
+            </summary>
+            <param name="filepath">the path of the file to be opened.</param>
+            <remarks> The file must exist prior to the call, and is open in <c>Read/Share Read mode</c>. It is closed when <see cref="M:SySal.DataStreams.OPERALinkedZone.Dispose"/> is called, or on object finalization.</remarks>
+        </member>
+        <member name="M:SySal.DataStreams.OPERALinkedZone.#ctor(System.IO.Stream)">
+            <summary>
+            Associates the LinkedZone to an existing stream.
+            </summary>
+            <param name="str">the stream from which information has to be retrieved.</param>
+            <remarks> The stream is not closed when the object is finalized. The stream will not be reset at its beginning.</remarks>
+        </member>
+        <member name="M:SySal.DataStreams.OPERALinkedZone.Read(System.IO.Stream)">
+            <summary>
+            Reads summary information from a stream, preparing the LinkedZone and its Sides for coming access requests.
+            </summary>
+            <param name="str">the stream from which data have to be retrieved.</param>
+        </member>
+        <member name="M:SySal.DataStreams.OPERALinkedZone.FromStream(System.IO.Stream)">
+            <summary>
+            Creates a <see cref="T:SySal.Scanning.Plate.IO.OPERA.LinkedZone"/> from an open stream.
+            </summary>
+            <param name="strm">the stream from which data have to be retrieved.</param>
+            <returns>the requested LinkedZone</returns>
+            <remarks>If the file format is "MultiSection" or higher, a <see cref="!:SySal.DataStream.OPERALinkedZone"/> will be generated (so minimu memory occupancy is 
+            achieved); in case this fails, a standard LinkedZone, loaded in memory, will be produced.</remarks>
+        </member>
+        <member name="M:SySal.DataStreams.OPERALinkedZone.FromFile(System.String)">
+            <summary>
+            Creates a <see cref="T:SySal.Scanning.Plate.IO.OPERA.LinkedZone"/> from a file.
+            </summary>
+            <param name="filepath">the path of the file from which data have to be retrieved.</param>
+            <returns>the requested LinkedZone</returns>
+            <remarks>If the file format is "MultiSection" or higher, a <see cref="!:SySal.DataStream.OPERALinkedZone"/> will be generated (so minimu memory occupancy is 
+            achieved); in case this fails, a standard LinkedZone, loaded in memory, will be produced.</remarks>
+        </member>
+        <member name="M:SySal.DataStreams.OPERALinkedZone.Dispose">
+            <summary>
+            Releases all resources and unlocks the underlying stream/file.
+            </summary>
+        </member>
+        <member name="T:SySal.DataStreams.OPERALinkedZone.Writer">
+            <summary>
+            Writes a TLG in incremental mode, without need to host it in memory.
+            </summary>
+        </member>
+    </members>
+</doc>

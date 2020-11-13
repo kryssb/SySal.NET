@@ -1,0 +1,6 @@
+/home/kryss/Documenti/SySal/SySalWebServer/obj/Debug/.NETFramework,Version=v4.0.AssemblyAttribute.cs
+/home/kryss/Documenti/SySal/SySalWebServer/bin/Debug/SySalWebServer.dll.mdb
+/home/kryss/Documenti/SySal/SySalWebServer/bin/Debug/SySalWebServer.dll
+/home/kryss/Documenti/SySal/SySalWebServer/obj/Debug/SySalWebServer.dll
+/home/kryss/Documenti/SySal/SySalWebServer/obj/Debug/SySalWebServer.dll.mdb
+/home/kryss/Documenti/SySal/SySalWebServer/obj/Debug/SySalWebServer.pdb

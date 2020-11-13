@@ -1,0 +1,308 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SmartTracker</name>
+    </assembly>
+    <members>
+        <member name="F:SySal.Processing.SmartTracking.EditConfigForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.SmartTracking.EditConfigForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.SmartTracking.EditConfigForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Processing.SmartTracking.Configuration">
+            <summary>
+            Configuration class for SmartTracker
+            </summary>
+        </member>
+        <member name="T:SySal.Processing.SmartTracking.Configuration.TriggerInfo">
+            <summary>
+            A track search starts when one or more grains on the TriggerLayers are found aligned with the line of two grains on TopLayer and BottomLayer.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.SmartTracking.Configuration.TriggerInfo.TopLayer">
+            <summary>
+            Grains on this top layer define one end of the line.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.SmartTracking.Configuration.TriggerInfo.BottomLayer">
+            <summary>
+            Grains on this bottom layer define one end of the line.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.SmartTracking.Configuration.TriggerInfo.TriggerLayers">
+            <summary>
+            The list of layers to search for aligned grains.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.SmartTracking.Configuration.TriggerInfo.#ctor(System.UInt32,System.UInt32,System.UInt32[])">
+            <summary>
+            Builds a new TriggerInfo.
+            </summary>
+            <param name="toplayer">top layer for the trigger.</param>
+            <param name="bottomlayer">bottom layer for the trigger.</param>
+            <param name="triggerlayers">set of trigger layers.</param>
+        </member>
+        <member name="F:SySal.Processing.SmartTracking.Configuration.MaxSlope">
+            <summary>
+            Maximum slope sought.
+            </summary>
+            <remarks>Tracks with higher slope might be formed and accepted.</remarks>
+        </member>
+        <member name="F:SySal.Processing.SmartTracking.Configuration.MinSlope">
+            <summary>
+            Minimum slope sought.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.SmartTracking.Configuration.AlignTol">
+            <summary>
+            Transverse alignment tolerance.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.SmartTracking.Configuration.Triggers">
+            <summary>
+            The triggers for track formation.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.SmartTracking.Configuration.MinGrainsForVerticalTrack">
+            <summary>
+            Minimum number of grains for vertical tracks.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.SmartTracking.Configuration.MinGrainsForHorizontalTrack">
+            <summary>
+            Minimum number of grains for horizontal tracks.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.SmartTracking.Configuration.MinGrainsSlope01">
+            <summary>
+            Minimum number of grains for tracks at tan theta = 0.1 from the vertical.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.SmartTracking.Configuration.MinArea">
+            <summary>
+            Minimum area of clusters for tracking.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.SmartTracking.Configuration.MaxArea">
+            <summary>
+            Maximum area of clusters for tracking.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.SmartTracking.Configuration.CellOverflow">
+            <summary>
+            Maximum number of grains in a cell.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.SmartTracking.Configuration.CellNumX">
+            <summary>
+            Cells in X direction.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.SmartTracking.Configuration.CellNumY">
+            <summary>
+            Cells in Y direction.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.SmartTracking.Configuration.MaxTrackingTimeMS">
+            <summary>
+            Maximum allowed tracking time in ms; if exceeded, no tracks are produced.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.SmartTracking.Configuration.MaxProcessors">
+            <summary>
+            Maximum number of processors to used; a value of <c>0</c> can be specified to ask for an automatic decision.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.SmartTracking.Configuration.ReplicaRadius">
+            <summary>
+            Maximum transverse distance of two replicas of the same grain.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.SmartTracking.Configuration.ReplicaSampleDivider">
+            <summary>
+            Only one grain every <c>ReplicaSampleDivider</c> is used to search for replicas.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.SmartTracking.Configuration.MinReplicas">
+            <summary>
+            Minimum number of replicas to be used for grain map correction.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.SmartTracking.Configuration.InitialMultiplicity">
+            <summary>
+            Number of grains a track can have on a single plane.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.SmartTracking.Configuration.DeltaZMultiplier">
+            <summary>
+            The longitudinal alignment tolerance is <c>AlignTol + Slope*DeltaZMultiplier</c>; 1 is the default value.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.SmartTracking.Configuration.AllowOverlap">
+            <summary>
+            If <c>true</c>, two or more tracks can share one or more grains.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.SmartTracking.Configuration.Clone">
+            <summary>
+            Produces a copy of this Configuration.
+            </summary>
+            <returns>a copy of this Configuration.</returns>
+        </member>
+        <member name="M:SySal.Processing.SmartTracking.Configuration.#ctor">
+            <summary>
+            Builds a new Configuration.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.SmartTracking.Configuration.#ctor(System.String)">
+            <summary>
+            Builds a new Configuration with a specified name.
+            </summary>
+            <param name="name">the name to be given to the Configuration.</param>
+        </member>
+        <member name="T:SySal.Processing.SmartTracking.SmartTracker">
+            <summary>
+            SmartTracker track finding class.
+            </summary>
+        </member>
+        <member name="T:SySal.Processing.SmartTracking.SmartTracker.GrainCorrectionInfo">
+            <summary>
+            Grain position correction information.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.SmartTracking.SmartTracker.GrainCorrectionInfo.Layer">
+            <summary>
+            Layer.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.SmartTracking.SmartTracker.GrainCorrectionInfo.AvgLX">
+            <summary>
+            Average displacement in X/Y.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.SmartTracking.SmartTracker.GrainCorrectionInfo.AvgLY">
+            <summary>
+            Average displacement in X/Y.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.SmartTracking.SmartTracker.GrainCorrectionInfo.L0X">
+            <summary>
+            0-th and 1-st order displacements in X/Y.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.SmartTracking.SmartTracker.GrainCorrectionInfo.L1X">
+            <summary>
+            0-th and 1-st order displacements in X/Y.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.SmartTracking.SmartTracker.GrainCorrectionInfo.L0Y">
+            <summary>
+            0-th and 1-st order displacements in X/Y.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.SmartTracking.SmartTracker.GrainCorrectionInfo.L1Y">
+            <summary>
+            0-th and 1-st order displacements in X/Y.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.SmartTracking.SmartTracker.GrainCorrectionInfo.Count">
+            <summary>
+            Grains used for correction.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.SmartTracking.SmartTracker.GrainCorrectionInfo.Z">
+            <summary>
+            Layer Z.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.SmartTracking.SmartTracker.GrainCorrectionInfo.ToString">
+            <summary>
+            Represents the grain correction information in string format.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SySal.Processing.SmartTracking.SmartTracker.TrackGrain2">
+            <summary>
+            Track grains include track quality information
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.SmartTracking.SmartTracker.TrackingArea">
+            <summary>
+            The area in the field of view where the tracker operates.
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.SmartTracking.SmartTracker.Pixel2Micron">
+            <summary>
+            Pixel-to-micron conversion factors.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.SmartTracking.SmartTracker.FindTracks(SySal.Tracking.GrainPlane[],System.Boolean,System.Int32,System.Boolean,SySal.BasicTypes.Vector2,SySal.BasicTypes.Vector2)">
+            <summary>
+            Finds tracks as grain sequences.
+            </summary>
+            <param name="tomography">images as planes of grains.</param>
+            <param name="istopside"><c>true</c> for top side, <c>false</c> for bottom side.</param>
+            <param name="maxtracks">maximum number of tracks to produce.</param>
+            <param name="enablepresetslope">if <c>true</c>, enables using a preset track slope, with limited slope acceptance.</param>
+            <param name="presetslope">preselected slope of tracks to be found.</param>
+            <param name="presetslopeacc">slope acceptances for preselected track slopes.</param>
+        </member>
+        <member name="M:SySal.Processing.SmartTracking.SmartTracker.#ctor">
+            <summary>
+            Builds a new SmartTracker.
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.SmartTracking.SmartTracker.XLocation">
+            <summary>
+            X position of the object on a graphical layout.
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.SmartTracking.SmartTracker.YLocation">
+            <summary>
+            Y position of the object on a graphical layout.
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.SmartTracking.SmartTracker.Expose">
+            <summary>
+            Exposes / hides generation of additional info.
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.SmartTracking.SmartTracker.ExposedInfo">
+            <summary>
+            Gets the additional information.
+            </summary>
+        </member>
+        <member name="T:SySal.Processing.SmartTracking.TriggerForm">
+            <summary>
+            Summary description for TriggerForm.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.SmartTracking.TriggerForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.SmartTracking.TriggerForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.SmartTracking.TriggerForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+    </members>
+</doc>

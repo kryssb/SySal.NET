@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EasyLink.NET</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Executables.EasyLinkNET.Exe">
+            <summary>
+            GUI tool for interactive sessions of raw data linking to TLG files.
+            </summary>
+            <remarks>This executable is almost obsolete. Use of BatchLink (See <see cref="!:SySal.Executables.BatchLink.Exe"/>) is recommended instead.</remarks>
+        </member>
+        <member name="F:SySal.Executables.EasyLinkNET.Exe.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyLinkNET.Exe.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyLinkNET.Exe.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyLinkNET.Exe.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="T:SySal.Executables.EasyLinkNET.EasyShrink">
+            <summary>
+            Summary description for EasyShrink.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.EasyLinkNET.EasyShrink.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyLinkNET.EasyShrink.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.EasyLinkNET.EasyShrink.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+    </members>
+</doc>

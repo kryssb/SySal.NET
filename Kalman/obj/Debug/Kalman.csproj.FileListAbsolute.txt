@@ -1,0 +1,10 @@
+/home/kryss/Documenti/SySal/Kalman/bin/Debug/Kalman.dll
+/home/kryss/Documenti/SySal/Kalman/bin/Debug/Kalman.pdb
+/home/kryss/Documenti/SySal/Kalman/bin/Debug/Kalman.xml
+/home/kryss/Documenti/SySal/Kalman/bin/Debug/NumericalTools.dll
+/home/kryss/Documenti/SySal/Kalman/bin/Debug/NumericalTools.pdb
+/home/kryss/Documenti/SySal/Kalman/bin/Debug/NumericalTools.xml
+/home/kryss/Documenti/SySal/Kalman/obj/Debug/Kalman.csprojAssemblyReference.cache
+/home/kryss/Documenti/SySal/Kalman/obj/Debug/Kalman.csproj.CopyComplete
+/home/kryss/Documenti/SySal/Kalman/obj/Debug/Kalman.dll
+/home/kryss/Documenti/SySal/Kalman/obj/Debug/Kalman.pdb

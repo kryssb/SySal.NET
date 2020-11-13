@@ -1,0 +1,442 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FlexiVolume</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.TotalScan.Flexi.DataSet">
+            <summary>
+            Specifies the origin of a data element such as microtrack/volume track/vertex.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Flexi.DataSet.DataType">
+            <summary>
+            The type of data.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Flexi.DataSet.DataId">
+            <summary>
+            The id of the data.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.DataSet.AreEqual(SySal.TotalScan.Flexi.DataSet,SySal.TotalScan.Flexi.DataSet)">
+            <summary>
+            Checks whether two datasets are equal.
+            </summary>
+            <param name="a">the first dataset to be compared.</param>
+            <param name="b">the second dataset to be compared.</param>
+            <returns><c>true</c> if the two are found equal, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.DataSet.AreSameType(SySal.TotalScan.Flexi.DataSet,SySal.TotalScan.Flexi.DataSet)">
+            <summary>
+            Checks whether two dataset have the same datatype.
+            </summary>
+            <param name="a">the first dataset to be compared.</param>
+            <param name="b">the second dataset to be compared.</param>
+            <returns><c>true</c> if the two datasets are found equal, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.DataSet.ToString">
+            <summary>
+            Generates a text dump of the object.
+            </summary>
+            <returns>a string with a text dump of the object.</returns>
+        </member>
+        <member name="T:SySal.TotalScan.Flexi.Segment">
+            <summary>
+            A segment in a FlexiVolume.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Segment.ToString">
+            <summary>
+            Builds a text representation of a segment.
+            </summary>
+            <returns>a string with the dump of the information in the segment.</returns>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Segment.Copy(SySal.TotalScan.Segment,SySal.TotalScan.Flexi.DataSet)">
+            <summary>
+            Makes a copy of a segment, providing minimum functions of a SySal.TotalScan.Flexi.Segment.
+            </summary>
+            <param name="s">the segment to be copied.</param>
+            <param name="ds">the dataset to assign the segment to.</param>
+            <returns>the copy of the segment.</returns>
+        </member>
+        <member name="F:SySal.TotalScan.Flexi.Segment.m_DataSet">
+            <summary>
+            Property backer member for <c>DataSet</c>.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Flexi.Segment.DataSet">
+            <summary>
+            The data set this segment belongs to.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Segment.#ctor(SySal.TotalScan.Segment,SySal.TotalScan.Flexi.DataSet)">
+            <summary>
+            Builds a new Segment from a TotalScan Segment.
+            </summary>
+            <param name="seg">the segment to copy.</param>
+            <param name="ds">the dataset marker to assign this data element to.</param>
+            <remarks>The information of the original layer and track are lost.</remarks>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Segment.SetLayer(SySal.TotalScan.Layer,System.Int32)">
+            <summary>
+            Sets the layer and position within the layer for this segment.
+            </summary>
+            <param name="ly">the layer to attach the segment to.</param>
+            <param name="lypos">the position of the segment in the layer.</param>
+            <remarks>The layer receives no notification of the newly attached segment. External code must maintain the consistency.</remarks>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Segment.SetTrack(SySal.TotalScan.Track,System.Int32)">
+            <summary>
+            Sets the owner track and position within the track for this segment.
+            </summary>
+            <param name="ly">the track to attach the segment to.</param>
+            <param name="lypos">the position of the segment in the track.</param>
+            <remarks>The track receives no notification of the newly attached segment. External code must maintain the consistency.</remarks>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Segment.SetInfo(SySal.Tracking.MIPEmulsionTrackInfo)">
+            <summary>
+            Sets the geometrical parameters for the segment.
+            </summary>
+            <param name="info">the new geometrical parameters.</param>
+            <remarks>The owner track (if any) receives no notification of the change. External code must maintain the consistency.</remarks>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Segment.SetIndex(SySal.TotalScan.Index)">
+            <summary>
+            Sets the index for the segment.
+            </summary>
+            <param name="ix">the new index to be set.</param>
+        </member>
+        <member name="T:SySal.TotalScan.Flexi.Layer">
+            <summary>
+            A layer in a FlexiVolume.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Layer.SetId(System.Int32)">
+            <summary>
+            Sets the ordering number of the layer in the FlexiVolume.
+            </summary>
+            <param name="id">the new ordering number.</param>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Layer.SetBrickId(System.Int64)">
+            <summary>
+            Assigns a brick identifier to the layer. It is useful for old volumes that did not come with brick assignment.
+            </summary>
+            <param name="bkid">the brick to which the layer belongs.</param>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Layer.#ctor(SySal.TotalScan.Layer,SySal.TotalScan.Flexi.DataSet)">
+            <summary>
+            Copies an existing layer into a FlexiLayer.
+            </summary>
+            <param name="ly">the original layer.</param>
+            <param name="ds">the dataset to which the segments of this layer should be attached.</param>
+            <remarks>The segments in the original dataset are copied to the new one, setting the LayerOwner and the position in the layer to the newly created object.</remarks>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Layer.#ctor(System.Int32,System.Int64,System.Int32,System.Int16)">
+            <summary>
+            Creates an empty layer.
+            </summary>        
+            <param name="id">the order number in the FlexiVolume.</param>
+            <param name="brickid">the brick id.</param>
+            <param name="sheet">the sheet in the brick.</param>
+            <param name="side">the side (0 for base tracks, 1 for downstream, 2 for upstream).</param>        
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Layer.SetUpstreamZ(System.Double)">
+            <summary>
+            Sets the upstream Z for the layer.
+            </summary>
+            <param name="z">the new Z value.</param>
+            <remarks>This method does not move segment Zs.</remarks>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Layer.SetDownstreamZ(System.Double)">
+            <summary>
+            Sets the downstream Z for the layer.
+            </summary>
+            <param name="z">the new Z value.</param>
+            <remarks>This method does not move segment Zs.</remarks>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Layer.SetRefCenter(SySal.BasicTypes.Vector)">
+            <summary>
+            Sets the reference center of the layer.
+            </summary>
+            <param name="r">the new reference center.</param>
+            <remarks>This method does not move segment Zs.</remarks>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Layer.DisplaceAndClampZ(System.Double,System.Double)">
+            <summary>
+            Sets the Z references of the layers, also adjusting segment positions.
+            </summary>
+            <param name="newupz">the new value of the upstream Z.</param>
+            <param name="newdownz">the new value of the downstream Z.</param>
+            <remarks>The new value of the Z of the reference center is computed by an affine transformation, as well as those of segments.</remarks>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Layer.Add(SySal.TotalScan.Flexi.Segment[])">
+            <summary>
+            Adds one or more FlexiSegments, also setting their LayerOwner and position in the layer.
+            </summary>
+            <param name="seg">the new segments to be added.</param>
+            <returns>an array with the list of the positions assigned to segments.</returns>
+            <remarks>The array can contain null elements. In this case, the segment can be specified later.</remarks>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Layer.SetSegment(SySal.TotalScan.Flexi.Segment,System.Int32)">
+            <summary>
+            Sets a FlexiSegment to occupy a certain position in a FlexiLayer.
+            </summary>
+            <param name="seg">the FlexiSegment to be associated to the layer.</param>
+            <param name="lypos">the position of the segment in the layer.</param>
+            <remarks>The method sets the layer and position of the segment.</remarks>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Layer.Remove(System.Int32[])">
+            <summary>
+            Removes all segments in a layer with the specified order positions, and reclaims space. Other segments have their positions renumbered accordingly.
+            </summary>
+            <param name="removepos">the list of the positions to remove segments from. This list need not be ordered.</param>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Layer.SetAlignment(SySal.TotalScan.AlignmentData)">
+            <summary>
+            Sets the alignment data for this layer, also recomputing the inverse matrix.
+            </summary>
+            <param name="a">the new alignment data to be used.</param>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Layer.SetRadiationLength(System.Double)">
+            <summary>
+            Sets the average radiation length in the layer.
+            </summary>
+            <param name="radlen">the value of the radiation length.</param>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Layer.SetDownstreamRadiationLength(System.Double)">
+            <summary>
+            Sets the average radiation length in the material downstream of the layer.
+            </summary>
+            <param name="radlen">the value of the radiation length.</param>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Layer.SetUpstreamRadiationLength(System.Double)">
+            <summary>
+            Sets the average radiation length in the material upstream of the layer.
+            </summary>
+            <param name="radlen">the value of the radiation length.</param>
+        </member>
+        <member name="T:SySal.TotalScan.Flexi.Track">
+            <summary>
+            A volume track in a FlexiVolume.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Track.SetId(System.Int32)">
+            <summary>
+            Sets the ordering number of the track in the FlexiVolume.
+            </summary>
+            <param name="id">the new ordering number.</param>
+        </member>
+        <member name="F:SySal.TotalScan.Flexi.Track.m_DataSet">
+            <summary>
+            Property backer member for <c>DataSet</c>.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Flexi.Track.DataSet">
+            <summary>
+            The data set this track belongs to.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Track.#ctor(SySal.TotalScan.Flexi.DataSet,System.Int32)">
+            <summary>
+            Creates an empty track.
+            </summary>
+            <param name="ds">the dataset this track belongs to.</param>
+            <param name="id">the id to be assigned to the track.</param>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Track.AddSegments(SySal.TotalScan.Flexi.Segment[])">
+            <summary>
+            Adds one or more FlexiSegments, also setting their TrackOwner and position in the track.
+            </summary>
+            <param name="seg">the new segments to be added.</param>
+            <returns>an array with the list of the positions assigned to segments.</returns>
+            <remarks>The array can contain null elements. In this case, the segment can be specified later.</remarks>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Track.SetSegment(SySal.TotalScan.Flexi.Segment,System.Int32)">
+            <summary>
+            Sets a FlexiSegment to occupy a certain position in a FlexiTrack.
+            </summary>
+            <param name="seg">the FlexiSegment to be associated to the track.</param>
+            <param name="lypos">the position of the segment in the track.</param>
+            <remarks>The method sets the layer and position of the segment.</remarks>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Track.RemoveSegments(System.Int32[])">
+            <summary>
+            Removes all segments in a track with the specified order positions, and reclaims space. Other segments have their positions renumbered accordingly.
+            </summary>
+            <param name="removepos">the list of the positions to remove segments from. This list need not be ordered.</param>
+        </member>
+        <member name="P:SySal.TotalScan.Flexi.Track.BaseTracks">
+            <summary>
+            Retrieves the base tracks in this track.
+            </summary>
+        </member>
+        <member name="T:SySal.TotalScan.Flexi.Vertex">
+            <summary>
+            A vertex in a FlexiVolume
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Vertex.SetId(System.Int32)">
+            <summary>
+            Sets the ordering number of the vertex in the FlexiVolume.
+            </summary>
+            <param name="id">the new ordering number.</param>
+        </member>
+        <member name="F:SySal.TotalScan.Flexi.Vertex.m_DataSet">
+            <summary>
+            Property backer member for <c>DataSet</c>.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Flexi.Vertex.DataSet">
+            <summary>
+            The data set this vertex belongs to.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Vertex.#ctor(SySal.TotalScan.Flexi.DataSet,System.Int32)">
+            <summary>
+            Creates an empty vertex.
+            </summary>
+            <param name="ds">the dataset this vertex belongs to.</param>
+            <param name="id">the id to be assigned to the vertex.</param>
+        </member>
+        <member name="T:SySal.TotalScan.Flexi.Volume">
+            <summary>
+            A FlexiVolume, i.e. a Volume that can host data from several data sets.
+            </summary>
+        </member>
+        <member name="T:SySal.TotalScan.Flexi.Volume.LayerList">
+            <summary>
+            A list of layers in a FlexiVolume.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Volume.LayerList.Insert(SySal.TotalScan.Flexi.Layer)">
+            <summary>
+            Inserts a layer in Z order (using its <c>RefCenter.Z</c> information).
+            </summary>
+            <param name="ly">the layer to be inserted.</param>
+            <remarks>the ids of the layers (including the newly inserted one) are recomputed.</remarks>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Volume.LayerList.Remove(System.Int32)">
+            <summary>
+            Removes the layer at the specified position.
+            </summary>
+            <param name="pos">the position hosting the layer to be removed.</param>
+            <remarks>the ids of the layers following the removed layer are recomputed.</remarks>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Volume.LayerList.#ctor">
+            <summary>
+            Builds an empty list.
+            </summary>
+        </member>
+        <member name="T:SySal.TotalScan.Flexi.Volume.TrackList">
+            <summary>
+            A list of tracks in a FlexiVolume.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Volume.TrackList.Insert(SySal.TotalScan.Flexi.Track[])">
+            <summary>
+            Adds a list of tracks.
+            </summary>
+            <param name="tks">the tracks to be added. Null values are allowed, leaving empty entries that can be filled later.</param>
+            <returns>the ids assigned to the tracks</returns>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Volume.TrackList.Set(SySal.TotalScan.Flexi.Track)">
+            <summary>
+            Sets a track in the track list at the position specified by its Id property.
+            </summary>
+            <param name="tk">the track to be set.</param>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Volume.TrackList.Remove(System.Int32[])">
+            <summary>
+            Removes the tracks at the specified positions.
+            </summary>
+            <param name="pos">the position hosting the tracks to be removed.</param>
+            <remarks>the ids of the tracks are recomputed.</remarks>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Volume.TrackList.#ctor">
+            <summary>
+            Builds an empty list.
+            </summary>
+        </member>
+        <member name="T:SySal.TotalScan.Flexi.Volume.VertexList">
+            <summary>
+            A list of vertices in a FlexiVolume.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Volume.VertexList.Insert(SySal.TotalScan.Flexi.Vertex[])">
+            <summary>
+            Adds a list of vertices.
+            </summary>
+            <param name="tks">the vertices to be added. Null values are allowed, leaving empty entries that can be filled later.</param>
+            <returns>the ids assigned to the vertices</returns>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Volume.VertexList.Set(SySal.TotalScan.Flexi.Vertex)">
+            <summary>
+            Sets a vertex in the vertex list at the position specified by its Id property.
+            </summary>
+            <param name="tk">the vertex to be set.</param>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Volume.VertexList.Remove(System.Int32[])">
+            <summary>
+            Removes the vertices at the specified positions.
+            </summary>
+            <param name="pos">the position hosting the vertex to be removed.</param>
+            <remarks>the ids of the vertices are recomputed.</remarks>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Volume.VertexList.#ctor">
+            <summary>
+            Builds an empty list.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Volume.#ctor">
+            <summary>
+            Builds an empty volume.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Volume.SetExtents(SySal.BasicTypes.Cuboid)">
+            <summary>
+            Sets the volume extents.
+            </summary>
+            <param name="c">the cuboid specifying the extents.</param>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Volume.SetRefCenter(SySal.BasicTypes.Vector)">
+            <summary>
+            Sets the reference center.
+            </summary>
+            <param name="r">the new reference center.</param>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Volume.SetId(SySal.BasicTypes.Identifier)">
+            <summary>
+            Sets the Id;
+            </summary>
+            <param name="id">the new id.</param>
+        </member>
+        <member name="P:SySal.TotalScan.Flexi.Volume.DataSets">
+            <summary>
+            The list of the datasets that have at least one data element associated in this volume.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Volume.ImportVolume(SySal.TotalScan.Flexi.DataSet,SySal.TotalScan.Volume)">
+            <summary>
+            Imports a TotalScan Volume.
+            </summary>
+            <param name="ds">the dataset to which the volume to be imported belongs.</param>
+            <param name="v">the volume to be imported.</param>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Volume.ImportVolume(SySal.TotalScan.Flexi.DataSet,SySal.TotalScan.Volume,SySal.TotalScan.Flexi.DataSet)">
+            <summary>
+            Imports a TotalScan Volume.
+            </summary>
+            <param name="ds">the dataset to which the volume to be imported belongs.</param>
+            <param name="v">the volume to be imported.</param>
+            <param name="fds">the dataset that should be imported; if this parameter is <c>null</c>, all datasets are imported.</param>
+            <remarks>The dataset filter only applies to tracks and vertices. All segments are always imported. Track/Vertex dataset consistency should be guaranteed by the user.</remarks>
+        </member>
+        <member name="M:SySal.TotalScan.Flexi.Volume.Save(System.IO.Stream)">
+            <summary>
+            Saves a TotalScan volume to a stream.
+            </summary>
+            <param name="w">the stream to save to.</param>
+        </member>
+    </members>
+</doc>

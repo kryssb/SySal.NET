@@ -1,0 +1,246 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DriverHost</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.DAQSystem.Drivers.IInterruptNotifier">
+            <summary>
+            This interface can be registered by driver processes for quick interrupt notifications.
+            When the host environment detects an interrupt for the process, this interface is called to avoid polling.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.IInterruptNotifier.NotifyInterrupt(SySal.DAQSystem.Drivers.Interrupt)">
+            <summary>
+            Notifies the driver process of the new incoming interrupt.
+            </summary>
+            <param name="nextint">the next interrupt to be processed.</param>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.HostEnv">
+            <summary>
+            Host environment for a driver process.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.HostEnv.InitializeLifetimeService">
+            <summary>
+            Initializes the Lifetime Service.
+            </summary>
+            <returns>null to obtain an everlasting HostEnv.</returns>
+        </member>
+        <member name="P:SySal.DAQSystem.Drivers.HostEnv.Machines">
+            <summary>
+            The machine ids handled by this BatchManager.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.Drivers.HostEnv.Operations">
+            <summary>
+            The ids of the process operations currently handled by this BatchManager.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.HostEnv.GetOperationStartupInfo(System.Int64)">
+            <summary>
+            Retrieves the startup information (except password and alias credentials) for the specified process operation.
+            </summary>
+            <param name="id">id of the process operation for which startup information is required.</param>
+            <returns>the startup information of the process operation.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.HostEnv.GetProgressInfo(System.Int64)">
+            <summary>
+            Retrieves the progress information for the specified process operation.
+            </summary>
+            <param name="id">id of the process operation for which progress information is required.</param>
+            <returns>the progress information of the process operation.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.HostEnv.Start(SySal.DAQSystem.Drivers.TaskStartupInfo)">
+            <summary>
+            Starts a new process operation, which will automatically be a child operation of the current one.
+            </summary>
+            <param name="startupinfo">startup information for the process operation.</param>		
+            <returns>the process operation id that has been allocated to this process operation.</returns>
+            <remarks>The child operation will inherit the token of the parent operation.</remarks>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.HostEnv.Start(SySal.DAQSystem.Drivers.TaskStartupInfo,System.Object)">
+            <summary>
+            Starts a new process operation, which will automatically be a child operation of the current one, adding prepared input. Fast input may be used to avoid querying the DB, but the callee retains complete responsibility about the correctness of the fast input.
+            </summary>
+            <param name="startupinfo">startup information for the process operation.</param>
+            <param name="fastinput">the fast input for the process operation. Correctness and consistency of this input cannot be guaranteed.</param>
+            <returns>the process operation id that has been allocated to this process operation.</returns>
+            <remarks>The child operation will inherit the token of the parent operation.</remarks>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.HostEnv.Wait(System.Int64)">
+            <summary>
+            Stops execution of the current driver until the specified process operation returns.
+            </summary>
+            <param name="procopid">the Id of the process operation whose completion is being awaited.</param>
+            <returns>the status of the operation after completion.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.HostEnv.WaitForOpOrScanServer(System.Int64)">
+            <summary>
+            Stops execution of the current driver until the specified process operation returns or frees its scan server.
+            </summary>
+            <param name="procopid">the Id of the process operation whose completion is being awaited.</param>
+            <returns>the status of the operation after completion.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.HostEnv.Pause(System.Int64)">
+            <summary>
+            Pauses a process operation using the credentials of the current process operation.
+            </summary>
+            <param name="id">the id of the process operation to be paused.</param>
+            <returns>the status of the process operation.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.HostEnv.Resume(System.Int64)">
+            <summary>
+            Resumes a paused process operation using the credentials of the current process operation..
+            </summary>
+            <param name="id">the id of the process operation to be resumed.</param>
+            <returns>the status of the process operation.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.HostEnv.Abort(System.Int64)">
+            <summary>
+            Aborts a process operation using the credentials of the current process operation..
+            </summary>
+            <param name="id">the id of the process operation to be aborted.</param>
+            <returns>the status of the process operation.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.HostEnv.GetStatus(System.Int64)">
+            <summary>
+            Retrieves the status of the specified process operation.
+            </summary>
+            <param name="id">the id of the process operation for which execution information is required.</param>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.HostEnv.GetSummary(System.Int64)">
+            <summary>
+            Generates a summary of the specified process operation.
+            </summary>
+            <param name="id">the id of the process operation for which the summary is required.</param>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.HostEnv.Interrupt(System.Int64,System.String)">
+            <summary>
+            Adds an interrupt to the interrupt list of the process using the credentials of the current process operation. Interrupt data can be passed.
+            </summary>
+            <param name="id">the id of the process to be interrupted.</param>
+            <param name="interruptdata">interrupt data to be passed to the process; their format and content depend on the specific executable driving the process.</param>
+        </member>
+        <member name="P:SySal.DAQSystem.Drivers.HostEnv.StartupInfo">
+            <summary>
+            Startup information for the process.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.Drivers.HostEnv.FastInput">
+            <summary>
+            Reads the fast input for this process operation. Consistency with the general logic (in particular, with the OperaDB) is not guaranteed: it depends on the caller, but the responsibility to accept the prepared input depends on the callee.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.Drivers.HostEnv.FastOutput">
+            <summary>
+            Sets the fast output for this process operation. Consistency with the general logic (in particular, with the OperaDB) is not guaranteed: it depends on the callee, but the responsibility to accept the prepared output depends on the caller.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.Drivers.HostEnv.FastResult">
+            <summary>
+            Gets the fast output from the child operation of this process operation. Consistency with the general logic (in particular, with the OperaDB) is not guaranteed: it depends on the callee, but the responsibility to accept the prepared output depends on the caller.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.Drivers.HostEnv.ProgramSettings">
+            <summary>
+            Program settings for the process operation.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.Drivers.HostEnv.ProgressInfo">
+            <summary>
+            Progress information about the process operation.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.Drivers.HostEnv.Progress">
+            <summary>
+            Provides quick write access to the Progress field of the progress info.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.Drivers.HostEnv.CustomInfo">
+            <summary>
+            Provides quick write access to the CustomInfo field of the progress info.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.Drivers.HostEnv.Complete">
+            <summary>
+            Provides quick write access to the Complete field of the progress info.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.Drivers.HostEnv.LastProcessedInterruptId">
+            <summary>
+            Provides quick write access to the LastProcessedInterruptId of the progress info.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.Drivers.HostEnv.ExitException">
+            <summary>
+            Provides quick write access to the ExitException of the progress info.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.Drivers.HostEnv.NextInterrupt">
+            <summary>
+            Gets the next interrupt for the specified process.
+            </summary>
+            <returns>the next unprocessed interrupt. Null is returned if no unprocessed interrupt exists.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.HostEnv.Write(System.String)">
+            <summary>
+            Writes text to the host environment logger.
+            </summary>
+            <param name="text">the text to be written.</param>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.HostEnv.WriteLine(System.String)">
+            <summary>
+            Writes text to the host environment logger and advances to the next line.
+            </summary>
+            <param name="text">the text to be written.</param>
+        </member>
+        <member name="P:SySal.DAQSystem.Drivers.HostEnv.InterruptNotifier">
+            <summary>
+            Registers an interrupt notifier interface for the driver process.
+            Upon registration the driver process should be sent notification about the first interrupt, if any.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.Drivers.HostEnv.DataProcSrv">
+            <summary>
+            Gets the DataProcessingServer (usually hosted by the BatchManager) that serves process running on the current BatchManager.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.Drivers.HostEnv.ScanSrv">
+            <summary>
+            Gets the ScanServer associated to this process operation. 
+            The ScanServer is locked when the process operation starts and is in a running state. No other process referring to the same ScanServer can be running at the same moment.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.Drivers.HostEnv.Token">
+            <summary>
+            Gets the Computing Infrastructure security token associated to this process operation.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.Drivers.HostEnv.Own">
+            <summary>
+            The current environment of the calling driver process. Used by driver programs to gain access to their own host environment.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.HostEnv.WebAccessString">
+            <summary>
+            The name that is given to the Web application provided by each driver.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.HostEnv.WebUserData">
+            <summary>
+            User data that are passed to the Web application of each driver.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.HostEnv.WebUserData.Usr">
+            <summary>
+            Computing infrastructure user name.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.HostEnv.WebUserData.Pwd">
+            <summary>
+            Computing infrastructure password.
+            </summary>
+        </member>
+    </members>
+</doc>

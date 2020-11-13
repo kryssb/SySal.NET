@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>X3LView</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Executables.X3LView.OwnerView">
+            <summary>
+            Owner information viewing form.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.X3LView.OwnerView.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.X3LView.OwnerView.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.X3LView.OwnerView.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.X3LView.QuickDisplayChoose.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.X3LView.QuickDisplayChoose.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SySal.Executables.X3LView.QuickDisplayChoose.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Executables.X3LView.X3LView">
+            <summary>
+            X3LView - Viewing application for generic X3L files.
+            </summary>
+            <remarks>
+            <para>X3LView is a thin viewing application to work with graphic files in the <see cref="T:GDI3D.Scene">X3L</see> format.</para>
+            <para>X3L files contain analysis information together with the graphics, so they are a powerful help to work in the absence of a connected DB or other data source.</para>
+            <para>The following actions are available:
+            <list type="table">
+            <listheader><term>Control</term><description>Action</description></listheader>
+            <item><term><b>Load</b> (button)</term><description>Loads a new X3L file.</description></item>
+            <item><term><b>Merge</b> (button)</term><description>Loads a new X3L file and merges its contents with the current contents.</description></item>
+            <item><term><b>Save</b> (button)</term><description>Saves the contents to a new X3L file or to common 2D graphics formats.</description></item>
+            <item><term><b>+</b> (button)</term><description>Zooms in.</description></item>
+            <item><term><b>-</b> (button)</term><description>Zooms out.</description></item>
+            <item><term><b>Isometric</b> (check flag)</term><description>If checked, the view is isometric and distance shrinking is not applied; if false, perspective viewing with distance shrinking is applied. Normally, the zoom factors needed to obtain a reasonable picture are very different between isometric and perspective viewing.</description></item>
+            <item><term><b>Set Focus</b> (button)</term><description>After clicking this button, the next <u>left click</u> with the mouse buttons will set the rotation center on the object being clicked.</description></item>
+            <item><term><b>Pan</b> (button)</term><description>After clicking this button, dragging the view with the <u>right mouse button</u> will translate the content.</description></item>
+            <item><term><b>Rot</b> (button)</term><description>After clicking this button, dragging the view with the <u>right mouse button</u> will rotate the content.</description></item>
+            <item><term><b>Alpha</b> (slider)</term><description>This slider control the level of opaqueness of lines and points.</description></item>
+            <item><term><b>Lines</b> (slider)</term><description>This slider control the thickness of lines.</description></item>
+            <item><term><b>Points</b> (slider)</term><description>This slider control the size of points.</description></item>
+            <item><term><b>Bkgnd</b> (button)</term><description>Sets the background color.</description></item>
+            <item><term><b>Kill by owner</b> (button)</term><description>When clicked, it enables "killing" mode: every subsequent double-click will kill the nearest graphical object with non-null owner. Clicking again will switch to normal mode (see below).</description></item>
+            </list>
+            Double-clicking with the <u>left mouse button</u> on an object will display its owner information, if available.
+            </para>
+            </remarks>
+        </member>
+        <member name="F:SySal.Executables.X3LView.X3LView.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.X3LView.X3LView.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.X3LView.X3LView.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.X3LView.X3LView.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.X3LView.X3LView.SetScene(GDI3D.Scene)">
+            <summary>
+            Sets the scene to be shown. This method can be called when X3LView is used as a module rather than an independent program.
+            </summary>
+            <param name="scene">the scene to be shown.</param>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TSRClean</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Executables.TSRClean.Exe">
+            <summary>
+            TSRClean - Command line tool to clean TSR files.	
+            </summary>
+            <remarks>
+            <para>The function of TSRClean is to clean TSR files of background. Only the volume tracks 
+            with a minimum number of segments, or those attached to vertices. </para>
+            <para>Usage: <c>TSRClean &lt;input Opera file&gt; &lt;output Opera file&gt; &lt;min track segments&gt;</c></para>
+            </remarks>
+        </member>
+        <member name="M:SySal.Executables.TSRClean.Exe.Main(System.String[])">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+    </members>
+</doc>

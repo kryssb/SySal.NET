@@ -1,0 +1,6 @@
+/home/kryss/Documenti/SySal/GDI3DCore/bin/Debug/GDI3DCore.dll
+/home/kryss/Documenti/SySal/GDI3DCore/bin/Debug/GDI3DCore.pdb
+/home/kryss/Documenti/SySal/GDI3DCore/bin/Debug/GDI3DCore.xml
+/home/kryss/Documenti/SySal/GDI3DCore/obj/Debug/GDI3DCore.dll
+/home/kryss/Documenti/SySal/GDI3DCore/obj/Debug/GDI3DCore.pdb
+/home/kryss/Documenti/SySal/GDI3DCore/obj/Debug/GDI3DCore.csprojAssemblyReference.cache

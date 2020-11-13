@@ -1,0 +1,507 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>VolumeGeneration</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Processing.VolumeGeneration.frmParameters">
+            <summary>
+            Form to edit configuration parameters.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.frmParameters.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.VolumeGeneration.frmParameters.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.VolumeGeneration.frmParameters.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Processing.VolumeGeneration.AlignmentData">
+            <summary>
+            Alignment data that can be initialized at will.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.VolumeGeneration.AlignmentData.#ctor">
+            <summary>
+            Builds an empty AlignmentData class.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.VolumeGeneration.AlignmentData.#ctor(System.Double[],System.Double[],System.Double[],System.Double[0:,0:])">
+            <summary>
+            Initializes a new AlignmentData instance.
+            </summary>
+            <param name="dShrink">2-component vector with shrink factors on X and Y.</param>
+            <param name="sAlign_dSlope">2-component vector with linear distortion factors on X and Y.</param>
+            <param name="Transl">3-component translations.</param>
+            <param name="AffMat">2x2-matrix.</param>
+        </member>
+        <member name="T:SySal.Processing.VolumeGeneration.Distribution">
+            <summary>
+            Statistical distributions of simulated objects.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.Distribution.Custom">
+            <summary>
+            Custom distribution.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.Distribution.Flat">
+            <summary>
+            Uniform distribution.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.Distribution.Gaussian">
+            <summary>
+            Gaussian distribution.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.Distribution.SingleValue">
+            <summary>
+            Delta distribution.
+            </summary>
+        </member>
+        <member name="T:SySal.Processing.VolumeGeneration.Configuration">
+            <summary>
+            Configuration for VolumeGeneration.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.VolumeGeneration.Configuration.DefaultParameters">
+            <summary>
+            Reset to default parameters
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.VolumeGeneration.Configuration.XSlopesDistrib">
+            <summary>
+            Distribution for SlopesX.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.Configuration.XSlopesDistribParameters">
+            <summary>
+            Parameters for Distribution for SlopesX.
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.VolumeGeneration.Configuration.YSlopesDistrib">
+            <summary>
+            Distribution for SlopesY.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.Configuration.YSlopesDistribParameters">
+            <summary>
+            Parameters for Distribution for SlopesY.
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.VolumeGeneration.Configuration.MomentumDistrib">
+            <summary>
+            Distribution for Momentum.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.Configuration.MomentumDistribParameters">
+            <summary>
+            Parameters for Distribution for Momentum.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.Configuration.KinePar">
+            <summary>
+            Parameters for kinematic variables setting.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.Configuration.ErrPar">
+            <summary>
+            Parameters for error setting.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.Configuration.EvPar">
+            <summary>
+            Parameters for event.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.Configuration.GeoPar">
+            <summary>
+            Parameters for geometric variables setting.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.Configuration.AffPar">
+            <summary>
+            Parameters for geometric variables setting.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.Configuration.HighMomentumTracks">
+            <summary>
+            High momentum tracks to generate in the out-of-bounds volume.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.Configuration.EnergyLossTracks">
+            <summary>
+            Energy loss tracks to generate in the out-of-bounds volume.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.Configuration.JunkTracks">
+            <summary>
+            Junk tracks to generate in the out-of-bounds volume.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.VolumeGeneration.Configuration.#ctor">
+            <summary>
+            Builds an unitialized configuration.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.VolumeGeneration.Configuration.#ctor(System.String)">
+            <summary>
+            Builds a configuration with the specified name.
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:SySal.Processing.VolumeGeneration.Configuration.Clone">
+            <summary>
+            Yields a copy of the configuration.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SySal.Processing.VolumeGeneration.Configuration.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Saves the AOReconstruction parameters to a stream. This method is called by BinaryFormatter or SoapFormatter or other formatters.
+            This method is overridden in derived classes to support specific serialization features.
+            </summary>
+            <param name="info">SerializationInfo data for serialization.</param>
+            <param name="context">StreamingContext data for serialization.</param>
+        </member>
+        <member name="M:SySal.Processing.VolumeGeneration.Configuration.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Restores the AOReconstruction parameters to a stream. This constructor is called by BinaryFormatter or SoapFormatter or other formatters.
+            </summary>
+            <param name="info">SerializationInfo data for serialization.</param>
+            <param name="context">StreamingContext data for serialization.</param>
+        </member>
+        <member name="T:SySal.Processing.VolumeGeneration.KinematicParameters">
+            <summary>
+            Kinematical parameters for simulation.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.KinematicParameters.RadiationLength">
+            <summary>
+            The radiation length of the material.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.KinematicParameters.MinimumEnergyForLoss">
+            <summary>
+            Minimum energy loss.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.VolumeGeneration.KinematicParameters.#ctor(System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the structure.
+            </summary>
+            <param name="radiation_length">the radiation length.</param>
+            <param name="minimum_energy_for_loss">the minimum energy loss.</param>
+        </member>
+        <member name="T:SySal.Processing.VolumeGeneration.ErrorParameters">
+            <summary>
+            Simulated errors.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.ErrorParameters.CoordinateErrors">
+            <summary>
+            Errors on positions.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.ErrorParameters.SlopeErrors">
+            <summary>
+            Errors on slopes.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.ErrorParameters.CoordinateAlignment">
+            <summary>
+            Alignment errors on positions.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.ErrorParameters.SlopeAlignment">
+            <summary>
+            Alignment errors on slopes.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.ErrorParameters.TrackFindingEfficiency">
+            <summary>
+            Tracking efficiency.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.VolumeGeneration.ErrorParameters.#ctor(SySal.BasicTypes.Vector2,SySal.BasicTypes.Vector2,SySal.BasicTypes.Vector2,SySal.BasicTypes.Vector2,System.Double)">
+            <summary>
+            Initializes a new instance of the structure.
+            </summary>
+            <param name="err_coord">the errors on positions.</param>
+            <param name="err_slope">the errors on slopes.</param>
+            <param name="coord_align">the alignment errors on positions.</param>
+            <param name="slope_align">the alignment errors on slopes.</param>
+            <param name="track_finding_efficiency">the tracking efficiency.</param>
+        </member>
+        <member name="T:SySal.Processing.VolumeGeneration.GeometricParameters">
+            <summary>
+            Geometrical parameters.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.GeometricParameters.Volume">
+            <summary>
+            The fiducial volume.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.GeometricParameters.OutBoundsVolume">
+            <summary>
+            This volume contains the fiducial volume, and processes happening here appear partially in the fiducial volume too.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.GeometricParameters.TrackingThickness">
+            <summary>
+            Tracking (sensitive) thickness of the volume.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.GeometricParameters.NotTrackingThickness">
+            <summary>
+            Insensitive thickness of the volume.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.GeometricParameters.MostUpstreamPlane">
+            <summary>
+            The most upstream plane.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.VolumeGeneration.GeometricParameters.#ctor(System.Double,System.Double,System.Double,System.Int32,SySal.BasicTypes.Cuboid,SySal.BasicTypes.Cuboid)">
+            <summary>
+            Initializes a new instance of the structure.
+            </summary>
+            <param name="tracking_thickness">the tracking thickness.</param>
+            <param name="not_tracking_thickness">the insensitive thickness.</param>
+            <param name="local_vertex_depth">the local vertex depth.</param>
+            <param name="most_upstream_plane">the most upstream plane.</param>
+            <param name="volume">the fiducial volume.</param>
+            <param name="out_bounds_volume">the extra volume that contains the fiducial volume.</param>
+        </member>
+        <member name="T:SySal.Processing.VolumeGeneration.EventParameters">
+            <summary>
+            Paramaters of an event.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.EventParameters.LocalVertexDepth">
+            <summary>
+            Local depth of the vertex.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.EventParameters.OutgoingTracks">
+            <summary>
+            Number of outgoing tracks.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.EventParameters.PrimaryTrack">
+            <summary>
+            If true, the vertex has a primary track.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.VolumeGeneration.EventParameters.#ctor(System.Double,System.Int32,System.Boolean)">
+            <summary>
+            Initializes a new instance of the structure.
+            </summary>
+            <param name="local_vertex_depth">the local vertex depth.</param>
+            <param name="outgoing_tracks">the number of outgoing tracks.</param>
+            <param name="primary_track">flag for primary track presence.</param>
+        </member>
+        <member name="T:SySal.Processing.VolumeGeneration.AffineParameters">
+            <summary>
+            Parameters for affine transformations.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.AffineParameters.AlignMaxShift">
+            <summary>
+            Maximum transverse alignment shift.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.AffineParameters.AlignMinShift">
+            <summary>
+            Minimum transverse alignment shift.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.AffineParameters.LongAlignMaxShift">
+            <summary>
+            Maximum transverse longitudinal shift.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.AffineParameters.LongAlignMinShift">
+            <summary>
+            Minimum transverse longitudinal shift.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.AffineParameters.DiagMaxTerm">
+            <summary>
+            Maximum value for diagonal terms in the affine transformation.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.AffineParameters.DiagMinTerm">
+            <summary>
+            Minimum value for diagonal terms in the affine transformation.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.AffineParameters.OutDiagMaxTerm">
+            <summary>
+            Maximum value for off-diagonal terms in the affine transformation.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.AffineParameters.OutDiagMinTerm">
+            <summary>
+            Minimum value for off-diagonal terms in the affine transformation.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.AffineParameters.SlopeMaxCoeff">
+            <summary>
+            Maximum multiplicative coefficient for slopes.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.AffineParameters.SlopeMinCoeff">
+            <summary>
+            Minimum multiplicative coefficient for slopes.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.AffineParameters.SlopeMaxShift">
+            <summary>
+            Maximum slope deviation.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.VolumeGeneration.AffineParameters.SlopeMinShift">
+            <summary>
+            Minimum slope deviation.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.VolumeGeneration.AffineParameters.#ctor(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the structure.
+            </summary>
+            <param name="Align_Max_Shift">the maximum transverse shift.</param>
+            <param name="Align_Min_Shift">the minimum transverse shift.</param>
+            <param name="LongAlign_Max_Shift">the maximum longitudinal shift.</param>
+            <param name="LongAlign_Min_Shift">the minimum longitudinal shift.</param>
+            <param name="Diag_Max_Term">the maximum value for diagonal terms.</param>
+            <param name="Diag_Min_Term">the minimum value for diagonal terms.</param>
+            <param name="OutDiag_Max_Term">the maximum value for off-diagonal terms.</param>
+            <param name="OutDiag_Min_Term">the minimum value for off-diagonal terms.</param>
+            <param name="Slope_Max_Coeff">the maximum value for slope multiplier.</param>
+            <param name="Slope_Min_Coeff">the minimum value for slope multiplier.</param>
+            <param name="Slope_Max_Shift">the maximum value for slope deviation.</param>
+            <param name="Slope_Min_Shift">the minimum value for slope deviation.</param>
+        </member>
+        <member name="T:SySal.Processing.VolumeGeneration.VolumeGenerator">
+            <summary>
+            Volume Generator.
+            </summary>
+            <remarks>
+            This class generates a volume according to the configuration specified.
+            </remarks>
+        </member>
+        <member name="M:SySal.Processing.VolumeGeneration.VolumeGenerator.#ctor">
+            <summary>
+            Builds a new instance of the Volume Generator.
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.VolumeGeneration.VolumeGenerator.Name">
+            <summary>
+            Name of the VolumeGenerator instance.
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.VolumeGeneration.VolumeGenerator.Config">
+            <summary>
+            Accesses the VolumeGenerator's configuration.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.VolumeGeneration.VolumeGenerator.EditConfiguration(SySal.Management.Configuration@)">
+            <summary>
+            Allows the user to edit the supplied configuration.
+            </summary>
+            <param name="c">the configuration to be edited.</param>
+            <returns>the result of modified configuration.</returns>
+        </member>
+        <member name="M:SySal.Processing.VolumeGeneration.VolumeGenerator.GenerateEvent(System.Int32,SySal.Tracking.MIPEmulsionTrackInfo[],SySal.Processing.VolumeGeneration.Configuration,System.Double[])">
+            <summary>
+            Generates an event.
+            </summary>
+            <param name="StartingOrdinalID">the identifier for the event.</param>
+            <param name="TrInfo">tracks to be injected.</param>
+            <param name="C">the configuration for generation.</param>
+            <param name="TracksMomenta">tracks momenta. This array must have as many elements as the TrInfo parameter.</param>
+            <returns>tracks generated according to the specified physics and simulation settings.</returns>
+        </member>
+        <member name="M:SySal.Processing.VolumeGeneration.VolumeGenerator.GenerateEvent(SySal.TotalScan.Layer[],System.Int32,SySal.Tracking.MIPEmulsionTrackInfo[],SySal.Processing.VolumeGeneration.Configuration,System.Double[])">
+            <summary>
+            Generates an event.
+            </summary>
+            <param name="layer">the tracking layers.</param>
+            <param name="StartingOrdinalID">the Id for the event.</param>
+            <param name="TrInfo">the tracks to be injected.</param>
+            <param name="C">the configuration for generation.</param>
+            <param name="TracksMomenta">tracks momenta. This array must have as many elements as the TrInfo parameter.</param>
+            <returns>tracks generated according to the specified physics and simulation settings.</returns>
+        </member>
+        <member name="P:SySal.Processing.VolumeGeneration.VolumeGenerator.GeneratingLayers">
+            <summary>
+            Number of layers to generate.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.VolumeGeneration.VolumeGenerator.InitialConditions(SySal.Processing.VolumeGeneration.Configuration,SySal.Tracking.MIPEmulsionTrackInfo[]@,System.Double[]@)">
+            <summary>
+            Builds initial conditions for a volume.
+            </summary>
+            <param name="C">the configuration for generation.</param>
+            <param name="TrInfo">on exit, this array contains the positions and slopes of generated tracks.</param>
+            <param name="TracksMomenta">on exit, this array contains the moment for generated tracks.</param>
+        </member>
+        <member name="M:SySal.Processing.VolumeGeneration.VolumeGenerator.InitialEventConditions(SySal.Processing.VolumeGeneration.Configuration,SySal.Tracking.MIPEmulsionTrackInfo[]@,System.Double[]@)">
+            <summary>
+            Builds initial conditions for an event.
+            </summary>
+            <param name="C">the configuration for generation.</param>
+            <param name="TrInfo">on exit, this array contains the positions and slopes of generated tracks.</param>
+            <param name="TracksMomenta">on exit, this array contains the moment for generated tracks.</param>
+        </member>
+        <member name="M:SySal.Processing.VolumeGeneration.VolumeGenerator.GenerateTracks(SySal.Processing.VolumeGeneration.Configuration,System.Int32,SySal.Tracking.MIPEmulsionTrackInfo[],System.Double[])">
+            <summary>
+            Generates tracks.
+            </summary>
+            <param name="C">the configuration for generation.</param>
+            <param name="StartingTrackID">the starting Id.</param>
+            <param name="TrInfo">the tracks to be injected.</param>
+            <param name="TracksMomenta">the momenta of the tracks to be injected. This array must have as many elements as the TrInfo array.</param>
+            <returns>the generated tracks.</returns>
+        </member>
+        <member name="M:SySal.Processing.VolumeGeneration.VolumeGenerator.GenerateLayers(SySal.Processing.VolumeGeneration.Configuration,System.Int32,SySal.Tracking.MIPEmulsionTrackInfo[],System.Double[])">
+            <summary>
+            Generates layers with tracking info.
+            </summary>
+            <param name="C">the configuration for generation.</param>
+            <param name="StartingTrackID">the starting Id.</param>
+            <param name="TrInfo">the tracks to be injected.</param>
+            <param name="TracksMomenta">the momenta of the tracks to be injected. This array must have as many elements as the TrInfo array.</param>
+            <returns>the generated layers.</returns>
+        </member>
+        <member name="M:SySal.Processing.VolumeGeneration.VolumeGenerator.GenerateAffineTransformations(SySal.Processing.VolumeGeneration.Configuration,System.Int32)">
+            <summary>
+            Generates affine transformations to displace the layers.
+            </summary>
+            <param name="C">the configuration for generation.</param>
+            <param name="TransformationsNumber">number of transformations to generate.</param>
+            <returns>the generated alignment parameters.</returns>
+        </member>
+        <member name="M:SySal.Processing.VolumeGeneration.VolumeGenerator.ApplyAffineTransformations(SySal.Processing.VolumeGeneration.Configuration,SySal.Processing.VolumeGeneration.AlignmentData[],SySal.TotalScan.Layer[])">
+            <summary>
+            Applies affine transformations to a set of layers.
+            </summary>
+            <param name="C">the configuration for generation.</param>
+            <param name="align">the alignment data. This array must have as many elements as the layers parameter.</param>
+            <param name="layers">the layers to be transformed.</param>
+            <returns>the transformed layers.</returns>
+        </member>
+    </members>
+</doc>

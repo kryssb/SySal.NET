@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DecaySearchVSept09</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Processing.DecaySearchVSept09.KinkSearchResult">
+            <summary>
+            Result of kink search on a track or an array of segments.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.DecaySearchVSept09.KinkSearchResult.TransverseSlopeRMS">
+            <summary>
+            RMS of transverse slope.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.DecaySearchVSept09.KinkSearchResult.LongitudinalSlopeRMS">
+            <summary>
+            RMS of longitudinal slope.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.DecaySearchVSept09.KinkSearchResult.TransverseMaxDeltaSlopeRatio">
+            <summary>
+            Maximum transverse slope difference.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.DecaySearchVSept09.KinkSearchResult.LongitudinalMaxDeltaSlopeRatio">
+            <summary>
+            Maximum longitudinal slope difference.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.DecaySearchVSept09.KinkSearchResult.KinkDelta">
+            <summary>
+            Maximum combined difference.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.DecaySearchVSept09.KinkSearchResult.KinkIndex">
+            <summary>
+            Index of the segment with largest combined slope difference.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.DecaySearchVSept09.KinkSearchResult.ExceptionMessage">
+            <summary>
+            The exception generated during kink search; <c>null</c> if no exception was generated.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.DecaySearchVSept09.KinkSearchResult.SlopeDiff(SySal.BasicTypes.Vector,SySal.BasicTypes.Vector,System.Double,System.Double)">
+            <summary>
+            Computes the slope difference between two tracks.
+            </summary>
+            <param name="u">slope of the upstream segment.</param>
+            <param name="d">slope of the downstream segment.</param>
+            <param name="uz">upstream Z.</param>
+            <param name="dz">uownstream Z.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SySal.Processing.DecaySearchVSept09.KinkSearchResult.ComputeResult(SySal.TotalScan.Segment[],System.Boolean[])">
+            <summary>
+            Seeks the kink.
+            </summary>
+            <param name="segs">the array of segments to use.</param>
+            <param name="allowedkink">the number of entries must be equal to the number of segments minus 1, since differences matter; then, the kink is checked for segments whose corresponding entry is set to <c>true</c> in this array.</param>
+        </member>
+        <member name="M:SySal.Processing.DecaySearchVSept09.KinkSearchResult.#ctor">
+            <summary>
+            Builds a null kink search result (no kink).
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.DecaySearchVSept09.KinkSearchResult.#ctor(SySal.TotalScan.Segment[],System.Boolean[])">
+            <summary>
+            Seeks a kink for an array of segments.
+            </summary>        
+            <param name="segs">the array of segments describing the track.</param>
+            <param name="allowedkink">the number of entries must be identical to the number of segments; then, the kink is checked for segments whose corresponding entry is set to <c>true</c> in this array.</param>
+        </member>
+        <member name="M:SySal.Processing.DecaySearchVSept09.KinkSearchResult.#ctor(SySal.TotalScan.Track,System.Boolean[])">
+            <summary>
+            Seeks a kink in a track.
+            </summary>        
+            <param name="t">the track where the kink is to be sought.</param>
+            <param name="allowedkink">the number of entries must be identical to the number of segments of the track; then, the kink is checked for segments whose corresponding entry is set to <c>true</c> in this array.</param>
+        </member>
+        <member name="M:SySal.Processing.DecaySearchVSept09.KinkSearchResult.#ctor(SySal.TotalScan.Flexi.Track)">
+            <summary>
+            Seeks a kink in a track using the default requirements of the procedure (3/5 base tracks in the first plates, kink sought in the first 4 plates).
+            </summary>
+            <param name="tk">the track where the kink is being sought.</param>
+        </member>
+        <member name="T:SySal.Processing.DecaySearchVSept09.OneMuOrMultiProngZeroEventExtraTrackFilter">
+            <summary>
+            Class that provides selection of tracks for one-mu events.
+            </summary>
+        </member>
+        <member name="T:SySal.Processing.DecaySearchVSept09.ZeroMu123ProngEventExtraTrackFilter">
+            <summary>
+            Class that provides selection of tracks for one-mu events.
+            </summary>
+        </member>
+        <member name="T:SySal.Processing.DecaySearchVSept09.IsolatedTrackEventExtraTrackFilter">
+            <summary>
+            Class that provides selection of tracks for one-mu events.
+            </summary>
+        </member>
+    </members>
+</doc>

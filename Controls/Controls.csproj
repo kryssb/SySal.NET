@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8A3588CA-86CC-4678-80E9-3637562BB20A}</ProjectGuid>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>Controls</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>SySal.Controls</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <OldToolsVersion>2.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>Controls.xml</DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BackgroundPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Button.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CheckBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GroupBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PercentChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProgressBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RadioButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StaticText.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <EmbeddedResource Include="b1ce.bmp" />
+    <EmbeddedResource Include="b1dl.bmp" />
+    <EmbeddedResource Include="b1do.bmp" />
+    <EmbeddedResource Include="b1dr.bmp" />
+    <EmbeddedResource Include="b1le.bmp" />
+    <EmbeddedResource Include="b1ri.bmp" />
+    <EmbeddedResource Include="b1ul.bmp" />
+    <EmbeddedResource Include="b1up.bmp" />
+    <EmbeddedResource Include="b1ur.bmp" />
+    <EmbeddedResource Include="b1_down.bmp" />
+    <EmbeddedResource Include="b1_up.bmp" />
+    <EmbeddedResource Include="b2ce.bmp" />
+    <EmbeddedResource Include="b2dl.bmp" />
+    <EmbeddedResource Include="b2do.bmp" />
+    <EmbeddedResource Include="b2dr.bmp" />
+    <EmbeddedResource Include="b2le.bmp" />
+    <EmbeddedResource Include="b2ri.bmp" />
+    <EmbeddedResource Include="b2ul.bmp" />
+    <EmbeddedResource Include="b2up.bmp" />
+    <EmbeddedResource Include="b2ur.bmp" />
+    <EmbeddedResource Include="BackgroundPanel.resx">
+      <DependentUpon>BackgroundPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bar_blue_body.png" />
+    <EmbeddedResource Include="bar_blue_head.png" />
+    <EmbeddedResource Include="bar_blue_tail.png" />
+    <EmbeddedResource Include="bar_cyan_body.png" />
+    <EmbeddedResource Include="bar_cyan_head.png" />
+    <EmbeddedResource Include="bar_cyan_tail.png" />
+    <EmbeddedResource Include="bar_green_body.png" />
+    <EmbeddedResource Include="bar_green_head.png" />
+    <EmbeddedResource Include="bar_green_tail.png" />
+    <EmbeddedResource Include="bar_grey_body.png" />
+    <EmbeddedResource Include="bar_grey_head.png" />
+    <EmbeddedResource Include="bar_grey_tail.png" />
+    <EmbeddedResource Include="bar_magenta_body.png" />
+    <EmbeddedResource Include="bar_magenta_head.png" />
+    <EmbeddedResource Include="bar_magenta_tail.png" />
+    <EmbeddedResource Include="bar_orange_body.png" />
+    <EmbeddedResource Include="bar_orange_head.png" />
+    <EmbeddedResource Include="bar_orange_tail.png" />
+    <EmbeddedResource Include="bar_red_body.png" />
+    <EmbeddedResource Include="bar_red_head.png" />
+    <EmbeddedResource Include="bar_red_tail.png" />
+    <EmbeddedResource Include="bar_yellow_body.png" />
+    <EmbeddedResource Include="bar_yellow_head.png" />
+    <EmbeddedResource Include="bar_yellow_tail.png" />
+    <EmbeddedResource Include="Button.resx">
+      <DependentUpon>Button.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CheckBox.resx">
+      <DependentUpon>CheckBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="check_off.bmp" />
+    <EmbeddedResource Include="check_on.bmp" />
+    <EmbeddedResource Include="dl.bmp" />
+    <EmbeddedResource Include="do.bmp" />
+    <EmbeddedResource Include="dr.bmp" />
+    <EmbeddedResource Include="GroupBox.resx">
+      <DependentUpon>GroupBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="group_dl.png" />
+    <EmbeddedResource Include="group_do.png" />
+    <EmbeddedResource Include="group_dr.png" />
+    <EmbeddedResource Include="group_le.png" />
+    <EmbeddedResource Include="group_ri.png" />
+    <EmbeddedResource Include="group_ul.png" />
+    <EmbeddedResource Include="group_up.png" />
+    <EmbeddedResource Include="group_ur.png" />
+    <EmbeddedResource Include="le.bmp" />
+    <EmbeddedResource Include="PercentChart.resx">
+      <DependentUpon>PercentChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgressBar.resx">
+      <DependentUpon>ProgressBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="progress_grey_body.png" />
+    <EmbeddedResource Include="progress_grey_head.png" />
+    <EmbeddedResource Include="progress_grey_tail.png" />
+    <EmbeddedResource Include="progress_red_body.png" />
+    <EmbeddedResource Include="progress_red_head.png" />
+    <EmbeddedResource Include="progress_red_tail.png" />
+    <EmbeddedResource Include="RadioButton.resx">
+      <DependentUpon>RadioButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="radio_empty.bmp" />
+    <EmbeddedResource Include="radio_filled.bmp" />
+    <EmbeddedResource Include="ri.bmp" />
+    <EmbeddedResource Include="round_dl.png" />
+    <EmbeddedResource Include="round_dr.png" />
+    <EmbeddedResource Include="round_ul.png" />
+    <EmbeddedResource Include="round_ur.png" />
+    <EmbeddedResource Include="scroll_down_pressed.png" />
+    <EmbeddedResource Include="scroll_down_released.png" />
+    <EmbeddedResource Include="scroll_up_pressed.png" />
+    <EmbeddedResource Include="scroll_up_released.png" />
+    <EmbeddedResource Include="StaticText.resx">
+      <DependentUpon>StaticText.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ul.bmp" />
+    <EmbeddedResource Include="up.bmp" />
+    <EmbeddedResource Include="ur.bmp" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>cp "$(TargetPath)" "$(SolutionDir)ExeRepository"
+cp "$(TargetPath)" "$(SolutionDir)Drivers"
+cp "$(TargetPath)" "$(SolutionDir)Services"</PostBuildEvent>
+  </PropertyGroup>
+</Project>

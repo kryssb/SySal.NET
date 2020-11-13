@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+ <head>
+    <title>Decay Search Step #6</title>
+    <MYSTYLE />
+ </head>
+ <body>
+  <h1>Decay Search Step #6</h1>
+  <h2>Short Decay search (Step 2.1 of the reference document)</h2>
+  <div>
+      If one or more tracks attached to the primary vertex have IP exceeding 10 &mu;m, take the following steps to strenghten/disprove this signal:
+      <ol>
+        <li>In the main panel, create a new empty vertex fit.</li>
+        <li>Open the VertexBrowser for the vertex.</li>
+        <li>Go to the "Vertex Fit" tab.</li>
+        <li>Select "Use last segment".</li>
+        <li>Ensure that <b>Extrapolation Distance</b> = 3900.</li>
+        <li>Select the empty vertex fit and click on "Add to fit".</li>
+        <li>Remove from the vertex fit the tracks whose IP exceeds 10 &mu;m.</li>
+        <li>Open the TrackBrowser for each track whose IP exceeded 10 &mu;m, go to the "Vertex Fit" tab, set <b>Weight</b> = 1e-6, enable "Use last segment", ensure <b>ExtrapolationDistance</b>=3900, choose the vertex fit and then click on "Upstream".</li>
+        <li>Select the Upstream vertex ("General" tab) from any of the primary vertex tracks</li>
+        <li>Click on the "Kill" button.</li>
+        <li>Convert the new vertex fit to a vertex; go to the "Feedabck" tab and set the "Feedback" and "Primary" flags as needed.</li>
+      </ol>            
+      Now the vertex has been recomputed using only tracks with IP &lt; 10 &mu;m, but all tracks are associated.<br />
+  <a href="DSApage5.htm">Previous</a>&nbsp;&nbsp;<a href="DSApage7.htm?chk=CheckPrimaryVertexSet">Next</a>
+  </div>
+ </body>
+</html>
+

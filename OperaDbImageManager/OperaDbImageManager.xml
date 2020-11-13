@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OperaDbImageManager</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Executables.OperaDbImageManager.Exe">
+            <summary>
+            Allows uploading images to the DB and downloading images from the DB.    
+            </summary>
+            <remarks>
+            <para>Images are stored in the <c>TB_EMULSION_IMAGES</c> table. This is linked to <c>TB_ZONES</c>, which in turn is linked to <c>TB_PROC_OPERATIONS</c>.</para>
+            <para><b>Downloading images</b></para>
+            <para>    
+            In order to download images you must specify at least the brick and plate, or also the zone (optionally). 
+            Then, all images linked to each zone in the specified set will be downloaded.
+            The syntax is the following:
+            <c>OperaDbImageManager /download &lt;path&gt; &lt;brick&gt; &lt;plate&gt; [zone]</c>
+            as in the examples:
+            <example><c>OperaDbImageManager /download c:\\temp\\ 1008622 54</c></example>
+            <example><c>OperaDbImageManager /download c:\\temp\\ 1008622 54 1000010008888947</c></example>
+            </para>
+            <para><b>Uploading images</b></para>
+            <para>Images can enter the DB only if information required about the brick, plate, machine, user, and settings used is filled.
+            OperaDbImageManager performs all relevant tasks of creating process operation and zone; however, the information supplied must be 
+            meaningful (i.e. the user, machine and configuration used must exist). If you don't have a configuration, please create one,
+            filling the <c>SETTINGS</c> field with the relevant data taking parameters. While data are being uploaded, the operation number
+            and zones are shown, so that they can be used later to publish the data set.
+            The syntax to upload a set of files is the following:
+            <c>OperaDbImageManager /upload &lt;brick&gt; &lt;plate&gt; &lt;series&gt; &lt;machine&gt; &lt;configuration&gt; &lt;minx&gt; &lt;maxx&gt; &lt;miny&gt; &lt;maxy&gt; &lt;txx&gt; &lt;txy&gt; &lt;tyx&gt; &lt;tyy&gt; &lt;tdx&gt; &lt;tdy&gt; &lt;calibrationop&gt; &lt;file1&gt; &lt;file2&gt; ...</c>
+            </para>
+            <para>It is possible to enter as many files as needed in a zone. Different zones must be entered by different executions of the program. 
+            User information is taken from the user DB access credentials, which can be managed by <c>OperaDbGuiLogin</c>.
+            The machine can be identified through its name or ID; the configuration can be identified through its name (use "" if the description contains blanks)
+            or ID; if the calibration operation is set to 0 or to a negative number, the <c>CALIBRATION_OPERATION</c> is set to NULL.
+            The following example shows how to enter 3 emulsion images.
+            <example><c>OperaDbImageManager.exe /upload 1008622 54 3 mic3_sa 1000010008878963 10000 10300 20000 20300 1.01 0.001 -0.00099 1.001 15 -35 0 a.bmp b.bmp c.bmp</c></example>
+            </para>
+            </remarks>
+        </member>
+    </members>
+</doc>

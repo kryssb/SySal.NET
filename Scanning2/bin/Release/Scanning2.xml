@@ -1,0 +1,1550 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Scanning</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Scanning.MIPIndexedEmulsionTrack">
+            <summary>
+            A track in an emulsion layer that can be identified through its number.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.MIPIndexedEmulsionTrack.m_Id">
+            <summary>
+            Member data on which the Id property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.MIPIndexedEmulsionTrack.Id">
+            <summary>
+            Id of the track, e.g. its sequential number in the emulsion layer.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.MIPIndexedEmulsionTrack.#ctor">
+            <summary>
+            Protected constructor. Prevents user from creating MIPIndexedEmulsionTrack objects without deriving the class. Is implicitly called in the constructors of derived classes.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.MIPIndexedEmulsionTrack.#ctor(SySal.Tracking.MIPEmulsionTrack,System.Int32)">
+            <summary>
+            Builds a new MIPIndexedEmulsionTrack from a MIPEmulsionTrack with the specified id.
+            </summary>
+            <param name="track">the MIPEmulsionTrack that supplies the track information.</param>
+            <param name="id">the track identification number.</param>
+        </member>
+        <member name="M:SySal.Scanning.MIPIndexedEmulsionTrack.#ctor(SySal.Tracking.MIPEmulsionTrackInfo,SySal.Tracking.Grain[],System.Int32)">
+            <summary>
+            Builds a new MIPIndexedEmulsionTrack from a MIPEmulsionTrackInfo, an array of grains and with the specified id.
+            </summary>
+            <param name="info">the MIPEmulsionTrackInfo that supplies the track information.</param>
+            <param name="grains">the array of Grains.</param>
+            <param name="id">the track identification number.</param>
+        </member>
+        <member name="T:SySal.Scanning.MIPBaseTrack">
+            <summary>
+            Track built by linking two track segments in emulsion across the base
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.MIPBaseTrack.m_Info">
+            <summary>
+            Member data on which the Info property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.MIPBaseTrack.Info">
+            <summary>
+            Global information about the base track.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.MIPBaseTrack.m_Id">
+            <summary>
+            Member data on which the Id property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.MIPBaseTrack.Id">
+            <summary>
+            Id of the track, e.g. its sequential number in the scanning zone.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.MIPBaseTrack.m_Top">
+            <summary>
+            Member data on which the Top property relies. Can be accessed by derived classes.
+            </summary>		
+        </member>
+        <member name="P:SySal.Scanning.MIPBaseTrack.Top">
+            <summary>
+            Top track connected to the base track.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.MIPBaseTrack.m_Bottom">
+            <summary>
+            Member data on which the Bottom property relies. Can be accessed by derived classes.
+            </summary>		
+        </member>
+        <member name="P:SySal.Scanning.MIPBaseTrack.Bottom">
+            <summary>
+            Bottom track connected to the base track.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.MIPBaseTrack.#ctor">
+            <summary>
+            Protected constructor. Prevents user from creating MIPBaseTrack objects without deriving the class. Is implicitly called in the constructors of derived classes.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.MIPBaseTrack.#ctor(SySal.Scanning.MIPIndexedEmulsionTrack,SySal.Scanning.MIPIndexedEmulsionTrack,System.Int32)">
+            <summary>
+            Builds a new MIPBaseTrack by connecting two MIPIndexedEmulsionTracks together.
+            </summary>
+            <param name="topseg">the emulsion track on the top side of the plate.</param>
+            <param name="bottomseg">the emulsion track on the bottom side of the plate.</param>
+            <param name="id">the unique identifier of the base track.</param>
+        </member>
+        <member name="M:SySal.Scanning.MIPBaseTrack.AccessInfo(SySal.Scanning.MIPBaseTrack)">
+            <summary>
+            Protected accessor for quick access to Info. Can be used by derived classes.
+            </summary>
+            <param name="track">the MIPBaseTrack whose parameters are being requested.</param>
+            <returns>the global parameters of the MIPBaseTrack.</returns>
+        </member>
+        <member name="T:SySal.Scanning.Plate.Side">
+            <summary>
+            A single emulsion layer
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.Plate.Side.#ctor">
+            <summary>
+            Protected constructor. Prevents users from creating instances of Side without deriving the class. Is implicitly called by constructors in derived classes.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.Side.m_TopZ">
+            <summary>
+            Member data on which the TopZ property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.Side.TopZ">
+            <summary>
+            Top surface of the emulsion side.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.Side.m_BottomZ">
+            <summary>
+            Member data on which the BottomZ property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.Side.BottomZ">
+            <summary>
+            Bottom surface of the emulsion side.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.Side.m_Tracks">
+            <summary>
+            Protected member holding the array of MIPIndexedEmulsionTracks. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.Side.Item(System.Int32)">
+            <summary>
+            Provides access to the tracks in an array-like fashion.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.Side.Length">
+            <summary>
+            Returns the number of tracks in the emulsion side.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.Plate.Side.#ctor(SySal.Scanning.MIPIndexedEmulsionTrack[],System.Double,System.Double)">
+            <summary>
+            Builds a new emulsion side using the supplied array of tracks and the specified surface depths.
+            </summary>
+            <param name="tracks">the track array to be attached to the side.</param>
+            <param name="topz">the top surface of the emulsion side.</param>
+            <param name="bottomz">the bottom surface of the emulsion side.</param>
+        </member>
+        <member name="M:SySal.Scanning.Plate.Side.#ctor(SySal.Tracking.MIPEmulsionTrack[],System.Double,System.Double)">
+            <summary>
+            Builds a new emulsion side using the supplied array of tracks and the specified surface depths.
+            </summary>
+            <param name="tracks">the array of MIPEmulsionTracks that provides track information.</param>
+            <param name="topz">the top surface of the emulsion side.</param>
+            <param name="bottomz">the bottom surface of the emulsion side.</param>
+        </member>
+        <member name="M:SySal.Scanning.Plate.Side.AccessTracks(SySal.Scanning.Plate.Side)">
+            <summary>
+            Protected accessor for quick access to the array of tracks. Can be accessed by derived classes.
+            </summary>
+            <param name="s">side whose track array is to be retrieved.</param>
+            <returns>the array of tracks in the side.</returns>
+        </member>
+        <member name="M:SySal.Scanning.Plate.Side.SetTracks(SySal.Scanning.Plate.Side,SySal.Scanning.MIPIndexedEmulsionTrack[])">
+            <summary>
+            Protected setter for derived classes.
+            </summary>
+            <param name="s">side whose track array is to be set.</param>
+            <param name="tks">the new array of tracks in the side.</param>
+        </member>
+        <member name="M:SySal.Scanning.Plate.Side.SetZs(SySal.Scanning.Plate.Side,System.Double,System.Double)">
+            <summary>
+            Protected setter for derived classes.
+            </summary>
+            <param name="s">side whose Zs have to be set.</param>
+            <param name="ztop">the new Top Z.</param>
+            <param name="zbottom">the new Bottom Z.</param>
+        </member>
+        <member name="T:SySal.Scanning.Plate.Zone">
+            <summary>
+            A scanning zone, containing tracks in the emulsion and additional global information.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.Zone.m_Id">
+            <summary>
+            Member data on which the Id property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.Zone.Id">
+            <summary>
+            A unique identifier for the zone.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.Zone.m_Center">
+            <summary>
+            Member data on which the Pos property relies. Can be accessed by derived classes.
+            </summary>			
+        </member>
+        <member name="P:SySal.Scanning.Plate.Zone.Center">
+            <summary>
+            The center of the scanning zone.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.Zone.m_Top">
+            <summary>
+            Member data on which the Top property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.Zone.Top">
+            <summary>
+            The top side of the scanning zone.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.Zone.m_Bottom">
+            <summary>
+            Member data on which the Bottom property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.Zone.Bottom">
+            <summary>
+            The bottom side of the scanning zone.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.Plate.Zone.GetSide(System.Int32)">
+            <summary>
+            Retrieves the sides by index (0 = top, 1 = bottom). Useful to iterate over all tracks in the zone.
+            </summary>
+            <param name="iside">side index. 0 = top, 1 = bottom. Other values cause an exception to be thrown.</param>
+            <returns>the selected side.</returns>
+        </member>
+        <member name="T:SySal.Scanning.Plate.LinkedZone">
+            <summary>
+            A Zone containing base tracks (i.e. tracks built by linking tracks across the base.
+            The LinkedZone can be used in an array-like fashion to access the base tracks.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.LinkedZone.m_Tracks">
+            <summary>
+            Member data holding the array of base tracks. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.LinkedZone.Item(System.Int32)">
+            <summary>
+            Accessor that allows array-like access to the array of base tracks.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.LinkedZone.Length">
+            <summary>
+            Retrieves the number of base tracks in the LinkedZone.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.Plate.LinkedZone.AccessTracks(SySal.Scanning.Plate.LinkedZone)">
+            <summary>
+            Provides quick access to the array of m_Tracks. Can be accessed by derived classes.
+            </summary>
+            <param name="lz">the LinkedZone whose tracks are being requested.</param>
+            <returns>the array of MIPBaseTracks in the LinkedZone.</returns>
+        </member>
+        <member name="M:SySal.Scanning.Plate.LinkedZone.Save(System.IO.Stream)">
+            <summary>
+            Saves the LinkedZone to a stream.
+            </summary>
+            <param name="s">stream to be used to save the LinkedZone.</param>
+        </member>
+        <member name="T:SySal.Scanning.Plate.IO.CHORUS.FieldFlag">
+            <summary>
+            Field history flags
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.CHORUS.FieldFlag.OK">
+            <summary>
+            Scanning OK.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.CHORUS.FieldFlag.NoTopFocus">
+            <summary>
+            Focus not found on top side.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.CHORUS.FieldFlag.NoBottomFocus">
+            <summary>
+            Focus not found on bottom side.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.CHORUS.FieldFlag.ZLimiter">
+            <summary>
+            Z limiter became active and interrupted the scanning on this field.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.CHORUS.FieldFlag.XLimiter">
+            <summary>
+            X limiter became active and interrupted the scanning on this field.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.CHORUS.FieldFlag.YLimiter">
+            <summary>
+            Y limiter became active and interrupted the scanning on this field.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.CHORUS.FieldFlag.Terminated">
+            <summary>
+            The scanning was terminated by user request.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.CHORUS.FieldFlag.NotScanned">
+            <summary>
+            The field was not scanned.
+            </summary>
+        </member>
+        <member name="T:SySal.Scanning.Plate.IO.CHORUS.FieldHistory">
+            <summary>
+            Contains the scanning history for a field of view
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.CHORUS.FieldHistory.Top">
+            <summary>
+            The result of the scanning on the top side of the plate.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.CHORUS.FieldHistory.Bottom">
+            <summary>
+            The result of the scanning on the bottom side of the plate.
+            </summary>
+        </member>
+        <member name="T:SySal.Scanning.Plate.IO.CHORUS.LinkedZone">
+            <summary>
+            A scanning zone of linked tracks on a CHORUS emulsion plate.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.CHORUS.LinkedZone.m_PredictedSlope">
+            <summary>
+            Member data on which the PredictedSlope property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.CHORUS.LinkedZone.PredictedSlope">
+            <summary>
+            The predicted slope for this area.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.CHORUS.LinkedZone.m_SideSlopeTolerance">
+            <summary>
+            Member data on which the SideSlopeTolerance relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.CHORUS.LinkedZone.SideSlopeTolerance">
+            <summary>
+            The slope tolerance for tracks on either emulsion side.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.CHORUS.LinkedZone.m_GlobalSlopeTolerance">
+            <summary>
+            Member data on which the GlobalSlopeTolerance relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.CHORUS.LinkedZone.GlobalSlopeTolerance">
+            <summary>
+            The slope tolerance for base tracks.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.CHORUS.LinkedZone.m_GoodSlopeTolerance">
+            <summary>
+            Member data on which the GoodSlopeTolerance relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.CHORUS.LinkedZone.GoodSlopeTolerance">
+            <summary>
+            Base tracks that agree with the predicted slope better than GoodSlopeTolerance are enough to stop the scanning.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.CHORUS.LinkedZone.m_Fields">
+            <summary>
+            Member data on which the Fields property relies. Can be accessed by derived classes. 
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.CHORUS.LinkedZone.Fields">
+            <summary>
+            Documents the scanning quality for each field of view.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.CHORUS.LinkedZone.#ctor">
+            <summary>
+            Protected constructor. Prevents users from creating LinkedZones without deriving the class. Is implicitly called by constructors of derived classes.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.CHORUS.LinkedZone.#ctor(System.IO.Stream)">
+            <summary>
+            Restores a LinkedZone from a stream where it has been previously saved.
+            </summary>
+            <param name="str">the input stream to be read.</param>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.CHORUS.LinkedZone.Save(System.IO.Stream)">
+            <summary>
+            Saves a LinkedZone to a stream.
+            </summary>
+            <param name="str">the output stream where the LinkedZone is to be saved.</param>
+        </member>
+        <member name="T:SySal.Scanning.Plate.IO.OPERA.LinkedZone">
+            <summary>
+            A scanning zone of linked tracks on a OPERA emulsion plate.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.LinkedZone.SectionTag">
+            <summary>
+            Section tag for LinkedZone in TLG files.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.LinkedZone.m_Extents">
+            <summary>
+            Member data on which the Extents property relies. Can be accessed by protected classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.LinkedZone.Extents">
+            <summary>
+            The extents of the scanned area.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.LinkedZone.m_Transform">
+            <summary>
+            Member data on which the Transformation property relies. Can be accessed by protected classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.LinkedZone.Transform">
+            <summary>
+            The transformation applied to stage coordinates to obtain the plate coordinates.
+            The RX and RY fields are not used.
+            </summary>
+        </member>
+        <member name="T:SySal.Scanning.Plate.IO.OPERA.LinkedZone.TrackIndexEntry">
+            <summary>
+            Stores information about the origin of an emulsion track in the Raw Data (RWD) files.
+            </summary>					
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.LinkedZone.TrackIndexEntry.Fragment">
+            <summary>
+            The index of the fragment to which the original raw microtrack belongs.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.LinkedZone.TrackIndexEntry.View">
+            <summary>
+            The number of the view in the fragment to which the original raw microtrack belongs.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.LinkedZone.TrackIndexEntry.Track">
+            <summary>
+            The number of the track in the view to which the original raw microtrack belongs.
+            </summary>
+        </member>
+        <member name="T:SySal.Scanning.Plate.IO.OPERA.LinkedZone.View">
+            <summary>
+            Contains information about one scanning view.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.LinkedZone.View.m_Side">
+            <summary>
+            Member data on which the Side property relies.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.LinkedZone.View.Side">
+            <summary>
+            The side this View belongs to.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.LinkedZone.View.m_Id">
+            <summary>
+            Member data on which the Id property relies.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.LinkedZone.View.Id">
+            <summary>
+            Id of the view.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.LinkedZone.View.m_Position">
+            <summary>
+            Member data on which the Position property relies.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.LinkedZone.View.Position">
+            <summary>
+            Position of the center of the view.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.LinkedZone.View.m_TopZ">
+            <summary>
+            Member data on which the TopZ property relies.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.LinkedZone.View.TopZ">
+            <summary>
+            Position of the top extent of the emulsion layer.						
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.LinkedZone.View.m_BottomZ">
+            <summary>
+            Member data on which the BottomZ property relies.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.LinkedZone.View.BottomZ">
+            <summary>
+            Position of the bottom extent of the emulsion layer.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.LinkedZone.View.Length">
+            <summary>
+            The number of tracks contained in the view.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.LinkedZone.View.Item(System.Int32)">
+            <summary>
+            Provides access to the list of tracks contained in the view.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.LinkedZone.View.m_Tracks">
+            <summary>
+            The list of tracks in the view. It is hidden, but can be used by derived classes.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.LinkedZone.View.#ctor">
+            <summary>
+            Protected constructor. Prevents constructing an invalid View and forces use of derived classes.
+            </summary>
+        </member>
+        <member name="T:SySal.Scanning.Plate.IO.OPERA.LinkedZone.Side">
+            <summary>
+            The Side of an OPERA Linked Zone. Contains View information in addition to standard Side data.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.LinkedZone.Side.m_Views">
+            <summary>
+            Array of views in this side.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.LinkedZone.Side.View(System.Int32)">
+            <summary>
+            Returns view info for a view in this side.
+            </summary>
+            <param name="id">the id of the view info to be returned.</param>
+            <returns>the specified view info</returns>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.LinkedZone.Side.ViewCount">
+            <summary>
+            The number of view info in this side.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.LinkedZone.Side.#ctor">
+            <summary>
+            Protected constructor. Prevents misuse of the class by constructing invalid Sides and forcing use of derived classes.
+            </summary>
+        </member>
+        <member name="T:SySal.Scanning.Plate.IO.OPERA.LinkedZone.MIPIndexedEmulsionTrack">
+            <summary>
+            M.i.p. track in emulsion with an ordinal id and information about the raw data that originated it.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.LinkedZone.MIPIndexedEmulsionTrack.m_OriginalRawData">
+            <summary>
+            Member data on which the OriginalRawData relies. Can be accessed in derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.LinkedZone.MIPIndexedEmulsionTrack.OriginalRawData">
+            <summary>
+            Retrieves information to trace the origin of this MIPEmulsionTrack in the raw data.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.LinkedZone.MIPIndexedEmulsionTrack.#ctor">
+            <summary>
+            Protected constructor. Prevents users from creating MIPIndexedEmulsionTracks without deriving the class. Is implicitly called by constructors of derived classes.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.LinkedZone.MIPIndexedEmulsionTrack.m_View">
+            <summary>
+            Protected member on which the View property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.LinkedZone.MIPIndexedEmulsionTrack.View">
+            <summary>
+            The view this M.i.p. track belongs to.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.LinkedZone.#ctor">
+            <summary>
+            Protected constructor. Prevents users from creating LinkedZones without deriving the class. Is implicitly called by constructors of derived classes.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.LinkedZone.#ctor(System.IO.Stream)">
+            <summary>
+            Restores a LinkedZone from a stream where it has been previously saved.
+            </summary>
+            <param name="str">the input stream to be read.</param>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.LinkedZone.FindSection(System.IO.Stream,System.Byte,System.Boolean)">
+            <summary>
+            Finds a section in a multi-section stream.
+            </summary>
+            <param name="str">the stream in which the section is to be searched.</param>
+            <param name="tag">the section tag to be searched.</param>
+            <param name="resetifmissing">if <c>true</c>, when the section is not found the stream is reset to the position it had at the beginning of the search; if <c>false</c>, when the section is not found the stream is set to its end (where a new section can be added). This parameter is ignored when the section is found.</param>
+            <returns><c>true</c> if the section has been found, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.LinkedZone.Save(System.IO.Stream)">
+            <summary>
+            Saves a LinkedZone to a stream.
+            </summary>
+            <param name="str">the output stream where the LinkedZone is to be saved.</param>
+        </member>
+        <member name="T:SySal.Scanning.Plate.IO.OPERA.LinkedZone.BaseTrackIgnoreAlignment">
+            <summary>
+            A class for serializing/deserializing lists of Ids of base tracks to be ignored in plate-to-plate alignment.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.LinkedZone.BaseTrackIgnoreAlignment.SectionTag">
+            <summary>
+            Section tag for this class in multi-section TLG files.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.LinkedZone.BaseTrackIgnoreAlignment.Ids">
+            <summary>
+            The list of Ids to be ignored in plate-to-plate alignment.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.LinkedZone.BaseTrackIgnoreAlignment.#ctor">
+            <summary>
+            Builds an empty list.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.LinkedZone.BaseTrackIgnoreAlignment.Save(System.IO.Stream)">
+            <summary>
+            Saves a list of Ids of base tracks to be ignored in plate-to-plate alignment to a TLG file.
+            </summary>
+            <param name="str">the stream to be used for saving.</param>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.LinkedZone.BaseTrackIgnoreAlignment.#ctor(System.IO.Stream)">
+            <summary>
+            Builds a list of Ids of base tracks to be ignored in plate-to-plate alignment from a TLG file. An exception is thrown if the section is not found in the TLG file.
+            </summary>
+            <param name="str">the stream to be used for reading.</param>
+        </member>
+        <member name="T:SySal.Scanning.Plate.IO.OPERA.LinkedZone.BaseTrackIndex">
+            <summary>
+            A class for serializing/deserializing an index of base tracks.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.LinkedZone.BaseTrackIndex.SectionTag">
+            <summary>
+            Section tag for this class in multi-section TLG files.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.LinkedZone.BaseTrackIndex.Ids">
+            <summary>
+            The list of base track Ids.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.LinkedZone.BaseTrackIndex.#ctor">
+            <summary>
+            Builds an empty list.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.LinkedZone.BaseTrackIndex.Save(System.IO.Stream)">
+            <summary>
+            Saves a list of Ids of base tracks to a TLG file.
+            </summary>
+            <param name="str">the stream to be used for saving.</param>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.LinkedZone.BaseTrackIndex.#ctor(System.IO.Stream)">
+            <summary>
+            Builds a list of Ids of base tracks a TLG file. An exception is thrown if the section is not found in the TLG file.
+            </summary>
+            <param name="str">the stream to be used for reading.</param>
+        </member>
+        <member name="T:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment">
+            <summary>
+            A scanning fragment : the basic unit of scanning tasks.
+            Views are accessed in an array-like fashion.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.SkipReadingGrains">
+            <summary>
+            If true, grains are not read from fragment files.
+            </summary>
+        </member>
+        <member name="T:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.FragmentCoding">
+            <summary>
+            Constants that define the coding mode for the fragment
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.FragmentCoding.Normal">
+            <summary>
+            all grains are stored in plain format.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.FragmentCoding.GrainSuppression">
+            <summary>
+            grains are suppressed from the file to save space.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.m_Id">
+            <summary>
+            Member data on which the Id property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.Id">
+            <summary>
+            Scanning zone identifier. It is identical for all fragments in a scanning zone.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.m_Index">
+            <summary>
+            Member data on which the Index property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.Index">
+            <summary>
+            The fragment index. Ranges from 1 to the total number of fragments in the scanning zone. 0 is reserved to indicate null fragment.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.m_StartView">
+            <summary>
+            Member data on which the StartView property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.StartView">
+            <summary>
+            The number of the first view in this fragment in the sequential order in which they have been scanned in the scanning zone.
+            Is 0 for the first view of the first fragment, N at the second fragment, 2N at the third and so on, where N is the total number of views in a fragment.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.m_CodingMode">
+            <summary>
+            Member data on which the StartView property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.CodingMode">
+            <summary>
+            The coding mode of this fragment.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.m_Views">
+            <summary>
+            Protected member holding the array of Views. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.Item(System.Int32)">
+            <summary>
+            Provides access to the fragment views in an array-like fashion.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.Length">
+            <summary>
+            Returns the number of views.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.AccessViews(SySal.Scanning.Plate.IO.OPERA.RawData.Fragment)">
+            <summary>
+            Provides quick access to the array of Views in the specified fragment. Can be accessed by derived classes.
+            </summary>
+            <param name="f">the fragment whose views are to be accessed.</param>
+            <returns>the m_Views array in the specified fragment.</returns>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.#ctor">
+            <summary>
+            Protected constructor. Prevents users from creating instances of Fragment without deriving the class. Is implicitly called by constructors in derived classes.
+            </summary>
+        </member>
+        <member name="T:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View">
+            <summary>
+            A field of view in a scanning fragment.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.#ctor">
+            <summary>
+            Protected constructor. Prevents users from building instances of View without deriving the class. Is implicitly called by constructors in derived classes.
+            </summary>
+        </member>
+        <member name="T:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.TilePos">
+            <summary>
+            Tiling position in a scanning zone tile grid arrangement.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.TilePos.X">
+            <summary>
+            Grid X position.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.TilePos.Y">
+            <summary>
+            Grid Y position.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.m_Tile">
+            <summary>
+            Member data on which the Tile property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Tile">
+            <summary>
+            The tile position of this view in the scanning zone tile grid.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.m_Top">
+            <summary>
+            Member data on which the Top property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Top">
+            <summary>
+            The top side of the field of view.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.m_Bottom">
+            <summary>
+            Member data on which the Bottom property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Bottom">
+            <summary>
+            The bottom side of the field of view.
+            </summary>
+        </member>
+        <member name="T:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side">
+            <summary>
+            Contains information about each side of each view in a fragment.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.#ctor">
+            <summary>
+            Protected constructor. Prevents users from building instances of Side without deriving the class. Is implicitly called by constructors in derived classes.
+            </summary>
+        </member>
+        <member name="T:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.SideFlags">
+            <summary>
+            Flags that describe the scanning history on each side of each view.
+            These flags can be combined together in a byte representation.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.SideFlags.OK">
+            <summary>
+            Successful scanning.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.SideFlags.NoTopFocus">
+            <summary>
+            Focus not found on top side.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.SideFlags.NoBottomFocus">
+            <summary>
+            Focus not found on bottom side.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.SideFlags.ZLimiter">
+            <summary>
+            The Z limiter triggered.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.SideFlags.XLimiter">
+            <summary>
+            The X limiter triggered.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.SideFlags.YLimiter">
+            <summary>
+            The Y limiter triggered.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.SideFlags.Terminated">
+            <summary>
+            The scanning was interrupted.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.SideFlags.NotScanned">
+            <summary>
+            The side was not scanned (initial state for all sides of all views).
+            </summary>
+        </member>
+        <member name="T:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.LayerInfo">
+            <summary>
+            General info on each layer of a tomographic sequence.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.LayerInfo.Grains">
+            <summary>
+            Total number of grains in the layer.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.LayerInfo.Z">
+            <summary>
+            Z coordinate of the layer.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.m_Pos">
+            <summary>
+            Member data on which the Pos property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.Pos">
+            <summary>
+            Stage position of the center of the field of view on this side.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.SetPos(SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side,SySal.BasicTypes.Vector2)">
+            <summary>
+            Protected method that allows to set the Pos property from derived classes.
+            </summary>
+            <param name="s">the Side object to be changed.</param>
+            <param name="pos">the new value of the Pos property.</param>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.m_MapPos">
+            <summary>
+            Member data on which the MapPos property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.MapPos">
+            <summary>
+            Position of the center of the field of view in the experiment reference frame.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.SetMapPos(SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side,SySal.BasicTypes.Vector2)">
+            <summary>
+            Protected method that allows to set the MapPos property from derived classes.
+            </summary>
+            <param name="s">the Side object to be changed.</param>
+            <param name="mappos">the new value of the MapPos property.</param>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.m_MXX">
+            <summary>
+            Member data on which the MXX, MXY, MYX, MYY property rely. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.m_MXY">
+            <summary>
+            Member data on which the MXX, MXY, MYX, MYY property rely. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.m_MYX">
+            <summary>
+            Member data on which the MXX, MXY, MYX, MYY property rely. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.m_MYY">
+            <summary>
+            Member data on which the MXX, MXY, MYX, MYY property rely. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.m_IMXX">
+            <summary>
+            Member data on which the IMXX, IMXY, IMYX, IMYY property rely. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.m_IMXY">
+            <summary>
+            Member data on which the IMXX, IMXY, IMYX, IMYY property rely. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.m_IMYX">
+            <summary>
+            Member data on which the IMXX, IMXY, IMYX, IMYY property rely. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.m_IMYY">
+            <summary>
+            Member data on which the IMXX, IMXY, IMYX, IMYY property rely. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.MXX">
+            <summary>
+            XX component of the matrix that transforms points and vector from the view reference frame to the experiment reference frame.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.MXY">
+            <summary>
+            XY component of the matrix that transforms points and vector from the view reference frame to the experiment reference frame.
+            </summary>								
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.MYX">
+            <summary>
+            YX component of the matrix that transforms points and vector from the view reference frame to the experiment reference frame.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.MYY">
+            <summary>
+            YY component of the matrix that transforms points and vector from the view reference frame to the experiment reference frame.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.IMXX">
+            <summary>
+            XX component of the matrix that transforms points and vector from the experiment reference frame to the view reference frame.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.IMXY">
+            <summary>
+            XY component of the matrix that transforms points and vector from the experiment reference frame to the view reference frame.
+            </summary>								
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.IMYX">
+            <summary>
+            YX component of the matrix that transforms points and vector from the experiment reference frame to the view reference frame.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.IMYY">
+            <summary>
+            YY component of the matrix that transforms points and vector from the experiment reference frame to the view reference frame.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.SetM(SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Protected method that allows to set the M... matrix properties from derived classes.
+            </summary>
+            <param name="s">the Side object to be changed.</param>
+            <param name="mxx">the new value of the MXX matrix property.</param>
+            <param name="mxy">the new value of the MXY matrix property.</param>
+            <param name="myx">the new value of the MYX matrix property.</param>
+            <param name="myy">the new value of the MYY matrix property.</param>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.MapPoint(SySal.BasicTypes.Vector2)">
+            <summary>
+            Transforms a 2d point from the view reference frame to the experiment reference frame.
+            </summary>
+            <param name="p">the 2d point to be transformed.</param>
+            <returns>the transformed point.</returns>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.MapPoint(SySal.BasicTypes.Vector)">
+            <summary>
+            Transforms a 3d point from the view reference frame to the experiment reference frame.
+            </summary>
+            <param name="p">the 3d point to be transformed.</param>
+            <returns>the transformed point.</returns>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.MapVector(SySal.BasicTypes.Vector2)">
+            <summary>
+            Transforms a 2d vector from the view reference frame to the experiment reference frame.
+            </summary>
+            <param name="p">the 2d vector to be transformed.</param>
+            <returns>the transformed vector.</returns>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.MapVector(SySal.BasicTypes.Vector)">
+            <summary>
+            Transforms a 3d vector from the view reference frame to the experiment reference frame.
+            </summary>
+            <param name="p">the 3d vector to be transformed.</param>
+            <returns>the transformed vector.</returns>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.IMapPoint(SySal.BasicTypes.Vector2)">
+            <summary>
+            Transforms a 2d point from the experiment reference frame to the view reference frame.
+            </summary>
+            <param name="p">the 2d point to be transformed.</param>
+            <returns>the transformed point.</returns>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.IMapPoint(SySal.BasicTypes.Vector)">
+            <summary>
+            Transforms a 3d point from the experiment reference frame to the view reference frame.
+            </summary>
+            <param name="p">the 3d point to be transformed.</param>
+            <returns>the transformed point.</returns>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.IMapVector(SySal.BasicTypes.Vector2)">
+            <summary>
+            Transforms a 2d vector from the experiment reference frame to the view reference frame.
+            </summary>
+            <param name="p">the 2d vector to be transformed.</param>
+            <returns>the transformed vector.</returns>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.IMapVector(SySal.BasicTypes.Vector)">
+            <summary>
+            Transforms a 3d vector from the experiment reference frame to the view reference frame.
+            </summary>
+            <param name="p">the 3d vector to be transformed.</param>
+            <returns>the transformed vector.</returns>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.m_Flags">
+            <summary>
+            Member data on which the Flags property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.Flags">
+            <summary>
+            Scanning result flags.
+            </summary>
+        </member>
+        <member name="T:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.LayerInfoList">
+            <summary>
+            A list of LayerInfo.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.LayerInfoList.m_Layers">
+            <summary>
+            Protected member data holding the array of LayerInfos. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.LayerInfoList.Item(System.Int32)">
+            <summary>
+            Provides access to LayerInfo in an array-like fashion.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.LayerInfoList.Length">
+            <summary>
+            Returns the number of LayerInfos in the list.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.LayerInfoList.#ctor(SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.LayerInfo[])">
+            <summary>
+            Initializes the LayerInfoList with an already allocated array.
+            </summary>
+            <param name="l">the array of LayerInfos to initialize the LayerInfoList.</param>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.m_Layers">
+            <summary>
+            Member data on which the Layers property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.View.Side.Layers">
+            <summary>
+            Available layer information for this side.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.#ctor(System.IO.Stream)">
+            <summary>
+            Restores a saved fragment from a stream.
+            </summary>
+            <param name="s">the stream from which to read the fragment information.</param>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.RawData.Fragment.Save(System.IO.Stream)">
+            <summary>
+            Saves the fragment to a stream.
+            </summary>
+            <param name="s">the stream where the fragment is to be saved.</param>
+        </member>
+        <member name="T:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog">
+            <summary>
+            Contains overall information shared by all fragments in a scanning zone.
+            </summary>
+        </member>
+        <member name="T:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.KeyStringRepresentation">
+            <summary>
+            String representation of parameter name - parameter value pairs.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.KeyStringRepresentation.m_Name">
+            <summary>
+            Member data on which the Name property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.KeyStringRepresentation.Name">
+            <summary>
+            Name of a parameter.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.KeyStringRepresentation.m_Value">
+            <summary>
+            Member data on which the Value property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.KeyStringRepresentation.Value">
+            <summary>
+            Value of a parameter.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.KeyStringRepresentation.#ctor">
+            <summary>
+            Protected constructor. Prevents users from creating instances of KeyStringRepresentation without deriving the class. Is implicitly called by constructors in derived classes.
+            </summary>
+        </member>
+        <member name="T:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.ConfigStringRepresentation">
+            <summary>
+            String representation of a whole configuration for an object.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.ConfigStringRepresentation.m_ClassName">
+            <summary>
+            Member data on which the ClassName property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.ConfigStringRepresentation.ClassName">
+            <summary>
+            Name of the class of the object.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.ConfigStringRepresentation.m_Name">
+            <summary>
+            Member data on which the Name property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.ConfigStringRepresentation.Name">
+            <summary>
+            Name of a parameter.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.ConfigStringRepresentation.m_Keys">
+            <summary>
+            Protected member data holding the array of KeyStringRepresentations. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.ConfigStringRepresentation.Item(System.Int32)">
+            <summary>
+            Provides access to the KeyStringRepresentations in an array-like fashion.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.ConfigStringRepresentation.Length">
+            <summary>
+            Returns the number of KeyStringRepresentations in the configuration.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.ConfigStringRepresentation.#ctor">
+            <summary>
+            Protected constructor. Prevents users from creating instances of ConfigStringRepresentation without deriving the class. Is implicitly called by constructors in derived classes.
+            </summary>
+        </member>
+        <member name="T:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.SetupStringRepresentation">
+            <summary>
+            String representation of a whole scanning setup.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.SetupStringRepresentation.m_Name">
+            <summary>
+            Member data on which the Name property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.SetupStringRepresentation.Name">
+            <summary>
+            Name of a parameter.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.SetupStringRepresentation.m_Configs">
+            <summary>
+            Protected member data holding the array of ConfigStringRepresentations. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.SetupStringRepresentation.Item(System.Int32)">
+            <summary>
+            Provides access to the ConfigStringRepresentations in an array-like fashion.
+            </summary>							
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.SetupStringRepresentation.Length">
+            <summary>
+            Returns the number of ConfigStringRepresentations.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.SetupStringRepresentation.#ctor">
+            <summary>
+            Protected constructor. Prevents users from creating instances of SetupStringRepresentation without deriving the class. Is implicitly called by constructors in derived classes.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.m_Id">
+            <summary>
+            Member data on which the Id property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.Id">
+            <summary>
+            Catalog identifier. The same identifier value is shared by all fragments in the same scanning zone.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.m_Extents">
+            <summary>
+            Member data on which the Extents property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.Extents">
+            <summary>
+            The extents of the scanning zone.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.m_Steps">
+            <summary>
+            Member data on which the Extents property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.Steps">
+            <summary>
+            Vector containing the distance between centers of adjacent fields of view.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.m_Fragments">
+            <summary>
+            Member data on which the Fragments property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.Fragments">
+            <summary>
+            The total number of fragments in the scanning zone.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.FragmentIndices">
+            <summary>
+            Protected member data holding the array of fragment indices. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.Item(System.Int32,System.Int32)">
+            <summary>
+            Provides access to the fragment indices in an array-like fashion.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.XSize">
+            <summary>
+            X size of the fragment index array (second component).
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.YSize">
+            <summary>
+            Y size of the fragment index array (first component).
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.m_SetupInfo">
+            <summary>
+            Member data on which the SetupInfo property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.SetupInfo">
+            <summary>
+            Information about the setup of the scanning program to scan this zone.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.#ctor">
+            <summary>
+            Protected constructor. Prevents users from creating instances of Catalog without deriving the class. Is implicitly called by constructors in derived classes.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.#ctor(System.IO.Stream)">
+            <summary>
+            Restores a saved catalog from a stream.
+            </summary>
+            <param name="s">the stream from where the saved stream is to be loaded.</param>
+        </member>
+        <member name="M:SySal.Scanning.Plate.IO.OPERA.RawData.Catalog.Save(System.IO.Stream)">
+            <summary>
+            Saves the catalog to a stream.
+            </summary>
+            <param name="s">the stream where the catalog is to be saved.</param>
+        </member>
+        <member name="T:SySal.Scanning.PostProcessing.SlopeCorrections">
+            <summary>
+            A class for serializing/deserializing slope corrections.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.PostProcessing.SlopeCorrections.SectionTag">
+            <summary>
+            Section tag for this class in multi-section TLG files.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.PostProcessing.SlopeCorrections.TopThickness">
+            <summary>
+            Thickness of the top emulsion layer.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.PostProcessing.SlopeCorrections.BaseThickness">
+            <summary>
+            Thickness of the plastic base.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.PostProcessing.SlopeCorrections.BottomThickness">
+            <summary>
+            Thickness of the bottom emulsion layer;
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.PostProcessing.SlopeCorrections.TopDeltaSlope">
+            <summary>
+            Slope displacements (linear distortion) on top side.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.PostProcessing.SlopeCorrections.TopSlopeMultipliers">
+            <summary>
+            Slope multipliers (shrinkage) on top side.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.PostProcessing.SlopeCorrections.BottomDeltaSlope">
+            <summary>
+            Slope displacements (linear distortion) on bottom side.
+            </summary>
+        </member>
+        <member name="F:SySal.Scanning.PostProcessing.SlopeCorrections.BottomSlopeMultipliers">
+            <summary>
+            Slope multipliers (shrinkage) on bottom side.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.PostProcessing.SlopeCorrections.#ctor">
+            <summary>
+            Builds an identic slope correction set.            
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.PostProcessing.SlopeCorrections.Save(System.IO.Stream)">
+            <summary>
+            Saves a slope correction set to a TLG file.
+            </summary>
+            <param name="str">the stream to be used for saving.</param>
+        </member>
+        <member name="M:SySal.Scanning.PostProcessing.SlopeCorrections.#ctor(System.IO.Stream)">
+            <summary>
+            Builds a slope correction set from a TLG file. An exception is thrown if the section is not found in the TLG file.
+            </summary>
+            <param name="str">the stream to be used for reading.</param>
+        </member>
+        <member name="T:SySal.Scanning.PostProcessing.PatternMatching.dShouldStop">
+            <summary>
+            Delegates needed to monitor the progress of pattern matching
+            </summary>
+        </member>
+        <member name="T:SySal.Scanning.PostProcessing.PatternMatching.TrackPair">
+            <summary>
+            Two tracks matched
+            </summary>
+        </member>
+        <member name="T:SySal.Scanning.PostProcessing.PatternMatching.PatternMatchingException">
+            <summary>
+            Pattern matching has its own exceptions
+            </summary>
+        </member>
+        <member name="T:SySal.Scanning.PostProcessing.PatternMatching.IPatternMatcher">
+            <summary>
+            Methods that any pattern matching library should implement
+            </summary>
+        </member>
+        <member name="T:SySal.Scanning.PostProcessing.dShouldStop">
+            <summary>
+            Returns true if a data processing task has to be aborted.
+            </summary>
+        </member>
+        <member name="T:SySal.Scanning.PostProcessing.dLoadFragment">
+            <summary>
+            Loads a fragment with the specified index from a raw data fragment group.
+            </summary>
+        </member>
+        <member name="T:SySal.Scanning.PostProcessing.dProgress">
+            <summary>
+            Notifies about the progress of a data processing operation in percentage (0 - 100.0).
+            </summary>
+        </member>
+        <member name="T:SySal.Scanning.PostProcessing.dFragmentComplete">
+            <summary>
+            Notifies that a fragment has been completed.
+            </summary>
+        </member>
+        <member name="T:SySal.Scanning.PostProcessing.IPrelinkProcessor">
+            <summary>
+            Raw data processor interface.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.PostProcessing.IPrelinkProcessor.ShouldStop">
+            <summary>
+            The delegate to be called to check user's request to abort the processing.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.PostProcessing.IPrelinkProcessor.Progress">
+            <summary>
+            The delegate that is called to notify the caller about the processing progress status.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.PostProcessing.IPrelinkProcessor.Load">
+            <summary>
+            The delegate that takes care of loading a fragment.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.PostProcessing.IPrelinkProcessor.FragmentComplete">
+            <summary>
+            The delegate that is called when a fragment has been successfully processed.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.PostProcessing.IPrelinkProcessor.Process(SySal.Scanning.Plate.IO.OPERA.RawData.Catalog)">
+            <summary>
+            Processes a group of raw data specified by a catalog.
+            </summary>
+            <param name="cat">the catalog that defines the raw data to be processed.</param>
+            <returns>true if the raw data have been successfully processed, false otherwise.</returns>
+        </member>
+        <member name="T:SySal.Scanning.PostProcessing.ILinkProcessor">
+            <summary>
+            Link processor interface.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.PostProcessing.ILinkProcessor.ShouldStop">
+            <summary>
+            The delegate to be called to check user's request to abort the processing.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.PostProcessing.ILinkProcessor.Progress">
+            <summary>
+            The delegate that is called to notify the caller about the processing progress status.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.PostProcessing.ILinkProcessor.Load">
+            <summary>
+            The delegate that takes care of loading a fragment.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.PostProcessing.ILinkProcessor.Link(SySal.Scanning.Plate.IO.OPERA.RawData.Catalog)">
+            <summary>
+            Links a group of raw data specified by a catalog.
+            </summary>
+            <param name="cat">the catalog that defines the raw data to be linked.</param>
+            <returns>the LinkedZone that has been generated.</returns>
+        </member>
+        <member name="T:SySal.Scanning.PostProcessing.IPostlinkProcessor">
+            <summary>
+            Postlink processor interface.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.PostProcessing.IPostlinkProcessor.ShouldStop">
+            <summary>
+            The delegate to be called to check user's request to abort the processing.
+            </summary>
+        </member>
+        <member name="P:SySal.Scanning.PostProcessing.IPostlinkProcessor.Progress">
+            <summary>
+            The delegate that is called to notify the caller about the processing progress status.
+            </summary>
+        </member>
+        <member name="M:SySal.Scanning.PostProcessing.IPostlinkProcessor.Process(SySal.Scanning.Plate.IO.OPERA.LinkedZone)">
+            <summary>
+            Processes a linked zone.
+            </summary>
+            <param name="lz">the linked zone to be processed.</param>
+            <returns>the LinkedZone that has been generated. Can also retrieve the input linked zone if no modification has been made.</returns>
+        </member>
+        <member name="T:SySal.Scanning.PostProcessing.FieldShiftCorrection.dShouldStop">
+            <summary>
+            Delegates that are needed to monitor the asynchronous field shift correction process
+            </summary>
+        </member>
+        <member name="T:SySal.Scanning.PostProcessing.FieldShiftCorrection.FieldShiftException">
+            <summary>
+            The field shift correction procedure has its own exceptions
+            </summary>
+        </member>
+        <member name="T:SySal.Scanning.PostProcessing.FieldShiftCorrection.IFieldShiftManager">
+            <summary>
+            Methods that any field shift manager must implement
+            </summary>
+        </member>
+        <member name="T:SySal.Scanning.PostProcessing.FragmentLinking.LinkException">
+            <summary>
+            The fragment linking procedure has its own exceptions
+            </summary>
+        </member>
+        <member name="T:SySal.Scanning.PostProcessing.FragmentLinking.IFragmentLinker">
+            <summary>
+            Methods that any fragment linker must implement
+            </summary>
+        </member>
+    </members>
+</doc>

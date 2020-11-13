@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Operacp</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Executables.OperaCopy.Exe">
+            <summary>
+            OperaCopy - Command line tool for data transfer.
+            </summary>
+            <remarks>
+            <para>OperaCopy is a utility built on top of the syntax of the Grand Unified File System, as described in <see cref="T:SySal.OperaPersistence">OperaPersistence</see>.</para>
+            <para>The program copies data from a specified source to a specified destination, in several different formats.</para>
+            <para>The typical syntax is: <c>OperaCopy.exe &lt;source&gt; &lt;destination&gt;</c></para>
+            <para>
+            Recognized formats:
+            <list type="table">
+            <listheader><term>Format</term><description>Description</description></listheader>
+            <item><term>RWC</term><description>Raw Data Catalog. Only file-to-file copies are supported.</description></item>
+            <item><term>RWD</term><description>Raw Data. Only file-to-file copies are supported.</description></item>
+            <item><term>TLG</term><description>Linked Zones. Both files and DB are supported for the source as well as for the destination. In input, TLB = TLG, full information of base tracks only; 
+            TLS = TLG, only geometrical information of base tracks.</description></item>
+            <item><term>AI</term><description>Alignment Ignore indices for Linked Zones. Supported for destination only (text files).</description></item>
+            <item><term>BI</term><description>Base Track indices for Linked Zones. Supported for destination only (text files).</description></item>
+            <item><term>DBMI</term><description>DB MicroTrack indices for Linked Zones. Supported for destination only (text files).</description></item>
+            <item><term>TSR</term><description>TotalScan Reconstructions. Both files and DB are supported for the source as well as for the destination.</description></item>
+            <item><term>XML</term><description>ProgramSettings. Both files and DB are supported for the source as well as for the destination.</description></item>
+            </list>	
+            </para>
+            <para>
+            Usage examples:
+            <list type="bullet">
+            <item><term><b>Extracting a zone from the DB: </b><c>OperaCopy.exe db:\8\1024535288.tlg c:\data\myfile.tlg</c></term></item>
+            <item><term><b>Extracting a TotalScan Reconstruction from the DB: </b><c>OperaCopy.exe db:\8\8032554443.tsr c:\data\myfile.tsr</c></term></item>
+            <item><term><b>Writing a TotalScan Reconstruction to the DB: </b><c>OperaCopy.exe c:\data\myfile.tsr db:\24\100048833\1.tsr</c></term></item>
+            </list>
+            </para>
+            </remarks>
+        </member>
+        <member name="M:SySal.Executables.OperaCopy.Exe.Main(System.String[])">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+    </members>
+</doc>

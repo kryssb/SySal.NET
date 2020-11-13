@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BatchFragmentShiftCorrect</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Executables.BatchFragmentShiftCorrect.Config">
+            <summary>
+            Batch fragment shift correction configuration.
+            </summary>
+        </member>
+        <member name="T:SySal.Executables.BatchFragmentShiftCorrect.Exe">
+            <summary>
+            Reads RWD files from a specified catalog (RWC) and computes a set of correction parameters for systematic shift errors. The correction is just computed, not applied.
+            </summary>
+            <remarks>
+            <para>BatchFragmentShiftCorrect uses SySal.Processing.FragShiftCorrection.</para>
+            <para>
+            The syntax for the command line is:
+            <code>
+            BatchFragmentShiftCorrect.exe &lt;input RWC path&gt; &lt;output XML file path&gt; &lt;XML config Opera persistence path&gt;
+            </code>
+            Notice the last parameter is an OPERA persistence path, i.e. a local file, network file or DB configuration (e.g. <c>db:\1293.xml</c>).
+            </para>
+            <para>
+            Usage example (command line):
+            <example>
+            <c>BatchFragmentShiftCorrect.exe c:\myset.rwc c:\myoutputparams.xml c:\correctionconfig.xml</c>
+            </example>
+            </para>
+            <para>
+            The syntax of the configuration file for correction computation is:
+            <code>
+            &lt;BatchFragmentShiftCorrect.Config&gt;
+             &lt;FragmentShiftCorrectionConfig&gt;
+              &lt;Name&gt;Default Fragment Field Shift Manager Config&lt;/Name&gt;
+              &lt;MinGrains&gt;6&lt;/MinGrains&gt;
+              &lt;MinSlope&gt;0.01&lt;/MinSlope&gt;
+              &lt;MergePosTol&gt;20&lt;/MergePosTol&gt;
+              &lt;MergeSlopeTol&gt;0.02&lt;/MergeSlopeTol&gt;
+              &lt;PosTol&gt;50&lt;/PosTol&gt;
+              &lt;SlopeTol&gt;0.07&lt;/SlopeTol&gt;
+              &lt;MinMatches&gt;2&lt;/MinMatches&gt;
+              &lt;MaxMatchError&gt;1&lt;/MaxMatchError&gt;
+              &lt;GrainsOverlapRatio&gt;0.2&lt;/GrainsOverlapRatio&gt;
+              &lt;OverlapTol&gt;40&lt;/OverlapTol&gt;
+              &lt;GrainZTol&gt;2&lt;/GrainZTol&gt;
+              &lt;IsStep&gt;true&lt;/IsStep&gt;
+              &lt;EnableHysteresis&gt;false&lt;/EnableHysteresis&gt;
+             &lt;/FragmentShiftCorrectionConfig&gt;
+            &lt;/BatchFragmentShiftCorrect.Config&gt;
+            </code>
+            See <see cref="T:SySal.Processing.FragShiftCorrection.FragmentShiftManager"/> and <see cref="T:SySal.Processing.FragShiftCorrection.LinearFragmentCorrectionWithHysteresis"/> for an explanation of the parameters.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:SySal.Executables.BatchFragmentShiftCorrect.Exe.Main(System.String[])">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+    </members>
+</doc>

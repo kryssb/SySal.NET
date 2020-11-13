@@ -1,0 +1,741 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AlphaOmegaReconstructor</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Processing.AlphaOmegaReconstruction.MappingResult">
+            <summary>
+            Results of the mapping operations.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.MappingResult.NotPerformedYet">
+            <summary>
+            Not performed yet.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.MappingResult.BadAffineFocusing">
+            <summary>
+            Bad affine focusing.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.MappingResult.SingularityInPrescan">
+            <summary>
+            Singularity met during prescan.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.MappingResult.InsufficientPrescan">
+            <summary>
+            Insufficient prescan.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.MappingResult.NullInput">
+            <summary>
+            One or both zones are empty.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.MappingResult.OK">
+            <summary>
+            Prescan OK.
+            </summary>
+        </member>
+        <member name="T:SySal.Processing.AlphaOmegaReconstruction.MappingParameters">
+            <summary>
+            Parameters for mapping 
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.MappingParameters.CoincN">
+            <summary>
+            Number of matches.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.MappingParameters.Overlap">
+            <summary>
+            Overlap region.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.MappingParameters.FixSize">
+            <summary>
+            Size of the fixed map.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.MappingParameters.MovSize">
+            <summary>
+            Size of the moving map.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.MappingParameters.RawTransl">
+            <summary>
+            Raw translation (not optimized).
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.AlphaOmegaReconstruction.MappingParameters.#ctor(System.Int32,SySal.BasicTypes.Vector2,SySal.BasicTypes.Vector2,SySal.BasicTypes.Vector2,SySal.BasicTypes.Vector2)">
+            <summary>
+            Initializes a new instance of the structure.
+            </summary>
+            <param name="mCoincN">Number of Matches</param>
+            <param name="mOverlap">Overlap (X and Y coordinates)</param>
+            <param name="mFixSize">Size of fixed map (micron)</param>
+            <param name="mMovSize">Size of moveable map (micron)</param>
+            <param name="mRawTransl">Raw Translation (micron)</param>
+        </member>
+        <member name="T:SySal.Processing.AlphaOmegaReconstruction.AlignmentData">
+            <summary>
+            Data from alignment.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.AlignmentData.Result">
+            <summary>
+            Result of prescan mapping.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.AlphaOmegaReconstruction.AlignmentData.#ctor">
+            <summary>
+            Builds an empty AlignmentData class.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.AlphaOmegaReconstruction.AlignmentData.#ctor(System.Double[],System.Double[],System.Double[],System.Double[0:,0:],SySal.Processing.AlphaOmegaReconstruction.MappingResult)">
+            <summary>
+            Initializes a new instance of AlignmentData.
+            </summary>
+            <param name="dShrink">the slope multipliers.</param>
+            <param name="sAlign_dSlope">the slope deviations.</param>
+            <param name="Transl">the translation component of the affine transformation.</param>
+            <param name="AffMat">the deformation component of the affine transformation.</param>
+            <param name="MapRes">the result of the prescan mapping.</param>
+        </member>
+        <member name="M:SySal.Processing.AlphaOmegaReconstruction.AlignmentData.#ctor(System.Double[],System.Double[],System.Double[],SySal.Processing.AlphaOmegaReconstruction.MappingResult)">
+            <summary>
+            Initializes a new instance of the AlignmentData class.
+            </summary>
+            <param name="dShrink">the slope multipliers.</param>
+            <param name="sAlign_dSlope">the slope deviations.</param>
+            <param name="Transformation">the transformation parameter vector.</param>
+            <param name="MapRes">the results of prescan mapping.</param>
+        </member>
+        <member name="T:SySal.Processing.AlphaOmegaReconstruction.PrescanModeValue">
+            <summary>
+            Possible prescan modes.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.PrescanModeValue.Rototranslation">
+            <summary>
+            One large prescan zone is used, and rototranslation parameters are obtained by analysis of the density of matches.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.PrescanModeValue.Affine">
+            <summary>
+            Four small prescan zones are used, the best three are selected, and the parameters for affine transformation are computed from local translations.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.PrescanModeValue.Translation">
+            <summary>
+            One small prescan zone is used and translation is estimated.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.PrescanModeValue.None">
+            <summary>
+            No prescan is performed.
+            </summary>
+        </member>
+        <member name="T:SySal.Processing.AlphaOmegaReconstruction.VertexAlgorithm">
+            <summary>
+            Possible vertex algorithms.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.VertexAlgorithm.None">
+            <summary>
+            No vertex reconstruction.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.VertexAlgorithm.PairBased">
+            <summary>
+            Vertex algorithm that finds 2-track crossing and then merges them into vertices.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.VertexAlgorithm.Global">
+            <summary>
+            Vertex algorithm that finds multitrack vertices in a single pass.
+            </summary>
+        </member>
+        <member name="T:SySal.Processing.AlphaOmegaReconstruction.Configuration">
+            <summary>
+            Configuration for AlphaOmegaReconstructor.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.TopologyV">
+            <summary>
+            Enables Search for V-Topology Intersections.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.TopologyKink">
+            <summary>
+            Enables Search for Kink-Topology Intersections.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.TopologyX">
+            <summary>
+            Enables Search for X-Topology Intersections.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.TopologyY">
+            <summary>
+            Enables Search for Y-Topology Intersections.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.TopologyLambda">
+            <summary>
+            Enables Search for Lambda-Topology Intersections.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.MinVertexTracksSegments">
+            <summary>
+            Minimum number of segments for  a track to be taken into account in the vertex reconstruction.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.Initial_D_Pos">
+            <summary>
+            Initial position tolerance at the beginning of the iteratively optimized linking procedure.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.Initial_D_Slope">
+            <summary>
+            Initial slope tolerance at the beginning of the iteratively optimized linking procedure.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.MaxIters">
+            <summary>
+            Maximum number of iterations.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.ExtraTrackingPasses">
+            <summary>
+            The number of additional linking passes to be done to build tracks. Setting it to <c>0</c> reproduces the old behaviour of AlphaOmegaReconstructor.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.D_PosIncrement">
+            <summary>
+            Coefficient for linear dependence for position tolerance along iterative procedure.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.D_SlopeIncrement">
+            <summary>
+            Coefficient for linear dependence for slope tolerance along iterative procedure.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.D_Pos">
+            <summary>
+            Position tolerance at the end of the iteratively optimized linking procedure.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.D_Slope">
+            <summary>
+            Slope tolerance at the end of the iteratively optimized linking procedure.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.LocalityCellSize">
+            <summary>
+            Size of the locality cell to speed up linking.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.AlignBeamSlope">
+            <summary>
+            Slope of the beam to be used for alignment.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.AlignBeamWidth">
+            <summary>
+            Width of the beam to be used for alignment.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.FreezeZ">
+            <summary>
+            If enabled, freezes z longitudinal coordinate to its nominal position.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.CorrectSlopesAlign">
+            <summary>
+            If enabled, correct slopes during alignment.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.AlignOnLinked">
+            <summary>
+            If enabled, only the segments that have been linked on previous layers are used to optimize the alignment.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.MaxMissingSegments">
+            <summary>
+            Maximum number of consecutively missing segments in a track.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.PrescanMode">
+            <summary>
+            Selects the way to obtain a first rough alignment (prescan).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.LeverArm">
+            <summary>
+            When the prescan mode is <i>Affine</i>, this parameter is the distance between the centers of two zones during prescan.
+            When the prescan mode is <i>Rototranslation</i>, this parameter is the increase in the mapping tolerance that is actually applied 
+            (Rototranslation must account for large shifts due to rotations over large distances).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.ZoneWidth">
+            <summary>
+            Size of each prescan area (micron).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.Extents">
+            <summary>
+            Maximum misalignment allowed in each prescan zone (micron).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.RiskFactor">
+            <summary>
+            Risk Factor to attach a background track to a high momentum track (normalized to 1).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.SlopesCellSize">
+            <summary>
+            Size of cell for slopes distribution (normalized to 1).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.MaximumShift">
+            <summary>
+            Maximum shift detectable according to prescan procedure.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.CrossTolerance">
+            <summary>
+            Maximum closest mapproach between tracks (Pair Based Vertexing).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.MaximumZ">
+            <summary>
+            Maximum longitudinal coordinate for intersection (Pair Based Vertexing).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.MinimumZ">
+            <summary>
+            Minimum longitudinal coordinate for intersection (Pair Based Vertexing).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.StartingClusterToleranceLong">
+            <summary>
+            Starting longitudinal tolerance for clusterizing intersections (Pair Based Vertexing).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.MaximumClusterToleranceLong">
+            <summary>
+            Maximum longitudinal tolerance for clusterizing intersections (Pair Based Vertexing).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.StartingClusterToleranceTrans">
+            <summary>
+            Starting transverse tolerance for clusterizing intersections (Pair Based Vertexing).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.MaximumClusterToleranceTrans">
+            <summary>
+            Starting longitudinal tolerance for clusterizing intersections (Pair Based Vertexing).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.MinimumTracksPairs">
+            <summary>
+            Starting longitudinal tolerance for clusterizing intersections (Pair Based Vertexing).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.MinimumSegmentsNumber">
+            <summary>
+            Starting longitudinal tolerance for clusterizing intersections (Pair Based Vertexing).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.UpdateTransformations">
+            <summary>
+            If enabled, transformations are updated with long tracks.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.Matrix">
+            <summary>
+            Matrix for tracks tracks intersections in vertex finding (Pair Based Vertexing).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.XCellSize">
+            <summary>
+            Cell Size along X direction for tracks intersections in vertex finding (Pair Based Vertexing).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.YCellSize">
+            <summary>
+            Cell Size along Y direction for tracks intersections in vertex finding (Pair Based Vertexing).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.ZCellSize">
+            <summary>
+            Cell Size along Z direction for tracks intersections in vertex finding (Pair Based Vertexing).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.UseCells">
+            <summary>
+            If enabled, cells are involved in tracks intersections for vertex finding (Pair Based Vertexing).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.KalmanFilter">
+            <summary>
+            If enabled, Kalman filter is applied to propagate tracks. Otherwise track-fit-option is applied.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.FittingTracks">
+            <summary>
+            Number of micro-track for track fitting when propagating a volume track in track-fit-option.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.MinKalman">
+            <summary>
+            Minimum number of micro-track for kalman filter to be applied.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.MinimumCritical">
+            <summary>
+            Critical Parameter: minimum number of microtracks to form a volume track.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.TrackFilter">
+            <summary>
+            Track filtering function. If not <c>null</c>, is used to check track compatibility with specified criteria. The track is kept if the value of the function is different from <c>0.0</c>.
+            <remarks>The supported track filtering parameters are listed below:
+            <para><list type="table">
+            <listheader><term>Name</term><description>Meaning</description></listheader>
+            <item><term>N</term><description>Number of segments in the vertex.</description></item>
+            <item><term>M</term><description>Number of segments with <c>Sigma &lt; 0</c>.</description></item>
+            <item><term>G</term><description>Total number of grains.</description></item>
+            <item><term>A</term><description>Total area sum.</description></item>
+            </list></para>
+            </remarks>
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.KinkDetection">
+            <summary>
+            If enabled, kink detection procedure is performed.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.KinkMinimumSegments">
+            <summary>
+            Minimum segemnts for a track to take part in the kink detection procedure.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.KinkMinimumDeltaS">
+            <summary>
+            Minimum Delat slope between incoming and outgoing slopes of a track to take part to the kink detection procedure.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.KinkFactor">
+            <summary>
+            Threshold factor for tracks fit in kink detection
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.FilterThreshold">
+            <summary>
+            Threshold factor for tracks fit in kink detection
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.FilterLength">
+            <summary>
+            Filter Length
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.VtxAlgorithm">
+            <summary>
+            The vertex algorithm to be used.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.GVtxMaxSlopeDivergence">
+            <summary>
+            Maximum divergence (in slope) of tracks belonging to a vertex (Global Vertexing).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.GVtxRadius">
+            <summary>
+            Vertex radius for global vertex algorithm (Global Vertexing).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.GVtxMaxExt">
+            <summary>
+            Maximum track extrapolation depth for global vertex algorithm (Global Vertexing).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.GVtxMinCount">
+            <summary>
+            Minimum number of base tracks for global vertex algorithm (Global Vertexing).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.GVtxFilter">
+            <summary>
+            Vertex filtering function. If not <c>null</c>, is used to check vertex compatibility with specified criteria. The vertex is kept if the value of the function is different from <c>0.0</c>.
+            <remarks>The supported vertex filtering parameters are listed below:
+            <para><list type="table">
+            <listheader><term>Name</term><description>Meaning</description></listheader>
+            <item><term>N</term><description>Number of tracks in the vertex.</description></item>
+            <item><term>ND</term><description>Number of downstream tracks.</description></item>
+            <item><term>NU</term><description>Number of upstream tracks.</description></item>
+            <item><term>PX</term><description>Absolute X position of the vertex.</description></item>
+            <item><term>PY</term><description>Absolute Y position of the vertex.</description></item>
+            <item><term>PZ</term><description>Absolute Z position of the vertex.</description></item>
+            <item><term>RX</term><description>X position of the volume reference center.</description></item>
+            <item><term>RY</term><description>Y position of the volume reference center.</description></item>
+            <item><term>RZ</term><description>Z position of the volume reference center.</description></item>
+            <item><term>LastPass</term><description><c>1.0</c> if the filter is being applied to finalize the vertex list, <c>0.0</c> if this is an intermediate processing step.</description></item>
+            </list></para>
+            </remarks>
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.VtxFitWeightEnable">
+            <summary>
+            If true, weighted vertex fit is enabled (available only with Global Vertexing, ignored otherwise).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.VtxFitWeightTol">
+            <summary>
+            Convergence tolerance on weighted vertex fit (available only with Global Vertexing, ignored otherwise).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.VtxFitWeightOptStepXY">
+            <summary>
+            Optimization step in XY plane for weighted vertex fit (available only with Global Vertexing, ignored otherwise).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.VtxFitWeightOptStepZ">
+            <summary>
+            Optimization step in Z plane for weighted vertex fit (available only with Global Vertexing, ignored otherwise).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.RelinkAperture">
+            <summary>
+            Maximum difference in slope between tracks to be linked together. Ignored if <c>RelinkEnable</c> is <c>false</c>.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.RelinkDeltaZ">
+            <summary>
+            Maximum distance between the ends of two tracks to be linked together. Ignored if <c>RelinkEnable</c> is <c>false</c>.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.RelinkEnable">
+            <summary>
+            Activates post-propagation track relinking if set to <c>true</c>.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.TrackCleanError">
+            <summary>
+            Minimum position measurement error to consider to check track consistency.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.TrackCleanChi2Limit">
+            <summary>
+            Maximum chi2 for tracks to survive cleaning. Set it to zero or a negative number to disable cleaning.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.TrackAlignMinTrackSegments">
+            <summary>
+            Minimum number of segments to use a volume track for alignment. Set to <c>0</c> to disable alignment with tracks.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.TrackAlignTranslationStep">
+            <summary>
+            Optimization step, in micron, for track-guided alignment translation.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.TrackAlignTranslationSweep">
+            <summary>
+            Maximum translation allowed for track-guided alignment.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.TrackAlignRotationStep">
+            <summary>
+            Optimization step, in radians, for track-guided alignment rotation.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.TrackAlignRotationSweep">
+            <summary>
+            Maximum rotation allowed for track-guided alignment.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.TrackAlignOptAcceptance">
+            <summary>
+            Acceptance, in micron, for track-guided alignment.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.TrackAlignMinLayerSegments">
+            <summary>
+            Minimum number of segments to align a layer with volume tracks.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.Configuration.IgnoreBadLayers">
+            <summary>
+            If <c>true</c>, layers that cannot be aligned are skipped, but the reconstruction process does not abort; if <c>false</c>, the reconstruction process aborts if one or more layers cannot be aligned.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.AlphaOmegaReconstruction.Configuration.#ctor">
+            <summary>
+            Builds an unitialized configuration.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.AlphaOmegaReconstruction.Configuration.#ctor(System.String)">
+            <summary>
+            Builds a configuration with the specified name.
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:SySal.Processing.AlphaOmegaReconstruction.Configuration.Clone">
+            <summary>
+            Yields a copy of the configuration.
+            </summary>
+            <returns>the cloned configuration.</returns>
+        </member>
+        <member name="T:SySal.Processing.AlphaOmegaReconstruction.AlphaOmegaReconstructor">
+            <summary>
+            Volume reconstruction 
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.AlphaOmegaReconstruction.AlphaOmegaReconstructor.#ctor">
+            <summary>
+            Constructor. Builds an AlphaOmegaReconstructor with default configuration.
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.AlphaOmegaReconstruction.AlphaOmegaReconstructor.Name">
+            <summary>
+            Name of the AlphaOmegaReconstructor instance.
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.AlphaOmegaReconstruction.AlphaOmegaReconstructor.Config">
+            <summary>
+            Accesses the AlphaOmegaReconstructor's configuration.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.AlphaOmegaReconstruction.AlphaOmegaReconstructor.EditConfiguration(SySal.Management.Configuration@)">
+            <summary>
+            Allows the user to edit the supplied configuration.
+            </summary>
+            <param name="c">the configuration to be edited.</param>
+            <returns><c>true</c> if the configuration has been modified, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="P:SySal.Processing.AlphaOmegaReconstruction.AlphaOmegaReconstructor.Connections">
+            <summary>
+            List of connections. It is always empty for AlphaOmegaReconstructors.
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.AlphaOmegaReconstruction.AlphaOmegaReconstructor.MonitorEnabled">
+            <summary>
+            Monitor enable/disable. Monitoring is currently not supported (enabling the monitor results in an exception).
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.AlphaOmegaReconstruction.AlphaOmegaReconstructor.ShouldStop">
+            <summary>
+            Callback delegate that can be used to stop the reconstruction process.
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.AlphaOmegaReconstruction.AlphaOmegaReconstructor.Progress">
+            <summary>
+            Callback delegate that monitors the reconstruction progress (ranging from 0 to 1).
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.AlphaOmegaReconstruction.AlphaOmegaReconstructor.Report">
+            <summary>
+            Callback delegate that monitors the reconstruction report .
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.AlphaOmegaReconstruction.AlphaOmegaReconstructor.Clear">
+            <summary>
+            Clears the reconstructor of previously loaded layers.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.AlphaOmegaReconstruction.AlphaOmegaReconstructor.AddLayer(SySal.TotalScan.Layer)">
+            <summary>
+            Adds one layer to the set of layers to use for the reconstruction.
+            The layer should have been previously filled up with segments.
+            </summary>
+            <param name="l">the layer to be added.</param>
+        </member>
+        <member name="M:SySal.Processing.AlphaOmegaReconstruction.AlphaOmegaReconstructor.AddLayer(SySal.TotalScan.Layer,SySal.Tracking.MIPEmulsionTrackInfo[])">
+            <summary>
+            Adds one layer to the set of layers to use for the reconstruction, filling it with segments whose geometrical parameters are given by a set of MIPEmulsionTrackInfo.
+            </summary>
+            <param name="l">the layer to be added.</param>
+            <param name="basetks">the base-tracks to be added.</param>        
+        </member>
+        <member name="M:SySal.Processing.AlphaOmegaReconstruction.AlphaOmegaReconstructor.AddLayer(SySal.TotalScan.Layer,SySal.Scanning.Plate.LinkedZone)">
+            <summary>
+            Adds one layer to the set of layers to use for the reconstruction.
+            The layer is filled up with tracks from the supplied scanning zone.
+            This method is used to keep track of unassociated microtracks too, e.g. to search for kinks in the base.
+            </summary>
+            <param name="l">the layer to be added.</param>
+            <param name="zone">the LinkedZone that provides the base-tracks.</param>
+        </member>
+        <member name="M:SySal.Processing.AlphaOmegaReconstruction.AlphaOmegaReconstructor.SetAlignmentIgnoreList(System.Int32,System.Int32[])">
+            <summary>
+            Sets the list of segments to be ignored in alignment for one layer.
+            </summary>
+            <param name="layer">the zero-based index of the layer for which the list has to be set.</param>
+            <param name="alignignorelist">the list of segments to be ignored.</param>
+        </member>
+        <member name="M:SySal.Processing.AlphaOmegaReconstruction.AlphaOmegaReconstructor.Reconstruct">
+            <summary>
+            Reconstructs volume tracks and optionally track intersections (vertices), using data that have been previously fed in through AddLayer.
+            </summary>		
+        </member>
+        <member name="M:SySal.Processing.AlphaOmegaReconstruction.AlphaOmegaReconstructor.ReconstructLowMomentumTracks">
+            <summary>
+            Reconstructs volume tracks and low momentum tracks, using data that have been previously fed in through AddLayer.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.AlphaOmegaReconstruction.AlphaOmegaReconstructor.LinkSegments(System.Int32,System.Int32,SySal.Processing.AlphaOmegaReconstruction.Configuration)">
+            <summary>
+            Links layers added to the AlphaOmegaReconstruction.
+            </summary>
+            <param name="DownstreamLayerId">Id of the downstream layer to be linked.</param>
+            <param name="UpstreamLayerId">Id of the upstream layer to be linked.</param>
+            <param name="C">configuration to be used for linking.</param>
+        </member>
+        <member name="M:SySal.Processing.AlphaOmegaReconstruction.AlphaOmegaReconstructor.RecomputeVertices(SySal.TotalScan.Volume)">
+            <summary>
+            Recomputes vertices on an existing Volume. Yields a new volume with new vertices, and possibly, also new tracks. Does not recompute layer-to-layer alignment.
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.AlphaOmegaReconstruction.AlphaOmegaReconstructor.Expose">
+            <summary>
+            Exposes / hides generation of additional info.
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.AlphaOmegaReconstruction.AlphaOmegaReconstructor.ExposedInfo">
+            <summary>
+            Gets the additional information.
+            </summary>
+        </member>
+        <member name="T:SySal.Processing.AlphaOmegaReconstruction.frmAORecEditConfig">
+            <summary>
+            Summary description for frmAORecEditConfig.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.AlphaOmegaReconstruction.frmAORecEditConfig.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.AlphaOmegaReconstruction.frmAORecEditConfig.#ctor">
+            <summary>
+            Form to edit configuration
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.AlphaOmegaReconstruction.frmAORecEditConfig.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.AlphaOmegaReconstruction.frmAORecEditConfig.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+    </members>
+</doc>

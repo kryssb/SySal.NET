@@ -1,0 +1,14 @@
+/home/kryss/Documenti/SySal/SmartTracker/bin/Release/SmartTracker.exe
+/home/kryss/Documenti/SySal/SmartTracker/bin/Release/SmartTracker.xml
+/home/kryss/Documenti/SySal/SmartTracker/bin/Release/Imaging.dll
+/home/kryss/Documenti/SySal/SmartTracker/bin/Release/SySalCore.dll
+/home/kryss/Documenti/SySal/SmartTracker/bin/Release/Tracking.dll
+/home/kryss/Documenti/SySal/SmartTracker/bin/Release/Imaging.xml
+/home/kryss/Documenti/SySal/SmartTracker/bin/Release/SySalCore.xml
+/home/kryss/Documenti/SySal/SmartTracker/obj/Release/SmartTracker.csprojAssemblyReference.cache
+/home/kryss/Documenti/SySal/SmartTracker/obj/Release/SySal.Processing.SmartTracking.EditConfigForm.resources
+/home/kryss/Documenti/SySal/SmartTracker/obj/Release/SmartTracker.SmartTrackerIcon.resources
+/home/kryss/Documenti/SySal/SmartTracker/obj/Release/SySal.Processing.SmartTracking.TriggerForm.resources
+/home/kryss/Documenti/SySal/SmartTracker/obj/Release/SmartTracker.csproj.GenerateResource.cache
+/home/kryss/Documenti/SySal/SmartTracker/obj/Release/SmartTracker.csproj.CopyComplete
+/home/kryss/Documenti/SySal/SmartTracker/obj/Release/SmartTracker.exe

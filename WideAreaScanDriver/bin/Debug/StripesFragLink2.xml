@@ -1,0 +1,228 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StripesFragLink2</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Processing.StripesFragLink2.EditConfigForm">
+            <summary>
+            Form for configuration editing of <see cref="T:SySal.Processing.StripesFragLink2.StripesFragmentLinker">StripesFragmentLinker</see>.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.StripesFragLink2.EditConfigForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.StripesFragLink2.EditConfigForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.StripesFragLink2.EditConfigForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Processing.StripesFragLink2.Configuration">
+            <summary>
+            Configuration for StripesFragmentLinker.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.StripesFragLink2.Configuration.MinGrains">
+            <summary>
+            Minimum number of grains to link a microtrack.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.StripesFragLink2.Configuration.MinSlope">
+            <summary>
+            Minimum slope to link a microtrack (useful to avoid camera spots artifacts).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.StripesFragLink2.Configuration.MergePosTol">
+            <summary>
+            Position tolerance to merge two microtracks (this is part of 
+            the double-reconstruction cleaning, especially in the overlap region between 
+            adjacent fields of view).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.StripesFragLink2.Configuration.MergeSlopeTol">
+            <summary>
+            Slope tolerance to merge two microtracks (this is part of 
+            the double-reconstruction cleaning, especially in the overlap region between 
+            adjacent fields of view).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.StripesFragLink2.Configuration.PosTol">
+            <summary>
+            Position tolerance for microtrack linking. Two microtracks can be linked if the 
+            extrapolation on either microtrack falls near the other within this tolerance.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.StripesFragLink2.Configuration.SlopeTol">
+            <summary>
+            Slope tolerance for microtrack linking. Two microtracks can be linked if slopes
+            are closer than this tolerance in the transverse direction of the possibel base-track.		
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.StripesFragLink2.Configuration.SlopeTolIncreaseWithSlope">
+            <summary>
+            Slope tolerance for microtrack linking. Two microtracks can be linked if slopes 
+            are closer than the tolerance expressed by the formula <c>SlopeTol + Slope * SlopeTolIncreaseWithSlope</c> 
+            in the longitudinal direction of the possibel base-track.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.StripesFragLink2.Configuration.MemorySaving">
+            <summary>
+            Memory saving level. Usually also improves the speed (reduced off-cache page hits). 4 levels
+            are supported:
+            <list type="table">
+            <listheader><term>Level</term><description>Behaviour</description></listheader>
+            <item><term>0</term><description>No memory saving applied.</description></item>
+            <itea><term>1</term><description>Save track data to temporary files.</description></itea>
+            <item><term>2</term><description>Save track data to temporary files and swap them off to disk as soon as they've been used, even if it is not finished with them.</description></item>		
+            <item><term>3</term><description>Maximum: keep track data to temporary files as long as possible.</description></item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.StripesFragLink2.Configuration.SingleThread">
+            <summary>
+            Disables multithreading if <c>true</c>. If <c>false</c>, one thread per processor is used.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.StripesFragLink2.Configuration.PreventDuplication">
+            <summary>
+            If <c>true</c> the same microtrack cannot be used twice. Duplicates are allowed if set to <c>false</c>.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.StripesFragLink2.Configuration.KeepLinkedTracksOnly">
+            <summary>
+            If true, only microtracks linked in a base-track are kept; the others are discarded. 
+            If false, all microtracks are kept.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.StripesFragLink2.Configuration.PreserveViews">
+            <summary>
+            If true, view information is preserved.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.StripesFragLink2.Configuration.QualityCut">
+            <summary>
+            Inline quality cut. If null or "", no quality cut is applied. If the quality cut string
+            is non-null, it must contain at least one parameter. The known parameters are:
+            <list type="table">
+            <listheader><term>Name</term><description>Meaning</description></listheader>
+            <item><term>A</term><description>AreaSum of the base-track</description></item>
+            <item><term>TA</term><description>AreaSum of the top microtrack</description></item>
+            <item><term>BA</term><description>AreaSum of the bottom microtrack</description></item>
+            <item><term>N</term><description>Grains in the base-track</description></item>
+            <item><term>TN</term><description>Grains in the top microtrack</description></item>
+            <item><term>BN</term><description>Grains in the bottom microtrack</description></item>
+            <item><term>PX,Y</term><description>X,Y position of the base-track at the top edge of the base.</description></item>
+            <item><term>TPX,Y</term><description>X,Y position of the top microtrack at the top edge of the base.</description></item>
+            <item><term>BPX,Y</term><description>X,Y position of the bottom microtrack at the bottom edge of the base.</description></item>
+            <item><term>PZ</term><description>Z position of the base-track at the top edge of the base.</description></item>
+            <item><term>TPZ</term><description>Z position of the top microtrack at the top edge of the base.</description></item>
+            <item><term>BPZ</term><description>Z position of the bottom microtrack at the bottom edge of the base.</description></item>
+            <item><term>SX,Y</term><description>X,Y slope of the base-track.</description></item>
+            <item><term>TSX,Y</term><description>X,Y slope of the top microtrack.</description></item>
+            <item><term>BSX,Y</term><description>X,Y slope of the bottom microtrack.</description></item>
+            <item><term>S</term><description>Sigma of the base-track.</description></item>
+            <item><term>TS</term><description>Sigma of the top microtrack.</description></item>
+            <item><term>BS</term><description>Sigma of the bottom microtrack.</description></item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.StripesFragLink2.Configuration.MicrotrackPromotion">
+            <summary>
+            Criterion to promote unlinked microtracks to <i>weak base tracks</i>. A weak base track is a base track made of only one microtrack. 
+            The missing microtrack is simply the extrapolation of the existing microtrack, but with zero Grains and zero AreaSum. By definition, <c>Sigma</c> is <c>negative</c> for weak base tracks. This implementation assigns <c>-1.0</c>.
+            If <c>MicrotrackPromotion</c>is non-null, it must contain at least one parameter. The known parameters are:
+            <list type="table">
+            <listheader><term>Name</term><description>Meaning</description></listheader>
+            <item><term>A</term><description>AreaSum of the microtrack</description></item>
+            <item><term>N</term><description>Grains in the microtrack</description></item>
+            <item><term>SX,Y</term><description>X,Y slope of the microtrack.</description></item>
+            <item><term>S</term><description>Sigma of the microtrack.</description></item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.StripesFragLink2.Configuration.LinkLimit">
+            <summary>
+            The maximum number of base tracks and/or promoted microtracks to be generated in a view. Used to avoid cluttered views near edges and spots. Set to <c>0</c> to remove any limitation.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.StripesFragLink2.Configuration.DumpFilePath">
+            <summary>
+            The path of the file where the link process is logged. If set to an empty string, no log is produced.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.StripesFragLink2.Configuration.#ctor">
+            <summary>
+            Builds an empty configuration.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.StripesFragLink2.Configuration.#ctor(System.String)">
+            <summary>
+            Builds an empty configuration with a name.
+            </summary>
+            <param name="name">the name to be assigned to the configuration.</param>
+        </member>
+        <member name="M:SySal.Processing.StripesFragLink2.Configuration.Clone">
+            <summary>
+            Clones the configuration.
+            </summary>
+            <returns>the object clone.</returns>
+        </member>
+        <member name="T:SySal.Processing.StripesFragLink2.StripesFragmentLinker">
+            <summary>
+            Fragment linking class that works stripe by stripe along the X axis.
+            </summary>
+            <remarks>
+            <para>This fragment linking algorithm tries to make minimum use of the machine RAM. 
+            The limiting factor for this kind of application is indeed memory: when disk swapping 
+            begins, the processing speed goes down by a factor 100 or more. Temporary files are
+            generated in the user's <c>%TEMP%</c> directory. If the processing is interrupted,
+            and finalizers are not called (e.g., interruption by TaskManager) the <c>%TEMP%</c>
+            directory is left dirty and has to be cleaned manually.</para>
+            <para>In order to minimize the amount of RAM needed, linking proceeds by horizontal 
+            rows of views. At each moment, only two adjacent rows of views are present in memory, 
+            all the others residing on the disk. When linking is complete, the row with the lower
+            Y coordinate is discarded, and the next row (next higher Y) is loaded.</para>
+            </remarks>
+        </member>
+        <member name="M:SySal.Processing.StripesFragLink2.StripesFragmentLinker.Link(SySal.Scanning.Plate.IO.OPERA.RawData.Catalog,System.Type)">
+            <summary>
+            Links RWD files into a LinkedZone, producing an object of the specified output type.
+            </summary>
+            <param name="Cat">the Catalog of the Raw Data Files.</param>
+            <param name="outputtype">the type of output to be produced. Currently, the following formats are supported:
+            <list type="table">
+            <item><term>SySal.Scanning.Plate.IO.CHORUS.LinkedZone</term><description>CHORUS - style Linked Zone. This format is quite obsolete.</description></item>
+            <item><term>SySal.Scanning.Plate.IO.OPERA.LinkedZone</term><description>OPERA - style Linked Zone. This is the format that supports all current options.</description></item>
+            </list>
+            </param>
+            <returns>the LinkedZone produced.</returns>
+        </member>
+        <member name="M:SySal.Processing.StripesFragLink2.StripesFragmentLinker.LinkToFile(SySal.Scanning.Plate.IO.OPERA.RawData.Catalog,System.Type,System.String)">
+            <summary>
+            Links RWD files into a LinkedZone, producing a file of the specified output type.
+            </summary>
+            <param name="Cat">the Catalog of the Raw Data Files.</param>
+            <param name="outputtype">the type of output to be produced. Currently, the following formats are supported:
+            <list type="table">
+            <item><term>SySal.DataStreams.OPERALinkedZone</term><description>OPERA - style Linked Zone (microtracks only).</description></item>
+            </list>
+            </param>
+            <param name="outfilepath">the path of the output file.</param>
+        </member>
+        <member name="M:SySal.Processing.StripesFragLink2.StripesFragmentLinker.Link(SySal.Scanning.Plate.IO.OPERA.RawData.Catalog)">
+            <summary>
+            Links RWD files into a LinkedZone. The output format is left to StripesFragLink2. Currently, <c>SySal.Scanning.Plate.IO.OPERA.LinkedZone</c> format LinkedZones are produced.
+            </summary>
+            <param name="Cat">the Catalog of the Raw Data Files.</param>
+            <returns>the LinkedZone produced.</returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,25 @@
+HKCR
+{
+	SySalDataIO.SySalDataIO.1 = s 'SySalDataIO Class'
+	{
+		CLSID = s '{4B47E8CE-894C-11D3-A47C-9F3735226036}'
+	}
+	SySalDataIO.SySalDataIO = s 'SySalDataIO Class'
+	{
+		CLSID = s '{4B47E8CE-894C-11D3-A47C-9F3735226036}'
+		CurVer = s 'SySalDataIO.SySalDataIO.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {4B47E8CE-894C-11D3-A47C-9F3735226036} = s 'SySalDataIO Class'
+		{
+			ProgID = s 'SySalDataIO.SySalDataIO.1'
+			VersionIndependentProgID = s 'SySalDataIO.SySalDataIO'
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Both'
+			}
+			'TypeLib' = s '{4B47E8C0-894C-11D3-A47C-9F3735226036}'
+		}
+	}
+}

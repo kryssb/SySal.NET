@@ -1,0 +1,2238 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>VolumeTracks</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.TotalScan.Relationship">
+            <summary>
+            Topological relationships.
+            </summary>
+        </member>
+        <member name="T:SySal.TotalScan.IntersectionType">
+            <summary>
+            Topological intersection types.
+            </summary>
+        </member>
+        <member name="T:SySal.TotalScan.IntersectionSymmetry">
+            <summary>
+            Topological symmetries.
+            </summary>
+        </member>
+        <member name="T:SySal.TotalScan.ComputationResult">
+            <summary>
+            Computation results.
+            </summary>
+        </member>
+        <member name="T:SySal.TotalScan.Index">
+            <summary>
+            Abstract class for object indexing.
+            </summary>
+        </member>
+        <member name="T:SySal.TotalScan.Index.dCreateFromReader">
+            <summary>
+            Creates an index from a BinaryReader. The index type must be known in advance.
+            </summary>
+        </member>
+        <member name="T:SySal.TotalScan.Index.dSaveToWriter">
+            <summary>
+            Saves an index to a BinaryWriter. The index type must be known in advance.
+            </summary>
+        </member>
+        <member name="T:SySal.TotalScan.Index.IndexFactory">
+            <summary>
+            Index class factory. Stores information to dynamically identify indices on the basis of their class signature.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Index.IndexFactory.Signature">
+            <summary>
+            Index type signature.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Index.IndexFactory.Size">
+            <summary>
+            Index size.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Index.IndexFactory.Reader">
+            <summary>
+            Reads an index of the class that has the signature stored in this index factory.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Index.IndexFactory.Writer">
+            <summary>
+            Saves an index of the class that has the signature stored in this index factory.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Index.IndexFactory.#ctor(System.Int32,System.Int32,SySal.TotalScan.Index.dCreateFromReader,SySal.TotalScan.Index.dSaveToWriter)">
+            <summary>
+            Public constructor.
+            </summary>
+            <param name="sgn">index type signature.</param>
+            <param name="sz">index type size (when serialized).</param>
+            <param name="rdr">index reader.</param>
+            <param name="wrt">index writer.</param>
+        </member>
+        <member name="M:SySal.TotalScan.Index.IndexFactory.Clone">
+            <summary>
+            Clones an IndexFactory.
+            </summary>
+            <returns>a clone of the IndexFactory object.</returns>
+        </member>
+        <member name="M:SySal.TotalScan.Index.RegisterFactory(SySal.TotalScan.Index.IndexFactory)">
+            <summary>
+            Registers a new IndexFactory. This function should be called before trying to read/write indices of each type. Normally, index classes should self-register automatically.
+            </summary>
+            <param name="f">the index factory to be registered.</param>
+        </member>
+        <member name="M:SySal.TotalScan.Index.GetFactory(System.Int32)">
+            <summary>
+            Searches for a registered IndexFactory with the specified signature.
+            </summary>
+            <param name="signature">IndexFactory signature to be searched for.</param>
+            <returns>the IndexFactory with the specified signature or null if no registered IndexFactory is found.</returns>
+        </member>
+        <member name="P:SySal.TotalScan.Index.Factory">
+            <summary>
+            Abstract property that returns the IndexFactory for this index.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Index.Write(System.IO.BinaryWriter)">
+            <summary>
+            Abstract method to save an Index to a BinaryWriter.
+            </summary>
+            <param name="b"></param>
+        </member>
+        <member name="M:SySal.TotalScan.Index.Clone">
+            <summary>
+            Abstract method to clone an Index object.
+            </summary>
+            <returns>a clone of the Index.</returns>
+        </member>
+        <member name="T:SySal.TotalScan.NullIndex">
+            <summary>
+            Null Index class for objects that have no index information.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.NullIndex.Signature">
+            <summary>
+            The Index type signature.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.NullIndex.RegisterFactory">
+            <summary>
+            Registers the Index factory for NullIndex.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.NullIndex.#ctor">
+            <summary>
+            Constructs a null index.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.NullIndex.Write(System.IO.BinaryWriter)">
+            <summary>
+            Saves a null index (does nothing).
+            </summary>
+            <param name="b"></param>
+        </member>
+        <member name="M:SySal.TotalScan.NullIndex.ToString">
+            <summary>
+            Shows a string describing a null index.
+            </summary>
+            <returns>"NULL"</returns>
+        </member>
+        <member name="M:SySal.TotalScan.NullIndex.SaveToWriter(SySal.TotalScan.Index,System.IO.BinaryWriter)">
+            <summary>
+            Saves a null index (does nothing).
+            </summary>
+            <param name="i">the index to be saved.</param>
+            <param name="w">the BinaryWriter to be used for saving.</param>
+        </member>
+        <member name="M:SySal.TotalScan.NullIndex.CreateFromReader(System.IO.BinaryReader)">
+            <summary>
+            Creates a null index from a BinaryReader. Actually, no byte is read.
+            </summary>
+            <param name="r">the BinaryReader to be used.</param>
+            <returns>a null index.</returns>
+        </member>
+        <member name="P:SySal.TotalScan.NullIndex.Factory">
+            <summary>
+            Returns an IndexFactory for a NullIndex.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.NullIndex.Clone">
+            <summary>
+            Clones a NullIndex.
+            </summary>
+            <returns>a copy of the NullIndex.</returns>
+        </member>
+        <member name="T:SySal.TotalScan.BaseTrackIndex">
+            <summary>
+            Index class for Segments related to base tracks. The Linked zone information is not specified. This class is automatically chosen for indices of old TSR files.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.BaseTrackIndex.Signature">
+            <summary>
+            The signature of the BaseTrackIndex class.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.BaseTrackIndex.RegisterFactory">
+            <summary>
+            Registers the Index factory for BaseTrackIndex.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.BaseTrackIndex.m_Id">
+            <summary>
+            Member data on which the Id property relies.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.BaseTrackIndex.Id">
+            <summary>
+            BaseTrack Id of the Segment.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.BaseTrackIndex.#ctor(System.Int32)">
+            <summary>
+            Constructs a BaseTrackIndex from the base track Id.
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:SySal.TotalScan.BaseTrackIndex.Write(System.IO.BinaryWriter)">
+            <summary>
+            Saves a BaseTrackIndex to a BinaryWriter.
+            </summary>
+            <param name="b">the BinaryWriter to be used for saving.</param>
+        </member>
+        <member name="M:SySal.TotalScan.BaseTrackIndex.ToString">
+            <summary>
+            Converts the BaseTrackIndex to a text form.
+            </summary>
+            <returns>the Id in text form.</returns>
+        </member>
+        <member name="M:SySal.TotalScan.BaseTrackIndex.SaveToWriter(SySal.TotalScan.Index,System.IO.BinaryWriter)">
+            <summary>
+            Saves a BaseTrackIndex to a BinaryWriter.
+            </summary>
+            <param name="i">the index to be saved. Must be a BaseTrackIndex.</param>
+            <param name="w">the BinaryWriter to be used for saving.</param>
+        </member>
+        <member name="M:SySal.TotalScan.BaseTrackIndex.CreateFromReader(System.IO.BinaryReader)">
+            <summary>
+            Reads a BaseTrackIndex from a BinaryReader.
+            </summary>
+            <param name="r">the BinaryReader to read from.</param>
+            <returns>the BaseTrackIndex read from the stream.</returns>
+        </member>
+        <member name="P:SySal.TotalScan.BaseTrackIndex.Factory">
+            <summary>
+            Returns the IndexFactory for a BaseTrackIndex.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.BaseTrackIndex.Clone">
+            <summary>
+            Clones this BaseTrackIndex.
+            </summary>
+            <returns>a clone of the BaseTrackIndex.</returns>
+        </member>
+        <member name="T:SySal.TotalScan.MIPMicroTrackIndex">
+            <summary>
+            Index class for MIP Microtracks. Stores information about side and index within the side.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.MIPMicroTrackIndex.Signature">
+            <summary>
+            The signature of the MIPMicroTrackIndex class.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.MIPMicroTrackIndex.RegisterFactory">
+            <summary>
+            Registers the Index factory for MIPMicroTrackIndex.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.MIPMicroTrackIndex.m_Side">
+            <summary>
+            Member data on which the Side property relies.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.MIPMicroTrackIndex.Side">
+            <summary>
+            The side of the MIP Microtrack.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.MIPMicroTrackIndex.m_Id">
+            <summary>
+            Member data on which the Id property relies.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.MIPMicroTrackIndex.Id">
+            <summary>
+            The Id of the microtrack in its side.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.MIPMicroTrackIndex.#ctor(System.Int16,System.Int32)">
+            <summary>
+            Constructs a MIPMicroTrackIndex.
+            </summary>
+            <param name="side">the side of the microtrack.</param>
+            <param name="id">the index of the microtrack.</param>
+        </member>
+        <member name="M:SySal.TotalScan.MIPMicroTrackIndex.Write(System.IO.BinaryWriter)">
+            <summary>
+            Saves a MIPMicroTrackIndex to a BinaryWriter.
+            </summary>
+            <param name="b">the BinaryWriter to be used for saving.</param>
+        </member>
+        <member name="M:SySal.TotalScan.MIPMicroTrackIndex.ToString">
+            <summary>
+            Converts a MIPMicroTrackIndex to text form.
+            </summary>
+            <returns>a string of the form "side\id".</returns>
+        </member>
+        <member name="M:SySal.TotalScan.MIPMicroTrackIndex.SaveToWriter(SySal.TotalScan.Index,System.IO.BinaryWriter)">
+            <summary>
+            Saves a MIPMicroTrackIndex to a BinaryWriter.
+            </summary>
+            <param name="i">the index to be saved.</param>
+            <param name="w">the BinaryWriter to be used for writing.</param>
+        </member>
+        <member name="M:SySal.TotalScan.MIPMicroTrackIndex.CreateFromReader(System.IO.BinaryReader)">
+            <summary>
+            Reads a MIPMicroTrackIndex from a BinaryReader.
+            </summary>
+            <param name="r">the BinaryReader to read the MIPMicroTrackIndex from.</param>
+            <returns>the index read from the BinaryReader.</returns>
+        </member>
+        <member name="P:SySal.TotalScan.MIPMicroTrackIndex.Factory">
+            <summary>
+            Returns the IndexFactory for the MIPMicroTrackIndex class.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.MIPMicroTrackIndex.Clone">
+            <summary>
+            Clones a MIPMicroTrackIndex.
+            </summary>
+            <returns>the cloned object.</returns>
+        </member>
+        <member name="T:SySal.TotalScan.Segment">
+            <summary>
+            Holds information about a base track in a TotalScan volume.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Segment.#ctor">
+            <summary>
+            Protected constructor. Prevents users from creating Segments without providing consistent information. Is implicitly called in derived classes.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Segment.#ctor(SySal.Scanning.MIPBaseTrack,SySal.TotalScan.Index)">
+            <summary>
+            Builds a new segment.
+            </summary>
+            <param name="tk">the track to be copied.</param>
+            <param name="ix">index of the segment.</param>
+        </member>
+        <member name="M:SySal.TotalScan.Segment.#ctor(SySal.Tracking.MIPEmulsionTrackInfo,SySal.TotalScan.Index)">
+            <summary>
+            Builds a new segment.
+            </summary>
+            <param name="tk">the track to be copied.</param>
+            <param name="ix">index of the segment.</param>
+        </member>
+        <member name="F:SySal.TotalScan.Segment.m_Index">
+            <summary>
+            Member data on which the Index property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Segment.Index">
+            <summary>
+            Retrieves the index of this segment with respect to the original data structure (e.g. microtrack, basetrack, etc.).
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Segment.m_Info">
+            <summary>
+            Member data on which the Info property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Segment.Info">
+            <summary>
+            Global geometrical information.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Segment.OriginalInfo">
+            <summary>
+            Global geometrical information, represented in the frame before alignment.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Segment.ToString">
+            <summary>
+            Yields text information about this segment.
+            </summary>
+            <returns>text information.</returns>
+        </member>
+        <member name="F:SySal.TotalScan.Segment.m_TrackOwner">
+            <summary>
+            Member data on which the TrackOwner property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Segment.TrackOwner">
+            <summary>
+            The track this segment belongs to.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Segment.m_PosInTrack">
+            <summary>
+            Member data on which the PosInTrack property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Segment.PosInTrack">
+            <summary>
+            The position of the segment in the track.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Segment.m_LayerOwner">
+            <summary>
+            Member data on which the LayerOwner property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Segment.LayerOwner">
+            <summary>
+            The layer this segment belongs to.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Segment.m_PosInLayer">
+            <summary>
+            Member data on which the PosInLayer property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Segment.PosInLayer">
+            <summary>
+            The position of the segment in the layer.
+            </summary>
+        </member>
+        <member name="T:SySal.TotalScan.SegmentList">
+            <summary>
+            A list of segment. Track and Layer are both derived from this base class.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.SegmentList.Segments">
+            <summary>
+            Member data holding the list of segments. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.SegmentList.Item(System.Int32)">
+            <summary>
+            Accesses the index-th segment.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.SegmentList.Length">
+            <summary>
+            Number of segments in the list.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.SegmentList.ReplaceSegment(System.Int32,SySal.TotalScan.Segment)">
+            <summary>
+            Replaces a segment in the list.
+            </summary>
+            <param name="index"></param>
+            <param name="s"></param>
+        </member>
+        <member name="M:SySal.TotalScan.SegmentList.NotifyChanged">
+            <summary>
+            Notifies derived classes that the list has changed.
+            </summary>
+        </member>
+        <member name="T:SySal.TotalScan.NamedAttributeIndex">
+            <summary>
+            Index class for attributes identified only with a name.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.NamedAttributeIndex.Signature">
+            <summary>
+            The signature of the NamedAttributeIndex class.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.NamedAttributeIndex.RegisterFactory">
+            <summary>
+            Registers the Index factory for a NamedAttributeIndex
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.NamedAttributeIndex.m_Name">
+            <summary>
+            Member data on which the Name property relies.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.NamedAttributeIndex.Name">
+            <summary>
+            Name of the attribute.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.NamedAttributeIndex.#ctor(System.String)">
+            <summary>
+            Constructs a NamedAttributeIndex from an attribute name (max 32 chars).
+            </summary>
+            <param name="name">the name to be assigned to the attribute</param>
+        </member>
+        <member name="M:SySal.TotalScan.NamedAttributeIndex.Write(System.IO.BinaryWriter)">
+            <summary>
+            Saves a NamedAttributeIndex to a BinaryWriter.
+            </summary>
+            <param name="b">the BinaryWriter to be used for saving.</param>
+        </member>
+        <member name="M:SySal.TotalScan.NamedAttributeIndex.ToString">
+            <summary>
+            Converts the NamedAttributeIndex to a text form.
+            </summary>
+            <returns>the Name in text form.</returns>
+        </member>
+        <member name="M:SySal.TotalScan.NamedAttributeIndex.SaveToWriter(SySal.TotalScan.Index,System.IO.BinaryWriter)">
+            <summary>
+            Saves a NamedAttributeIndex to a BinaryWriter.
+            </summary>
+            <param name="i">the index to be saved. Must be a NamedAttributeIndex.</param>
+            <param name="w">the BinaryWriter to be used for saving.</param>
+        </member>
+        <member name="M:SySal.TotalScan.NamedAttributeIndex.CreateFromReader(System.IO.BinaryReader)">
+            <summary>
+            Reads a NamedAttributeIndex from a BinaryReader.
+            </summary>
+            <param name="r">the BinaryReader to read from.</param>
+            <returns>the NamedAttributeIndex read from the stream.</returns>
+        </member>
+        <member name="P:SySal.TotalScan.NamedAttributeIndex.Factory">
+            <summary>
+            Returns the IndexFactory for a NamedAttributeIndex.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.NamedAttributeIndex.Clone">
+            <summary>
+            Clones this NamedAttributeIndex.
+            </summary>
+            <returns>a clone of the NamedAttributeIndex.</returns>
+        </member>
+        <member name="T:SySal.TotalScan.Attribute">
+            <summary>
+            An attribute of a complex structure like a Track or Vertex.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Attribute.Index">
+            <summary>
+            Index of the attribute.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Attribute.Value">
+            <summary>
+            Value of the attribute.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Attribute.#ctor(SySal.TotalScan.Index,System.Double)">
+            <summary>
+            Public constructor that builds an attribute with index and value.
+            </summary>
+            <param name="ix">the index of the attribute.</param>
+            <param name="v">the value of the attribute.</param>
+        </member>
+        <member name="T:SySal.TotalScan.IAttributeList">
+            <summary>
+            A list of attributes.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.IAttributeList.SetAttribute(SySal.TotalScan.Index,System.Double)">
+            <summary>
+            Sets an attribute.
+            </summary>
+            <param name="attributeindex">the attribute index.</param>
+            <param name="attributevalue">the attribute value.</param>
+        </member>
+        <member name="M:SySal.TotalScan.IAttributeList.RemoveAttribute(SySal.TotalScan.Index)">
+            <summary>
+            Removes an attribute.
+            </summary>
+            <param name="attributeindex">the index of the attribute to be removed.</param>
+        </member>
+        <member name="M:SySal.TotalScan.IAttributeList.GetAttribute(SySal.TotalScan.Index)">
+            <summary>
+            Gets an attribute.
+            </summary>
+            <param name="attributeindex">the index of the attribute to be read.</param>
+            <returns>the value of the attribute.</returns>
+        </member>
+        <member name="M:SySal.TotalScan.IAttributeList.ListAttributes">
+            <summary>
+            Lists all attributes.
+            </summary>
+            <returns>the list of the attributes.</returns>
+        </member>
+        <member name="T:SySal.TotalScan.Track">
+            <summary>
+            A long-range TotalScan track, made of connected segments in several emulsion plates.
+            Derived from SegmentList, so its segments can be accessed in array-like fashion.
+            </summary>
+        </member>
+        <member name="T:SySal.TotalScan.Track.ExtrapolationMode">
+            <summary>
+            Designates different ways to compute the extrapolation of a track.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.ExtrapolationMode.SegmentFit">
+            <summary>
+            Uses the last segments to fit the track.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.ExtrapolationMode.EndBaseTrack">
+            <summary>
+            Uses the last base track.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.s_TrackExtrapolationMode">
+            <summary>
+            Property backer for <c>TrackExtrapolationMode</c>.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Track.TrackExtrapolationMode">
+            <summary>
+            Gets/sets the way tracks are extrapolated to their ends.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Track.SetId(SySal.TotalScan.Track,System.Int32)">
+            <summary>
+            Protected member that allows Id changing in derived classes.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Track.#ctor">
+            <summary>
+            Protected constructor. Prevents users from creating Tracks without providing consistent information. Is implicitly called in derived classes.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Track.#ctor(System.Int32)">
+            <summary>
+            Builds a new track with the specified identifying number.
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="F:SySal.TotalScan.Track.m_Upstream_Layer_Updated">
+            <summary>
+            Member data that signals whether the UpstreamLayer property needs recomputing. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.m_Upstream_Layer">
+            <summary>
+            Member data on which the UpstreamLayer property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Track.UpstreamLayer">
+            <summary>
+            The most upstream layer where the track has been seen.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.m_Upstream_LayerId_Updated">
+            <summary>
+            Member data that signals whether the UpstreamLayerId property needs recomputing. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.m_Upstream_LayerId">
+            <summary>
+            Member data on which the UpstreamLayerId property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Track.UpstreamLayerId">
+            <summary>
+            The id of the most upstream layer where the track has been seen.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.m_Downstream_Layer_Updated">
+            <summary>
+            Member data that signals whether the DownstreamLayer property needs recomputing. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.m_Downstream_Layer">
+            <summary>
+            Member data on which the DownstreamLayer property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Track.DownstreamLayer">
+            <summary>
+            The id of the most downstream layer where the track has been seen.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.m_Downstream_LayerId_Updated">
+            <summary>
+            Member data that signals whether the DownstreamLayerId property needs recomputing. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.m_Downstream_LayerId">
+            <summary>
+            Member data on which the UpstreamLayerId property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Track.DownstreamLayerId">
+            <summary>
+            The id of the most downstream layer where the track has been seen.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.m_FittingSegments">
+            <summary>
+            Member data on which the FittingSegments property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Track.FittingSegments">
+            <summary>
+            Gets / sets the number of segments used to compute the downstream / upstream track parameters.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.m_Id">
+            <summary>
+            Member data on which the Segment Id property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Track.Id">
+            <summary>
+            The id of the track, usually a sequential number in the volume.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.Comment">
+            <summary>
+            A user comment string accompanying the track.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.m_Upstream_SlopeY_Updated">
+            <summary>
+            Member data that signals whether the Upstream_SlopeY property needs recomputing. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.m_Upstream_SlopeY">
+            <summary>
+            Member data on which the Upstream_SlopeY property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Track.Upstream_SlopeY">
+            <summary>
+            Upstream Y slope of the track.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.m_Upstream_PosY_Updated">
+            <summary>
+            Member data that signals whether the Upstream_PosY property needs recomputing. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.m_Upstream_PosY">
+            <summary>
+            Member data on which the Upstream_PosY property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Track.Upstream_PosY">
+            <summary>
+            Upstream Y position (extrapolated at Z = Upstream_PosZ, usually = 0) of the track.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.m_Upstream_SlopeX_Updated">
+            <summary>
+            Member data that signals whether the Upstream_SlopeX property needs recomputing. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.m_Upstream_SlopeX">
+            <summary>
+            Member data on which the Upstream_SlopeY property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Track.Upstream_SlopeX">
+            <summary>
+            Upstream X slope of the track.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.m_Upstream_PosX_Updated">
+            <summary>
+            Member data that signals whether the Upstream_PosX property needs recomputing. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.m_Upstream_PosX">
+            <summary>
+            Member data on which the Upstream_PosX property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Track.Upstream_PosX">
+            <summary>
+            Upstream X position (extrapolated at Z = Upstream_PosZ, usually = 0) of the track.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Track.Upstream_Z">
+            <summary>
+            Most upstream Z where the track has been seen.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Track.Upstream_PosZ">
+            <summary>
+            Z where the upstream positions are extrapolated, usually = 0.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.m_Downstream_SlopeY_Updated">
+            <summary>
+            Member data that signals whether the Downstream_SlopeY property needs recomputing. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.m_Downstream_SlopeY">
+            <summary>
+            Member data on which the Downstream_SlopeY property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Track.Downstream_SlopeY">
+            <summary>
+            Downstream Y slope of the track.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.m_Downstream_PosY_Updated">
+            <summary>
+            Member data that signals whether the Downstream_PosY property needs recomputing. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.m_Downstream_PosY">
+            <summary>
+            Member data on which the Downstream_PosY property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Track.Downstream_PosY">
+            <summary>
+            Downstream Y position (extrapolated at Z = Downstream_PosZ, usually = 0) of the track.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Track.Downstream_Z">
+            <summary>
+            Most downstream Z where the track has been seen.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Track.Downstream_PosZ">
+            <summary>
+            Z where the downstream positions are extrapolated, usually = 0.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.m_Downstream_SlopeX_Updated">
+            <summary>
+            Member data that signals whether the Downstream_SlopeX property needs recomputing. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.m_Downstream_SlopeX">
+            <summary>
+            Member data on which the Downstream_SlopeX property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Track.Downstream_SlopeX">
+            <summary>
+            Downstream X slope of the track.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.m_Downstream_PosX_Updated">
+            <summary>
+            Member data that signals whether the Downstream_PosX property needs recomputing. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.m_Downstream_PosX">
+            <summary>
+            Member data on which the Downstream_PosX property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Track.Downstream_PosX">
+            <summary>
+            Downstream X position (extrapolated at Z = Downstream_PosZ, usually = 0) of the track.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.m_Upstream_Vertex">
+            <summary>
+            Member data on which the Upstream_Vertex property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Track.Upstream_Vertex">
+            <summary>
+            Upstream vertex, i.e. the vertex where the particle associated to the track is produced.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.m_Upstream_Impact_Parameter_Updated">
+            <summary>
+            Signals whether the Upstream_Impact_Parameter property needs recomputing. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.m_Upstream_Impact_Parameter">
+            <summary>
+            Impact parameter of this track w.r.t. the upstream vertex.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Track.Upstream_Impact_Parameter">
+            <summary>
+            Impact parameter of the track w.r.t. the upstream vertex.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.m_Downstream_Vertex">
+            <summary>
+            Member data on which the Downstream_Vertex property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Track.Downstream_Vertex">
+            <summary>
+            Downstream vertex, i.e. the vertex where the particle associated to the track interacts or decays.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.m_Downstream_Impact_Parameter_Updated">
+            <summary>
+            Signals whether the Downstream_Impact_Parameter property needs recomputing. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Track.m_Downstream_Impact_Parameter">
+            <summary>
+            Member data on which the Downstream_Vertex property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Track.Downstream_Impact_Parameter">
+            <summary>
+            Impact parameter of this track w.r.t. the downstream vertex.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Track.NotifyChanged">
+            <summary>
+            Notifies the track that its parameters have changed and should be recomputed.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Track.AddSegment(SySal.TotalScan.Segment)">
+            <summary>
+            Adds a segment to the track.
+            </summary>
+            <param name="s"></param>
+        </member>
+        <member name="M:SySal.TotalScan.Track.AddSegmentAndCheck(SySal.TotalScan.Segment)">
+            <summary>
+            Adds a segment to the track and check the consistency.
+            </summary>
+            <param name="s"></param>
+        </member>
+        <member name="M:SySal.TotalScan.Track.ReplaceSegment(System.Int32,SySal.TotalScan.Segment)">
+            <summary>
+            Replaces a segment in the track.
+            </summary>
+            <param name="index"></param>
+            <param name="s"></param>
+        </member>
+        <member name="M:SySal.TotalScan.Track.RemoveSegment(System.Int32)">
+            <summary>
+            Removes a segment from the track.
+            </summary>
+            <param name="layerindex"></param>
+        </member>
+        <member name="M:SySal.TotalScan.Track.Fit(System.Int32,System.Double)">
+            <summary>
+            Computes fit information at a specified layer, projecting to a specified Z
+            </summary>
+            <param name="layerid">the id of the layer that is the center of the fit.</param>
+            <param name="z">the Z to project position to.</param>
+            <returns>fit information.</returns>
+        </member>
+        <member name="M:SySal.TotalScan.Track.ComputeUpstreamBaseTrackExtrapolation(SySal.BasicTypes.Vector@,SySal.BasicTypes.Vector@)">
+            <summary>
+            Computes the upstream extrapolation using the nearest base track.
+            </summary>
+            <param name="pos">the fitted position.</param>
+            <param name="slope">the fitted slope.</param>
+        </member>
+        <member name="M:SySal.TotalScan.Track.ComputeDownstreamBaseTrackExtrapolation(SySal.BasicTypes.Vector@,SySal.BasicTypes.Vector@)">
+            <summary>
+            Computes the downstream extrapolation using the nearest base track.
+            </summary>
+            <param name="pos">the fitted position.</param>
+            <param name="slope">the fitted slope.</param>
+        </member>
+        <member name="M:SySal.TotalScan.Track.Compute_Local_XCoord(System.Int32,System.Double@,System.Double@)">
+            <summary>
+            Computes the local X slope and position (extrapolated at Z = 0), using the local fit of aligned base track positions.
+            </summary>
+            <param name="StartingId">the first segment to use.</param>
+            <param name="SlopeX">the fitted X slope.</param>
+            <param name="PosX">the fitted X position.</param>
+        </member>
+        <member name="M:SySal.TotalScan.Track.Compute_Local_YCoord(System.Int32,System.Double@,System.Double@)">
+            <summary>
+            Computes the local Y slope and position (extrapolated at Z = 0), using the local fit of aligned base track positions.
+            </summary>
+            <param name="StartingId">the first segment to use.</param>
+            <param name="SlopeY">the fitted Y slope.</param>
+            <param name="PosY">the fitted Y position.</param>
+        </member>
+        <member name="F:SySal.TotalScan.Track.m_AttributeList">
+            <summary>
+            The list of the attributes of this track.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Track.SetAttribute(SySal.TotalScan.Index,System.Double)">
+            <summary>
+            Sets an attribute of the track.
+            </summary>
+            <param name="attributeindex">the index of the attribute to be set.</param>
+            <param name="attributevalue">the value of the attribute to be set.</param>
+        </member>
+        <member name="M:SySal.TotalScan.Track.RemoveAttribute(SySal.TotalScan.Index)">
+            <summary>
+            Removes an attribute from the track.
+            </summary>
+            <param name="attributeindex">the index of the attribute to be removed.</param>
+        </member>
+        <member name="M:SySal.TotalScan.Track.GetAttribute(SySal.TotalScan.Index)">
+            <summary>
+            Gets an attribute of the track. An exception is thrown if the attribute is not found.
+            </summary>
+            <param name="attributeindex">the index of the attribute to be read.</param>
+            <returns>the value of the attribute.</returns>
+        </member>
+        <member name="M:SySal.TotalScan.Track.ListAttributes">
+            <summary>
+            Returns the list of the attributes.
+            </summary>
+            <returns>the list of the attributes of the track.</returns>
+        </member>
+        <member name="T:SySal.TotalScan.Shower">
+            <summary>
+            A shower, made of segmemnts (base tracks or microtracks).
+            Derived from SegmentList, so its segments can be accessed in array-like fashion.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Shower.m_Id">
+            <summary>
+            Member data on which the Segment Id property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Shower.Id">
+            <summary>
+            The id of the shower, usually a sequential number in the volume.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Shower.SetId(SySal.TotalScan.Shower,System.Int32)">
+            <summary>
+            Protected member that allows Id changing in derived classes.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Shower.#ctor">
+            <summary>
+            Protected constructor. Prevents users from creating Shower without providing consistent information. Is implicitly called in derived classes.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Shower.#ctor(System.Int32)">
+            <summary>
+            Builds a new shower with the specified identifying number.
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:SySal.TotalScan.Shower.AddSegment(SySal.TotalScan.Segment)">
+            <summary>
+            Adds a segment to the shower.
+            </summary>
+            <param name="s">the segment to be added.</param>
+        </member>
+        <member name="M:SySal.TotalScan.Shower.RemoveSegment(SySal.TotalScan.Segment)">
+            <summary>
+            Removes a segment from the shower.
+            </summary>
+            <param name="s">the segment to be removed.</param>
+        </member>
+        <member name="F:SySal.TotalScan.Shower.m_AttributeList">
+            <summary>
+            The list of the attributes of this track.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Shower.SetAttribute(SySal.TotalScan.Index,System.Double)">
+            <summary>
+            Sets an attribute of the track.
+            </summary>
+            <param name="attributeindex">the index of the attribute to be set.</param>
+            <param name="attributevalue">the value of the attribute to be set.</param>
+        </member>
+        <member name="M:SySal.TotalScan.Shower.RemoveAttribute(SySal.TotalScan.Index)">
+            <summary>
+            Removes an attribute from the track.
+            </summary>
+            <param name="attributeindex">the index of the attribute to be removed.</param>
+        </member>
+        <member name="M:SySal.TotalScan.Shower.GetAttribute(SySal.TotalScan.Index)">
+            <summary>
+            Gets an attribute of the track. An exception is thrown if the attribute is not found.
+            </summary>
+            <param name="attributeindex">the index of the attribute to be read.</param>
+            <returns>the value of the attribute.</returns>
+        </member>
+        <member name="M:SySal.TotalScan.Shower.ListAttributes">
+            <summary>
+            Returns the list of the attributes.
+            </summary>
+            <returns>the list of the attributes of the track.</returns>
+        </member>
+        <member name="T:SySal.TotalScan.TrackList">
+            <summary>
+            A list of tracks. The vertex class is derived from this.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.TrackList.Tracks">
+            <summary>
+            Member data holding the list of tracks.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.TrackList.Item(System.Int32)">
+            <summary>
+            Accesses the tracks in the list.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.TrackList.Length">
+            <summary>
+            Returns the number of tracks in the list.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.TrackList.ReplaceTrack(System.Int32,SySal.TotalScan.Track)">
+            <summary>
+            Replaces a track in the list, notifying derived classes that the track has changed.
+            </summary>
+            <param name="index"></param>
+            <param name="t"></param>
+        </member>
+        <member name="M:SySal.TotalScan.TrackList.NotifyChanged">
+            <summary>
+            Notifies derived classes that the list of tracks has changed.
+            </summary>
+        </member>
+        <member name="T:SySal.TotalScan.Vertex">
+            <summary>
+            An intersection point of two or more tracks. It can be an interaction / decay vertex, as well as a kink point.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Vertex.#ctor">
+            <summary>
+            Protected constructor. Prevents users from creating Vertices without providing consistent information. Is implicitly called in derived classes.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Vertex.#ctor(System.Int32)">
+            <summary>
+            Builds a vertex with the specified id, usually the sequential number of the vertex in the volume.
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="F:SySal.TotalScan.Vertex.m_Id">
+            <summary>
+            Member data on which the Id property relies. Can be accessed in derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Vertex.Id">
+            <summary>
+            The vertex id number.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Vertex.SetId(SySal.TotalScan.Vertex,System.Int32)">
+            <summary>
+            Protected member that allows Id changing in derived classes.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Vertex.Comment">
+            <summary>
+            A user comment string accompanying the vertex.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Vertex.m_VertexCoordinatesUpdated">
+            <summary>
+            Signals whether the vertex coordinates should be updated. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Vertex.NotifyChanged">
+            <summary>
+            Notifies the vertex that its coordinates might have changed and need to be recomputed.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Vertex.m_X">
+            <summary>
+            Member data on which the X property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Vertex.X">
+            <summary>
+            X coordinate of the vertex.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Vertex.m_Y">
+            <summary>
+            Member data on which the Y property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Vertex.Y">
+            <summary>
+            Y coordinate of the vertex.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Vertex.m_Z">
+            <summary>
+            Member data on which the Z property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Vertex.Z">
+            <summary>
+            Z coordinate of the vertex.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Vertex.m_DX">
+            <summary>
+            Member data on which the DX property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Vertex.DX">
+            <summary>
+            Error on the X coordinate of the vertex.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Vertex.m_DY">
+            <summary>
+            Member data on which the DY property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Vertex.DY">
+            <summary>
+            Error on the Y coordinate of the vertex.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Vertex.m_AverageDistance">
+            <summary>
+            Member data on which the AverageDistance property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Vertex.AverageDistance">
+            <summary>
+            Average impact parameter of the tracks in the vertex.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Vertex.AddTrack(SySal.TotalScan.Track,System.Boolean)">
+            <summary>
+            Adds a track to the vertex; if IsUpstream = true, the vertex is upstream of the track, otherwise it is downstream of the track.
+            </summary>
+            <param name="t"></param>
+            <param name="IsUpstream"></param>
+        </member>
+        <member name="M:SySal.TotalScan.Vertex.RemoveTrack(SySal.TotalScan.Track)">
+            <summary>
+            Removes a track from the vertex.
+            </summary>
+            <param name="t"></param>
+        </member>
+        <member name="T:SySal.TotalScan.Vertex.dTrackWeightFunction">
+            <summary>
+            A function that returns a weight factor to use for a track in a vertex fit.
+            </summary>
+            <param name="t">the track for which a weight has to be computed.</param>
+            <returns>the weight for the track fit.</returns>
+        </member>
+        <member name="F:SySal.TotalScan.Vertex.s_TrackWeightingFunction">
+            <summary>
+            Property backer for <c>TrackWeightingFunction</c>.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Vertex.TrackWeightingFunction">
+            <summary>
+            Gets/sets the function used to produce vertex fits.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Vertex.SlopeScatteringWeight(SySal.TotalScan.Track)">
+            <summary>
+            Yields a weight that is inversely proportional to the RMS of slope in the track and directly to the square root of segments.
+            </summary>
+            <param name="t">the track for which a weight has to be computed.</param>
+            <returns>the weight for the track fit.</returns>
+        </member>
+        <member name="M:SySal.TotalScan.Vertex.FlatWeight(SySal.TotalScan.Track)">
+            <summary>
+            Yields a weight that is identical for all tracks.
+            </summary>
+            <param name="t">the track for which a weight has to be computed.</param>
+            <returns>the weight for the track fit.</returns>
+        </member>
+        <member name="M:SySal.TotalScan.Vertex.AttributeWeight(SySal.TotalScan.Track)">
+            <summary>
+            Reads a weight from the VTXFITWEIGHT attribute. If missing, uses 1.0.
+            </summary>
+            <param name="t">the track for which a weight has to be computed.</param>
+            <returns>the weight for the track fit.</returns>
+        </member>
+        <member name="M:SySal.TotalScan.Vertex.GetVertexFit(System.Double,SySal.TotalScan.Vertex.dTrackWeightFunction)">
+            <summary>
+            Returns a <see cref="T:SySal.TotalScan.VertexFit"/> object for advanced fitting functions.
+            </summary>
+            <param name="maxtrackextrapolation">the maximum extrapolation for a track fit. Negative numbers or zero default to 1000000.</param>
+            <param name="weightfunction">the weighting function. If <c>null</c>, the default <see cref="M:SySal.TotalScan.Vertex.SlopeScatteringWeight(SySal.TotalScan.Track)"/> is used.</param>
+        </member>
+        <member name="M:SySal.TotalScan.Vertex.ComputeVertexCoordinates">
+            <summary>
+            Computes / refreshes the vertex coordinates.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Vertex.m_AttributeList">
+            <summary>
+            The list of the attributes of this vertex.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Vertex.SetAttribute(SySal.TotalScan.Index,System.Double)">
+            <summary>
+            Sets an attribute of the track.
+            </summary>
+            <param name="attributeindex">the index of the attribute to be set.</param>
+            <param name="attributevalue">the value of the attribute to be set.</param>
+        </member>
+        <member name="M:SySal.TotalScan.Vertex.RemoveAttribute(SySal.TotalScan.Index)">
+            <summary>
+            Removes an attribute from the vertex.
+            </summary>
+            <param name="attributeindex">the index of the attribute to be removed.</param>
+        </member>
+        <member name="M:SySal.TotalScan.Vertex.GetAttribute(SySal.TotalScan.Index)">
+            <summary>
+            Gets an attribute of the track. An exception is thrown if the attribute is not found.
+            </summary>
+            <param name="attributeindex">the index of the attribute to be read.</param>
+            <returns>the value of the attribute.</returns>
+        </member>
+        <member name="M:SySal.TotalScan.Vertex.ListAttributes">
+            <summary>
+            Returns the list of the attributes.
+            </summary>
+            <returns>the list of the attributes of the vertex.</returns>
+        </member>
+        <member name="T:SySal.TotalScan.AlignmentData">
+            <summary>
+            Alignment parameters for a layer (emulsion plate).
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.AlignmentData.TranslationX">
+            <summary>
+            X component of the translation.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.AlignmentData.TranslationY">
+            <summary>
+            Y component of the translation.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.AlignmentData.TranslationZ">
+            <summary>
+            Z component of the translation.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.AlignmentData.AffineMatrixXX">
+            <summary>
+            XX component of the affine deformation matrix.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.AlignmentData.AffineMatrixXY">
+            <summary>
+            XY component of the affine deformation matrix.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.AlignmentData.AffineMatrixYX">
+            <summary>
+            YX component of the affine deformation matrix.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.AlignmentData.AffineMatrixYY">
+            <summary>
+            YY component of the affine deformation matrix.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.AlignmentData.DShrinkX">
+            <summary>
+            X slope multiplier.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.AlignmentData.DShrinkY">
+            <summary>
+            Y slope multiplier.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.AlignmentData.SAlignDSlopeX">
+            <summary>
+            X slope additive correction.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.AlignmentData.SAlignDSlopeY">
+            <summary>
+            Y slope additive correction.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.AlignmentData.Clone">
+            <summary>
+            Creates a copy of this set of alignment data.
+            </summary>
+            <returns>a copy of the transformation.</returns>
+        </member>
+        <member name="M:SySal.TotalScan.AlignmentData.Invert">
+            <summary>
+            Creates an object with the inverted transformation.
+            </summary>
+            <returns>the inverted transformation.</returns>
+        </member>
+        <member name="T:SySal.TotalScan.Layer">
+            <summary>
+            A layer of base tracks on an emulsion plate.
+            Derived from SegmentList, so its segments can be accessed in an array-like fashion.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Layer.m_RadiationLength">
+            <summary>
+            Member data field on which <c>RadiationLength</c> relies.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Layer.RadiationLengh">
+            <summary>
+            Average radiation length in the layer.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Layer.m_DownstreamRadiationLength">
+            <summary>
+            Member data field on which <c>DownstreamRadiationLength relies.</c>
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Layer.DownstreamRadiationLength">
+            <summary>
+            Average radiation length of the material downstream of this layer.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Layer.m_UpstreamRadiationLength">
+            <summary>
+            Member data field on which <c>UpstreamRadiationLength relies.</c>
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Layer.UpstreamRadiationLength">
+            <summary>
+            Average radiation length of the material upstream of this layer.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Layer.m_DownstreamZ_Updated">
+            <summary>
+            Signals whether the DownstreamZ property needs recomputing. Can be accessed in derived classes.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Layer.m_UpstreamZ_Updated">
+            <summary>
+            Signals whether the UpstreamZ property needs recomputing. Can be accessed in derived classes.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Layer.#ctor">
+            <summary>
+            Protected constructor. Prevents users from creating Layers without providing consistent information. Is implicitly called in derived classes.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Layer.#ctor(System.Int32,System.Int64,System.Int32,System.Int16,SySal.BasicTypes.Vector,System.Double,System.Double)">
+            <summary>
+            Creates a new layer with a sequential id in the volume, a specified sheet id, a reference center, and fixed Z extents.
+            </summary>
+            <param name="id">the id of the layer in the sequence.</param>
+            <param name="brickid">the brick the layer belongs to.</param>
+            <param name="sheetid">the id of the plate.</param>
+            <param name="side">the side identifier: 0 for base tracks, 1 for downstream, 2 for upstream.</param>
+            <param name="Ref_Center">the reference center of the layer.</param>
+            <param name="DownstreamZ">downstream Z extent of the layer.</param>
+            <param name="UpstreamZ">upstream Z extent of the layer.</param>
+        </member>
+        <member name="M:SySal.TotalScan.Layer.#ctor(System.Int32,System.Int64,System.Int32,System.Int16,SySal.BasicTypes.Vector)">
+            <summary>
+            Creates a new layer with a sequential id in the volume, a specified sheet id, a reference center.
+            The Z extents are computed when adding segments.
+            </summary>
+            <param name="id">the id of the layer in the sequence.</param>
+            <param name="brickid">the brick the layer belongs to.</param>
+            <param name="sheetid">the id of the plate.</param>
+            <param name="side">the side identifier: 0 for base tracks, 1 for downstream, 2 for upstream.</param>
+            <param name="Ref_Center">the reference center of the layer.</param>
+        </member>
+        <member name="F:SySal.TotalScan.Layer.m_Side">
+            <summary>
+            Member data on which the Id property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Layer.Side">
+            <summary>
+            Side identifier of the layer.
+            Side = 0 -> base track layer.
+            Side = 1 -> downstream emulsion layer.
+            Side = 2 -> upstream emulsion layer.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Layer.m_Id">
+            <summary>
+            Member data on which the Id property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Layer.Id">
+            <summary>
+            Sequential id number of the layer in the volume.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Layer.m_SheetId">
+            <summary>
+            Member data on which the SheetId property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Layer.SheetId">
+            <summary>
+            Sheet id number for the layer, following the experiment's conventions.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Layer.m_BrickId">
+            <summary>
+            Member data on which the BrickId property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Layer.BrickId">
+            <summary>
+            Sheet id number for the layer, following the experiment's conventions.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Layer.m_DownstreamZ">
+            <summary>
+            Member data on which the DownstreamZ property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Layer.DownstreamZ">
+            <summary>
+            Downstream Z extent.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Layer.m_UpstreamZ">
+            <summary>
+            Member data on which the Upstream property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Layer.UpstreamZ">
+            <summary>
+            Upstream Z extent.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Layer.ToAlignedVector(SySal.BasicTypes.Vector2)">
+            <summary>
+            Transforms a vector using alignment data.
+            </summary>
+            <param name="inV">the input vector.</param>
+            <returns>the vector after applying the alignment deformation.</returns>
+        </member>
+        <member name="M:SySal.TotalScan.Layer.ToAlignedSlope(SySal.BasicTypes.Vector)">
+            <summary>
+            Transforms a slope using alignment data.
+            </summary>
+            <param name="inV">the input slope.</param>
+            <returns>the slope after applying the alignment deformation.</returns>
+        </member>
+        <member name="M:SySal.TotalScan.Layer.ToAlignedPoint(SySal.BasicTypes.Vector)">
+            <summary>
+            Transforms a point using alignment data.
+            </summary>
+            <param name="inV">the input point.</param>
+            <returns>the point after applying the alignment transformation.</returns>
+        </member>
+        <member name="M:SySal.TotalScan.Layer.ToOriginalVector(SySal.BasicTypes.Vector2)">
+            <summary>
+            Transforms a vector back to the original reference using alignment data.
+            </summary>
+            <param name="inV">the input vector.</param>
+            <returns>the vector transformed back to the original reference (pre-alignment).</returns>
+        </member>
+        <member name="M:SySal.TotalScan.Layer.ToOriginalPoint(SySal.BasicTypes.Vector)">
+            <summary>
+            Transforms a point back to the original reference using alignment data.
+            </summary>
+            <param name="inV">the input point.</param>
+            <returns>the point transformed back to the original reference (pre-alignment).</returns>
+        </member>
+        <member name="M:SySal.TotalScan.Layer.ToOriginalSlope(SySal.BasicTypes.Vector)">
+            <summary>
+            Transforms a slope back to the original reference using alignment data.
+            </summary>
+            <param name="inV">the input slope.</param>
+            <returns>the slope transformed back to the original reference (pre-alignment).</returns>
+        </member>
+        <member name="F:SySal.TotalScan.Layer.m_RefCenter">
+            <summary>
+            Member data on which the RefCenter property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Layer.RefCenter">
+            <summary>
+            Reference center of the layer.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Layer.AddSegment(SySal.TotalScan.Segment)">
+            <summary>
+            Adds a segment to the layer.
+            </summary>
+            <param name="s"></param>
+        </member>
+        <member name="M:SySal.TotalScan.Layer.AddSegments(SySal.TotalScan.Segment[])">
+            <summary>
+            Adds a set of segments to a layer.
+            </summary>
+            <param name="s"></param>
+        </member>
+        <member name="M:SySal.TotalScan.Layer.ReplaceSegment(System.Int32,SySal.TotalScan.Segment)">
+            <summary>
+            Replaces a segment in the layer.
+            </summary>
+            <param name="index"></param>
+            <param name="s"></param>
+        </member>
+        <member name="M:SySal.TotalScan.Layer.NotifyChanged">
+            <summary>
+            Notifies the layer that one or more of its layers have changed.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Layer.UpdateDownstreamZ">
+            <summary>
+            Updates the DownstreamZ property using segment information.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SySal.TotalScan.Layer.UpdateUpstreamZ">
+            <summary>
+            Updates the UpstreamZ property using segment information.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:SySal.TotalScan.Layer.m_AlignmentData">
+            <summary>
+            Member data on which the AlignmentData property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Layer.m_InvAlignmentData">
+            <summary>
+            Member data on which the InvAlignmentData property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Layer.AlignData">
+            <summary>
+            Returns a copy of the internal alignment data for the layer.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Layer.SetAlignmentData(SySal.TotalScan.AlignmentData)">
+            <summary>
+            Sets the alignment data (and their inverse).
+            </summary>
+            <param name="a">the set of alignment data to use.</param>
+        </member>
+        <member name="T:SySal.TotalScan.Volume">
+            <summary>
+            A TotalScan volume, containing segments, tracks, vertices and layers.
+            </summary>
+        </member>
+        <member name="T:SySal.TotalScan.Volume.FileFormatInfoType">
+            <summary>
+            File format information identifier. Useful for (de)serialization using files.
+            </summary>
+        </member>
+        <member name="T:SySal.TotalScan.Volume.FileFormatHeader">
+            <summary>
+            File format header identifier. Useful for (de)serialization using files.
+            </summary>
+        </member>
+        <member name="T:SySal.TotalScan.Volume.ShowerList">
+            <summary>
+            A list of showers in a TotalScan volume.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Volume.ShowerList.Items">
+            <summary>
+            Member data holding the list of showers.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Volume.ShowerList.Item(System.Int32)">
+            <summary>
+            Accesses the list of showers in an array-like fashion.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Volume.ShowerList.Length">
+            <summary>
+            The number of showers in the volume.
+            </summary>
+        </member>
+        <member name="T:SySal.TotalScan.Volume.TrackList">
+            <summary>
+            A list of tracks in a TotalScan volume.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Volume.TrackList.Items">
+            <summary>
+            Member data holding the list of tracks.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Volume.TrackList.Item(System.Int32)">
+            <summary>
+            Accesses the list of tracks in an array-like fashion.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Volume.TrackList.Length">
+            <summary>
+            The number of tracks in the volume.
+            </summary>
+        </member>
+        <member name="T:SySal.TotalScan.Volume.LayerList">
+            <summary>
+            A list of layers in a TotalScan volume.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Volume.LayerList.Items">
+            <summary>
+            Member data holding the list of layers.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Volume.LayerList.Item(System.Int32)">
+            <summary>
+            Accesses the list of layers in an array-like fashion.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Volume.LayerList.Length">
+            <summary>
+            The number of layers in the volume.
+            </summary>
+        </member>
+        <member name="T:SySal.TotalScan.Volume.VertexList">
+            <summary>
+            A list of vertices in a TotalScan volume.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Volume.VertexList.Items">
+            <summary>
+            Member data holding the list of Vertices.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Volume.VertexList.Item(System.Int32)">
+            <summary>
+            Accesses the list of vertices in an array-like fashion.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Volume.VertexList.Length">
+            <summary>
+            The number of vertices in the volume.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Volume.#ctor">
+            <summary>
+            Protected constructor for derived classes.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Volume.#ctor(System.IO.Stream)">
+            <summary>
+            Restores a TotalScan volume from a stream.
+            </summary>
+            <param name="r"></param>
+        </member>
+        <member name="M:SySal.TotalScan.Volume.Save(System.IO.Stream)">
+            <summary>
+            Saves a TotalScan volume to a stream.
+            </summary>
+            <param name="w">the stream to save to.</param>
+        </member>
+        <member name="M:SySal.TotalScan.Volume.GetTracks">
+            <summary>
+            Converts the Track List into an Array of Tracks for external uses.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:SySal.TotalScan.Volume.m_Tracks">
+            <summary>
+            Member data on which the Tracks property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Volume.Tracks">
+            <summary>
+            Accesses the list of the tracks.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Volume.m_Showers">
+            <summary>
+            Member data on which the Showers property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Volume.Showers">
+            <summary>
+            Accesses the list of the showers.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Volume.m_Vertices">
+            <summary>
+            Member data on which the Vertices property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Volume.Vertices">
+            <summary>
+            Accesses the list of the vertices.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Volume.m_Layers">
+            <summary>
+            Member data on which the Layers property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Volume.Layers">
+            <summary>
+            Accesses the list of the layers.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Volume.m_Id">
+            <summary>
+            Member data on which the Id property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Volume.Id">
+            <summary>
+            Volume Identifier.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Volume.m_Extents">
+            <summary>
+            Member data on which the Extents property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Volume.Extents">
+            <summary>
+            Extents of the volume (invalid if read from old files).
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Volume.m_RefCenter">
+            <summary>
+            Member data on which the RefCenter property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.Volume.RefCenter">
+            <summary>
+            Reference center of the volume.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Volume.ResetIds">
+            <summary>
+            Resets the id numbers of all objects in the volume to the right sequence for serialization.
+            </summary>
+        </member>
+        <member name="T:SySal.TotalScan.PostProcessing.DataAnalyzer">
+            <summary>
+            A generic interface for data analysis.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.PostProcessing.DataAnalyzer.Feed(SySal.TotalScan.Volume)">
+            <summary>
+            Feeds the data analyzer with a volume.
+            </summary>
+            <param name="volume">The volume to be analyzed.</param>
+        </member>
+        <member name="T:SySal.TotalScan.VertexFit">
+            <summary>
+            Vertex fitting class.
+            </summary>
+        </member>
+        <member name="T:SySal.TotalScan.VertexFit.TrackFit">
+            <summary>
+            A TrackFit object is used to represent a track extrapolation towards a possible vertex. 
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.VertexFit.TrackFit.Id">
+            <summary>
+            Index of the track. It is used to distinguish several tracks in the same vertex.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.VertexFit.TrackFit.Weight">
+            <summary>
+            Weight of the track in the vertex fit.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.VertexFit.TrackFit.MinZ">
+            <summary>
+            Minimum Z acceptable for this TrackFit.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.VertexFit.TrackFit.MaxZ">
+            <summary>
+            Maximum Z acceptable for this TrackFit.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.VertexFit.TrackFit.Clone">
+            <summary>
+            Clones the TrackFit.
+            </summary>
+            <returns>a new TrackFit object.</returns>
+        </member>
+        <member name="T:SySal.TotalScan.VertexFit.TrackFitWithMomentum">
+            <summary>
+            Fit of a track with momentum information.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.VertexFit.TrackFitWithMomentum.PLikelihood">
+            <summary>
+            The likelihood function for the track momentum.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.VertexFit.TrackFitWithMomentum.P">
+            <summary>
+            Most probable momentum of the particle.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.VertexFit.TrackFitWithMomentum.Clone">
+            <summary>
+            Clones the object.
+            </summary>
+            <returns>a clone of the object.</returns>
+        </member>
+        <member name="T:SySal.TotalScan.VertexFit.FitException">
+            <summary>
+            Base class to represent exceptions in the fitting procedure.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.VertexFit.FitException.#ctor(System.String)">
+            <summary>
+            Builds a fitting exception with an error message.
+            </summary>
+            <param name="t">the error message in the exception.</param>
+        </member>
+        <member name="T:SySal.TotalScan.VertexFit.NumberOfTracksException">
+            <summary>
+            Represents a fitting error due to insufficient number of tracks in the vertex.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.VertexFit.NumberOfTracksException.#ctor(System.String)">
+            <summary>
+            Builds a fitting exception due to insufficient number of tracks in the vertex.
+            </summary>
+            <param name="t">the error message in the exception.</param>
+        </member>
+        <member name="T:SySal.TotalScan.VertexFit.NoFitReadyException">
+            <summary>
+            Signals no fit is available.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.VertexFit.NoFitReadyException.#ctor(System.String)">
+            <summary>
+            Builds a fitting exception to signal no fit is available.
+            </summary>
+            <param name="t">the error message in the exception.</param>
+        </member>
+        <member name="T:SySal.TotalScan.VertexFit.WrongTrackNumberException">
+            <summary>
+            Signals the track number is wrong.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.VertexFit.WrongTrackNumberException.#ctor(System.String)">
+            <summary>
+            Builds an exception that signals the track number is wrong.
+            </summary>
+            <param name="t">the error message in the exception.</param>
+        </member>
+        <member name="T:SySal.TotalScan.VertexFit.NonPositiveHessianException">
+            <summary>
+            Signals the Hessian in the vertex fit is non-positive.
+            </summary>
+            <remarks>This condition can happen when the vertex is topologically unlikely (e.g. tracks are diverging instead of converging), 
+            or some limit mathematical situation has been reached (e.g. tracks are almost parallel).</remarks>
+        </member>
+        <member name="M:SySal.TotalScan.VertexFit.NonPositiveHessianException.#ctor(System.String)">
+            <summary>
+            Builds an exception that signals the Hessian in the vertex fit is non-positive.
+            </summary>
+            <param name="t">the error message in the exception.</param>
+        </member>
+        <member name="T:SySal.TotalScan.VertexFit.NoZRangeAllowedException">
+            <summary>
+            Signals that the TrackFit limitations on Z are such that no Z range is allowed.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.VertexFit.NoZRangeAllowedException.#ctor(System.String)">
+            <summary>
+            Builds an exception that signals TrackFit limitations on Z are such that no Z range is allowed.
+            </summary>
+            <param name="t">the error message in the exception.</param>
+        </member>
+        <member name="M:SySal.TotalScan.VertexFit.#ctor">
+            <summary>
+            Builds a vertex fit.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.VertexFit.AddTrackFit(SySal.TotalScan.VertexFit.TrackFit)">
+            <summary>
+            Adds a track to the fit.
+            </summary>
+            <param name="t">the TrackFit to be added.</param>
+            <returns>the number of tracks in the vertex fit.</returns>
+            <remarks><b>Notice: weight must be strictly positive.</b></remarks>
+        </member>
+        <member name="M:SySal.TotalScan.VertexFit.RemoveTrackFit(SySal.TotalScan.Index)">
+            <summary>
+            Removes a track from a vertex fit.
+            </summary>
+            <param name="id">the index of the track to be removed.</param>
+            <returns>the number of tracks remaining in the fit.</returns>
+            <remarks><b>Notice: a removed track does no longer belong to the fit.</b> Do not use this method
+            to temporarily exclude a track from a vertex fit (e.g. for computing the "disconnected IP"). Use
+            <see cref="M:SySal.TotalScan.VertexFit.DisconnectedTrackIP(SySal.TotalScan.Index)"/> instead.</remarks>
+        </member>
+        <member name="P:SySal.TotalScan.VertexFit.X">
+            <summary>
+            The X coordinate of the vertex.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.VertexFit.Y">
+            <summary>
+            The Y coordinate of the vertex.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.VertexFit.Z">
+            <summary>
+            The Z coordinate of the vertex.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.VertexFit.AvgDistance">
+            <summary>
+            The average distance of tracks from the vertex position.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.VertexFit.Count">
+            <summary>
+            The number of tracks in the vertex fit.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.VertexFit.Track(System.Int32)">
+            <summary>
+            Gets the i-th TrackFit.
+            </summary>
+            <param name="i">the number of the TrackFit to be retrieved.</param>
+            <returns>the i-th TrackFit.</returns>
+        </member>
+        <member name="M:SySal.TotalScan.VertexFit.Track(SySal.TotalScan.Index)">
+            <summary>
+            Gets the TrackFit with the specified Id.
+            </summary>
+            <param name="id">the id of the TrackFit to be retrieved.</param>
+            <returns>the specified TrackFit.</returns>
+        </member>
+        <member name="M:SySal.TotalScan.VertexFit.TrackIP(SySal.TotalScan.VertexFit.TrackFit)">
+            <summary>
+            Computes the Impact Parameter of a track, without disconnection.
+            </summary>
+            <param name="t">the TrackFit to be used to compute the Impact Parameter.</param>
+            <returns>the Impact Parameter.</returns>
+            <remarks>The Impact Parameter is computed as the 3D distance of the vertex from the track. 
+            Notice that no disconnection occurs, i.e. if the TrackFit belongs to the vertex, the vertex
+            is not recomputed disconnecting this track.</remarks>
+        </member>
+        <member name="M:SySal.TotalScan.VertexFit.DisconnectedTrackIP(SySal.TotalScan.Index)">
+            <summary>
+            Computes the Impact Parameter of a TrackFit belonging to the vertex, including track disconnection.
+            </summary>
+            <param name="id">the index of the track to be used to compute the Impact Parameter.</param>
+            <returns>the Impact Parameter.</returns>
+            <remarks>The Impact Parameter is computed as the 3D distance of the vertex from the track. 
+            Notice that the track is temporarily disconnected from the vertex, then the vertex is recomputed without the track, 
+            and the IP of the track with respect to the recomputed vertex is retrieved. X, Y, Z, AvgDistance are not affected,
+            and "remember" the full-vertex fit.</remarks>
+        </member>
+        <member name="F:SySal.TotalScan.VertexFit.m_FitReady">
+            <summary>
+            Signals whether the fit is ready or not.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.VertexFit.m_X">
+            <summary>
+            Holds the fitted vertex X.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.VertexFit.m_Y">
+            <summary>
+            Holds the fitted vertex Y.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.VertexFit.m_Z">
+            <summary>
+            Holds the fitted vertex Z.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.VertexFit.m_AvgD">
+            <summary>
+            Holds the average distance of tracks from the fitted vertex.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.VertexFit.tList">
+            <summary>
+            Holds the list of TrackFit objects belonging to the vertex.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.VertexFit.TwoTrackIP(SySal.TotalScan.VertexFit.TrackFit,SySal.TotalScan.VertexFit.TrackFit)">
+            <summary>
+            Computes the 3D distance between two straight lines.
+            </summary>
+            <param name="T">the first line.</param>
+            <param name="L">the second line.</param>
+            <returns>the Impact Parameter.</returns>
+        </member>
+        <member name="M:SySal.TotalScan.VertexFit.PointTrackIP(SySal.TotalScan.VertexFit.TrackFit,System.Double,System.Double,System.Double)">
+            <summary>
+            Computes the 3D distance between a point and a straight line.
+            </summary>
+            <param name="T">the line.</param>
+            <param name="x">the X coordinate of the point.</param>
+            <param name="y">the Y coordinate of the point.</param>
+            <param name="z">the Z coordinate of the point.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SySal.TotalScan.VertexFit.FitVertex(System.Double@,System.Double@,System.Double@,System.Double@,System.Int32)">
+            <summary>
+            Fits a vertex.
+            </summary>
+            <param name="x">the resulting X coordinate of the vertex.</param>
+            <param name="y">the resulting Y coordinate of the vertex.</param>
+            <param name="z">the resulting Z coordinate of the vertex.</param>
+            <param name="avgd">the resulting AverageDistance of the vertex.</param>
+            <param name="excludeone">the index of the track to be excluded from the vertex fit. Set this to a negative number to keep all tracks.</param>        
+        </member>
+        <member name="T:SySal.TotalScan.dShouldStop">
+            <summary>
+            Checks whether the reconstruction process should be aborted.
+            </summary>
+        </member>
+        <member name="T:SySal.TotalScan.dProgress">
+            <summary>
+            Returns progress information about the reconstruction process.
+            </summary>
+        </member>
+        <member name="T:SySal.TotalScan.dReport">
+            <summary>
+            Returns text information about the reconstruction process.
+            </summary>
+        </member>
+        <member name="T:SySal.TotalScan.IVolumeReconstructor">
+            <summary>
+            Interface that every module that performs volume reconstruction should implement.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.IVolumeReconstructor.ShouldStop">
+            <summary>
+            Callback delegate that can be used to stop the reconstruction process.
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.IVolumeReconstructor.Progress">
+            <summary>
+            Callback delegate that monitors the reconstruction progress (ranging from 0 to 1).
+            </summary>
+        </member>
+        <member name="P:SySal.TotalScan.IVolumeReconstructor.Report">
+            <summary>
+            Callback delegate that monitors the reconstruction report.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.IVolumeReconstructor.Clear">
+            <summary>
+            Clears the reconstructor of previously loaded layers.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.IVolumeReconstructor.AddLayer(SySal.TotalScan.Layer)">
+            <summary>
+            Adds one layer to the set of layers to use for the reconstruction.
+            The layer should have been previously filled up with segments.
+            </summary>
+            <param name="l"></param>
+        </member>
+        <member name="M:SySal.TotalScan.IVolumeReconstructor.AddLayer(SySal.TotalScan.Layer,SySal.Tracking.MIPEmulsionTrackInfo[])">
+            <summary>
+            Adds one layer to the set of layers to use for the reconstruction, filling it with segments whose geometrical parameters are given by a set of MIPEmulsionTrackInfo.
+            </summary>
+            <param name="l"></param>
+            <param name="basetks"></param>
+        </member>
+        <member name="M:SySal.TotalScan.IVolumeReconstructor.AddLayer(SySal.TotalScan.Layer,SySal.Scanning.Plate.LinkedZone)">
+            <summary>
+            Adds one layer to the set of layers to use for the reconstruction.
+            The layer is filled up with tracks from the supplied scanning zone.
+            This method is used to keep track of unassociated microtracks too, e.g. to search for kinks in the base.
+            </summary>
+            <param name="l"></param>
+            <param name="zone"></param>
+        </member>
+        <member name="M:SySal.TotalScan.IVolumeReconstructor.Reconstruct">
+            <summary>
+            Reconstructs volume tracks and optionally track intersections (vertices), using data that have been previously fed in through AddLayer.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.IVolumeReconstructor.RecomputeVertices(SySal.TotalScan.Volume)">
+            <summary>
+            Recomputes vertices on an existing Volume. Yields a new volume with new vertices, and possibly, also new tracks. Does not recompute layer-to-layer alignment.
+            </summary>
+        </member>
+        <member name="T:SySal.TotalScan.MomentumResult">
+            <summary>
+            The result of the momentum estimation.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.MomentumResult.Value">
+            <summary>
+            The estimated value of the momentum.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.MomentumResult.ConfidenceLevel">
+            <summary>
+            The Confidence Level for which bounds are computed.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.MomentumResult.LowerBound">
+            <summary>
+            The lower bound of the momentum.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.MomentumResult.UpperBound">
+            <summary>
+            The upper bound of the momentum.
+            </summary>
+        </member>
+        <member name="T:SySal.TotalScan.Geometry">
+            <summary>
+            Defines the geometry of the detector for what concerns Multiple Coulomb Scattering properties.
+            </summary>
+            <remarks>The geometry is defined as a set of X,Y planes (each having its own Z) where the radiation length of the material changes. Data must be fully contained within the Z interval spanned by the first and last surface.</remarks>
+        </member>
+        <member name="T:SySal.TotalScan.Geometry.LayerStart">
+            <summary>
+            Defines an X,Y plane surface where the radiation length of the material changes.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Geometry.LayerStart.ZMin">
+            <summary>
+            The lower Z bound of the volume with a certain material.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Geometry.LayerStart.RadiationLength">
+            <summary>
+            The radiation length of the material.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Geometry.LayerStart.Brick">
+            <summary>
+            Together with <c>Plate</c>, this field defines a plate in the detector. Ignored if <c>Plate</c> is zero or negative.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Geometry.LayerStart.Plate">
+            <summary>
+            The plate that has this layer as upstream end. If this layer is not an upstream plate boundary, <c>Plate</c> must be zero or negative.
+            </summary>
+        </member>
+        <member name="F:SySal.TotalScan.Geometry.Layers">
+            <summary>
+            The set of surfaces bounding material volumes traversed by scattering tracks.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Geometry.#ctor">
+            <summary>
+            Empty constructor.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.Geometry.#ctor(SySal.TotalScan.Volume.LayerList)">
+            <summary>
+            Creates a Geometry from a list of Layers (<see cref="T:SySal.TotalScan.Layer"/>).
+            </summary>
+            <param name="ll">the list of layers (usually a Volume.Layers object).</param>
+        </member>
+        <member name="T:SySal.TotalScan.IMCSMomentumEstimator">
+            <summary>
+            Interface for MCS-based momentum estimation.
+            </summary>
+        </member>
+        <member name="M:SySal.TotalScan.IMCSMomentumEstimator.ProcessData(SySal.Tracking.MIPEmulsionTrackInfo[])">
+            <summary>
+            Computes the momentum and confidence limits using positions and slopes provided.
+            </summary>
+            <param name="data">the position and slopes of the track (even Z-unordered).</param>
+            <returns>the momentum and confidence limits.</returns>
+        </member>
+    </members>
+</doc>

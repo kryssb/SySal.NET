@@ -1,0 +1,6 @@
+/home/kryss/Documenti/SySal/SySalCore/bin/Debug/SySalCore.dll
+/home/kryss/Documenti/SySal/SySalCore/bin/Debug/SySalCore.pdb
+/home/kryss/Documenti/SySal/SySalCore/bin/Debug/SySalCore.xml
+/home/kryss/Documenti/SySal/SySalCore/obj/Debug/SySalCore.dll
+/home/kryss/Documenti/SySal/SySalCore/obj/Debug/SySalCore.pdb
+/home/kryss/Documenti/SySal/SySalCore/obj/Debug/SySalCore.csprojAssemblyReference.cache

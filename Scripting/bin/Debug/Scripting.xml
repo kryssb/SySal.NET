@@ -1,0 +1,676 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Scripting</name>
+    </assembly>
+    <members>
+        <member name="F:NumericalTools.Scripting.Syntax.C">
+            <summary>
+            C-like syntax.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.Syntax.Pascal">
+            <summary>
+            Pascal-like syntax.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.Syntax.BASIC">
+            <summary>
+            BASIC-like syntax.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.Scripting.ParameterType">
+            <summary>
+            Possible parameter types.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.ParameterType.Void">
+            <summary>
+            Void. Can only be used in specifying return types.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.ParameterType.Int32">
+            <summary>
+            32-bit integer parameter type.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.ParameterType.Int64">
+            <summary>
+            64-bit integer parameter type.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.ParameterType.Double">
+            <summary>
+            Double parameter type.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.ParameterType.String">
+            <summary>
+            String parameter type.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.ParameterType.Bool">
+            <summary>
+            Boolean parameter type.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.ParameterType.Object">
+            <summary>
+            Object parameter type.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.Scripting.ParameterDescriptor">
+            <summary>
+            Describes a parameter for a function call.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.ParameterDescriptor.Type">
+            <summary>
+            The name of the parameter.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.ParameterDescriptor.Name">
+            <summary>
+            The name of the parameter.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Scripting.ParameterDescriptor.#ctor(NumericalTools.Scripting.ParameterType,System.String)">
+            <summary>
+            Builds a new parameter descriptor of the specified type and with the specified name.
+            </summary>
+            <param name="ptype">the type of the parameter.</param>
+            <param name="pname">the name of the parameter.</param>
+        </member>
+        <member name="M:NumericalTools.Scripting.ParameterDescriptor.ToType(System.String)">
+            <summary>
+            Converts a string to a value object of the correct type.
+            </summary>
+            <param name="s">the string to be converted.</param>
+            <returns>the value object created from the string.</returns>
+        </member>
+        <member name="T:NumericalTools.Scripting.Function">
+            <summary>
+            A void function call with parameters and a possible return type.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.Scripting.FunctionDescriptor">
+            <summary>
+            Describes the syntax of a function call and its help strings.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.FunctionDescriptor.Parameters">
+            <summary>
+            Lists the parameter types and names.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.FunctionDescriptor.Name">
+            <summary>
+            The function name.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.FunctionDescriptor.Type">
+            <summary>
+            The return type of the function.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.FunctionDescriptor.dFunctionCall">
+            <summary>
+            Delegate to the function call.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.FunctionDescriptor.Help">
+            <summary>
+            The help string for this function.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Scripting.FunctionDescriptor.Clone">
+            <summary>
+            Retrieves a shallow copy of the object.
+            </summary>
+            <returns>the object clone.</returns>
+        </member>
+        <member name="M:NumericalTools.Scripting.FunctionDescriptor.#ctor">
+            <summary>
+            Builds an empty function descriptor.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Scripting.FunctionDescriptor.#ctor(System.String,System.String,NumericalTools.Scripting.ParameterDescriptor[],NumericalTools.Scripting.ParameterType,NumericalTools.Scripting.Function)">
+            <summary>
+            Builds a function descriptor.
+            </summary>
+            <param name="name">the function name.</param>
+            <param name="help">help string for the function.</param>
+            <param name="parameters">parameter list.</param>
+            <param name="returntype">return type.</param>
+            <param name="funccall">delegate that executes the function.</param>
+        </member>
+        <member name="M:NumericalTools.Scripting.FunctionDescriptor.CompareTo(System.Object)">
+            <summary>
+            Compares two function descriptor using the alphabetic order of the function names.		
+            Comparison is case insensitive.
+            </summary>
+            <param name="o">the function descriptor to compare to.</param>
+            <returns>a number that can be negative, zero or positive depending on the relationship between the function names.</returns>
+        </member>
+        <member name="M:NumericalTools.Scripting.FunctionDescriptor.ToString">
+            <summary>
+            Retrieves the function name.
+            </summary>
+            <returns>the function name.</returns>
+        </member>
+        <member name="T:NumericalTools.Scripting.Instruction">
+            <summary>
+            A generic instruction.
+            </summary>	
+        </member>
+        <member name="T:NumericalTools.Scripting.Variable">
+            <summary>
+            A variable.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.Variable.Name">
+            <summary>
+            The variable's name.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.Variable.Type">
+            <summary>
+            The variable's type.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.Variable.Value">
+            <summary>
+            The variable's value.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Scripting.Variable.#ctor(System.String)">
+            <summary>
+            Builds a new variable with the specified name and undefined (Void) type.
+            </summary>
+            <param name="name">the name of the new variable.</param>
+        </member>
+        <member name="T:NumericalTools.Scripting.BlockBeginTag">
+            <summary>
+            A tag that marks the beginning of the local stack frame for the current block.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Scripting.BlockBeginTag.#ctor">
+            <summary>
+            Builds a block begin tag.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.Scripting.Script">
+            <summary>
+            A parsed and executable script.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.Script.FunctionDescriptors">
+            <summary>
+            The list of known function descriptors.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Scripting.Script.ResetEngine">
+            <summary>
+            Resets the parsing engine and the symbol definitions and bindings.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Scripting.Script.AddFunctionDescriptor(NumericalTools.Scripting.FunctionDescriptor)">
+            <summary>
+            Adds a function descriptor to the list of known descriptors.
+            </summary>
+            <param name="d"></param>
+        </member>
+        <member name="M:NumericalTools.Scripting.Script.PascalExpression(System.Int32@,System.String,NumericalTools.Scripting.Instructions.BinaryOp,System.Boolean,System.Collections.ArrayList)">
+            <summary>
+            Parses a Pascal-like expression and fills the program.
+            </summary>
+            <param name="pos">position to start from.</param>
+            <param name="expr">the expression to be parsed.</param>
+            <param name="appendop">the binary operation that must be appended or null.</param>
+            <param name="allowvoid">true to allow void function calls, false to disallow.</param>
+            <param name="program">the instruction list to be filled.</param>
+            <returns>true if parsing should continue at the same brace level, false otherwise.</returns>
+        </member>
+        <member name="M:NumericalTools.Scripting.Script.PascalExpression2(System.Int32@,System.String,System.Collections.ArrayList)">
+            <summary>
+            Parses a Pascal-like expression from a position that is not the first and fills the program.
+            </summary>
+            <param name="pos">position to start from.</param>
+            <param name="expr">the expression to be parsed.</param>
+            <param name="program">the instruction list to be filled.</param>
+            <returns>true if parsing should continue at the same brace level, false otherwise.</returns>
+        </member>
+        <member name="M:NumericalTools.Scripting.Script.PascalFindBraces(System.String,System.Int32@,System.Int32@)">
+            <summary>
+            Finds the end of an expression within braces.
+            </summary>
+            <param name="expr">the expression to be scanned.</param>
+            <param name="begin">the start position for the scan.</param>
+            <param name="end">the end position for the scan.</param>
+            <returns>the end of the expression or -1 is the end is not found within the limits.</returns>
+        </member>
+        <member name="M:NumericalTools.Scripting.Script.ParsePascal(System.Int32@,System.String,System.String,System.Collections.ArrayList)">
+            <summary>
+            Parses a Pascal-like script and builds the Script object.
+            </summary>
+            <param name="pos">the position where parsing of the script has arrived.</param>
+            <param name="terminator">the expected terminator for the block.</param>
+            <param name="scriptstr">the script string.</param>
+            <param name="program">the list of instructions being built.</param>	
+        </member>
+        <member name="M:NumericalTools.Scripting.Script.CExpression(System.Int32@,System.String,NumericalTools.Scripting.Instructions.BinaryOp,System.Boolean,System.Collections.ArrayList)">
+            <summary>
+            Parses a C-like expression and fills the program.
+            </summary>
+            <param name="pos">position to start from.</param>
+            <param name="expr">the expression to be parsed.</param>
+            <param name="appendop">the binary operation that must be appended or null.</param>
+            <param name="allowvoid">true to allow void function calls, false to disallow.</param>
+            <param name="program">the instruction list to be filled.</param>
+            <returns>true if parsing should continue at the same brace level, false otherwise.</returns>
+        </member>
+        <member name="M:NumericalTools.Scripting.Script.CExpression2(System.Int32@,System.String,System.Collections.ArrayList)">
+            <summary>
+            Parses a C-like expression from a position that is not the first and fills the program.
+            </summary>
+            <param name="pos">position to start from.</param>
+            <param name="expr">the expression to be parsed.</param>
+            <param name="program">the instruction list to be filled.</param>
+            <returns>true if parsing should continue at the same brace level, false otherwise.</returns>
+        </member>
+        <member name="M:NumericalTools.Scripting.Script.CFindBraces(System.String,System.Int32@,System.Int32@)">
+            <summary>
+            Finds the end of an expression within braces.
+            </summary>
+            <param name="expr">the expression to be scanned.</param>
+            <param name="begin">the start position for the scan.</param>
+            <param name="end">the end position for the scan.</param>
+            <returns>the end of the expression or -1 is the end is not found within the limits.</returns>
+        </member>
+        <member name="M:NumericalTools.Scripting.Script.ParseC(System.Int32@,System.String,System.String,System.Boolean,System.Collections.ArrayList)">
+            <summary>
+            Parses a C-like script and builds the Script object.
+            </summary>
+            <param name="pos">the position where parsing of the script has arrived.</param>
+            <param name="terminator">the expected terminator for the block.</param>
+            <param name="scriptstr">the script string.</param>
+            <param name="oneinstruction">instructs the parser to stop at the end of the current instruction (simple or compound)</param>
+            <param name="program">the list of instructions being built.</param>	
+        </member>
+        <member name="M:NumericalTools.Scripting.Script.#ctor(System.String,NumericalTools.Scripting.Syntax)">
+            <summary>
+            Parses a script using the specified syntax. 
+            The script is ready for execution when the constructor returns.
+            </summary>
+            <param name="scriptstr">the script string.</param>
+            <param name="usesyntax">the syntax to be used to parse the script. Currently, only Pascal-style syntax is supported.</param>
+        </member>
+        <member name="F:NumericalTools.Scripting.Script.m_ProgramCounter">
+            <summary>
+            The program counter for script execution.
+            </summary>
+        </member>
+        <member name="P:NumericalTools.Scripting.Script.ProgramCounter">
+            <summary>
+            Shows the program counter. This is safe for multithreaded operation.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.Script.m_Stack">
+            <summary>
+            The program stack.
+            </summary>
+        </member>
+        <member name="P:NumericalTools.Scripting.Script.Stack">
+            <summary>
+            Shows the program stack. This is safe for multithreaded operation (a copy is provided, not the real stack).
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.Script.m_Instructions">
+            <summary>
+            The list of the instructions to be executed.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Scripting.Script.Execute">
+            <summary>
+            Executes a parsed script.
+            </summary>
+            <returns>an object returned by the script or null.</returns>
+        </member>
+        <member name="T:NumericalTools.Scripting.Instructions.Identity">
+            <summary>
+            Implements an identity.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Scripting.Instructions.Identity.#ctor">
+            <summary>
+            Builds an identity.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Scripting.Instructions.Identity.Exec(System.Int32@,System.Collections.ArrayList)">
+            <summary>
+            Executes the instruction.
+            </summary>
+            <param name="pc">the program counter.</param>
+            <param name="sp">the stack.</param>
+        </member>
+        <member name="T:NumericalTools.Scripting.Instructions.Jump">
+            <summary>
+            Implements a jump to an address.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.Instructions.Jump.m_JumpPoint">
+            <summary>
+            Instruction to jump to.
+            </summary>			
+        </member>
+        <member name="M:NumericalTools.Scripting.Instructions.Jump.#ctor(System.Int32)">
+            <summary>
+            Builds a jump to the specified jump point.
+            </summary>
+            <param name="newpc">new value of the program counter after the jump.</param>
+        </member>
+        <member name="M:NumericalTools.Scripting.Instructions.Jump.Exec(System.Int32@,System.Collections.ArrayList)">
+            <summary>
+            Executes the instruction.
+            </summary>
+            <param name="pc">the program counter.</param>
+            <param name="sp">the stack.</param>
+        </member>
+        <member name="T:NumericalTools.Scripting.Instructions.JumpIf">
+            <summary>
+            Implements a conditional jump to an address. 
+            The jump is performed if the value on the top of the stack is zero or boolean false and the jump condition is false, or if it is nonzero or boolean true and the condition is true.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.Instructions.JumpIf.m_JumpPoint">
+            <summary>
+            Instruction to jump to.
+            </summary>			
+        </member>
+        <member name="F:NumericalTools.Scripting.Instructions.JumpIf.m_JumpCond">
+            <summary>
+            Condition to check.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Scripting.Instructions.JumpIf.#ctor(System.Boolean,System.Int32)">
+            <summary>
+            Builds a conditional jump to the specified jump point.
+            </summary>
+            <param name="condition">condition to be checked.</param>
+            <param name="newpc">new value of the program counter after the jump.</param>
+        </member>
+        <member name="M:NumericalTools.Scripting.Instructions.JumpIf.Exec(System.Int32@,System.Collections.ArrayList)">
+            <summary>
+            Executes the instruction.
+            </summary>
+            <param name="pc">the program counter.</param>
+            <param name="sp">the stack.</param>
+        </member>
+        <member name="T:NumericalTools.Scripting.Instructions.PushValue">
+            <summary>
+            Implements a push operation on the stack.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.Instructions.PushValue.m_Value">
+            <summary>
+            Value to be pushed on the stack.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Scripting.Instructions.PushValue.#ctor(System.Object)">
+            <summary>
+            Build a new push operation.
+            </summary>
+            <param name="val">the value to be pushed on the stack.</param>
+        </member>
+        <member name="M:NumericalTools.Scripting.Instructions.PushValue.Exec(System.Int32@,System.Collections.ArrayList)">
+            <summary>
+            Executes the instruction.
+            </summary>
+            <param name="pc">the program counter.</param>
+            <param name="sp">the stack.</param>
+        </member>
+        <member name="T:NumericalTools.Scripting.Instructions.Pop">
+            <summary>
+            Implements a pop operation on the stack.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Scripting.Instructions.Pop.#ctor">
+            <summary>
+            Build a new pop operation.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Scripting.Instructions.Pop.Exec(System.Int32@,System.Collections.ArrayList)">
+            <summary>
+            Executes the instruction.
+            </summary>
+            <param name="pc">the program counter.</param>
+            <param name="sp">the stack.</param>
+        </member>
+        <member name="T:NumericalTools.Scripting.Instructions.Var">
+            <summary>
+            Implements a variable declaration.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.Instructions.Var.m_Var">
+            <summary>
+            The variable to be declared.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Scripting.Instructions.Var.#ctor(NumericalTools.Scripting.Variable)">
+            <summary>
+            Builds a variable declaration.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Scripting.Instructions.Var.Exec(System.Int32@,System.Collections.ArrayList)">
+            <summary>
+            Executes a variable declaration.
+            </summary>
+            <param name="pc">the program counter.</param>
+            <param name="sp">the stack.</param>
+        </member>
+        <member name="T:NumericalTools.Scripting.Instructions.VarAssign">
+            <summary>
+            Implements an assignment to a variable.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.Instructions.VarAssign.m_VarName">
+            <summary>
+            The name of the variable to be assigned.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Scripting.Instructions.VarAssign.#ctor(System.String)">
+            <summary>
+            Builds an assignment to a variable.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Scripting.Instructions.VarAssign.Exec(System.Int32@,System.Collections.ArrayList)">
+            <summary>
+            Executes an assignment to a variable.
+            </summary>
+            <param name="pc">the program counter.</param>
+            <param name="sp">the stack.</param>
+        </member>
+        <member name="T:NumericalTools.Scripting.Instructions.VarIncrDecrC">
+            <summary>
+            Implements a C-like variable increment / decrement.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.Instructions.VarIncrDecrC.m_VarName">
+            <summary>
+            The name of the variable to be incremented / decremented.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.Instructions.VarIncrDecrC.m_Increment">
+            <summary>
+            True if the operation is an increment, false if it is a decrement.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Scripting.Instructions.VarIncrDecrC.#ctor(System.String,System.Boolean)">
+            <summary>
+            Builds an a variable increment / decrement.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Scripting.Instructions.VarIncrDecrC.Exec(System.Int32@,System.Collections.ArrayList)">
+            <summary>
+            Executes a variable increment / decrement.
+            </summary>
+            <param name="pc">the program counter.</param>
+            <param name="sp">the stack.</param>
+        </member>
+        <member name="T:NumericalTools.Scripting.Instructions.VarAssignC">
+            <summary>
+            Implements a C-like assignment to a variable.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.Instructions.VarAssignC.m_VarName">
+            <summary>
+            The name of the variable to be assigned.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.Instructions.VarAssignC.m_Assign">
+            <summary>
+            The instruction to be executed.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Scripting.Instructions.VarAssignC.#ctor(System.String,System.String)">
+            <summary>
+            Builds an assignment to a variable.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Scripting.Instructions.VarAssignC.Exec(System.Int32@,System.Collections.ArrayList)">
+            <summary>
+            Executes an assignment to a variable.
+            </summary>
+            <param name="pc">the program counter.</param>
+            <param name="sp">the stack.</param>
+        </member>
+        <member name="T:NumericalTools.Scripting.Instructions.VarRead">
+            <summary>
+            Implements an assignment to a variable.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.Instructions.VarRead.m_VarName">
+            <summary>
+            The name of the variable to be assigned.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Scripting.Instructions.VarRead.#ctor(System.String)">
+            <summary>
+            Builds an assignment to a variable.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Scripting.Instructions.VarRead.Exec(System.Int32@,System.Collections.ArrayList)">
+            <summary>
+            Executes an assignment to a variable.
+            </summary>
+            <param name="pc">the program counter.</param>
+            <param name="sp">the stack.</param>
+        </member>
+        <member name="M:NumericalTools.Scripting.Instructions.VarRead.ToAssignment(System.String)">
+            <summary>
+            Converts a variable read to a variable assignment.
+            </summary>
+            <param name="assigntype">the assignment type.</param>
+            <returns>the new variable assignment object.</returns>
+        </member>
+        <member name="T:NumericalTools.Scripting.Instructions.Begin">
+            <summary>
+            Implements a block begin instruction.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Scripting.Instructions.Begin.#ctor">
+            <summary>
+            Builds a block begin instruction.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Scripting.Instructions.Begin.Exec(System.Int32@,System.Collections.ArrayList)">
+            <summary>
+            Executes a block begin instruction.
+            </summary>
+            <param name="pc">the program counter.</param>
+            <param name="sp">the stack.</param>
+        </member>
+        <member name="T:NumericalTools.Scripting.Instructions.End">
+            <summary>
+            Implements a block end instruction.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Scripting.Instructions.End.#ctor">
+            <summary>
+            Builds a block end instruction.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Scripting.Instructions.End.Exec(System.Int32@,System.Collections.ArrayList)">
+            <summary>
+            Executes a block end instruction.
+            </summary>
+            <param name="pc">the program counter.</param>
+            <param name="sp">the stack.</param>
+        </member>
+        <member name="T:NumericalTools.Scripting.Instructions.BinaryOp">
+            <summary>
+            Implements a binary operator.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.Instructions.BinaryOp.m_OpInstr">
+            <summary>
+            Delegate to the actual instruction to be executed.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.Instructions.BinaryOp.m_Op">
+            <summary>
+            The operator to be applied.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.Instructions.BinaryOp.m_Priority">
+            <summary>
+            The priority of the operator.
+            </summary>
+        </member>
+        <member name="P:NumericalTools.Scripting.Instructions.BinaryOp.Priority">
+            <summary>
+            The priority of the operator.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Scripting.Instructions.BinaryOp.#ctor(System.String)">
+            <summary>
+            Builds a binary operator.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Scripting.Instructions.BinaryOp.Exec(System.Int32@,System.Collections.ArrayList)">
+            <summary>
+            Executes a binary operator instruction.
+            </summary>
+            <param name="pc">the program counter.</param>
+            <param name="sp">the stack.</param>
+        </member>
+        <member name="T:NumericalTools.Scripting.Instructions.Call">
+            <summary>
+            Implements a function call.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Scripting.Instructions.Call.m_FunctionDesc">
+            <summary>
+            The function to be called.
+            </summary>
+        </member>
+        <member name="P:NumericalTools.Scripting.Instructions.Call.IsVoid">
+            <summary>
+            Checks whether the function is void.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Scripting.Instructions.Call.#ctor(NumericalTools.Scripting.FunctionDescriptor)">
+            <summary>
+            Builds a function call.
+            </summary>
+            <param name="funcdesc">the function descriptor of the function to be called.</param>
+        </member>
+        <member name="M:NumericalTools.Scripting.Instructions.Call.Exec(System.Int32@,System.Collections.ArrayList)">
+            <summary>
+            Calls the specified function.
+            </summary>
+            <param name="pc">the program counter.</param>
+            <param name="sp">the stack.</param>
+        </member>
+    </members>
+</doc>

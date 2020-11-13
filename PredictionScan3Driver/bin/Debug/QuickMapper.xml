@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>QuickMapper</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Processing.QuickMapping.EditConfigForm">
+            <summary>
+            This form allows GUI-assisted configuration editing for QuickMapping.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.QuickMapping.EditConfigForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.QuickMapping.EditConfigForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.QuickMapping.EditConfigForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Processing.QuickMapping.Configuration">
+            <summary>
+            QuickMapping configuration.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.QuickMapping.Configuration.SlopeTol">
+            <summary>
+            Slope tolerance for track matching.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.QuickMapping.Configuration.PosTol">
+            <summary>
+            Position tolerance for track matching.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.QuickMapping.Configuration.UseAbsoluteReference">
+            <summary>
+            If <c>true</c>, absolute coordinates are used for mapping; otherwise, only relative track-to-track mapping matters.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.QuickMapping.Configuration.FullStatistics">
+            <summary>
+            If <c>true</c>, full statistics is used and no statistical shortcut is applied to speed up the search.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.QuickMapping.Configuration.#ctor">
+            <summary>
+            Builds an empty configuration.
+            </summary>		
+        </member>
+        <member name="M:SySal.Processing.QuickMapping.Configuration.#ctor(System.String)">
+            <summary>
+            Builds an empty configuration with the specified name.
+            </summary>
+            <param name="name">the name to be assigned to the configuration.</param>
+        </member>
+        <member name="M:SySal.Processing.QuickMapping.Configuration.Clone">
+            <summary>
+            Clones the configuration.
+            </summary>
+            <returns>the object clone.</returns>
+        </member>
+        <member name="T:SySal.Processing.QuickMapping.dMapLogger">
+            <summary>
+            Delegate called to log the mapping process.
+            </summary>
+            <param name="dx">Trial displacement in X.</param>
+            <param name="dy">Trial displacement in Y.</param>
+            <param name="fraction">Fraction of total sample used.</param>
+            <param name="matches">Number of matches found.</param>
+        </member>
+        <member name="T:SySal.Processing.QuickMapping.QuickMapper">
+            <summary>
+            Quick pattern matching class.
+            </summary>
+            <remarks>
+            <para>The QuickMapping algorithm takes two maps of tracks and searches for the translation that optimizes the number of matches.</para>
+            <para>The algorithm works in relative coordinates; the origin of the mapping procedure is set by overlapping the centers of the two maps. 
+            Therefore, absolute translations do not affect the ability of the algorithm to find the optimum matching conditions, but just the value of the translations found.</para>
+            <para>This implementation works by dividing one map in cells to speed up the search for track matches.</para>
+            <para>In order to speed up the search, <i>statistical boost</i> can be applied: the basic idea is that a background match has always much fewer tracks than the optimum match, 
+            so it's useless to check for all tracks. In practice, after checking one quarter of the tracks, the number of matches found is compared with the number of matches obtained with the current best trial. 
+            If it is worse (off a proper tolerance), that trial translation is given up, and the algorithm goes on with the next trial. The same comparison is done at one-half and at 
+            3/4 of the total track sample. After the good combination is found, all other combinations are very quickly discarded.</para>
+            </remarks>
+        </member>
+    </members>
+</doc>

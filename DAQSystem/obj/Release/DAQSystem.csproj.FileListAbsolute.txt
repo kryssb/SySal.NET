@@ -1,0 +1,8 @@
+/home/kryss/Documenti/SySal/DAQSystem/bin/Release/DAQSystem.dll
+/home/kryss/Documenti/SySal/DAQSystem/bin/Release/DAQSystem.xml
+/home/kryss/Documenti/SySal/DAQSystem/bin/Release/SySalCore.dll
+/home/kryss/Documenti/SySal/DAQSystem/bin/Release/Tracking.dll
+/home/kryss/Documenti/SySal/DAQSystem/bin/Release/SySalCore.xml
+/home/kryss/Documenti/SySal/DAQSystem/obj/Release/DAQSystem.csprojAssemblyReference.cache
+/home/kryss/Documenti/SySal/DAQSystem/obj/Release/DAQSystem.csproj.CopyComplete
+/home/kryss/Documenti/SySal/DAQSystem/obj/Release/DAQSystem.dll

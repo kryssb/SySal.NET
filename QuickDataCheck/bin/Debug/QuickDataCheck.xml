@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>QuickDataCheck</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Executables.QuickDataCheck.DBAccessForm">
+            <summary>
+            Database access form.
+            </summary>
+            <remarks>
+            <para>This form is preloaded with the credentials from the default credential record.</para>
+            <para>The user can change these credentials to access other DBs or with other user credentials.</para>
+            </remarks>
+        </member>
+        <member name="F:SySal.Executables.QuickDataCheck.DBAccessForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.QuickDataCheck.DBAccessForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.QuickDataCheck.DBAccessForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Executables.QuickDataCheck.ExeForm">
+            <summary>
+            QuickDataCheck - GUI program for data check and analysis.
+            </summary>
+            <remarks>
+            <para>QuickDataCheck is able to read data files in the following formats:
+            <list type="bullet">
+            <item><term>SySal RWD</term></item>
+            <item><term>SySal TLG</term></item>
+            <item><term>SySal TSR</term></item>
+            <item><term>Generic ASCII n-tuple file</term></item>
+            </list>
+            In addition, datasets from DB queries can be handled.
+            </para>
+            <para>QuickDataCheck supports all features from the <see cref="T:NumericalTools.AnalysisControl">StatisticalAnalysisManager</see>. Actually, the main form is an instance of that control.</para>	
+            <para>A scripting engine allows editing and execution of analysis scripts with C-like syntax or Pascal-like syntax.</para>	
+            </remarks>
+        </member>
+        <member name="M:SySal.Executables.QuickDataCheck.ExeForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.QuickDataCheck.ExeForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.QuickDataCheck.ExeForm.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="T:SySal.Executables.QuickDataCheck.QuickQueryForm">
+            <summary>
+            Query form to retrieve datasets from DBs.
+            </summary>
+            <remarks>
+            <para>The form allows insertion of an SQL query text.</para>
+            <para>The dataset generated can be given a custom name for identification.</para>
+            </remarks>
+        </member>
+        <member name="F:SySal.Executables.QuickDataCheck.QuickQueryForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.QuickDataCheck.QuickQueryForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.QuickDataCheck.QuickQueryForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Executables.QuickDataCheck.ScriptEditor">
+            <summary>
+            Script form.
+            </summary>
+            <remarks>
+            <para>Data management and analysis scripts can be edited and run in this form.</para>
+            <para>Any script action is handled as if it were executed interactively by the user on the <see cref="T:SySal.Executables.QuickDataCheck.ExeForm">ExeForm</see>.</para>
+            <para>C-like syntax and Pascal-like syntax are supported.</para>
+            <para>Specific help for the various functions available is displayed by clicking on each possible function name on the right panel.</para>
+            <para>Scripts can be saved and loaded.</para>
+            </remarks>
+        </member>
+        <member name="M:SySal.Executables.QuickDataCheck.ScriptEditor.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.QuickDataCheck.ScriptEditor.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.QuickDataCheck.ViewAsTracksDataSelector.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.QuickDataCheck.ViewAsTracksDataSelector.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SySal.Executables.QuickDataCheck.ViewAsTracksDataSelector.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+    </members>
+</doc>

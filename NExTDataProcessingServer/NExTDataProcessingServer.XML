@@ -1,0 +1,259 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NExTDataProcessingServer</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.NExT.DataProcessingBatchDescEvent">
+            <summary>
+            Data event containing a data processing batch request.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.DataProcessingBatchDescEvent.Desc">
+            <summary>
+            Descriptor of a data processing batch.
+            </summary>
+        </member>
+        <member name="M:SySal.NExT.DataProcessingBatchDescEvent.#ctor(SySal.DAQSystem.DataProcessingBatchDesc,System.String)">
+            <summary>
+            Builds a new DataProcessingBatchDescEvent, wrapping a DataProcessingBatchDesc.
+            </summary>
+            <param name="desc">the descriptor of the data processing batch.</param>
+            <param name="emitter">the URI of the emitter.</param>
+            <remarks>the token is automatically set to the batch Id.</remarks>
+        </member>
+        <member name="M:SySal.NExT.DataProcessingBatchDescEvent.#ctor">
+            <summary>
+            Builds an empty event.
+            </summary>
+        </member>
+        <member name="T:SySal.NExT.DataProcessingCompleteEvent">
+            <summary>
+            Data event containing information about completion of a batch.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.DataProcessingCompleteEvent.Id">
+            <summary>
+            Id of the Batch;
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.DataProcessingCompleteEvent.TotalProcessorTime">
+            <summary>
+            Total processor time used by the process.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.DataProcessingCompleteEvent.PeakVirtualMemorySize">
+            <summary>
+            The maximum requirement of virtual memory the process has had during execution.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.DataProcessingCompleteEvent.PeakWorkingSet">
+            <summary>
+            The maximum working set the process has had during execution.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.DataProcessingCompleteEvent.FinalException">
+            <summary>
+            The exception that terminated the job; <c>null</c> if no exception was thrown.
+            </summary>
+        </member>
+        <member name="T:SySal.NExT.DataProcessingEscalateEvent">
+            <summary>
+            Data event notifying that a batch must be escalated because it consumes too many resources on a worker.
+            </summary>
+        </member>
+        <member name="F:SySal.NExT.DataProcessingEscalateEvent.Id">
+            <summary>
+            Id of the Batch;
+            </summary>
+        </member>
+        <member name="T:SySal.NExT.DataProcessingServerWorker">
+            <summary>
+            Data processing server worker server. One <see cref="T:SySal.NExT.DataProcessingServer"/> uses one or more workers.
+            </summary>
+            <remarks>This version relies on the SySal.NExT technology. It is intended to work behind a DataProcessingServer, 
+            so it processes only one batch at a time.</remarks>
+        </member>
+        <member name="P:SySal.NExT.DataProcessingServerWorker.DataConsumerGroups">
+            <summary>
+            This server can send results to a data collector.
+            </summary>
+        </member>
+        <member name="P:SySal.NExT.DataProcessingServerWorker.MonitorGauges">
+            <summary>
+            Gets the status of the worker.
+            </summary>
+        </member>
+        <member name="M:SySal.NExT.DataProcessingServerWorker.OnDataEvent(SySal.NExT.DataEvent)">
+            <summary>
+            Processes a job.
+            </summary>
+            <param name="de">the data event must be a <see cref="T:SySal.NExT.DataProcessingBatchDescEvent"/>.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SySal.NExT.DataProcessingServerWorker.#ctor(System.String,System.Boolean,SySal.NExT.NExTConfiguration.ServerParameter[],SySal.NExT.NExTConfiguration.ServerParameter[])">
+            <summary>
+            Bulds a new worker.
+            </summary>
+            <param name="name">the name of the worker.</param>
+            <param name="publish">this parameter is ignored.</param>
+            <param name="staticparams">static parameters:
+            <list type="table">
+            <listheader><term>Name</term><description>Description</description></listheader>
+            <item><term>DBSrv</term><description>the DB server to pass to processing batches.</description></item>
+            <item><term>MaxOutputText</term><description>the maximum size (in characters) of output text.</description></item>
+            <item><term>OutputUpdateSeconds</term><description>the interval to poll the status of the process.</description></item>
+            <item><term>MachinePowerClass</term><description>the power class of the machine.</description></item>
+            <item><term>ResultTimeoutSeconds</term><description>maximum time to retain a result in seconds.</description></item>
+            <item><term>LogFile</term><description>the file name to use as template for log files. If <c>null</c>, or pointing to a non-existing path, no log is generated.</description></item>
+            </list>
+            </param>
+            <param name="dynparams">dynamic parameters:
+            <list type="table">
+            <listheader><term>Name</term><description>Description</description></listheader>
+            <item><term>DBSrv</term><description>the DB server to pass to processing batches.</description></item>
+            <item><term>MaxOutputText</term><description>the maximum size (in characters) of output text.</description></item>
+            <item><term>OutputUpdateSeconds</term><description>the interval to poll the status of the process.</description></item>
+            <item><term>MachinePowerClass</term><description>the power class of the machine.</description></item>
+            <item><term>ResultTimeoutSeconds</term><description>maximum time to retain a result in seconds.</description></item>
+            </list>
+            </param>
+            <remarks>
+            <para>Results are sent to the "ResultCollector" consumer group.</para>
+            </remarks>        
+        </member>
+        <member name="T:SySal.NExT.DataProcessingServer">
+            <summary>
+            Data processing server. It uses one or more <see cref="T:SySal.NExT.DataProcessingServerWorker"/>.
+            </summary>
+        </member>
+        <member name="M:SySal.NExT.DataProcessingServer.WorkerAffinityCheck(System.String,SySal.NExT.DataEvent)">
+            <summary>
+            Checks affinity between a worker and a batch.
+            </summary>
+            <param name="uri">the worker to be checked.</param>
+            <param name="de">the DataEvent that contains the batch descriptor.</param>
+            <returns><c>true</c> if the MachinePowerClass of the worker is not less than required by the batch descriptor.</returns>
+        </member>
+        <member name="M:SySal.NExT.DataProcessingServer.WorkerShouldReroute(SySal.NExT.DataEventDone)">
+            <summary>
+            Checks whether a job should be rerouted.
+            </summary>
+            <param name="ded">the data event completed.</param>
+            <returns>always returns <c>false</c>.</returns>
+        </member>
+        <member name="P:SySal.NExT.DataProcessingServer.DataConsumerGroups">
+            <summary>
+            Returns the set of data consumers: in this case there is only one group, named "Workers".
+            </summary>
+        </member>
+        <member name="M:SySal.NExT.DataProcessingServer.OnDataEvent(SySal.NExT.DataEvent)">
+            <summary>
+            Processes data events.
+            </summary>
+            <param name="de">the event to be processed.</param>
+            <returns><c>true</c> if the event is accepted, <c>false</c> otherwise.</returns>
+            <remarks>This implementation always returns <c>true</c>.</remarks>
+        </member>
+        <member name="P:SySal.NExT.DataProcessingServer.MonitorGauges">
+            <summary>
+            Provides a representation of the internal status fo the DataProcessingServer.
+            </summary>
+        </member>
+        <member name="M:SySal.NExT.DataProcessingServer.#ctor(System.String,System.Boolean,SySal.NExT.NExTConfiguration.ServerParameter[],SySal.NExT.NExTConfiguration.ServerParameter[])">
+            <summary>
+            Builds a new DataProcessingServer.
+            </summary>
+            <param name="name">the name of the data processing server object.</param>
+            <param name="publish"><c>true</c> to publish, <c>false</c> otherwise.</param>
+            <param name="staticparams">the list of static parameters.</param>
+            <param name="dynparams">the list of dynamic parameters.</param>
+            <remarks>The following parameters are currently understood both as static and dynamic, in addition to default <see cref="!:NExtServer"/> parameters:
+            <list type="table">
+            <listheader><term>Parameter</term><description>Meaning</description></listheader>
+            <item><term>ResultTimeoutSeconds</term><description>The duration in seconds of a result.</description></item>
+            <item><term>DBSrv</term><description>Database server.</description></item>
+            <item><term>DBUsr</term><description>Database username.</description></item>
+            <item><term>DBPwd</term><description>Database password.</description></item>
+            </list>
+            </remarks>
+        </member>
+        <member name="P:SySal.NExT.DataProcessingServer.ParallelJobs">
+            <summary>
+            Returns the number of jobs that can be executed in parallel.
+            </summary>
+            <remarks>this number is identical to the number of workers, in this implementation.</remarks>
+        </member>
+        <member name="P:SySal.NExT.DataProcessingServer.Queue">
+            <summary>
+            The list of batch jobs in the processing queue.
+            </summary>
+        </member>
+        <member name="P:SySal.NExT.DataProcessingServer.QueueLength">
+            <summary>
+            The length of the processing queue.
+            </summary>
+        </member>
+        <member name="P:SySal.NExT.DataProcessingServer.MachinePowerClass">
+            <summary>
+            Retrieves the power class of this cluster.
+            </summary>
+            <remarks>In this implementation, this number is the largest MachinePowerClass of all workers.</remarks>
+        </member>
+        <member name="M:SySal.NExT.DataProcessingServer.Remove(System.UInt64,System.String,System.String,System.String)">
+            <summary>
+            Removes a batch from the queue or aborts it if it is already being executed.
+            A non-null token or a username/password pair must be supplied that matches the one with which the batch was started.
+            If the token is supplied, the username/password pair is ignored.
+            </summary>
+            <param name="id">identifier of the batch to be removed.</param>
+            <param name="token">the process token to be used.</param>
+            <param name="user">username of the user that started the batch. Ignored if <c>token</c> is non-null.</param>
+            <param name="password">password of the user that started the batch. Ignored if <c>token</c> is non-null.</param>
+        </member>
+        <member name="M:SySal.NExT.DataProcessingServer.Enqueue(SySal.DAQSystem.DataProcessingBatchDesc)">
+            <summary>
+            Enqueues a batch without waiting for its execution.
+            </summary>
+            <param name="desc">the descriptor of the batch. If the batch is rejected because another batch in the queue already has the same id, the Id member is set to 0.</param>
+            <returns>true if the batch has been accepted, false otherwise.</returns>
+        </member>
+        <member name="M:SySal.NExT.DataProcessingServer.DoneWith(System.UInt64)">
+            <summary>
+            Checks for execution completion.
+            </summary>
+            <param name="id">the id of the batch.</param>
+            <returns>true if the batch has been completed, false if it is in progress.</returns>
+        </member>
+        <member name="M:SySal.NExT.DataProcessingServer.Result(System.UInt64)">
+            <summary>
+            Gets the result for a batch.
+            </summary>
+            <param name="id">the id of the batch.</param>
+            <returns>the batch descriptor. It is modified to reflect the batch output. An exception is thrown if the batch terminated with an exception.</returns>
+        </member>
+        <member name="P:SySal.NExT.DataProcessingServer.SuggestId">
+            <summary>
+            Suggests a unique Id.
+            </summary>
+            <remarks>In this implementation, the Id runs with time.</remarks>
+        </member>
+        <member name="P:SySal.NExT.DataProcessingServer.IsWillingToProcess">
+            <summary>
+            Tells whether this DataProcessingServer is saturated or not.
+            </summary>
+        </member>
+        <member name="M:SySal.NExT.DataProcessingServer.TestComm(System.Int32)">
+            <summary>
+            Tests the communication.
+            </summary>
+            <param name="commpar">the communication parameter.</param>
+            <returns>2 * commpar - 1.</returns>
+        </member>
+        <member name="P:SySal.NExT.DataProcessingServer.ShowExceptions">
+            <summary>
+            Exceptions are shown.
+            </summary>
+        </member>
+    </members>
+</doc>

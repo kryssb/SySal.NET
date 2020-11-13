@@ -1,0 +1,15 @@
+/home/kryss/Documenti/SySal/ImageGrabbing/bin/Debug/ImageGrabbing.dll
+/home/kryss/Documenti/SySal/ImageGrabbing/bin/Debug/ImageGrabbing.pdb
+/home/kryss/Documenti/SySal/ImageGrabbing/bin/Debug/Imaging.dll
+/home/kryss/Documenti/SySal/ImageGrabbing/bin/Debug/NumericalTools.dll
+/home/kryss/Documenti/SySal/ImageGrabbing/bin/Debug/SySalCore.dll
+/home/kryss/Documenti/SySal/ImageGrabbing/bin/Debug/Imaging.pdb
+/home/kryss/Documenti/SySal/ImageGrabbing/bin/Debug/Imaging.xml
+/home/kryss/Documenti/SySal/ImageGrabbing/bin/Debug/NumericalTools.pdb
+/home/kryss/Documenti/SySal/ImageGrabbing/bin/Debug/NumericalTools.xml
+/home/kryss/Documenti/SySal/ImageGrabbing/bin/Debug/SySalCore.pdb
+/home/kryss/Documenti/SySal/ImageGrabbing/bin/Debug/SySalCore.xml
+/home/kryss/Documenti/SySal/ImageGrabbing/obj/Debug/ImageGrabbing.csprojAssemblyReference.cache
+/home/kryss/Documenti/SySal/ImageGrabbing/obj/Debug/ImageGrabbing.csproj.CopyComplete
+/home/kryss/Documenti/SySal/ImageGrabbing/obj/Debug/ImageGrabbing.dll
+/home/kryss/Documenti/SySal/ImageGrabbing/obj/Debug/ImageGrabbing.pdb

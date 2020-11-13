@@ -1,0 +1,329 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DataProcessingServerScheme</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.DAQSystem.DataProcessingBatchDesc">
+            <summary>
+            Descriptor of a data processing batch.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.DataProcessingBatchDesc.Id">
+            <summary>
+            The Identifier of the batch assigned by the the Data Processing Server.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.DataProcessingBatchDesc.Description">
+            <summary>
+            Optional description of the data processing task.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.DataProcessingBatchDesc.MachinePowerClass">
+            <summary>
+            Machine processing power class needed to run the batch, or 0 if it does not matter.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.DataProcessingBatchDesc.Token">
+            <summary>
+            Opera Computing Infrastructure process token that the driver should use. The token contains implicitly the user identification and the privileges at the time of token creation.
+            If this string is null, the Username and Password fields are used to authenticate the user.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.DataProcessingBatchDesc.Username">
+            <summary>
+            Username of the user requesting the batch. Used only if Token is a null string.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.DataProcessingBatchDesc.Password">
+            <summary>
+            Password of the user requesting the batch. Used only if Token is a null string.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.DataProcessingBatchDesc.AliasUsername">
+            <summary>
+            Alternate username of the user requesting the batch for special services (e.g. DB access).
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.DataProcessingBatchDesc.AliasPassword">
+            <summary>
+            Alternate password of the user requesting the batch for special services (e.g. DB access).
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.DataProcessingBatchDesc.CommandLineArguments">
+            <summary>
+            string specifying the command line arguments.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.DataProcessingBatchDesc.Filename">
+            <summary>
+            Full path name of the process file to be executed.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.DataProcessingBatchDesc.Enqueued">
+            <summary>
+            Date/time when the batch was enqueued.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.DataProcessingBatchDesc.Started">
+            <summary>
+            Date/time when the batch was started.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.DataProcessingBatchDesc.Finished">
+            <summary>
+            Date/time when the batch was finished/terminated.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.DataProcessingBatchDesc.TotalProcessorTime">
+            <summary>
+            Total processor time used by the process.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.DataProcessingBatchDesc.PeakVirtualMemorySize">
+            <summary>
+            The maximum requirement of virtual memory the process has had during execution.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.DataProcessingBatchDesc.PeakWorkingSet">
+            <summary>
+            The maximum working set the process has had during execution.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.DataProcessingBatchDesc.MaxOutputText">
+            <summary>
+            Maximum size of output text.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.DataProcessingBatchDesc.OutputTextSaveFile">
+            <summary>
+            File where the output text is to be saved. Set to <c>null</c> or to an empty string to avoid saving the output.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.DataProcessingBatchDesc.Clone">
+            <summary>
+            Clones the DataProcessingBatchDesc object.
+            </summary>
+            <returns>a new object identical to this DataProcessingBatchDesc.</returns>
+        </member>
+        <member name="T:SySal.DAQSystem.DataProcessingException">
+            <summary>
+            Data processing exception. Wraps exceptions born in the context of data processing.
+            This class is useful in discriminating whether a generic exception is due to a computing exception or to difficulties in connections or remoting management: all computing exceptions are wrapped in DataProcessingExceptions, whereas connection errors, abortions, etc., are not.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.IDataProcessingServer">
+            <summary>
+            Data Processing Server definitions.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.IDataProcessingServer.ParallelJobs">
+            <summary>
+            The number of jobs that can be performed in parallel. 
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.IDataProcessingServer.Queue">
+            <summary>
+            The queue of data processing batches to be executed.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.IDataProcessingServer.QueueLength">
+            <summary>
+            The number of data processing batches to be executed.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.IDataProcessingServer.MachinePowerClass">
+            <summary>
+            The power class of the machine.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.IDataProcessingServer.Remove(System.UInt64,System.String,System.String,System.String)">
+            <summary>
+            Draws a batch out ouf the queue or aborts it if it is already being executed.
+            A non-null token or a username/password pair must be supplied that matches the one with which the batch was started.
+            If the token is supplied, the username/password pair is ignored.
+            </summary>
+            <param name="id">identifier of the batch to be removed.</param>
+            <param name="token">the process token to be used.</param>
+            <param name="user">username of the user that started the batch. Ignored if <c>token</c> is non-null.</param>
+            <param name="password">password of the user that started the batch. Ignored if <c>token</c> is non-null.</param>
+        </member>
+        <member name="M:SySal.DAQSystem.IDataProcessingServer.Enqueue(SySal.DAQSystem.DataProcessingBatchDesc)">
+            <summary>
+            Enqueues a batch. If a non-null token is supplied, it is used; otherwise, the username/password pair is used to authenticate the user.
+            </summary>
+            <param name="desc">the descriptor of the batch.</param>
+            <returns>true if the batch has been accepted, false otherwise.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.IDataProcessingServer.DoneWith(System.UInt64)">
+            <summary>
+            Checks for execution completion.
+            </summary>
+            <param name="id">the id of the batch.</param>
+            <returns>true if the batch has been completed, false if it is in progress.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.IDataProcessingServer.Result(System.UInt64)">
+            <summary>
+            Gets the result for a batch.
+            </summary>
+            <param name="id">the id of the batch.</param>
+            <returns>the batch descriptor. It is modified to reflect the batch output. An exception is thrown if the batch terminated with an exception.</returns>
+        </member>
+        <member name="P:SySal.DAQSystem.IDataProcessingServer.SuggestId">
+            <summary>
+            Provides an Id for a new batch to be enqueued.
+            Batch Id clashing is a reason for rejection of well-formed batch descriptors.
+            Use of this property does not completely guarantee that the batch id does not clash with another Id in the queue, because another process could schedule another batch with the same Id.
+            However, the Ids generated by this property all come from the same sequence and are very likely not to be duplicated within a reasonable amount of time.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.IDataProcessingServer.IsWillingToProcess">
+            <summary>
+            Checks whether the machine is willing to accept new requests of batch data processing.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.IDataProcessingServer.TestComm(System.Int32)">
+            <summary>
+            Tests the communication with the DataProcessingServer.
+            </summary>
+            <param name="i">communication parameter.</param>
+            <returns>2 * commpar - 1 if the DataProcessingServer object and the communication are working properly.</returns>
+        </member>
+        <member name="T:SySal.DAQSystem.SyncDataProcessingServerWrapper">
+            <summary>
+            Wraps a Data Processing Server to made synchronous calls easier with automatic detection of network errors.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.SyncDataProcessingServerWrapper.m_Srv">
+            <summary>
+            The contained DataProcessingServer object.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.SyncDataProcessingServerWrapper.m_Timeout">
+            <summary>
+            Communication timeout.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.SyncDataProcessingServerWrapper.m_ReturnObj">
+            <summary>
+            The generic object returned by an asynchronous method call.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.SyncDataProcessingServerWrapper.m_ReturnException">
+            <summary>
+            The generic exception returned by an asynchronous method call.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.SyncDataProcessingServerWrapper.m_Thread">
+            <summary>
+            The thread in which the asynchronous call is executed.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.SyncDataProcessingServerWrapper.ParallelJobs">
+            <summary>
+            The number of jobs that can be performed in parallel. 
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.SyncDataProcessingServerWrapper.IsWillingToProcess">
+            <summary>
+            Checks whether the machine is willing to accept new requests of batch data processing.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.SyncDataProcessingServerWrapper.SuggestId">
+            <summary>
+            Provides an Id for a new batch to be enqueued. 
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.SyncDataProcessingServerWrapper.Queue">
+            <summary>
+            The queue of data processing batches to be executed.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.SyncDataProcessingServerWrapper.QueueLength">
+            <summary>
+            The number of data processing batches to be executed.
+            </summary>
+        </member>
+        <member name="P:SySal.DAQSystem.SyncDataProcessingServerWrapper.MachinePowerClass">
+            <summary>
+            The power class of the machine.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.SyncDataProcessingServerWrapper.m_pId">
+            <summary>
+            Input slot for aRemove and aDoneWith.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.SyncDataProcessingServerWrapper.m_pUser">
+            <summary>
+            Input slot for aRemove.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.SyncDataProcessingServerWrapper.m_pPassword">
+            <summary>
+            Input slot for aRemove.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.SyncDataProcessingServerWrapper.m_pToken">
+            <summary>
+            Input slot for aRemove.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.SyncDataProcessingServerWrapper.Remove(System.UInt64,System.String,System.String,System.String)">
+            <summary>
+            Draws a batch out ouf the queue or aborts it if it is already being executed.
+            A non-null token or a username/password pair must be supplied that matches the one with which the batch was started.
+            If the token is supplied, the username/password pair is ignored.
+            </summary>
+            <param name="id">identifier of the batch to be removed.</param>
+            <param name="token">the process token to be used.</param>
+            <param name="user">username of the user that started the batch. Ignored if <c>token</c> is non-null.</param>
+            <param name="password">password of the user that started the batch. Ignored if <c>token</c> is non-null.</param>
+        </member>
+        <member name="F:SySal.DAQSystem.SyncDataProcessingServerWrapper.m_pDesc">
+            <summary>
+            Input slot for aEnqueue and aResult.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.SyncDataProcessingServerWrapper.Enqueue(SySal.DAQSystem.DataProcessingBatchDesc)">
+            <summary>
+            Enqueues a batch.
+            </summary>
+            <param name="desc">the descriptor of the batch.</param>
+            <returns>true if the batch has been accepted, false otherwise.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.SyncDataProcessingServerWrapper.DoneWith(System.UInt64)">
+            <summary>
+            Checks for execution completion.
+            </summary>
+            <param name="id">the id of the batch.</param>
+            <returns>true if the batch has been completed, false if it is in progress.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.SyncDataProcessingServerWrapper.Result(System.UInt64)">
+            <summary>
+            Gets the result for a batch.
+            </summary>
+            <param name="id">the id of the batch.</param>
+            <returns>the batch descriptor. It is modified to reflect the batch output. An exception is thrown if the batch terminated with an exception.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.SyncDataProcessingServerWrapper.#ctor(SySal.DAQSystem.IDataProcessingServer,System.TimeSpan)">
+            <summary>
+            Builds a new SyncDataProcessingServerWrapper around a DataProcessingServer.
+            </summary>
+            <param name="srv">the DataProcessingServer to be wrapped.</param>
+            <param name="timeout">the communication timeout to be used.</param>
+        </member>
+        <member name="F:SySal.DAQSystem.SyncDataProcessingServerWrapper.m_pCommpar">
+            <summary>
+            Input slot for TestComm.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.SyncDataProcessingServerWrapper.TestComm(System.Int32)">
+            <summary>
+            Tests the communication with the DataProcessingServer.
+            </summary>
+            <param name="i">communication parameter.</param>
+            <returns>2 * commpar - 1 if the DataProcessingServer object and the communication are working properly.</returns>
+        </member>
+    </members>
+</doc>

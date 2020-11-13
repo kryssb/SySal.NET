@@ -1,0 +1,246 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Tracking</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Tracking.Grain">
+            <summary>
+            Grain of a track
+            </summary>
+        </member>
+        <member name="F:SySal.Tracking.Grain.Position">
+            <summary>
+            3D position of the grain.
+            </summary>
+        </member>
+        <member name="F:SySal.Tracking.Grain.Area">
+            <summary>
+            Area in pixels.
+            </summary>
+        </member>
+        <member name="M:SySal.Tracking.Grain.Clone">
+            <summary>
+            Yields a copy of this object.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SySal.Tracking.Grain2">
+            <summary>
+            Grain of a tomographic image
+            </summary>
+        </member>
+        <member name="F:SySal.Tracking.Grain2.Position">
+            <summary>
+            2D position of the grain in a layer.
+            </summary>
+        </member>
+        <member name="F:SySal.Tracking.Grain2.Area">
+            <summary>
+            Area in pixels.
+            </summary>
+        </member>
+        <member name="T:SySal.Tracking.GrainPlane">
+            <summary>
+            GrainPlane represents a plane of grains all at the same Z level
+            </summary>
+        </member>
+        <member name="F:SySal.Tracking.GrainPlane.Z">
+            <summary>
+            Depth (Z) coordinate of the plane.
+            </summary>
+        </member>
+        <member name="F:SySal.Tracking.GrainPlane.Grains">
+            <summary>
+            Grains in the plane.
+            </summary>
+        </member>
+        <member name="T:SySal.Tracking.MIPEmulsionTrackInfo">
+            <summary>
+            MIPEmulsionTrackInfo stores information about a quasi-vertical track
+            </summary>
+        </member>
+        <member name="F:SySal.Tracking.MIPEmulsionTrackInfo.Field">
+            <summary>
+            The field of view where the track has been found.
+            </summary>
+        </member>
+        <member name="F:SySal.Tracking.MIPEmulsionTrackInfo.Count">
+            <summary>
+            The number of grains in the track.
+            </summary>
+        </member>
+        <member name="F:SySal.Tracking.MIPEmulsionTrackInfo.AreaSum">
+            <summary>
+            Sum of the areas of all grains.
+            </summary>
+        </member>
+        <member name="F:SySal.Tracking.MIPEmulsionTrackInfo.Intercept">
+            <summary>
+            3D position of a point on the track trajectory.
+            </summary>
+        </member>
+        <member name="F:SySal.Tracking.MIPEmulsionTrackInfo.Slope">
+            <summary>
+            3D slope of the track trajectory.
+            </summary>
+        </member>
+        <member name="F:SySal.Tracking.MIPEmulsionTrackInfo.Sigma">
+            <summary>
+            Quality of the track, usually expressed as alignment residuals or angular agreement.
+            </summary>
+        </member>
+        <member name="F:SySal.Tracking.MIPEmulsionTrackInfo.TopZ">
+            <summary>
+            Z of the top grain.
+            </summary>
+        </member>
+        <member name="F:SySal.Tracking.MIPEmulsionTrackInfo.BottomZ">
+            <summary>
+            Z of the bottom grain.
+            </summary>
+        </member>
+        <member name="M:SySal.Tracking.MIPEmulsionTrackInfo.Clone">
+            <summary>
+            Yields a copy of this object.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SySal.Tracking.MIPEmulsionTrack">
+            <summary>
+            MIPEmulsionTrack represents a track made of grains in the emulsion along with its global information
+            </summary>
+        </member>
+        <member name="F:SySal.Tracking.MIPEmulsionTrack.m_Info">
+            <summary>
+            Member data on which the Info property relies. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Tracking.MIPEmulsionTrack.Info">
+            <summary>
+            Retrieves global information about the track.
+            </summary>
+        </member>
+        <member name="F:SySal.Tracking.MIPEmulsionTrack.m_Grains">
+            <summary>
+            Member data holding the array of the grains in the track. Can be accessed by derived classes.
+            </summary>
+        </member>
+        <member name="P:SySal.Tracking.MIPEmulsionTrack.Item(System.Int32)">
+            <summary>
+            Accesses grains in an array-like fashion.
+            </summary>
+        </member>
+        <member name="P:SySal.Tracking.MIPEmulsionTrack.Length">
+            <summary>
+            Returns the number of grains in the track.
+            </summary>
+        </member>
+        <member name="M:SySal.Tracking.MIPEmulsionTrack.#ctor">
+            <summary>
+            Protected constructor. Prevents users from creating MIPEmulsionTrack objects without deriving the class. Is implicitly called in the constructors of derived classes.
+            </summary>
+        </member>
+        <member name="M:SySal.Tracking.MIPEmulsionTrack.AccessGrains(SySal.Tracking.MIPEmulsionTrack)">
+            <summary>
+            Protected accessor for quick access to the grain array. Can be used by derived classes.
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SySal.Tracking.MIPEmulsionTrack.AccessInfo(SySal.Tracking.MIPEmulsionTrack)">
+            <summary>
+            Protected accessor for quick access to the track info. Can be used by derived classes.
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SySal.Tracking.IMIPTracker">
+            <summary>
+            Tracker objects receive grains and retrieve tracks
+            </summary>
+        </member>
+        <member name="P:SySal.Tracking.IMIPTracker.TrackingArea">
+            <summary>
+            Area where the tracker is supposed to operate.
+            </summary>
+        </member>
+        <member name="P:SySal.Tracking.IMIPTracker.Pixel2Micron">
+            <summary>
+            Pixel-to-micron conversion factors.
+            </summary>
+        </member>
+        <member name="M:SySal.Tracking.IMIPTracker.FindTracks(SySal.Tracking.GrainPlane[],System.Boolean,System.Int32,System.Boolean,SySal.BasicTypes.Vector2,SySal.BasicTypes.Vector2)">
+            <summary>
+            Finds tracks as grain sequences.
+            </summary>
+            <param name="tomography">images as planes of grains.</param>
+            <param name="istopside"><c>true</c> for top side, <c>false</c> for bottom side.</param>
+            <param name="maxtracks">maximum number of tracks to produce.</param>
+            <param name="enablepresetslope">if <c>true</c>, enables using a preset track slope, with limited slope acceptance.</param>
+            <param name="presetslope">preselected slope of tracks to be found.</param>
+            <param name="presetslopeacc">slope acceptances for preselected track slopes.</param>
+        </member>
+        <member name="T:SySal.Tracking.DistortionCorrection">
+            <summary>
+            Distortion correction.
+            </summary>
+        </member>
+        <member name="F:SySal.Tracking.DistortionCorrection.Order">
+            <summary>
+            Order of the correction.
+            </summary>
+        </member>
+        <member name="F:SySal.Tracking.DistortionCorrection.Coefficients">
+            <summary>
+            Coefficients of the correction.
+            </summary>
+        </member>
+        <member name="F:SySal.Tracking.DistortionCorrection.Shrinkage">
+            <summary>
+            Shrinkage factor.
+            </summary>
+        </member>
+        <member name="F:SySal.Tracking.DistortionCorrection.ZBaseSurface">
+            <summary>
+            Z of the emulsion surface in contact with the plastic base of the plate.
+            </summary>
+        </member>
+        <member name="F:SySal.Tracking.DistortionCorrection.ZExternalSurface">
+            <summary>
+            Z of the outer surface of the emulsion layer.
+            </summary>
+        </member>
+        <member name="M:SySal.Tracking.DistortionCorrection.Correct(SySal.Tracking.Grain[])">
+            <summary>
+            Corrects the grain positions using known distortion information.
+            </summary>
+            <param name="grains"></param>
+        </member>
+        <member name="M:SySal.Tracking.DistortionCorrection.#ctor(System.UInt32,SySal.BasicTypes.Vector2[],System.Double,System.Double,System.Double)">
+            <summary>
+            Protected constructor. Can only be called by derived classes. Users must derive a class from DistortionCorrection in order to use it.
+            </summary>
+            <param name="order"></param>
+            <param name="coefficients"></param>
+            <param name="shrinkage"></param>
+            <param name="zbasesurface"></param>
+            <param name="zexternalsurface"></param>
+        </member>
+        <member name="T:SySal.Tracking.IMIPPostProcessor">
+            <summary>
+            Performs post-tracking processing such as track fitting, distortion correction, unshrinking, etc.
+            </summary>
+        </member>
+        <member name="P:SySal.Tracking.IMIPPostProcessor.DistortionInfo">
+            <summary>
+            Retrieves the DistortionCorrection the PostProcessor used to correct the grains.
+            </summary>
+        </member>
+        <member name="M:SySal.Tracking.IMIPPostProcessor.Process(SySal.Tracking.Grain[][],System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            Processes the grain sequences supplied, optionally corrects them, and computes the geometrical parameters of each track.
+            </summary>
+        </member>
+    </members>
+</doc>

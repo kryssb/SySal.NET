@@ -1,0 +1,599 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GDIDisplayControl</name>
+    </assembly>
+    <members>
+        <member name="T:GDI3D.Control.GDIDisplay">
+            <summary>
+            GDI-based display.
+            </summary>
+        </member>
+        <member name="M:GDI3D.Control.GDIDisplay.Clear">
+            <summary>
+            Clears the control.
+            </summary>
+        </member>
+        <member name="M:GDI3D.Control.GDIDisplay.DeleteWithOwner(System.Object)">
+            <summary>
+            Deletes all elements associated with the specified owner.
+            </summary>
+            <param name="owner">Owner whose graphical representation should be deleted.</param>
+        </member>
+        <member name="M:GDI3D.Control.GDIDisplay.RecolorWithOwner(System.Object,System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Changes the color of all elements associated with the specified owner.
+            </summary>
+            <param name="owner">Owner whose graphical representation should be changed.</param>
+            <param name="r">the new red component.</param>
+            <param name="g">the new green component.</param>
+            <param name="b">the new blue component.</param>
+            <param name="preserveneutral">if <c>true</c>, the neutral (grey) component is preserved; with this parameter set, objects tend to become lighter.</param>
+        </member>
+        <member name="M:GDI3D.Control.GDIDisplay.Contains(System.Object)">
+            <summary>
+            Checks whether the plot contains references to an owner.
+            </summary>
+            <param name="owner">Owner whose graphical elements are being sought.</param>
+            <returns><c>true</c> if the owner is present, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:GDI3D.Control.GDIDisplay.Add(GDI3D.Control.Line)">
+            <summary>
+            Adds a line.
+            </summary>
+            <param name="l">Line to be added.</param>
+        </member>
+        <member name="M:GDI3D.Control.GDIDisplay.Add(GDI3D.Control.Point)">
+            <summary>
+            Adds a point.
+            </summary>
+            <param name="p">Point to be added.</param>
+        </member>
+        <member name="P:GDI3D.Control.GDIDisplay.AutoRender">
+            <summary>
+            Tells whether changes should be immediately reflected to display.
+            </summary>
+        </member>
+        <member name="P:GDI3D.Control.GDIDisplay.MouseMode">
+            <summary>
+            Gets/sets the mouse motion mode.
+            </summary>
+        </member>
+        <member name="P:GDI3D.Control.GDIDisplay.Zoom">
+            <summary>
+            Gets/sets the zoom factor.
+            </summary>
+        </member>
+        <member name="M:GDI3D.Control.GDIDisplay.GetCameraPosition(System.Double@,System.Double@,System.Double@)">
+            <summary>
+            Gets the camera position.
+            </summary>
+            <param name="X">X component</param>
+            <param name="Y">Y component</param>
+            <param name="Z">Z component</param>
+        </member>
+        <member name="M:GDI3D.Control.GDIDisplay.SetCameraPosition(System.Double,System.Double,System.Double)">
+            <summary>
+            Sets the camera position
+            </summary>
+            <param name="X">X component</param>
+            <param name="Y">Y component</param>
+            <param name="Z">Z component</param>
+        </member>
+        <member name="M:GDI3D.Control.GDIDisplay.SetCameraOrientation(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Sets the camera orientation.
+            </summary>
+            <param name="DX">X component of camera direction</param>
+            <param name="DY">Y component of camera direction</param>
+            <param name="DZ">Z component of camera direction</param>
+            <param name="NX">X component of camera normal</param>
+            <param name="NY">Y component of camera normal</param>
+            <param name="NZ">Z component of camera normal</param>
+        </member>
+        <member name="M:GDI3D.Control.GDIDisplay.GetCameraOrientation(System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@)">
+            <summary>
+            Gets the camera orientation.
+            </summary>
+            <param name="DX">X component of camera direction</param>
+            <param name="DY">Y component of camera direction</param>
+            <param name="DZ">Z component of camera direction</param>
+            <param name="NX">X component of camera normal</param>
+            <param name="NY">Y component of camera normal</param>
+            <param name="NZ">Z component of camera normal</param>
+            <param name="BX">X component of camera binormal</param>
+            <param name="BY">Y component of camera binormal</param>
+            <param name="BZ">Z component of camera binormal</param>
+        </member>
+        <member name="P:GDI3D.Control.GDIDisplay.Distance">
+            <summary>
+            Gets/sets the distance from the camera.
+            </summary>
+        </member>
+        <member name="P:GDI3D.Control.GDIDisplay.Infinity">
+            <summary>
+            Gets/sets the infinity projection flag: if set, an isometric view instead of a perspective is produced.
+            </summary>
+        </member>
+        <member name="P:GDI3D.Control.GDIDisplay.NextClickSetsCenter">
+            <summary>
+            When true, the next left click of the mouse sets the center of the view on an object. The normal operation mode is restored automatically after click.
+            </summary>
+        </member>
+        <member name="M:GDI3D.Control.GDIDisplay.Save(System.IO.Stream,System.Drawing.Imaging.ImageFormat)">
+            <summary>
+            Saves the image in the specified format.
+            </summary>
+            <param name="stream">Stream to save the image to.</param>
+            <param name="format">Image format.</param>
+        </member>
+        <member name="M:GDI3D.Control.GDIDisplay.Save(System.String,System.Drawing.Imaging.ImageFormat)">
+            <summary>
+            Saves the image in the specified format.
+            </summary>
+            <param name="filename">Name of the file to save the image to.</param>
+            <param name="format">Image format.</param>
+        </member>
+        <member name="M:GDI3D.Control.GDIDisplay.Save(System.String)">
+            <summary>
+            Saves the image in a default format, or in X3L format.
+            </summary>
+            <param name="filename">Name of the file to save the image to.</param>
+        </member>
+        <member name="M:GDI3D.Control.GDIDisplay.LoadScene(System.String)">
+            <summary>
+            Loads a scene from an X3L-format file.
+            </summary>
+            <param name="filename">Name of the file from which the image must be loaded.</param>
+        </member>
+        <member name="M:GDI3D.Control.GDIDisplay.LoadMergeScene(System.String)">
+            <summary>
+            Loads a scene from an X3L-format file and merges it with the current scene.
+            </summary>
+            <param name="filename">Name of the file from which the image must be loaded.</param>
+        </member>
+        <member name="M:GDI3D.Control.GDIDisplay.GetCameraSpotting(System.Double@,System.Double@,System.Double@)">
+            <summary>
+            Gets the camera spotting point.
+            </summary>
+            <param name="X">X component</param>
+            <param name="Y">Y component</param>
+            <param name="Z">Z component</param>
+        </member>
+        <member name="M:GDI3D.Control.GDIDisplay.SetCameraSpotting(System.Double,System.Double,System.Double)">
+            <summary>
+            Sets the camera spotting point.
+            </summary>
+            <param name="X">X component</param>
+            <param name="Y">Y component</param>
+            <param name="Z">Z component</param>
+        </member>
+        <member name="P:GDI3D.Control.GDIDisplay.LineWidth">
+            <summary>
+            Gets/sets the width of lines.
+            </summary>
+        </member>
+        <member name="P:GDI3D.Control.GDIDisplay.PointSize">
+            <summary>
+            Gets/sets the size of points;
+            </summary>
+        </member>
+        <member name="P:GDI3D.Control.GDIDisplay.BorderWidth">
+            <summary>
+            The width of border; setting this number to 0 disables borders.
+            </summary>
+        </member>
+        <member name="P:GDI3D.Control.GDIDisplay.Alpha">
+            <summary>
+            Alpha component of all lines and points. Ranges from 0 to 1.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.GDIDisplay.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:GDI3D.Control.GDIDisplay.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:GDI3D.Control.GDIDisplay.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:GDI3D.Control.GDIDisplay.Render">
+            <summary>
+            Renders the scene.
+            </summary>
+        </member>
+        <member name="M:GDI3D.Control.GDIDisplay.Render(System.Drawing.Graphics)">
+            <summary>
+            Renders the control to a graphic stream.
+            </summary>
+            <param name="g">the graphics stream to use for rendering.</param>
+        </member>
+        <member name="M:GDI3D.Control.GDIDisplay.Record(GDI3D.Movie)">
+            <summary>
+            Records the current image to a movie.
+            </summary>
+            <param name="mv">the movie to record the image to.</param>
+            <returns>the number of frames in the movie.</returns>
+        </member>
+        <member name="F:GDI3D.Control.GDIDisplay.m_AutoMovie">
+            <summary>
+            The movie currently being recorded.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.GDIDisplay.m_SizeLimitKB">
+            <summary>
+            The maximum size of a movie.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.GDIDisplay.m_MovieTimer">
+            <summary>
+            Movie timer for this control.
+            </summary>
+        </member>
+        <member name="M:GDI3D.Control.GDIDisplay.StartMovie(System.Int32,System.Int32)">
+            <summary>
+            Starts a new movie.
+            </summary>
+            <param name="millisec">frame delay in milliseconds.</param>
+            <param name="sizelimitKB">size limit in KB.</param>
+        </member>
+        <member name="M:GDI3D.Control.GDIDisplay.StopMovie(System.String)">
+            <summary>
+            Stops a movie.
+            </summary>
+            <param name="filename">the name of the file where the movie should be saved.</param>
+            <returns>The current movie.</returns>
+            <remarks>If <c>filename</c> is <c>null</c>, no file is saved.</remarks>
+        </member>
+        <member name="M:GDI3D.Control.GDIDisplay.RemoveOwned(System.Object)">
+            <summary>
+            Removes all graphical objects owned by the specified owner.
+            </summary>
+            <param name="o">the owner whose objects have to be removed.</param>
+            <returns>the number of elements deleted.</returns>
+        </member>
+        <member name="M:GDI3D.Control.GDIDisplay.Highlight(System.Object,System.Boolean)">
+            <summary>
+            Sets the highlight status for all graphical objects associated to a specified owner.
+            </summary>
+            <param name="owner">the owner whose object should change status.</param>
+            <param name="hlstatus"><c>true</c> to highlight, <c>false</c> to show in normal fashion</param>
+        </member>
+        <member name="M:GDI3D.Control.GDIDisplay.EnableLabel(System.Object,System.Boolean)">
+            <summary>
+            Sets the label status for all graphical objects associated to a specified owner.
+            </summary>
+            <param name="owner">the owner whose label should change status.</param>
+            <param name="hlstatus"><c>true</c> to show label, <c>false</c> to hide label.</param>
+        </member>
+        <member name="M:GDI3D.Control.GDIDisplay.SetLabel(System.Object,System.String)">
+            <summary>
+            Sets the label or all graphical objects associated to a specified owner.
+            </summary>
+            <param name="owner">the owner whose label should be set.</param>
+            <param name="hlstatus">the new label text.</param>
+            <remarks>If an object was created with its label = <c>null</c>, its label will never change. 
+            In order to set an object with an empty label that can be set later, its label must be set to the empty string (<c>""</c>).
+            </remarks>
+        </member>
+        <member name="M:GDI3D.Control.GDIDisplay.Transform">
+            <summary>
+            Transforms 3D points/lines into 2D objects using the current perspective view or isometric view settings.
+            </summary>
+        </member>
+        <member name="P:GDI3D.Control.GDIDisplay.LabelFontName">
+            <summary>
+            Font name to be used for labels.
+            </summary>
+        </member>
+        <member name="P:GDI3D.Control.GDIDisplay.LabelFontSize">
+            <summary>
+            Font size to be used for labels.
+            </summary>
+        </member>
+        <member name="M:GDI3D.Control.GDIDisplay.SetLabelOffset(System.Int32,System.Int32)">
+            <summary>
+            Sets the graphical offset in points between an object and its label.
+            </summary>
+            <param name="xoff">x offset.</param>
+            <param name="yoff">y offset.</param>
+        </member>
+        <member name="P:GDI3D.Control.GDIDisplay.MouseMultiplier">
+            <summary>
+            Gets/sets mouse rotation/panning multiplier.
+            </summary>
+        </member>
+        <member name="P:GDI3D.Control.GDIDisplay.ClickSelect">
+            <summary>
+            Gets/sets the callback for Click selection.
+            </summary>
+        </member>
+        <member name="P:GDI3D.Control.GDIDisplay.DoubleClickSelect">
+            <summary>
+            Gets/sets the callback for Double-Click selection.
+            </summary>
+        </member>
+        <member name="M:GDI3D.Control.GDIDisplay.GetScene">
+            <summary>
+            Gets the scene.
+            </summary>
+        </member>
+        <member name="M:GDI3D.Control.GDIDisplay.SetScene(GDI3D.Scene)">
+            <summary>
+            Sets the scene.
+            </summary>
+            <param name="value">the new scene to be set.</param>
+        </member>
+        <member name="T:GDI3D.Control.GDI3DObject">
+            <summary>
+            A generic graphical object.
+            </summary>        
+        </member>
+        <member name="F:GDI3D.Control.GDI3DObject.Owner">
+            <summary>
+            Owner object.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.GDI3DObject.Label">
+            <summary>
+            Label for the graphical object.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.GDI3DObject.EnableLabel">
+            <summary>
+            <c>true</c> if the label is to be shown, <c>false</c> otherwise.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.GDI3DObject.Highlight">
+            <summary>
+            <c>true</c> if the object is to be highlighted, <c>false</c> otherwise;
+            </summary>
+        </member>
+        <member name="T:GDI3D.Control.Point">
+            <summary>
+            A display point.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.Point.X">
+            <summary>
+            X component.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.Point.Y">
+            <summary>
+            Y component.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.Point.Z">
+            <summary>
+            Z component.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.Point.R">
+            <summary>
+            Red component.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.Point.G">
+            <summary>
+            Green component.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.Point.B">
+            <summary>
+            Blue component.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.Point.TX">
+            <summary>
+            Transformed X.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.Point.TY">
+            <summary>
+            Transformed Y;
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.Point.Show">
+            <summary>
+            Set if the line can be shown (i.e. it is inside viewport).
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.Point.DefaultR">
+            <summary>
+            Default Red component.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.Point.DefaultG">
+            <summary>
+            Default Green component.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.Point.DefaultB">
+            <summary>
+            Default Blue component.
+            </summary>
+        </member>
+        <member name="M:GDI3D.Control.Point.#ctor(System.Double,System.Double,System.Double,System.Object)">
+            <summary>
+            Constructs a new white point.
+            </summary>
+            <param name="x">X component.</param>
+            <param name="y">Y component.</param>
+            <param name="z">Z component.</param>
+            <param name="owner">Owner object.</param>
+        </member>
+        <member name="M:GDI3D.Control.Point.#ctor(System.Double,System.Double,System.Double,System.Object,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Constructs a colored point.
+            </summary>
+            <param name="x">X component.</param>
+            <param name="y">Y component.</param>
+            <param name="z">Z component.</param>
+            <param name="owner">Owner object.</param>
+            <param name="r">Red component.</param>
+            <param name="g">Green component.</param>
+            <param name="b">Blue component.</param>
+        </member>
+        <member name="M:GDI3D.Control.Point.Distance2(System.Int32,System.Int32)">
+            <summary>
+            Distance-squared from a graphical point.
+            </summary>
+            <param name="XD">X component of point from which to distance is to be computed.</param>
+            <param name="YD">Y component of point from which to distance is to be computed.</param>
+            <returns></returns>
+        </member>
+        <member name="T:GDI3D.Control.Line">
+            <summary>
+            A display line.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.Line.Dashed">
+            <summary>
+            <c>true</c> for dashed lines, <c>false</c> otherwise;
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.Line.XF">
+            <summary>
+            First point X component;
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.Line.YF">
+            <summary>
+            First point Y component;
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.Line.ZF">
+            <summary>
+            First point Z component;
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.Line.XS">
+            <summary>
+            Second point X component;
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.Line.YS">
+            <summary>
+            Second point Y component;
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.Line.ZS">
+            <summary>
+            Second point Z component;
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.Line.R">
+            <summary>
+            Red component;
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.Line.G">
+            <summary>
+            Green component;
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.Line.B">
+            <summary>
+            Blue component;
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.Line.TXF">
+            <summary>
+            Transformed X component of first point.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.Line.TYF">
+            <summary>
+            Transformed Y component of first point.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.Line.TXS">
+            <summary>
+            Transformed X component of second point.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.Line.TYS">
+            <summary>
+            Transformed Y component of second point.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.Line.Show">
+            <summary>
+            Set if the line can be shown (i.e. it is inside viewport).
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.Line.DefaultR">
+            <summary>
+            Default Red component.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.Line.DefaultG">
+            <summary>
+            Default Green component.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.Line.DefaultB">
+            <summary>
+            Default Blue component.
+            </summary>
+        </member>
+        <member name="M:GDI3D.Control.Line.#ctor(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Object)">
+            <summary>
+            Constructs a line with default color.
+            </summary>
+            <param name="xf">X component of first point.</param>
+            <param name="yf">Y component of first point.</param>
+            <param name="zf">Z component of first point.</param>
+            <param name="xs">X component of second point.</param>
+            <param name="ys">Y component of second point.</param>
+            <param name="zs">Z component of second point.</param>
+            <param name="owner">Owner object.</param>
+        </member>
+        <member name="M:GDI3D.Control.Line.#ctor(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Object,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Constructs a colored line.
+            </summary>
+            <param name="xf">X component of first point.</param>
+            <param name="yf">Y component of first point.</param>
+            <param name="zf">Z component of first point.</param>
+            <param name="xs">X component of second point.</param>
+            <param name="ys">Y component of second point.</param>
+            <param name="zs">Z component of second point.</param>
+            <param name="owner">Owner object.</param>
+            <param name="r">Red component.</param>
+            <param name="g">Green component.</param>
+            <param name="b">Blue component.</param>
+        </member>
+        <member name="M:GDI3D.Control.Line.Distance2(System.Int32,System.Int32)">
+            <summary>
+            Distance-squared from a graphical point.
+            </summary>
+            <param name="XD">X component of point from which to distance is to be computed.</param>
+            <param name="YD">Y component of point from which to distance is to be computed.</param>
+            <returns></returns>
+        </member>
+        <member name="T:GDI3D.Control.MouseMotion">
+            <summary>
+            Motions triggered by mouse motion.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.MouseMotion.Rotate">
+            <summary>
+            Mouse rotates.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Control.MouseMotion.Pan">
+            <summary>
+            Mouse pans.
+            </summary>
+        </member>
+    </members>
+</doc>

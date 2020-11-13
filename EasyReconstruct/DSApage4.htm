@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+ <head>
+    <title>Decay Search Step #4</title>
+    <MYSTYLE />    
+ </head>
+ <body>
+  <h1>Decay Search Step #4</h1>
+  <h2>Use the results of manual checks (contained in Steps 1,2,3 of the reference document)</h2>
+  <div class="doforme"><table border="1" style="border-color:navy;"><tr><td align="right"><a href="?do=MergeManualTracks"><font color="red">Match&nbsp;manual&nbsp;tks&nbsp;for&nbsp;me</font></a><br />MANCHECK/TSR&nbsp;Pos.&nbsp;tol.<input type="text" name="p0" value="50" size="5" /><br />MANCHECK/TSR&nbsp;Slope&nbsp;tol.<input type="text" name="p1" value="0.05" size="5" /></td></tr></table></div>
+  <div>
+      Following these steps to fully exploit the information of manual checks:<br />
+      <ol>
+       <li>In the main panel, select "Tracks", type <i>event</i> in the "With attribute" edit box and click "Plot"</li>
+       <li>Empty the "With attribute" edit box, deselect all datasets and select only the MANCHECK data sets; click "Plot"</li>
+       <li>For each resolved pair of tracks, browse each track, go to the "Feedback" tab and set the particle type for both tracks as "ELECTRON"; go to the main panel, create a new vertex fit and add the two tracks of the pair; include the vertex in the feedback ("Feedback" tab in the VertexBrowser).
+       This automatically disconnects the pair from the original vertex.</li>
+       <li>For each single reconstructed track that has been found to be an e<sup>+</sup>e<sup>-</sup> pair, go to the "Feedback" tab and set the particle type as "EPAIR"; click on "Add a single-prong vertex at Z" = -1 <b>(notice the default is -500)</b>; include the upstream vertex to the feedback.
+       This automatically disconnects the pair from the original vertex.</li>
+       <li>Browse each track that is not confirmed by manual checks, go to the "Feedback" tab and remove the track from feedback.</li>
+       <li>If disproved tracks are attached to a vertex, you need to disconnect them. To do this, go to the main panel and create a new vertex fit; then, on the VertexBrowser, go to the "Vertex Fit" tab and add all vertex tracks to the fit; go to the "General" tab and click on the "Kill" button; 
+       then remove the disproved tracks from the vertex fit; last, convert this to a vertex and include it in the feedback (on the "Feedback" tab); 
+       do not forget to flag the "Primary vertex" as such if it is deleted and recreated.</li>       
+      </ol>      
+  <a href="DSApage3.htm">Previous</a>&nbsp;&nbsp;<a href="DSApage5.htm?chk=CheckPrimaryVertexSet">Next</a>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OperaFeedback</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Executables.OperaFeedback.MainForm">
+            <summary>
+            OperaFeedback interface.
+            It can be used in two ways:
+            1) to insert new feedback into a scanning DB;
+            2) to download feedback information from a scanning DB.
+            <para>
+            In the first case, OperaFeedback should be used a follows the steps below:
+            <list type="number">
+            <item><description>Load a TSR file.</description></item>
+            <item><description>Type the id of the vertices that are relevant to vertex location feedback, then click "Add Vertex" for each of them.</description></item>
+            <item><description>Set the attributes for the vertices, by selecting each vertex, modifying the flags, and then clicking on "Set attributes".</description></item>
+            <item><description>Set the attributes for the tracks, by selecting each track, modifying the flags, and then clicking on "Set attributes".</description></item>
+            <item><description>If there are one-prong vertices, you need to add the related track by clicking on the "Add Track" button, with a meaningful id, and keeping the "1-prong" checkbox checked.</description></item>
+            <item><description>Add vertices detected manually.</description></item>
+            <item><description>Add tracks detected manually. Each track must either be connected to an existing vertex, or it is the only outgoing track of a single-prong vertex; in the latter case, check "1-prong".</description></item>
+            <item><description>Tracks/vertices can be selected also by clicking on the display. Apply any correction you need.</description></item>
+            <item><description>Select a machine to record data to the DB.</description></item>
+            <item><description>Select a program setting configuration to record data to the DB.</description></item>
+            <item><description>Select a valid brick number (including the leading "1000000").</description></item>
+            <item><description>Click on "Write to DB".</description></item>
+            </list>
+            Please notice that the "author" of the feedback will be the OPERA Computing Infrastructure user currently logged on (see OperaDbGUILogin/OperaDbTextLogin and <see cref="T:SySal.OperaDb.OperaDbCredentials"/>).
+            </para>
+            <para>
+            In order to use OperaFeedback to view/check feedback information from the DB, take the following steps:
+            <list type="number">
+            <item><description>Select a valid brick number (including the leading "1000000").</description></item>
+            <item><description>Click on ">" to get the available feedback data sets.</description></item>
+            <item><description>Click on "Read from DB" to get the selected feedback data set.</description></item>
+            </list>
+            </para>
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.OperaFeedback.MainForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaFeedback.MainForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SySal.Executables.OperaFeedback.MainForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaFeedback.Program.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.OperaFeedback.SegmentForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaFeedback.SegmentForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SySal.Executables.OperaFeedback.SegmentForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:SySal.Executables.OperaFeedback.SQLReportForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Executables.OperaFeedback.SQLReportForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SySal.Executables.OperaFeedback.SQLReportForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:OperaFeedback.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:OperaFeedback.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:OperaFeedback.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+    </members>
+</doc>

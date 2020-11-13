@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StatisticalGraphics</name>
+    </assembly>
+    <members>
+        <member name="T:NumericalTools.PlotControl">
+            <summary>
+            Control that shows statistical plots.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.PlotControl.ORIGINALWIDTH">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.PlotControl.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.PlotControl.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+    </members>
+</doc>

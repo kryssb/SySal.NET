@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+ <head>
+    <title>Decay Search Step #7</title>
+    <MYSTYLE />    
+ </head>
+ <body>
+  <h1>Decay Search Step #7</h1>
+  <h2>Measuring momenta</h2>
+  <div class="doforme"><table border="1" style="border-color:navy;"><tr><td align="right"><a href="?do=ComputeMomenta"><font color="red">Do&nbsp;for&nbsp;me</font></a><br />SBSF/TSR&nbsp;Pos.&nbsp;tol.<input type="text" name="p0" value="50" size="5" /><br />SBSF/TSR&nbsp;Slope&nbsp;tol.<input type="text" name="p1" value="0.05" size="5" /></td></tr></table></div>
+  <div>
+      For all tracks that have been measured in Scanback/Scanforth mode, do the following steps:
+      <ol>       
+       <li>Clear the plot.</li>
+       <li>Deselect all datasets except those of SBSF type, which must be enabled.</li>
+       <li>For each track, open the TrackBrowser and go to the "Momentum" tab. Ensure <b>Grains</b>=18 and click the "Grains&gt;=" button; deselect the most downstream plate of the brick if it still selected. Select the "Annecy" algorithm; click on "Compute Momentum"; close the TrackBrowser.</li>
+       <li>Select all datasets</li>
+       <li>Type "event" in the "With Attribute" box and click "Plot".</li>
+       <li>For each track to be sent to feedback, open its TrackBrowser and go to the "Feedback" tab.</li>
+       <li>Adjust the <b>Slope Tolerance</b> (the default value is 0.05).</li>
+       <li>Click on "Fill list of compatible SB/SF tracks".</li>
+       <li>Choose the SB/SF track from which you want to import the momentum estimation.</li>
+       <li>Click on "Import attribute from track". You can remove the attribute in case of
+       mistakes by switching to the "Attributes" tab; momentum information is stored as "P", "PMIN", "PMAX".</li>
+       <li>If the track had the "Scanforth to be done" set, change it to "Scanforth done" or to "Primary Vertex Track" according to the result of Scanforth (the former means that the kink signal is present also in Scanforth data, the latter that Scanforth does not confirm the kink or that the momentum
+       is anyway low).</li>
+       <li>Save the modified TSR file.</li>       
+      </ol>            
+  <a href="DSApage6.htm">Previous</a>&nbsp;&nbsp;<a href="DSApage8.htm?chk=CheckFeedbackTracks">Next</a>
+  </div>
+ </body>
+</html>
+

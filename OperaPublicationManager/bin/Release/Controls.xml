@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Controls</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Controls.BackgroundPanel">
+            <summary>
+            Summary description for BackgroundPanel.
+            </summary>
+        </member>
+        <member name="F:SySal.Controls.BackgroundPanel.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Controls.BackgroundPanel.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Controls.BackgroundPanel.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Controls.Button">
+            <summary>
+            Summary description for UserControl1.
+            </summary>
+        </member>
+        <member name="F:SySal.Controls.Button.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Controls.Button.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Controls.Button.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Controls.CheckBox">
+            <summary>
+            Summary description for CheckBox.
+            </summary>
+        </member>
+        <member name="F:SySal.Controls.CheckBox.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Controls.CheckBox.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Controls.CheckBox.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Controls.GroupBox">
+            <summary>
+            Summary description for GroupBox.
+            </summary>
+        </member>
+        <member name="F:SySal.Controls.GroupBox.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Controls.GroupBox.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Controls.GroupBox.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Controls.PercentChart">
+            <summary>
+            Summary description for PercentChart.
+            </summary>
+        </member>
+        <member name="F:SySal.Controls.PercentChart.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Controls.PercentChart.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Controls.PercentChart.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Controls.ProgressBar">
+            <summary>
+            Summary description for ProgressBar.
+            </summary>
+        </member>
+        <member name="F:SySal.Controls.ProgressBar.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Controls.ProgressBar.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Controls.ProgressBar.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Controls.RadioButton">
+            <summary>
+            Summary description for RadioButton.
+            </summary>
+        </member>
+        <member name="F:SySal.Controls.RadioButton.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Controls.RadioButton.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Controls.RadioButton.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Controls.StaticText">
+            <summary>
+            Summary description for StaticText.
+            </summary>
+        </member>
+        <member name="F:SySal.Controls.StaticText.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Controls.StaticText.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.Controls.StaticText.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+    </members>
+</doc>

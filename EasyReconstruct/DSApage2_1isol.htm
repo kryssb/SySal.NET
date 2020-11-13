@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+ <head>
+    <title>Decay Search Step #1</title>
+    <MYSTYLE />    
+ </head>
+ <body>
+  <h1>Decay Search Step #2.3</h1>
+  <h2>
+      Decay search for isolated hadron and muon tracks (Step 3 of the reference document)</h2>  
+  <div>
+  <b>Notice: this step applies to 1&mu; and 0&mu; events with isolated muon or hadron; if this is not your case, go <a href="DSApage1_2.htm">back</a></b><br />  
+  Apply the following steps to search for parent tracks of the isolated track:
+  <ol>
+   <li>Select "Segments" on the main panel</li>
+   <li>Write <b>N &gt;= 20 || (S &lt; 0 &amp;&amp; N &gt;= 12)</b> in the "Filter Vars" edit box: this will discard bad base tracks and very weak microtracks.</li>
+   <li>Make sure that <b>Opening</b>=-0.05, <b>Radius</b>=500.0, <b>DeltaSlope</b>=-0.05, <b>DeltaZ</b>=3900.0, <b>IP</b>=20.0</li>
+   <li>Select <b>Upstream</b> and click "Related segments"</li>   
+   <li>Make sure that <b>Opening</b>=-0.05, <b>Radius</b>=500.0, <b>DeltaSlope</b>=-0.05, <b>DeltaZ</b>=5200.0, <b>IP</b>=20.0</li>
+   <li>Select <b>Downstream</b> and click "Related segments"</li>   
+  </ol>
+  For each new segment that has been displayed, apply the following steps to validate/discard it:
+  <ol>
+   <li>Click it and check the track it belongs to; if Track = -1, then promote the segment to track.</li>   
+   <li>Go to the "Neighborhood" tab.</li>
+   <li>Check "Upstream" both for "End" and "Direction".</li>
+   <li>Ensure that <b>Opening</b>=0.05, <b>Radius</b>=100.0, <b>DeltaSlope</b>=0.05, <b>DeltaZ</b>=100000.0, <b>Max Misses</b>=3.</li>
+   <li>Click on "Scanback/Scanforth": this performs "Virtual Scanback".</li>
+   <li>check "Downstream" both for "End" and "Direction" and click on "Scanback/Scanforth": this performs "Virtual Scanforth".</li>      
+  </ol>
+  Notice that the output file is always appended and never overwritten.<br />  
+  <a href="DSApage1_2.htm">Previous</a>&nbsp;<a href="DSApage2_2isol.htm?chk=CheckPrimaryVertexSet">Next</a>
+  </div>
+ </body>
+</html>

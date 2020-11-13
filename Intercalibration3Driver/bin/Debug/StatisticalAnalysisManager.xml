@@ -1,0 +1,210 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StatisticalAnalysisManager</name>
+    </assembly>
+    <members>
+        <member name="T:NumericalTools.ShowDataForm">
+            <summary>
+            This form shows explicitly the data in a Dataset.
+            </summary>
+            <remarks>
+            <para>Normally, the <i>Locked</i> flag (lower-left corner) is enabled, thus protecting
+            your data for unwanted changes. If you clear the flag, you can edit the values, and this
+            change is immediately reflected to the <see cref="T:NumericalTools.AnalysisControl">AnalysisForm</see>.</para>
+            </remarks>
+        </member>
+        <member name="F:NumericalTools.ShowDataForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.ShowDataForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.ShowDataForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.AnalysisControl">
+            <summary>
+            Analysis manager control.
+            </summary>
+            <remarks>
+            <para>The Analysis manager control offers the following features:
+            <list type="bullet">
+            <term>Dataset manipulation</term>
+            <term>Plot generation</term>
+            <term>Data export</term>
+            <term>Plot export</term>
+            </list>	
+            </para>
+            <para><b>Datasets</b></para>
+            <para>The analysis control can host more than one dataset. 
+            Each dataset has its own name and its own set of variables. 
+            All operations are performed on the current dataset. 
+            To change the current dataset, select it and click on the <i>Switch</i> button. 
+            To remove a dataset, select it and click on the <i>Remove</i> button.
+            You can have direct access to the dataset values, by clicking on the 
+            <i>Show data</i> button. This opens the <see cref="T:NumericalTools.ShowDataForm">ShowDataForm</see> 
+            which you can use to view/modify the values.</para>
+            <para><b>Variables</b></para>
+            <para>You can add/remove variables to a dataset. At each moment, a dataset has 
+            one variable selected for the X axis, one for the Y axis and one for the Z axis.
+            Variables have a name and can have a measurement unit. Variable names are case-preserving
+            but not case-sensitive (i.e., case is remembered, but variables are recognized in
+            expressions even if the case is not identical letter-by-letter). A variable can be
+            added by generating it through a mathematical expression, to be typed in the 
+            dedicated text box; then, one has to select the <i>Add variable</i> function and
+            click on the <i>Apply</i> button. A variable is removed by selecting it and 
+            clicking on the <i>Remove</i> button in the <i>Remove variable</i> panel.</para>
+            <para>The <b>rownum</b> pseudocolumn is equal to the row number in the recordset.</para>
+            <para><b>Cuts</b></para>
+            <para>A subset of a dataset can be generated through a cut. Records are selected on the 
+            basis of a mathematical expression, to be typed in the dedicated text box; the rows that
+            make the expression non-zero pass the selection. In order to perform the cut, one needs to
+            select the <i>Apply cut</i> function and then click on the <i>Apply</i> button. A prompt
+            appears asking whether a new dataset is to be generated or not; if no new dataset is 
+            generated, the current one is reused, dropping (and forgetting) all records that do not 
+            pass the selection.</para>
+            <para><b>Plots</b></para>
+            <para>Several plot types are available, and each plot can be completed with a fit curve. 
+            See <see cref="M:NumericalTools.AnalysisControl.Plot(System.String,System.String)"/> for a list of plot types and fit types.
+            To obtain a plot, select the X, Y, Z variables (as needed by the plot dimensionality), 
+            and click on the <i>Plot</i> Button. One line can be added to 2D plots: you can specify its
+            mathematical expression in the dedicated text box, then select the <i>Plot</i> function and
+            click on the <i>Apply</i> button. Beware to use single-variable expressions, with the same
+            variable as the X axis of the plot.</para>
+            <para>For LEGO plots, the 3D viewing parameters must be specified. You have to set the 
+            Skewedness (i.e. the viewing slope) and the rotation angle around the Z axis (XY angle).</para>
+            <para><b>Formatting</b></para>
+            <para>A subpanel on the left hosts some controls that can be used to tune the style of the plot.
+            The axis and label text fonts can be set. The number of digits in the label window can be changed using the following 
+            format strings:
+            <list type="bullet">
+            <item><term><c>Fn</c> where "n" is the number of digits after the point (e.g. <c>F2</c>, <c>F5</c>).</term></item>
+            <item><term><c>Gn</c> where "n" is the number of significant digits (e.g. <c>G3</c>, <c>G8</c>).</term></item>
+            </list>
+            The line plotting color can be set. The position of the label can be defined at will. 
+            On either axis (X or Y), the 0 value of the coordinate means "label position at the lower extent of the axis",
+            and 1 means "label position at the upper extent of the axis". Therefore, (0,0) means "label at the
+            upper left corner"; (1,1) means "label at the lower right corner"; (0.5, 0) means "label centered on X
+            and on the top edge".</para>
+            </remarks>
+        </member>
+        <member name="F:NumericalTools.AnalysisControl.ORIGINALWIDTH">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.AnalysisControl.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.AnalysisControl.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.AnalysisControl.DataSetName(System.Int32)">
+            <summary>
+            Retrieves the name of a dataset.
+            </summary>
+            <param name="i">the dataset for which the name is to be read.</param>
+            <returns>the dataset name.</returns>
+        </member>
+        <member name="M:NumericalTools.AnalysisControl.SelectDataSet(System.String)">
+            <summary>
+            Selects a dataset into the statistical analysis manager panel.
+            </summary>
+            <param name="name">the name of the dataset to be selected (case insensitive).</param>
+        </member>
+        <member name="M:NumericalTools.AnalysisControl.VariableName(System.Int32)">
+            <summary>
+            Retrieves the name of a variable in the current dataset.
+            </summary>
+            <param name="i">the variable for which the name is sought.</param>
+            <returns>the variable name.</returns>		
+        </member>
+        <member name="M:NumericalTools.AnalysisControl.SetX(System.String)">
+            <summary>
+            Selects a variable into the X axis, using default extents and binning.
+            </summary>
+            <param name="varname">the name of the variable to be selected (case insensitive).</param>
+        </member>
+        <member name="M:NumericalTools.AnalysisControl.SetX(System.String,System.Double,System.Double,System.Double)">
+            <summary>
+            Selects a variable into the X axis, specifying extents and binning.
+            </summary>
+            <param name="varname">the name of the variable to be selected (case insensitive).</param>
+            <param name="min">the minimum extent.</param>
+            <param name="max">the maximum extent.</param>
+            <param name="bin">the bin size.</param>
+        </member>
+        <member name="M:NumericalTools.AnalysisControl.SetY(System.String)">
+            <summary>
+            Selects a variable into the Y axis, using default extents and binning.
+            </summary>
+            <param name="varname">the name of the variable to be selected (case insensitive).</param>
+        </member>
+        <member name="M:NumericalTools.AnalysisControl.SetY(System.String,System.Double,System.Double,System.Double)">
+            <summary>
+            Selects a variable into the Y axis, specifying extents and binning.
+            </summary>
+            <param name="varname">the name of the variable to be selected (case insensitive).</param>
+            <param name="min">the minimum extent.</param>
+            <param name="max">the maximum extent.</param>
+            <param name="bin">the bin size.</param>
+        </member>
+        <member name="M:NumericalTools.AnalysisControl.SetZ(System.String)">
+            <summary>
+            Selects a variable into the Z axis.
+            </summary>
+            <param name="varname">the name of the variable to be selected (case insensitive).</param>
+        </member>
+        <member name="M:NumericalTools.AnalysisControl.Plot(System.String,System.String)">
+            <summary>
+            Builds a plot.
+            </summary>
+            <param name="plottype">a string that specifies the plot type, through one of these possible values:
+            <list type="table">
+            <listheader><term>String</term><description>Plot type</description></listheader>
+            <item><term><c>histo</c></term><description>1D histogram</description></item>
+            <item><term><c>hskyline</c></term><description>1D histogram, "skyline" only</description></item>
+            <item><term><c>glent</c></term><description>grey level plot of entry density</description></item>
+            <item><term><c>symbent</c></term><description>symbol plot of entry density</description></item>
+            <item><term><c>hueent</c></term><description>hue plot of entry density</description></item>
+            <item><term><c>glquant</c></term><description>grey level plot of Z quantity</description></item>
+            <item><term><c>huequant</c></term><description>hue plot of Z quantity</description></item>
+            <item><term><c>gscatter</c></term><description>group-scatter plot</description></item>
+            <item><term><c>lego</c></term><description>LEGO plot</description></item>
+            <item><term><c>scatter</c></term><description>scatter plots</description></item>
+            <item><term><c>scatter3d</c></term><description>3D scatter plots</description></item>
+            <item><term><c>arrowplot</c></term><description>2D scatter plots with arrows</description></item>
+            </list>
+            </param>
+            <param name="fittype">a string that specifies the fit type, through one of these possible values:
+            <list type="table">
+            <listheader><term>String</term><description>Fit type</description></listheader>
+            <item><term><c>null</c> or <c>""</c></term><description>add no fit</description></item>
+            <item><term><c>gauss</c></term><description>gaussian fit</description></item>
+            <item><term><c>igauss</c></term><description>inverse gaussian fit</description></item>
+            <item><term><c>1</c></term><description>linear fit</description></item>
+            <item><term><c>2</c></term><description>parabolic fit</description></item>
+            <item><term><c>n</c> (an integer)</term><description>n-th order polynomial fit</description></item>
+            </list>
+            </param>
+        </member>
+        <member name="P:NumericalTools.AnalysisControl.Palette">
+            <summary>
+            The palette type to be used for plotting color plots.
+            </summary>
+        </member>
+    </members>
+</doc>

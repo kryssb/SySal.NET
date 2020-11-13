@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>KalmanTracking</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.TotalScan.KalmanTracking">
+            <summary>
+            Summary description for KalmanTracking Class.
+            </summary>
+        </member>
+    </members>
+</doc>

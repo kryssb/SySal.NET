@@ -1,0 +1,476 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GDI3DCore</name>
+    </assembly>
+    <members>
+        <member name="T:GDI3D.GDI3DObject">
+            <summary>
+            A generic graphical object.
+            </summary>
+        </member>
+        <member name="F:GDI3D.GDI3DObject.Label">
+            <summary>
+            Label for the graphical object.
+            </summary>
+        </member>
+        <member name="F:GDI3D.GDI3DObject.EnableLabel">
+            <summary>
+            <c>true</c> if the label is to be shown, <c>false</c> otherwise.
+            </summary>
+        </member>
+        <member name="F:GDI3D.GDI3DObject.Highlight">
+            <summary>
+            <c>true</c> if the object is to be highlighted, <c>false</c> otherwise;
+            </summary>
+        </member>
+        <member name="T:GDI3D.Point">
+            <summary>
+            A point.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Point.X">
+            <summary>
+            X component.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Point.Y">
+            <summary>
+            Y component.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Point.Z">
+            <summary>
+            Z component.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Point.R">
+            <summary>
+            Red component.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Point.G">
+            <summary>
+            Green component.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Point.B">
+            <summary>
+            Blue component.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Point.Owner">
+            <summary>
+            Owner index.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Point.DefaultR">
+            <summary>
+            Default Red component.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Point.DefaultG">
+            <summary>
+            Default Green component.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Point.DefaultB">
+            <summary>
+            Default Blue component.
+            </summary>
+        </member>
+        <member name="M:GDI3D.Point.#ctor(System.Double,System.Double,System.Double,System.Int32)">
+            <summary>
+            Constructs a new white point.
+            </summary>
+            <param name="x">X component.</param>
+            <param name="y">Y component.</param>
+            <param name="z">Z component.</param>
+            <param name="owner">Owner index.</param>
+        </member>
+        <member name="M:GDI3D.Point.#ctor(System.Double,System.Double,System.Double,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Constructs a colored point.
+            </summary>
+            <param name="x">X component.</param>
+            <param name="y">Y component.</param>
+            <param name="z">Z component.</param>
+            <param name="owner">Owner index.</param>
+            <param name="r">Red component.</param>
+            <param name="g">Green component.</param>
+            <param name="b">Blue component.</param>
+        </member>
+        <member name="M:GDI3D.Point.#ctor">
+            <summary>
+            Empty constructor.
+            </summary>
+        </member>
+        <member name="T:GDI3D.Line">
+            <summary>
+            A line.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Line.Dashed">
+            <summary>
+            <c>true</c> for dashed lines, <c>false</c> otherwise;
+            </summary>
+        </member>
+        <member name="F:GDI3D.Line.XF">
+            <summary>
+            First point X component;
+            </summary>
+        </member>
+        <member name="F:GDI3D.Line.YF">
+            <summary>
+            First point Y component;
+            </summary>
+        </member>
+        <member name="F:GDI3D.Line.ZF">
+            <summary>
+            First point Z component;
+            </summary>
+        </member>
+        <member name="F:GDI3D.Line.XS">
+            <summary>
+            Second point X component;
+            </summary>
+        </member>
+        <member name="F:GDI3D.Line.YS">
+            <summary>
+            Second point Y component;
+            </summary>
+        </member>
+        <member name="F:GDI3D.Line.ZS">
+            <summary>
+            Second point Z component;
+            </summary>
+        </member>
+        <member name="F:GDI3D.Line.Owner">
+            <summary>
+            Owner index.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Line.R">
+            <summary>
+            Red component;
+            </summary>
+        </member>
+        <member name="F:GDI3D.Line.G">
+            <summary>
+            Green component;
+            </summary>
+        </member>
+        <member name="F:GDI3D.Line.B">
+            <summary>
+            Blue component;
+            </summary>
+        </member>
+        <member name="F:GDI3D.Line.DefaultR">
+            <summary>
+            Default Red component.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Line.DefaultG">
+            <summary>
+            Default Green component.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Line.DefaultB">
+            <summary>
+            Default Blue component.
+            </summary>
+        </member>
+        <member name="M:GDI3D.Line.#ctor(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Int32)">
+            <summary>
+            Constructs a line with default color.
+            </summary>
+            <param name="xf">X component of first point.</param>
+            <param name="yf">Y component of first point.</param>
+            <param name="zf">Z component of first point.</param>
+            <param name="xs">X component of second point.</param>
+            <param name="ys">Y component of second point.</param>
+            <param name="zs">Z component of second point.</param>
+            <param name="owner">Owner index.</param>
+        </member>
+        <member name="M:GDI3D.Line.#ctor(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Constructs a colored line.
+            </summary>
+            <param name="xf">X component of first point.</param>
+            <param name="yf">Y component of first point.</param>
+            <param name="zf">Z component of first point.</param>
+            <param name="xs">X component of second point.</param>
+            <param name="ys">Y component of second point.</param>
+            <param name="zs">Z component of second point.</param>
+            <param name="owner">Owner index.</param>
+            <param name="r">Red component.</param>
+            <param name="g">Green component.</param>
+            <param name="b">Blue component.</param>
+        </member>
+        <member name="M:GDI3D.Line.#ctor">
+            <summary>
+            Empty constructor.
+            </summary>
+        </member>
+        <member name="T:GDI3D.Scene">
+            <summary>
+            A 3D scene.
+            </summary>
+            <remarks>
+            <para>3D Scenes can be saved to files in the X3L format, and rebuilt from them.</para>
+            <para>The X3L file format is obtained through standard .NET serialization to a text file.</para>
+            <para>A typical X3L file has a structure like the following example:
+            <example>
+            <code>
+            &lt;Scene&gt;
+             &lt;BackColor /&gt;
+             &lt;CameraDirectionX&gt;-1&lt;/CameraDirectionX&gt;
+             &lt;CameraDirectionY&gt;0&lt;/CameraDirectionY&gt;
+             &lt;CameraDirectionZ&gt;0&lt;/CameraDirectionZ&gt;
+             &lt;CameraNormalX&gt;0&lt;/CameraNormalX&gt;
+             &lt;CameraNormalY&gt;1&lt;/CameraNormalY&gt;
+             &lt;CameraNormalZ&gt;0&lt;/CameraNormalZ&gt;
+             &lt;CameraSpottingX&gt;0&lt;/CameraSpottingX&gt;
+             &lt;CameraSpottingY&gt;0&lt;/CameraSpottingY&gt;
+             &lt;CameraSpottingZ&gt;0&lt;/CameraSpottingZ&gt;
+             &lt;CameraDistance&gt;10000&lt;/CameraDistance&gt;
+             &lt;Zoom&gt;10&lt;/Zoom&gt;
+             &lt;Points&gt;	
+              &lt;Point&gt;
+               &lt;X&gt;1&lt;/X&gt;
+               &lt;Y&gt;3&lt;/Y&gt;
+               &lt;Z&gt;-1&lt;/Z&gt;
+               &lt;R&gt;255&lt;/R&gt;
+               &lt;G&gt;0&lt;/G&gt;
+               &lt;B&gt;255&lt;/B&gt;
+               &lt;Owner&gt;0&lt;/Owner&gt;
+              &lt;/Point&gt;	
+             &lt;/Points&gt;
+             &lt;Lines&gt;	
+              &lt;Line&gt;
+               &lt;XF&gt;5&lt;/XF&gt;
+               &lt;YF&gt;6&lt;/YF&gt;
+               &lt;ZF&gt;-8&lt;/ZF&gt;
+               &lt;XS&gt;1&lt;/XS&gt;
+               &lt;YS&gt;3&lt;/YS&gt;
+               &lt;ZS&gt;-1&lt;/ZS&gt;
+               &lt;R&gt;0&lt;/R&gt;
+               &lt;G&gt;255&lt;/G&gt;
+               &lt;B&gt;127&lt;/B&gt;
+               &lt;Owner&gt;1&lt;/Owner&gt;
+              &lt;/Line&gt;	
+             &lt;/Lines&gt;
+             &lt;OwnerSignatures&lt;
+              &lt;string&gt;The only point.&lt;/string&gt;
+              &lt;string&gt;The only line.&lt;/string&gt;
+             &lt;/OwnerSignatures&lt;
+            &lt;/Scene&gt;
+            </code>
+            </example>
+            </para>
+            </remarks>
+        </member>
+        <member name="F:GDI3D.Scene.BackColor">
+            <summary>
+            The background color of the scene.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Scene.CameraDirectionX">
+            <summary>
+            X component of camera direction.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Scene.CameraDirectionY">
+            <summary>
+            Y component of camera direction.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Scene.CameraDirectionZ">
+            <summary>
+            Z component of camera direction.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Scene.CameraNormalX">
+            <summary>
+            X component of camera normal.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Scene.CameraNormalY">
+            <summary>
+            Y component of camera normal.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Scene.CameraNormalZ">
+            <summary>
+            Z component of camera normal.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Scene.CameraSpottingX">
+            <summary>
+            X component of camera spotting point.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Scene.CameraSpottingY">
+            <summary>
+            Y component of camera spotting point.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Scene.CameraSpottingZ">
+            <summary>
+            Z component of camera spotting point.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Scene.CameraDistance">
+            <summary>
+            Distance of camera from spotting point.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Scene.Zoom">
+            <summary>
+            Zoom factor.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Scene.Points">
+            <summary>
+            List of points.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Scene.Lines">
+            <summary>
+            List of lines.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Scene.OwnerSignatures">
+            <summary>
+            List of owner signatures;
+            </summary>
+        </member>
+        <member name="T:GDI3D.MovieFormatValue">
+            <summary>
+            Formats for animation.
+            </summary>
+            <remarks>Currently only Animated GIF is supported.</remarks>
+        </member>
+        <member name="F:GDI3D.MovieFormatValue.AnimatedGif">
+            <summary>
+            The move is an Animated GIF.
+            </summary>
+        </member>
+        <member name="T:GDI3D.Movie">
+            <summary>
+            An animation to be saved to file.
+            </summary>
+            <remarks>In the current implementation, the animation is first stored in memory and then saved to a file.</remarks>
+        </member>
+        <member name="P:GDI3D.Movie.MovieFormat">
+            <summary>
+            The format of the movie.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Movie.MovieStream">
+            <summary>
+            The memory stream where the file is prepared.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Movie.m_TimeDelay">
+            <summary>
+            Property backer for <c>TimeDelay</c>.
+            </summary>
+        </member>
+        <member name="P:GDI3D.Movie.TimeDelay">
+            <summary>
+            Time delay between frames.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Movie.m_Frames">
+            <summary>
+            Property backer for <c>Frames</c>.
+            </summary>
+        </member>
+        <member name="P:GDI3D.Movie.Frames">
+            <summary>
+            The number of frames in the movie.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Movie.m_Width">
+            <summary>
+            Property backer for <c>Width</c>.
+            </summary>
+        </member>
+        <member name="P:GDI3D.Movie.Width">
+            <summary>
+            The width of each image.
+            </summary>
+            <remarks>If not specified in the constructor, this field is initialized on first usage.</remarks>
+        </member>
+        <member name="F:GDI3D.Movie.m_Height">
+            <summary>
+            Property backer for <c>Height</c>.
+            </summary>
+        </member>
+        <member name="P:GDI3D.Movie.Height">
+            <summary>
+            The height of each image.
+            </summary>
+            <remarks>If not specified in the constructor, this field is initialized on first usage.</remarks>
+        </member>
+        <member name="P:GDI3D.Movie.Size">
+            <summary>
+            The current size of the movie.
+            </summary>
+        </member>
+        <member name="F:GDI3D.Movie.m_Comment">
+            <summary>
+            Property backer for <c>Comment</c>.
+            </summary>
+        </member>
+        <member name="P:GDI3D.Movie.Comment">
+            <summary>
+            Comment to be added to the movie.
+            </summary>
+        </member>
+        <member name="M:GDI3D.Movie.#ctor(System.Int32)">
+            <summary>
+            Creates a new movie.
+            </summary>
+            <param name="timedelay">the time delay between frames.</param>
+        </member>
+        <member name="M:GDI3D.Movie.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Creates a new movie.
+            </summary>
+            <param name="timedelay">the time delay between frames.</param>
+            <param name="width">the acceptable image width.</param>
+            <param name="height">the acceptable image height.</param>
+        </member>
+        <member name="M:GDI3D.Movie.AddFrame(System.Drawing.Image)">
+            <summary>
+            Adds an image to the movie.
+            </summary>
+            <param name="im">the image to be added.</param>
+            <returns>the updated number of frames.</returns>
+        </member>
+        <member name="M:GDI3D.Movie.Save(System.String)">
+            <summary>
+            Saves the movie to a file.
+            </summary>
+            <param name="filename">the file where the movie must be stored.</param>
+        </member>
+        <member name="M:GDI3D.Movie.Save(System.IO.Stream)">
+            <summary>
+            Saves the movie to a stream.
+            </summary>
+            <param name="s">the stream where the movie has to be stored.</param>
+        </member>
+        <member name="M:GDI3D.Movie.PrepareForWriting">
+            <summary>
+            Prepares the movie for writing.
+            </summary>
+        </member>
+        <member name="P:GDI3D.Movie.Image">
+            <summary>
+            Returns an animated image from the movie.
+            </summary>
+        </member>
+    </members>
+</doc>

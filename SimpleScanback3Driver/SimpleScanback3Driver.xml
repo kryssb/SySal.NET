@@ -1,0 +1,386 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SimpleScanback3Driver</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.DAQSystem.Drivers.SimpleScanback3Driver.ScanDirection">
+            <summary>
+            Direction of scanning procedure.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.SimpleScanback3Driver.ScanDirection.Upstream">
+            <summary>
+            The Scanback procedure starts from tracks in a downstream plate and traces them back to the production point going upstream.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.SimpleScanback3Driver.ScanDirection.Downstream">
+            <summary>
+            The Scanforth procedure starts from tracks in an upstream plate and follows them downstream.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.SimpleScanback3Driver.PathSource">
+            <summary>
+            Source for Scanback/Scanforth path initialization.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.SimpleScanback3Driver.PathSource.Interrupt">
+            <summary>
+            Paths are specified by an interrupt.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.SimpleScanback3Driver.PathSource.CSDoublet">
+            <summary>
+            Paths are initiated from the CS doublet.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.SimpleScanback3Driver.PathSource.VolumeTrack">
+            <summary>
+            Paths propagate reconstructed volume tracks downstream/upstream.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.SimpleScanback3Driver.PathSource.Prediction">
+            <summary>
+            Paths are initiated from predictions.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.SimpleScanback3Driver.PathSource.CSDoubletConnect">
+            <summary>
+            Paths are initiated from the CS doublet and connection information is filled.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.SimpleScanback3Driver.SimpleScanback3Settings">
+            <summary>
+            Settings for SimpleScanback3Driver.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.SimpleScanback3Driver.SimpleScanback3Settings.IntercalibrationConfigId">
+            <summary>
+            Configuration to be used for intercalibration of each plate.
+            If this Id is equal to PredictionScanConfigId, the driver assumes that the same process operation performs intercalibration as well as scanning.
+            If intercalibration is simply to be skipped, this Id should be set equal to PredictionScanConfigId, <b>not zero</b>.
+            Ignored if <c>UseToRecomputeCalibrationsOnly</c> is set to <c>true</c>.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.SimpleScanback3Driver.SimpleScanback3Settings.PredictionScanConfigId">
+            <summary>
+            Configuration to be used for PredictionScan.
+            Ignored if <c>UseToRecomputeCalibrationsOnly</c> is set to <c>true</c>.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.SimpleScanback3Driver.SimpleScanback3Settings.FirstPlatePredictionScanConfigId">
+            <summary>
+            Configuration to be used for PredictionScan on the first plate. If this is zero, <c>PredictionScanConfigId</c> will be used.
+            Ignored if <c>UseToRecomputeCalibrationsOnly</c> is set to <c>true</c>.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.SimpleScanback3Driver.SimpleScanback3Settings.MaxMissingPlates">
+            <summary>
+            The maximum number of consecutive missing plates in a scanback/scanforth path. 
+            If a scanback/scanforth track is not found consecutively for a number of plates that exceeds MaxMissingPlates, the path is terminated.
+            Ignored if <c>UseToRecomputeCalibrationsOnly</c> is set to <c>true</c>.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.SimpleScanback3Driver.SimpleScanback3Settings.SkipPlates">
+            <summary>
+            The number of plates to be skipped between two plates that are scanned. This is normally omitted or set to zero.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.SimpleScanback3Driver.SimpleScanback3Settings.Direction">
+            <summary>
+            Direction of the scanning procedure if <c>UseToRecomputeCalibrationsOnly</c> is <c>false</c>.		
+            <para><c>Upstream</c> designates Scanback, going from plates with high Z to plates with low Z.</para>
+            <para><c>Downstream</c> designates Scanforth, going from plates with low Z to plates with high Z.</para>
+            If <c>UseToRecomputeCalibrationsOnly</c> is set to <c>true</c>, the meaning becomes the following:
+            <para><c>Upstream</c>: in each pair of plates, the upstream plate is calibrated w.r.t. the downstream one (therefore, intercalibration proceeds upstream).</para>
+            <para><c>Downstream</c>: in each pair of plates, the downstream plate is calibrated w.r.t. the upstream one (therefore, intercalibration proceeds downstream).</para>
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.SimpleScanback3Driver.SimpleScanback3Settings.PositionPropagationFunction">
+            <summary>
+            <para>
+            This function, to be written in C-style, defines how the predicted position of a scanback paths is propagated from each plate to the next one. The function applies
+            independently to each coordinate (X/Y). The variables that can be used are listed below:
+            </para>
+            <list type="table">
+            <listheader><term>Name</term><description>Meaning</description></listheader>
+            <item><term>LP</term><description>Last predicted position (X/Y).</description></item>
+            <item><term>LS</term><description>Last predicted slope (X/Y).</description></item>
+            <item><term>LZ</term><description>Reference Z of the last plate on which the path has been predicted.</description></item>
+            <item><term>F</term><description>If a candidate has been found on the last plate, this field is <c>1</c>; <c>0</c> otherwise.</description></item>
+            <item><term>FP</term><description>Last found position (X/Y). If no candidate has been found on the last plate, this variable is meaningless.</description></item>
+            <item><term>FS</term><description>Last found slope (X/Y). If no candidate has been found on the last plate, this variable is meaningless.</description></item>
+            <item><term>N</term><description>Number of grains of the last found candidate. If no candidate has been found, this variable is meaningless.</description></item>
+            <item><term>A</term><description>Area sum of the last found candidate. If no candidate has been found, this variable is meaningless.</description></item>
+            <item><term>S</term><description><c>Sigma</c> field of the last found candidate. If no candidate has been found, this variable is meaningless. <b>NOTICE: if the candidate is a weak base track (i.e. promoted microtrack), <c>Sigma</c> is negative; non-negative otherwise.</b></description></item>
+            <item><term>Z</term><description>Reference Z of the plate for which predictions are to be produced.</description></item>
+            </list>
+            <para>A suggested propagation function is:</para>
+            <code>(F == 0) * (LP + (Z - LZ) * LS) + (F == 1) * (FP + (Z - LZ) * ((S &lt; 0) * LS + (S &gt;= 0) * FS))</code>
+            <para>The function does the following:
+            <list type="bullet">
+            <item>If no candidate has been found (<c>(F == 0)</c>), propagate the last predicted position using the last predicted slope;</item>
+            <item>If a candidate has been found (<c>(F == 1)</c>), propagate the last found position using the last predicted slope if the candidate is weak (<c>S &lt; 0</c>) or the last found slope is the candidate is normal (<c>S &gt;= 0</c>).</item>
+            </list>
+            <b>NOTICE: when writing XML configurations manually, be aware that &gt; and &lt; are to be written as &amp;gt; and &amp;lt; respectively to avoid confusion with XML tag opening/closing marks.</b>
+            </para>
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.SimpleScanback3Driver.SimpleScanback3Settings.SlopePropagationFunction">
+            <summary>
+            <para>
+            This function, to be written in C-style, defines how the predicted slope of a scanback paths is propagated from each plate to the next one. The function applies
+            independently to each coordinate (X/Y). The variables that can be used are listed below:
+            </para>
+            <list type="table">
+            <listheader><term>Name</term><description>Meaning</description></listheader>
+            <item><term>LP</term><description>Last predicted position (X/Y).</description></item>
+            <item><term>LS</term><description>Last predicted slope (X/Y).</description></item>
+            <item><term>LZ</term><description>Reference Z of the last plate on which the path has been predicted.</description></item>
+            <item><term>F</term><description>If a candidate has been found on the last plate, this field is <c>1</c>; <c>0</c> otherwise.</description></item>
+            <item><term>FP</term><description>Last found position (X/Y). If no candidate has been found on the last plate, this variable is meaningless.</description></item>
+            <item><term>FS</term><description>Last found slope (X/Y). If no candidate has been found on the last plate, this variable is meaningless.</description></item>
+            <item><term>N</term><description>Number of grains of the last found candidate. If no candidate has been found, this variable is meaningless.</description></item>
+            <item><term>A</term><description>Area sum of the last found candidate. If no candidate has been found, this variable is meaningless.</description></item>
+            <item><term>S</term><description><c>Sigma</c> field of the last found candidate. If no candidate has been found, this variable is meaningless. <b>NOTICE: if the candidate is a weak base track (i.e. promoted microtrack), <c>Sigma</c> is negative; non-negative otherwise.</b></description></item>
+            <item><term>Z</term><description>Reference Z of the plate for which predictions are to be produced.</description></item>
+            </list>
+            <para>A suggested propagation function is:</para>
+            <code>(F == 0) * LS + (F == 1) * ((S &lt; 0) * LS + (S &gt;= 0) * FS)</code>
+            <para>The function does the following:
+            <list type="bullet">
+            <item>If no candidate has been found (<c>(F == 0)</c>), use the last predicted slope;</item>
+            <item>If a candidate has been found (<c>(F == 1)</c>), use the last predicted slope if the candidate is weak (<c>S &lt; 0</c>) or the last found slope is the candidate is normal (<c>S &gt;= 0</c>).</item>
+            </list>
+            </para>
+            <b>NOTICE: when writing XML configurations manually, be aware that &gt; and &lt; are to be written as &amp;gt; and &amp;lt; respectively to avoid confusion with XML tag opening/closing marks.</b>
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.SimpleScanback3Driver.SimpleScanback3Settings.Source">
+            <summary>
+            Source for Scanback/Scanforth paths.
+            Ignored if <c>UseToRecomputeCalibrationsOnly</c> is set to <c>true</c>.
+            </summary>		
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.SimpleScanback3Driver.SimpleScanback3Settings.ForceRefreshCalibration">
+            <summary>
+            If <c>true</c>, calibrated plates are re-calibrated if they had been calibrated within a previous volume operation. Valid Calibrations are re-used if this is set to <c>false</c>.
+            Ignored if <c>UseToRecomputeCalibrationsOnly</c> is set to <c>true</c>.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.SimpleScanback3Driver.SimpleScanback3Settings.UseToRecomputeCalibrationsOnly">
+            <summary>
+            If <c>true</c>, SimpleScanback3Driver is used as a processing driver that computes refined intercalibration using scanback predictions from the latest SimpleScanback3Driver process on that brick.		
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.SimpleScanback3Driver.SimpleScanback3Settings.WhereClauseForRecalibrationSelection">
+            <summary>
+            When <c>UseToRecomputeCalibrationsOnly</c> is <c>true</c>, this string is used in a <c>WHERE</c> clause to restrict scanback predictions to be used for recalibration. 
+            If this string is empty or null, no restriction is applied.
+            Ignored if <c>UseToRecomputeCalibrationsOnly</c> is <c>false</c>.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.SimpleScanback3Driver.SimpleScanback3Settings.WaitForContinue">
+            <summary>
+            If set to <c>true</c>, the driver starts in <c>Halted</c> state, waiting for a <c>Continue</c> interrupt. This is useful when a full set of calibrations has to be forced/ignored, or when scanning must
+            not start from the first plate. The flag is ignored if <c>UseToRecomputeCalibrationsOnly</c> is <c>false</c>.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.SimpleScanback3Driver.SimpleScanback3Settings.WaitForClose">
+            <summary>
+            If set to <c>true</c>, the driver does not close until a <c>Close</c> interrupt is sent. 
+            </summary>
+            <remarks>This function is useful to stay waiting for manually selected candidates, e.g. for CS-Brick connection.</remarks>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.SimpleScanback3Driver.SimpleScanback3Settings.CSDoubletDZOverride">
+            <summary>
+            If <c>true</c>, the projection DZ from CS to the most downstream plate is overridden.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.SimpleScanback3Driver.SimpleScanback3Settings.CSDoubletDZ">
+            <summary>
+            The value to use for DZ if <c>CSDoubletDZOverride</c> is <c>true</c>; ignored otherwise.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.SimpleScanback3Driver.SimpleScanback3Settings.CSDoubletAutoSel">
+            <summary>
+            When no pre-selected candidates (TB_B_CSCANDS_SBPATHS) are found, this query is used to select candidates to propagate to brick. The number of the brick replaces any occurrence of  <c>_BRICK_</c>. The query must select rows in the format <c>ID_CS_EVENTBRICK, ID_CANDIDATE</c>.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.SimpleScanback3Driver.SimpleScanback3Settings.PlatesToScan">
+            <summary>
+            The number of plates to scan in the brick. Ignored if zero or negative. This field is useful for CS-Brick connection to limit the number of plates to be scanned (e.g., 5).
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.SimpleScanback3Driver.SimpleScanback3Settings.DoNotPropagateForkedPaths">
+            <summary>
+            If <c>true</c>, forked paths are not propagated. The default value (<c>false</c>) provides the standard behaviour, propagating all paths.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.SimpleScanback3Driver.Exe">
+            <summary>
+            SimpleScanback3Driver executor.
+            </summary>
+            <remarks>
+            <para>SimpleScanback3Driver performs scanback throughout a brick.</para>
+            <para>Scanback paths cannot be forked.</para>
+            <para>The TB_SCANBACK_PATHS and TB_SCANBACK_PREDICTIONS tables are used to record paths and their evolution.
+            Predictions do not include tolerance specifications, which are therefore left entirely to the lower-level driver that scans the plates.</para>
+            <para>At each plate, the prediction is updated using the last found candidate for both position and slopes.</para>
+            <para>Position tolerance is not expanded if the candidate is not found on one or more plates.</para>
+            <para>Type: <c>SimpleScanback3Driver /Interrupt &lt;batchmanager&gt; &lt;process operation id&gt; &lt;interrupt string&gt;</c> to send an interrupt message to a running SimpleScanback3Driver process operation.</para>
+            <para>
+            Supported Interrupts:
+            <list type="table">
+            <item><term><c>Continue</c></term><description>If <c>WaitForContinue</c> is set in the program settings, this interrupt is required to actually start the task.</description></item>
+            <item><term><c>Close</c></term><description>If <c>WaitForClose</c> is set in the program settings, this interrupt is required to actually close the task; when waiting for this interrupt, the process cannot be "rolled back" to previous plates.</description></item>
+            <item><term><c>PlateDamagedCode &lt;code&gt;</c></term><description>Instructs SimpleScanback3Driver to use the specified code to mark the plate as damaged. The plate must be specified by PlateDamaged. The plate damaged code is a single character; <c>N</c> means no damage.</description></item>
+            <item><term><c>PlateDamaged &lt;plate&gt;</c></term><description>Instructs SimpleScanback3Driver to mark the specified plate as damaged. If it is missing, the current plate number is assumed.</description></item>
+            <item><term><c>GoBackToPlateN &lt;plate&gt;</c></term><description>Instructs SimpleScanback3Driver to go back to the specified plate, keeping intercalibration info. The plate specified is the first plate for which predictions as well as results will be kept.</description></item>
+            <item><term><c>GoBackToPlateNCancelCalibrations &lt;plate&gt;</c></term><description>Instructs SimpleScanback3Driver to go back to the specified plate, cancelling intercalibration info obtained by daughter operations of the current one. Intercalibrations obtained by previous operations will not be cancelled. The plate specified is the first plate for which predictions as well as results will be kept.</description></item>
+            <item><term><c>Paths &lt;number&gt;</c></term><description>Used to provide predictions on startup when the path source is set to Interrupt in the program settings. <c>number</c> sets the number of expected predictions. Predictions are 6-tuples such as <c>PATH POSX POSY SLOPEX SLOPEY FIRSTPLATE</c> separated by ';'. The first prediction must be preceeded by ';'. No ';' is to be put at the end of the prediction string. The prediction string may contain any spacers including newlines.</description></item>
+            <item><term><c>IgnoreCalibrations &lt;number&gt;</c></term><description>Used to provide a list of ignored calibrations. <c>number</c> sets the number of ignored calibrations. Each calibration is identified with its ID (ID_PROCESSOPERATION in TB_PLATE_CALIBRATIONS), and IDs must be separated by any spacer character.</description></item>
+            <item><term><c>ForceCalibrations &lt;number&gt;</c></term><description>Used to provide a list of forced calibrations. <c>number</c> sets the number of forced calibrations. Each calibration is identified with its ID (ID_PROCESSOPERATION in TB_PLATE_CALIBRATIONS), and IDs must be separated by any spacer character.</description></item>
+            <item><term><c>SetPaths &lt;number&gt;</c></term><description>Used to allow manual setting of path candidates. <c>number</c> sets the number of rows following. Each row has the format <c>PATH ZONE CANDBASE CANDUPMICRO CANDDOWNMICRO</c>. If CANDBASE is greater than zero, the candidate is set to the corresponding base track; if CANDBASE is zero or less, the candidate is formed by creating a new base track made with the microtracks specified by CANDDOWN and CANDUP, if they are both greater than zero; 
+            if only one of them is greater than zero, the candidate is set to a promoted microtrack; if CANDBASE=CANDDOWN=CANDUP=0, the candidate is reset to <c>NULL</c>.</description></item>
+            </list>
+            </para>
+            <para>An example of interrupt for path specification follows:</para>
+            <para>
+            <example>
+            <code>
+            Paths 3;
+            1 10204.3 14893.2 0.238 0.008 1;
+            2 11244.3 18823.2 -0.182 0.080 5;
+            3 8848.1 1248.5 -0.006 0.185 2
+            </code>
+            </example>
+            </para>
+            <para>Type: <c>SimpleScanback3Driver /EasyInterrupt</c> for a graphical user interface to send interrupts.</para>
+            <para>
+            A sample XML configuration for SimpleScanback3Driver follows:
+            <example>
+            <code>
+            &lt;SimpleScanback3Settings&gt;
+             &lt;IntercalibrationConfigId&gt;1000000001570150&lt;/IntercalibrationConfigId&gt;
+             &lt;PredictionScanConfigId&gt;1000000001587818&lt;/PredictionScanConfigId&gt;
+             &lt;MaxMissingPlates&gt;3&lt;/MaxMissingPlates&gt;
+             &lt;Direction&gt;Upstream&lt;/Direction&gt;
+            &lt;/SimpleScanback3Settings&gt;
+            </code>
+            </example>
+            </para>
+            </remarks>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.SimpleScanback3Driver.Exe.InitializeLifetimeService">
+            <summary>
+            Initializes the Lifetime Service.
+            </summary>
+            <returns>the lifetime service object or null.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.SimpleScanback3Driver.Exe.Main(System.String[])">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.SimpleScanback3Driver.Exe.NotifyInterrupt(SySal.DAQSystem.Drivers.Interrupt)">
+            <summary>
+            Receives interrupt notifications and processes each one immediately.
+            </summary>
+            <param name="nextint">the new interrupt information received.</param>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.SimpleScanback3Driver.Exe.HttpPost(SySal.Web.Session,System.String,System.String[])">
+            <summary>
+            Processes HTTP POST method calls.
+            </summary>
+            <param name="sess">the user session.</param>
+            <param name="page">the page requested (ignored).</param>
+            <param name="postfields">commands sent to the page.</param>
+            <returns>an HTML string with the page to be shown.</returns>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.SimpleScanback3Driver.ExplanationForm">
+            <summary>
+            Summary description for ExplanationForm.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.SimpleScanback3Driver.ExplanationForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.SimpleScanback3Driver.ExplanationForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.SimpleScanback3Driver.ExplanationForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.SimpleScanback3Driver.frmEasyInterrupt">
+            <summary>
+            Interrupt Form.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.SimpleScanback3Driver.frmEasyInterrupt.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.SimpleScanback3Driver.frmEasyInterrupt.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.SimpleScanback3Driver.frmEasyInterrupt.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.SimpleScanback3Driver.frmConfig">
+            <summary>
+            Summary description for frmConfig.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.SimpleScanback3Driver.frmConfig.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.SimpleScanback3Driver.frmConfig.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.SimpleScanback3Driver.frmConfig.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.SimpleScanback3Driver.Utilities">
+            <summary>
+            Utility class.
+            </summary>
+        </member>
+        <member name="T:SimpleScanback3Driver.Properties.Resources">
+            <summary>
+              Classe di risorse fortemente tipizzata per la ricerca di stringhe localizzate e così via.
+            </summary>
+        </member>
+        <member name="P:SimpleScanback3Driver.Properties.Resources.ResourceManager">
+            <summary>
+              Restituisce l'istanza di ResourceManager nella cache utilizzata da questa classe.
+            </summary>
+        </member>
+        <member name="P:SimpleScanback3Driver.Properties.Resources.Culture">
+            <summary>
+              Esegue l'override della proprietà CurrentUICulture del thread corrente per tutte le
+              ricerche di risorse eseguite utilizzando questa classe di risorse fortemente tipizzata.
+            </summary>
+        </member>
+    </members>
+</doc>

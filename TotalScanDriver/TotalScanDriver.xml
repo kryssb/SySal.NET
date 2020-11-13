@@ -1,0 +1,369 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TotalScanDriver</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.DAQSystem.Drivers.TotalScanDriver.ScanDirection">
+            <summary>
+            Scanning direction.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TotalScanDriver.ScanDirection.Upstream">
+            <summary>
+            Scan towards the upstream direction.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TotalScanDriver.ScanDirection.Downstream">
+            <summary>
+            Scan towards the downstream direction.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.TotalScanDriver.InputSource">
+            <summary>
+            Source for input.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TotalScanDriver.InputSource.ScanbackPath">
+            <summary>
+            Volumes are built around stopping points of scanback/scanforth paths using the last slope.
+            Reads TB_B_SBPATHS_VOLUMES.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TotalScanDriver.InputSource.ScanbackPathFixedPrimarySlope">
+            <summary>
+            Volumes are built around stopping points of scanback/scanforth paths using a fixed primary beam slope.
+            Reads TB_B_SBPATHS_VOLUMES.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TotalScanDriver.InputSource.VolumeTrack">
+            <summary>
+            Set up volumes to extend already existing volume track.
+            <b>Warning: this is not yet supported!</b>
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TotalScanDriver.InputSource.Interrupt">
+            <summary>
+            Set up volumes from an ASCII n-tuple given through an interrupt.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.TotalScanDriver.SliceReductionScheme">
+            <summary>
+            Scheme to apply to reduce the number of plates to scan.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TotalScanDriver.SliceReductionScheme.NoReduction">
+            <summary>
+            Scan all plates.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TotalScanDriver.SliceReductionScheme.EveryTwo">
+            <summary>
+            Scan one plate every two (odd plates).
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TotalScanDriver.SliceReductionScheme.EveryFour">
+            <summary>
+            Scan one plate every four (1,5,9,...).
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TotalScanDriver.SliceReductionScheme.EveryTwoOrExit">
+            <summary>
+            Scan one plate every two (odd plates), but always include the first two and last two plates of the brick.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TotalScanDriver.SliceReductionScheme.EveryFourOrExit">
+            <summary>
+            Scan one plate every four, but always include the first four and last four plates of the brick.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.TotalScanDriver.VolumeCreation">
+            <summary>
+            Volume creation parameters.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TotalScanDriver.VolumeCreation.Source">
+            <summary>
+            Source for input.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TotalScanDriver.VolumeCreation.DownstreamPlates">
+            <summary>
+            Sets the number of plates to be scanned downstream of the interesting plate.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TotalScanDriver.VolumeCreation.UpstreamPlates">
+            <summary>
+            Sets the number of plates to be scanned upstream of the interesting plate.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TotalScanDriver.VolumeCreation.WidthFormula">
+            <summary>
+            A formula to specify the zone width (size in X direction). The formula can be a constant, or it can contain the following parameters:
+            <list type="table">
+            <item><term><c>DPLATE</c></term><description>The difference between the interesting plate Id and a generic plate Id. E.g.: if the interesting plate is 48, and the current plate is 46, <c>DPLATE</c> = -2.</description></item>
+            <item><term><c>DZ</c></term><description>The difference between the interesting plate Z and a generic plate Z. E.g.: if the interesting plate is 48 with = 20000, and the current plate is 46 with Z = 17400, <c>DZ</c> = -2600.</description></item>
+            </list>
+            If <c>HeightFormula</c> is not specified, <c>WidthFormula</c> is used as a default.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TotalScanDriver.VolumeCreation.HeightFormula">
+            <summary>
+            A formula to specify the zone height (size in Y direction). The formula can be a constant, or it can contain the following parameters:
+            <list type="table">
+            <item><term><c>DPLATE</c></term><description>The difference between the interesting plate Id and a generic plate Id. E.g.: if the interesting plate is 48, and the current plate is 46, <c>DPLATE</c> = -2.</description></item>
+            <item><term><c>DZ</c></term><description>The difference between the interesting plate Z and a generic plate Z. E.g.: if the interesting plate is 48 with = 20000, and the current plate is 46 with Z = 17400, <c>DZ</c> = -2600.</description></item>
+            </list>
+            If <c>HeightFormula</c> is not specified, <c>WidthFormula</c> is used as a default.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TotalScanDriver.VolumeCreation.PrimarySlope">
+            <summary>
+            Slope of the primary beam (only applies to the case where <c>Source = ScanbackPathFixedPrimarySlope</c>).
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TotalScanDriver.VolumeCreation.CheckBounds">
+            <summary>
+            if <c>true</c>, it checks that volumes do not cross plate bounds (e.g. plate size).
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TotalScanDriver.VolumeCreation.BoundMargin">
+            <summary>
+            When computing bounds, this margin is added to shrink the usable plate size.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TotalScanDriver.VolumeCreation.ReductionScheme">
+            <summary>
+            The reduction scheme to be used for volume creation based on interrupts.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.TotalScanDriver.TotalScanSettings">
+            <summary>
+            Settings for TotalScanDriver.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TotalScanDriver.TotalScanSettings.IntercalibrationConfigId">
+            <summary>
+            Program settings Id for Intercalibration.
+            If this Id is equal to AreaScanConfigId, the driver assumes that the same process operation performs intercalibration as well as scanning.
+            If intercalibration is simply to be skipped, this Id should be set equal to AreaScanConfigId, <b>not zero</b>.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TotalScanDriver.TotalScanSettings.AreaScanConfigId">
+            <summary>
+            Program settings Id for Area Scanning.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TotalScanDriver.TotalScanSettings.Direction">
+            <summary>
+            Scanning direction.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TotalScanDriver.TotalScanSettings.VolumeCreationMode">
+            <summary>
+            Creation mode for volumes.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TotalScanDriver.TotalScanSettings.ForceRefreshCalibration">
+            <summary>
+            If <c>true</c>, calibrated plates are re-calibrated if they had been calibrated within a previous volume operation. Valid Calibrations are re-used if this is set to <c>false</c>.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.TotalScanDriver.Exe">
+            <summary>
+            TotalScanDriver executor.
+            </summary>
+            <remarks>
+            <para>TotalScanDriver performs TotalScan throughout a brick.</para>
+            <para>TotalScan initialization can come from different data sources:
+            <list type = "table">
+            <listheader><term>Source</term><description>Explanation</description></listheader>
+            <item><term>ScanbackPath</term><description>starts scanning around scanback/scanforth interesting points, using the last seen slope.</description></item>
+            <item><term>ScanbackPathFixedPrimarySlope</term><description>starts scanning around scanback/scanforth interesting points, using the primary beam slope.</description></item>
+            <item><term>VolumeTrack</term><description>follows the slope of an already existing volume track.</description></item>
+            <item><term>Interrupt</term><description>reads volumes to be scanned from an interrupt.</description></item>
+            </list>
+            The TB_VOLUMES and TB_VOLUME_SLICES tables are used to record the TotalScan process.
+            </para>
+            <para>Type: <c>TotalScanDriver /Interrupt &lt;batchmanager&gt; &lt;process operation id&gt; &lt;interrupt string&gt;</c> to send an interrupt message to a running TotalScanDriver process operation.</para>
+            <para>
+            Supported Interrupts:
+            <list type="table">
+            <item><term><c>PlateDamagedCode &lt;code&gt;</c></term><description>Instructs TotalScanDriver to use the specified code to mark the plate as damaged. The plate must be specified by PlateDamaged. If it's missing, the current plate number is assumed.</description></item>
+            <item><term><c>PlateDamaged &lt;plate&gt;</c></term><description>Instructs TotalScanDriver to mark the specified plate as damaged. If it's missing, the current plate number is assumed.</description></item>
+            <item><term><c>GoBackToPlateN &lt;plate&gt;</c></term><description>Instructs TotalScanDriver to go back to the specified plate, keeping intercalibration info.</description></item>
+            <item><term><c>GoBackToPlateNCancelCalibrations &lt;plate&gt;</c></term><description>Instructs TotalScanDriver to go back to the specified plate, cancelling intercalibration info obtained by daughter operations of the current one. Intercalibrations obtained by previous operations will not be cancelled.</description></item>
+            <item><term><c>Volumes &lt;number&gt;</c></term><description>Used to provide volumes on startup when the volume source is set to Interrupt in the ProgramSettings. The number sets the number of expected volumes. Volumes are 7-tuples such as <c>VOLUME MINX MAXX MINY MAXY MINPLATE MAXPLATE</c> separated by ';'. The first volume must be preceeded by ';'. No ';' is to be put at the end of the volume string. The volume string may contain any spacers including newlines.</description></item>
+            </list>
+            </para>
+            <para>An example of interrupt for volume specification follows:</para>
+            <para>
+            <example>
+            <code>
+            Volumes 3;
+            1 10204.3 12204.3 14893.2 16893.2 4 12;
+            2 11244.3 13244.3 18823.2 20823.2 8 16;
+            3 8848.1 1248.5 10848.1 3248.5 23 37
+            </code>
+            </example>
+            </para>
+            <para>An extended syntax allows setting skewed volumes, adding the id of the plate on which the extents are set and the skewing slopes:</para>
+            <para>
+            <example>
+            <code>
+            Volumes 2;
+            1 10204.3 12204.3 14893.2 16893.2 4 12 5 0.1 0.3;
+            2 11244.3 13244.3 18823.2 20823.2 8 16 16 -0.1 0.5;    
+            </code>
+            </example>	
+            </para>
+            <para>A further extended syntax allows setting skewed volumes, adding the id of the plate on which the extents are set and the skewing slopes, and specifying that data from an existing volume should be reused:</para>
+            <para>
+            <example>
+            <code>
+            Volumes 2;
+            1 10204.3 12204.3 14893.2 16893.2 4 12 5 0.1 0.3 100044959573;
+            2 11244.3 13244.3 18823.2 20823.2 8 16 16 -0.1 0.5 100044959577;    
+            </code>
+            </example>
+            </para>
+            <para>A further extended syntax allows setting skewed volumes, adding the id of the plate on which the extents are set and the skewing slopes, and specifying that single plates from an existing volume should be reused:</para>
+            <para>
+            <example>
+            <code>
+            Volumes 1;
+            1 10204.3 12204.3 14893.2 16893.2 48 57 5 0.1 0.3 100044959573(48 50 51 53 54 56 57);    
+            </code>
+            </example>
+            In this example, one wants to "replace" data for plates 49 and 52, and keep all others. The existing volume is not replaced, but a new one is created.
+            </para>
+            <para>Type: <c>TotalScanDriver /EasyInterrupt</c> for a graphical user interface to send interrupts.</para>
+            <para>
+            A sample XML configuration for TotalScanDriver follows:
+            <example>
+            <code>
+            &lt;TotalScanSettings&gt;
+             &lt;IntercalibrationConfigId&gt;80088238&lt;/IntercalibrationConfigId&gt;
+             &lt;AreaScanConfigId&gt;80088275&lt;/AreaScanConfigId&gt;
+             &lt;Direction&gt;Upstream&lt;/Direction&gt;
+             &lt;VolumeCreationMode&gt;
+              &lt;Source&gt;ScanbackPathFixedPrimarySlope&lt;/Source&gt;
+              &lt;DownstreamPlates&gt;8&lt;/DownstreamPlates&gt;
+              &lt;UpstreamPlates&gt;1&lt;/UpstreamPlates&gt;
+              &lt;WidthFormula&gt;5000&lt;/WidthFormula&gt;
+              &lt;PrimarySlope&gt;
+               &lt;X&gt;0.05&lt;/X&gt;
+               &lt;Y&gt;-0.01&lt;/Y&gt;
+              &lt;/PrimarySlope&gt;
+             &lt;/VolumeCreationMode&gt;
+            &lt;/TotalScanSettings&gt;	
+            </code>
+            </example>
+            </para>
+            </remarks>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.TotalScanDriver.Exe.InitializeLifetimeService">
+            <summary>
+            Initializes the Lifetime Service.
+            </summary>
+            <returns>the lifetime service object or null.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.TotalScanDriver.Exe.Main(System.String[])">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.TotalScanDriver.Exe.NotifyInterrupt(SySal.DAQSystem.Drivers.Interrupt)">
+            <summary>
+            Called by the host BatchManager to notify the process of a new interrupt.
+            </summary>
+            <param name="nextint">the id of the next interrupt available in the queue.</param>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.TotalScanDriver.Exe.HttpGet(SySal.Web.Session,System.String,System.String[])">
+            <summary>
+            Processes HTTP GET method calls.
+            </summary>
+            <param name="sess">the user session.</param>
+            <param name="page">the page requested (ignored).</param>
+            <param name="queryget">commands sent to the page.</param>
+            <returns>an HTML string with the page to be shown.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.TotalScanDriver.Exe.HttpPost(SySal.Web.Session,System.String,System.String[])">
+            <summary>
+            Processes HTTP POST method calls.
+            </summary>
+            <param name="sess">the user session.</param>
+            <param name="page">the page requested (ignored).</param>
+            <param name="postfields">commands sent to the page.</param>
+            <returns>an HTML string with the page to be shown.</returns>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.TotalScanDriver.ExplanationForm">
+            <summary>
+            Summary description for ExplanationForm.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TotalScanDriver.ExplanationForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.TotalScanDriver.ExplanationForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.TotalScanDriver.ExplanationForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.TotalScanDriver.frmConfig">
+            <summary>
+            Configuration Form.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TotalScanDriver.frmConfig.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.TotalScanDriver.frmConfig.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.TotalScanDriver.frmConfig.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.TotalScanDriver.frmEasyInterrupt">
+            <summary>
+            Interrupt Form.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TotalScanDriver.frmEasyInterrupt.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.TotalScanDriver.frmEasyInterrupt.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.TotalScanDriver.frmEasyInterrupt.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.TotalScanDriver.Utilities">
+            <summary>
+            Utility class.
+            </summary>
+        </member>
+    </members>
+</doc>

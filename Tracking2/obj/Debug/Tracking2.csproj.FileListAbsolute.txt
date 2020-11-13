@@ -1,0 +1,13 @@
+/home/kryss/Documenti/SySal/Tracking2/bin/Debug/Tracking.dll
+/home/kryss/Documenti/SySal/Tracking2/bin/Debug/Tracking.pdb
+/home/kryss/Documenti/SySal/Tracking2/bin/Debug/Tracking2.xml
+/home/kryss/Documenti/SySal/Tracking2/bin/Debug/Imaging.dll
+/home/kryss/Documenti/SySal/Tracking2/bin/Debug/SySalCore.dll
+/home/kryss/Documenti/SySal/Tracking2/bin/Debug/Imaging.pdb
+/home/kryss/Documenti/SySal/Tracking2/bin/Debug/Imaging.xml
+/home/kryss/Documenti/SySal/Tracking2/bin/Debug/SySalCore.pdb
+/home/kryss/Documenti/SySal/Tracking2/bin/Debug/SySalCore.xml
+/home/kryss/Documenti/SySal/Tracking2/obj/Debug/Tracking2.csprojAssemblyReference.cache
+/home/kryss/Documenti/SySal/Tracking2/obj/Debug/Tracking2.csproj.CopyComplete
+/home/kryss/Documenti/SySal/Tracking2/obj/Debug/Tracking.dll
+/home/kryss/Documenti/SySal/Tracking2/obj/Debug/Tracking.pdb

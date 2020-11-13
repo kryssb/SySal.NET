@@ -1,0 +1,1170 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NumericalTools</name>
+    </assembly>
+    <members>
+        <member name="T:NumericalTools.Cholesky">
+            <summary>
+            Gets a symmetric matrix and decomposes it using Cholesky algorithm, providing also methods for matrix inversion and linear system solving.
+            <remarks>The Cholesky algorithm requires the symmetric matrix to be positive-definite. An exception will be thrown if the matrix is found to be semi-definite.</remarks>
+            </summary>
+        </member>
+        <member name="T:NumericalTools.Cholesky.Exception">
+            <summary>
+            Exception found during execution of Cholesky decomposition.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Cholesky.Exception.#ctor(System.String)">
+            <summary>
+            Builds a new exception using the specified error message.
+            </summary>
+            <param name="text">the message that explains the exception.</param>
+        </member>
+        <member name="M:NumericalTools.Cholesky.#ctor(System.Double[0:,0:],System.Double)">
+            <summary>
+            Builds a new instance of the Cholesky class using the lower-triangular part of the specified matrix, and the specified chopping for numbers.
+            <remarks>The matrix is not checked for symmetry.</remarks>
+            </summary>
+            <param name="matrix">the matrix to be decomposed.</param>
+            <param name="chopepsilon">must be a positive number. Matrix elements whose modulus are below this number will be chopped to <c>0.0</c>. Use <c>0.0</c> if there are no stringent requirements on chopping.</param>
+        </member>
+        <member name="M:NumericalTools.Cholesky.#ctor(System.Double[][],System.Double)">
+            <summary>
+            Builds a new instance of the Cholesky class using the a jagged array understood to represent the lower-triangular part of the specified matrix, and the specified chopping for numbers.        
+            </summary>
+            <param name="matrix">the matrix to be decomposed.</param>
+            <param name="chopepsilon">must be a positive number. Matrix elements whose modulus are below this number will be chopped to <c>0.0</c>. Use <c>0.0</c> if there are no stringent requirements on chopping.</param>
+        </member>
+        <member name="M:NumericalTools.Cholesky.#ctor(System.Double[][])">
+            <summary>
+            Builds a new instance of the Cholesky class using the result of a previous Cholesky decomposition. Useful for situations where only back-substitution is needed.
+            <remarks>The class does not clone the matrix passed as a parameter. Therefore, any modification to the matrix will be reflected to the related Cholesky object.</remarks>
+            </summary>
+            <param name="ldecomp">the lower-triangular decomposed matrix.</param>
+        </member>
+        <member name="P:NumericalTools.Cholesky.LDecomp">
+            <summary>
+            The result of the decomposition, in the form of a jagged array representing the lower triangular matrix.
+            <remarks>The matrix is not a clone of the internal one. Therefore, any modification applied to the matrix will affect the Cholesky object.</remarks>
+            </summary>
+        </member>
+        <member name="P:NumericalTools.Cholesky.Determinant">
+            <summary>
+            The determinant of the matrix.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Cholesky.Solve(System.Double[])">
+            <summary>
+            Solves the linear system that has the specified array as the data vector.
+            </summary>
+            <param name="datavect">the vector of data for the linear system.</param>
+            <returns>the solution of the system.</returns>
+        </member>
+        <member name="M:NumericalTools.Cholesky.Inverse(System.Double)">
+            <summary>
+            Builds inverse of the original matrix, using the specified chopping.
+            </summary>
+            <param name="chopepsilon">the chopping precision. Put to <c>0.0</c> if there is no special requirement on precision chopping.</param>
+            <returns>the inverse of the original matrix.</returns>
+        </member>
+        <member name="M:NumericalTools.Cholesky.BackSubstitution(System.Double[][],System.Double[],System.Boolean)">
+            <summary>
+            Implements back-substitution on a data vector.
+            </summary>
+            <param name="y">the data vector.</param>
+            <param name="matrix">a jagged array with the elements of the triangular matrix.</param>
+            <param name="islower"><c>true</c> if the matrix is to be understood as a lower-triangular matrix, <c>false</c> if it is upper-triangular.</param>
+            <returns>the solution of the back-substitution algorithm.</returns>
+        </member>
+        <member name="F:NumericalTools.Cholesky.m_LowerDec">
+            <summary>
+            The decomposed matrix (lower-triangular).
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Cholesky.LowerDecomp(System.Double[][],System.Double)">
+            <summary>
+            Performs the Cholesky decomposition on the specified matrix, using the specified chopping.
+            </summary>
+            <param name="matrix">the matrix to be decomposed (lower-triangular).</param>
+            <param name="chop">the chopping precision.</param>
+            <returns>the result of the decomposition.</returns>
+        </member>
+        <member name="T:NumericalTools.AdvancedFitting.LeastSquares">
+            <summary>
+            Performs a general nonlinear least-squares fit.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.AdvancedFitting.LeastSquares.Chi2F">
+            <summary>
+            Chi-Square function.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.AdvancedFitting.LeastSquares.Chi2D">
+            <summary>
+            Chi-Square partial derivative.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.AdvancedFitting.LeastSquares.Chi2H">
+            <summary>
+            Chi-Square partial derivative.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.AdvancedFitting.LeastSquares.Fit(NumericalTools.Minimization.ITargetFunction,System.Int32,System.Double[][],System.Double[],System.Double[],System.Int32)">
+            <summary>
+            Fits the data to the specified function. The function is meant to have <b>p</b>+<b>v</b> parameters, the first <b>p</b> of which are to be fitted,
+            whereas the remaining <b>v</b> are assumed to be independent variables, whose values are picked from the lists for the independent variables.
+            </summary>
+            <param name="f">the function to be fitted. First derivatives w.r.t. the fit parameters are needed.</param>
+            <param name="fitparameters">the number of parameters to be fitted. They must be the first parameters to be passed to the function.</param>
+            <param name="indep">the list of values for the independent variables.</param>
+            <param name="dep">the list of values for the dependent variable.</param>
+            <param name="deperr">the list of errors for the dependent variable.</param>
+            <param name="maxiterations">maximum number of iterations to find the minimum.</param>
+            <returns>the parameters of the fit.</returns>
+        </member>
+        <member name="M:NumericalTools.AdvancedFitting.LeastSquares.Fit(NumericalTools.Minimization.ITargetFunction,System.Int32,System.Double[][],System.Double[],System.Double[][],System.Double[],System.Int32)">
+            <summary>
+            Fits the data to the specified function. The function is meant to have <b>p</b>+<b>v</b> parameters, the first <b>p</b> of which are to be fitted,
+            whereas the remaining <b>v</b> are assumed to be independent variables, whose values are picked from the lists for the independent variables.
+            </summary>
+            <param name="f">the function to be fitted. First derivatives w.r.t. the fit parameters are needed.</param>
+            <param name="fitparameters">the number of parameters to be fitted. They must be the first parameters to be passed to the function.</param>
+            <param name="indep">the list of values for the independent variables.</param>
+            <param name="indeperr">the list of errors for the independent variable.</param>
+            <param name="dep">the list of values for the dependent variable.</param>
+            <param name="deperr">the list of errors for the dependent variable.</param>
+            <param name="maxiterations">maximum number of iterations to find the minimum.</param>
+            <returns>the parameters of the fit.</returns>
+            <remarks>The method of effective variance is used to take errors on the independent variables into account. </remarks>
+        </member>
+        <member name="F:NumericalTools.AdvancedFitting.LeastSquares.m_DegreesOfFreedom">
+            <summary>
+            Property backer for <c>DegreesOfFreedom</c>.
+            </summary>
+        </member>
+        <member name="P:NumericalTools.AdvancedFitting.LeastSquares.DegreesOfFreedom">
+            <summary>
+            Degrees of freedom.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.AdvancedFitting.LeastSquares.m_EstimatedVariance">
+            <summary>
+            Property backer for <c>EstimatedVariance</c>.
+            </summary>
+        </member>
+        <member name="P:NumericalTools.AdvancedFitting.LeastSquares.EstimatedVariance">
+            <summary>
+            Estimated variance of the fit.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.AdvancedFitting.LeastSquares.m_BestFit">
+            <summary>
+            Property backer for <c>BestFit</c>.
+            </summary>
+        </member>
+        <member name="P:NumericalTools.AdvancedFitting.LeastSquares.BestFit">
+            <summary>
+            Best fit values for the parameters.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.AdvancedFitting.LeastSquares.m_StandardErrors">
+            <summary>
+            Property backer for <c>StandardErrors</c>.
+            </summary>
+        </member>
+        <member name="P:NumericalTools.AdvancedFitting.LeastSquares.StandardErrors">
+            <summary>
+            Standard errors for the fit parameters.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.AdvancedFitting.LeastSquares.m_CorrelationMatrix">
+            <summary>
+            Property backer for <c>CorrelationMatrix</c>.
+            </summary>
+        </member>
+        <member name="P:NumericalTools.AdvancedFitting.LeastSquares.CorrelationMatrix">
+            <summary>
+            Correlation matrix for the fit parameters.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.AdvancedFitting.LeastSquares.m_TW">
+            <summary>
+            Property backer for Logger.
+            </summary>
+        </member>
+        <member name="P:NumericalTools.AdvancedFitting.LeastSquares.Logger">
+            <summary>
+            Text stream to log the fit progress to. Set to <c>null</c> to disable logging.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.Likelihood">
+            <summary>
+            The likelihood function for track fitting results.
+            </summary>
+        </member>
+        <member name="P:NumericalTools.Likelihood.Parameters">
+            <summary>
+            The number of parameters for this likelihood.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Likelihood.ParameterName(System.Int32)">
+            <summary>
+            Retrieves the name of a parameter.
+            </summary>
+            <param name="iparam">the number of the parameter whose name is sought.</param>
+            <returns>the name of the parameter.</returns>
+        </member>
+        <member name="M:NumericalTools.Likelihood.MinBound(System.Int32)">
+            <summary>
+            Retrieves the minimum acceptable value for a parameter.
+            </summary>
+            <param name="iparam">the number of the parameter whose minimum bound is sought.</param>
+            <returns>the value of the minimum bound.</returns>
+        </member>
+        <member name="M:NumericalTools.Likelihood.MaxBound(System.Int32)">
+            <summary>
+            Retrieves the maximum acceptable value for a parameter.
+            </summary>
+            <param name="iparam">the number of the parameter whose maximum bound is sought.</param>
+            <returns>the value of the maximum bound.</returns>
+        </member>
+        <member name="M:NumericalTools.Likelihood.Value(System.Double[])">
+            <summary>
+            Computes the value of the likelihood function for a given set of parameters.
+            </summary>
+            <param name="paramvalues">the parameter values.</param>
+            <returns>the value of the likelihood function.</returns>
+        </member>
+        <member name="M:NumericalTools.Likelihood.LogValue(System.Double[])">
+            <summary>
+            Computes the natural logarithm of the value of the likelihood function for a given set of parameters.
+            </summary>
+            <param name="paramvalues">the parameter values.</param>
+            <returns>the natural logarithm of the value of the likelihood function.</returns>
+        </member>
+        <member name="M:NumericalTools.Likelihood.Best(System.Int32)">
+            <summary>
+            Yields the most likely value for a parameter.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Likelihood.ConfidenceRegions(System.Int32,System.Double)">
+            <summary>
+            Computes the confidence regions for one parameter, marginalizing all others.
+            </summary>
+            <param name="cl">the confidence level to use to compute the region.</param>
+            <returns>the extents of the intervals of the confidence region.</returns>
+            <remarks>The number of elements in the returned array is always even: each even element is the lower 
+            bound of an interval and each next odd element is the upper bound of the same interval as shown in the example.
+            <example><c>1,2.5,5,8.8</c></example>
+            In this case the first interval spans [1,2.5], and the second spans [5,8.8].</remarks>
+        </member>
+        <member name="T:NumericalTools.OneParamLogLikelihood">
+            <summary>
+            One-parameter likelihood.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.OneParamLogLikelihood.#ctor(System.Double,System.Double,System.Double[],System.String)">
+            <summary>
+            Builds a one-parameter likelihood defined using its logarithms on a regular grid of parameter values.
+            </summary>
+            <param name="pmin">the minimum value of the parameter.</param>
+            <param name="pmax">the maximum value of the parameter.</param>
+            <param name="logvalues">array of values of the logarithm of the likelihood function.</param>
+        </member>
+        <member name="P:NumericalTools.OneParamLogLikelihood.Parameters">
+            <summary>
+            Returns 1.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.OneParamLogLikelihood.ParameterName(System.Int32)">
+            <summary>
+            The name of the parameter.
+            </summary>
+            <param name="iparam">must be 0.</param>
+            <returns>the name of the parameter.</returns>
+        </member>
+        <member name="M:NumericalTools.OneParamLogLikelihood.MinBound(System.Int32)">
+            <summary>
+            The minimum value for the parameter.
+            </summary>
+            <param name="iparam">must be 0.</param>
+            <returns>the minimum value of the parameter.</returns>
+        </member>
+        <member name="M:NumericalTools.OneParamLogLikelihood.MaxBound(System.Int32)">
+            <summary>
+            The maximum value for the parameter.
+            </summary>
+            <param name="iparam">must be 0.</param>
+            <returns>the maximum value of the parameter.</returns>
+        </member>
+        <member name="M:NumericalTools.OneParamLogLikelihood.Value(System.Double[])">
+            <summary>
+            Computes the value of the likelihood function.
+            </summary>
+            <param name="paramvalues">the value of the parameter.</param>
+            <returns>the value of the likelihood function.</returns>
+            <remarks>the value of the function is computed by interpolating its logarithm.</remarks>
+        </member>
+        <member name="M:NumericalTools.OneParamLogLikelihood.LogValue(System.Double[])">
+            <summary>
+            Computes the value of the logarithm of the likelihood function.
+            </summary>
+            <param name="paramvalues">the value of the parameter.</param>
+            <returns>the value of the logarithm of the likelihood function, computed as a first order spline.</returns>
+        </member>
+        <member name="M:NumericalTools.OneParamLogLikelihood.ConfidenceRegions(System.Int32,System.Double)">
+            <summary>
+            Computes the confidence regions for the parameter.
+            </summary>
+            <param name="cl">the confidence level to use to compute the region.</param>
+            <param name="i">the parameter whose confidence region is needed.</param>
+            <returns>the extents of the intervals of the confidence region.</returns>
+            <remarks>The number of elements in the returned array is always even: each even element is the lower 
+            bound of an interval and each next odd element is the upper bound of the same interval as shown in the example.
+            <example><c>1,2.5,5,8.8</c></example>
+            In this case the first interval spans [1,2.5], and the second spans [5,8.8].</remarks>
+        </member>
+        <member name="M:NumericalTools.OneParamLogLikelihood.Best(System.Int32)">
+            <summary>
+            Yields the most likely value for the parameter.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.OneParamLogLikelihood.#ctor(System.Double,NumericalTools.Likelihood[])">
+            <summary>
+            Builds a one-parameter likelihood obtained as a product of several independent one-parameter likelihoods with the same parameter.
+            </summary>
+            <param name="samplingstep">the step to be used to resample the final likelihood.</param>
+            <param name="multipliers">the likelihood functions to be multiplied.</param>
+        </member>
+        <member name="T:NumericalTools.Minimization.ITargetFunction">
+            <summary>
+            Generic function to be minimized.
+            </summary>
+        </member>
+        <member name="P:NumericalTools.Minimization.ITargetFunction.CountParams">
+            <summary>
+            Retrieves the number of parameters of the function.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Minimization.ITargetFunction.Evaluate(System.Double[])">
+            <summary>
+            Evaluates the function at the specified point.
+            </summary>
+            <param name="x">the point where the function should be evaluated.</param>
+            <returns>the value of the function.</returns>
+        </member>
+        <member name="M:NumericalTools.Minimization.ITargetFunction.RangeMin(System.Int32)">
+            <summary>
+            The minimum value for the range of the i-th parameter. Can be <c>Double.NegativeInfinity</c> if the range is unbounded.
+            </summary>
+            <param name="i">the number of parameter whose range is sought.</param>
+            <returns>the minimum allowed value for the i-th parameter.</returns>
+        </member>
+        <member name="M:NumericalTools.Minimization.ITargetFunction.RangeMax(System.Int32)">
+            <summary>
+            The maximum value for the range of the i-th parameter. Can be <c>Double.PositiveInfinity</c> if the range is unbounded.
+            </summary>
+            <param name="i">the number of parameter whose range is sought.</param>
+            <returns>the maximum allowed value for the i-th parameter.</returns>
+        </member>
+        <member name="M:NumericalTools.Minimization.ITargetFunction.Derive(System.Int32)">
+            <summary>
+            Yields the partial derivative w.r.t. the i-th parameter.
+            </summary>
+            <param name="i">the number of the parameter whose corresponding partial derivative is needed.</param>
+            <returns>the partial derivative or <c>null</c> if derivatives are not known (or not supported).</returns>
+        </member>
+        <member name="M:NumericalTools.Minimization.ITargetFunction.StopMinimization(System.Double,System.Double,System.Double)">
+            <summary>
+            Minimization stopping criterion.
+            </summary>
+            <param name="fval">the value of the function.</param>
+            <param name="fchange">the change in the value of the function.</param>
+            <param name="xchange">the change in the parameter vector.</param>        
+            <returns><c>true</c> if the minimization process can be stopped.</returns>
+        </member>
+        <member name="P:NumericalTools.Minimization.ITargetFunction.Start">
+            <summary>
+            The starting point of the minimization procedure.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.Minimization.MinimizationException">
+            <summary>
+            Generic exception occurred during minimization.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Minimization.MinimizationException.#ctor(System.String)">
+            <summary>
+            Builds a new exception.
+            </summary>
+            <param name="s">the exception text.</param>
+        </member>
+        <member name="T:NumericalTools.Minimization.IMinimizer">
+            <summary>
+            Generic minimizing algorithm.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Minimization.IMinimizer.FindMinimum(NumericalTools.Minimization.ITargetFunction,System.Int32)">
+            <summary>
+            Finds the minimum of the specified function. The behaviour depends on the implementation.
+            </summary>
+            <param name="f">the function to be minimized.</param>
+            <param name="maxiterations">the maximum number of iterations to try. Set to a non-positive number to allow infinite iterations.</param>
+            <returns>the value of the parameter vector that minimizes the function.</returns>
+            <remarks>A local minimum might be returned instead of a global one. A <see cref="T:NumericalTools.Minimization.MinimizationException"/> might be thrown.</remarks>
+        </member>
+        <member name="P:NumericalTools.Minimization.IMinimizer.Value">
+            <summary>
+            Value of the function at its minimum.
+            </summary>
+        </member>
+        <member name="P:NumericalTools.Minimization.IMinimizer.Point">
+            <summary>
+            The point where the minimum is located.
+            </summary>
+        </member>
+        <member name="P:NumericalTools.Minimization.IMinimizer.Logger">
+            <summary>
+            Logging stream the algorithm progress. Set to <c>null</c> to disable logging.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.Minimization.NewtonMinimizer">
+            <summary>
+            Newton's algorithm.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Minimization.NewtonMinimizer.FindMinimum(NumericalTools.Minimization.ITargetFunction,System.Int32)">
+            <summary>
+            Finds a local minimum for the function using Newton's algorithm.
+            </summary>
+            <param name="f">the function to be minimized.</param>
+            <param name="maxiterations">the maximum number of iterations to try. Set to a non-positive number to allow infinite iterations.</param>
+            <returns>the location of the local minimum.</returns>
+            <remarks>The complete Hessian must be available through function derivation.</remarks>
+        </member>
+        <member name="F:NumericalTools.Minimization.NewtonMinimizer.m_Value">
+            Property backer for <c>Value</c>.
+        </member>
+        <member name="P:NumericalTools.Minimization.NewtonMinimizer.Value">
+            <summary>
+            The value of the function at its minimum.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Minimization.NewtonMinimizer.m_Point">
+            <summary>
+            Property backer for <c>Point</c>.
+            </summary>
+        </member>
+        <member name="P:NumericalTools.Minimization.NewtonMinimizer.Point">
+            <summary>
+            The location of the minimum.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Minimization.NewtonMinimizer.m_TW">
+            <summary>
+            Property backer for <c>Logger</c>.
+            </summary>
+        </member>
+        <member name="P:NumericalTools.Minimization.NewtonMinimizer.Logger">
+            <summary>
+            Logging stream the algorithm progress. Set to <c>null</c> to disable logging.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.Minimization.RangeScanMinimizer">
+            <summary>
+            Minimizing algorithm that performs a range scan.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Minimization.RangeScanMinimizer.m_GridSteps">
+            <summary>
+            Property backer for <c>GridSteps</c>.
+            </summary>
+        </member>
+        <member name="P:NumericalTools.Minimization.RangeScanMinimizer.GridSteps">
+            <summary>
+            Grid steps to use.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Minimization.RangeScanMinimizer.FindMinimum(NumericalTools.Minimization.ITargetFunction,System.Int32)">
+            <summary>
+            Finds the minimum of the function.
+            </summary>
+            <param name="f">the function to be minimized.</param>
+            <param name="maxiterations">ignored.</param>
+            <returns>the minimum of the function.</returns>
+            <remarks>The function domain must be bounded on all parameters.</remarks>
+        </member>
+        <member name="F:NumericalTools.Minimization.RangeScanMinimizer.m_Value">
+            Property backer for <c>Value</c>.
+        </member>
+        <member name="P:NumericalTools.Minimization.RangeScanMinimizer.Value">
+            <summary>
+            The minimum value of the function.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Minimization.RangeScanMinimizer.m_Point">
+            <summary>
+            Property backer for <c>Point</c>.
+            </summary>
+        </member>
+        <member name="P:NumericalTools.Minimization.RangeScanMinimizer.Point">
+            <summary>
+            The point where the minimum is located, approximated on grid points.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.Minimization.RangeScanMinimizer.m_TW">
+            <summary>
+            Property backer for <c>Logger</c>.
+            </summary>
+        </member>
+        <member name="P:NumericalTools.Minimization.RangeScanMinimizer.Logger">
+            <summary>
+            Logging stream the algorithm progress. Set to <c>null</c> to disable logging.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.RandomGenerator">
+            <summary>
+            The generator.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.RandomGenerator.RND">
+            <summary>
+            A single instance of a random generator that is used by all procedures.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.ComputationResult">
+            <summary>
+            Result of a computation.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.ComputationResult.OK">
+            <summary>
+            Computation OK.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.ComputationResult.InvalidInput">
+            <summary>
+            Input was invalid.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.ComputationResult.SingularityEncountered">
+            <summary>
+            A singularity has been encountered.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.RoundOption">
+            <summary>
+            Options for rounding.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.RoundOption.FloorRound">
+            <summary>
+            Round to the greatest non-greater integer.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.RoundOption.MathematicalRound">
+            <summary>
+            Round to the closest integer.
+            </summary>
+        </member>
+        <member name="F:NumericalTools.RoundOption.CeilingRound">
+            <summary>
+            Round to the smallest non-smaller integer.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.Fitting">
+            <summary>
+            Resources for various fitting procedures.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Fitting.#ctor">
+            <summary>
+            The Fitting class cannot be instantiated: it supports only static methods.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Fitting.ExtendedRound(System.Double,System.Int32,NumericalTools.RoundOption)">
+            <summary>
+            Rounds a number according to the specified rounding policy, using a specified number of decimal places.
+            </summary>
+            <param name="m">the number to be rounded.</param>
+            <param name="j">the number of decimal places.</param>
+            <param name="ropt">the rounding option.</param>
+            <returns>the rounded number.</returns>
+        </member>
+        <member name="M:NumericalTools.Fitting.LinearFitSE(System.Double[],System.Double[],System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@,System.Double@)">
+            <summary>
+            Linear fitting without error specification.
+            </summary>
+            <param name="x">the values for the independent variable.</param>
+            <param name="y">the values for the dependent variable.</param>
+            <param name="a">the first-order coefficient of the fit line.</param>
+            <param name="b">the zeroth-order coefficient of the fit line.</param>
+            <param name="range">the range of the dependent variable.</param>
+            <param name="erry">the error on the dependent variable.</param>
+            <param name="erra">the error on the first-order fit coefficient.</param>
+            <param name="errb">the error on the zeroth-order fit coefficient.</param>
+            <param name="ccor">the correlation estimator.</param>
+            <returns>a flag reflecting the outcome of the computation procedure.</returns>
+        </member>
+        <member name="M:NumericalTools.Fitting.LinearFitDE(System.Double[],System.Double[],System.Double[],System.Double@,System.Double@,System.Double@)">
+            <summary>
+            Linear fitting with error specification, not computing errors on the fit results.
+            </summary>
+            <param name="x">the values for the independent variable.</param>
+            <param name="y">the values for the dependent variable.</param>
+            <param name="sy">the values of the errors for the dependent variables.</param>
+            <param name="a">the first-order coefficient of the fit line.</param>
+            <param name="b">the zeroth-order coefficient of the fit line.</param>
+            <param name="range">the range of the dependent variable.</param>
+            <returns>a flag reflecting the outcome of the computation procedure.</returns>
+        </member>
+        <member name="M:NumericalTools.Fitting.PeakDataSel(System.Double[0:,0:],System.Double[],System.Double,System.Double)">
+            <summary>
+            Selects data in a density peak.
+            </summary>
+            <param name="x">the coordinates (n rows of m components per each point)</param>
+            <param name="binsize">a vector with m components containing the cell size for each dimension. If set to <c>null</c>, automatic sizes are used.</param>
+            <param name="peakquantile">a number between 0.0 and 1.0 specifying which fraction of all density cells the peak should contain. If negative, this parameter is ignored.</param>
+            <param name="peakentriesquantile">a number between 0.0 and 1.0 specifying which fraction of all entries the peak should contain. This parameter applies if <c>peakdensityquantile</c> is negative.</param>
+            <returns>the id's of the elements in the peak.</returns>
+        </member>
+        <member name="M:NumericalTools.Fitting.FindStatistics(System.Double[],System.Double@,System.Double@,System.Double@,System.Double@)">
+            <summary>
+            Finds general statistics on a distribution.
+            </summary>
+            <param name="X">the values.</param>
+            <param name="Max">the maximum value.</param>
+            <param name="Min">the minimum value.</param>
+            <param name="Avg">the average value.</param>
+            <param name="RMS">the standard deviation.</param>
+            <returns>the outcome of the computation.</returns>
+        </member>
+        <member name="M:NumericalTools.Fitting.Quantiles(System.Double[],System.Double[])">
+            <summary>
+            Computes quantiles of a distribution.
+            </summary>
+            <param name="X">the values of the variable.</param>
+            <param name="q">the list of quantiles to be computed.</param>
+            <returns>the computed quantiles.</returns>
+        </member>
+        <member name="M:NumericalTools.Fitting.Range(System.Double[])">
+            <summary>
+            Computes the range of a variable.
+            </summary>
+            <param name="X">the values of the variable.</param>
+            <returns>the range.</returns>
+        </member>
+        <member name="M:NumericalTools.Fitting.Maximum(System.Double[])">
+            <summary>
+            Computes the maximum of a variable.
+            </summary>
+            <param name="X">the values of the variable.</param>
+            <returns>the maximum value.</returns>
+        </member>
+        <member name="M:NumericalTools.Fitting.Minimum(System.Double[])">
+            <summary>
+            Computes the minimum of a variable.
+            </summary>
+            <param name="X">the values of the variable.</param>
+            <returns>the minimum value.</returns>
+        </member>
+        <member name="M:NumericalTools.Fitting.Average(System.Double[])">
+            <summary>
+            Computes the average of a variable.
+            </summary>
+            <param name="X">the values of the variable.</param>
+            <returns>the average value.</returns>
+        </member>
+        <member name="M:NumericalTools.Fitting.Average(System.Double[0:,0:])">
+            <summary>
+            Computes the average of a bivariate variable.
+            </summary>
+            <param name="X">the values of the variable.</param>
+            <returns>the average value.</returns>
+        </member>
+        <member name="M:NumericalTools.Fitting.RMS(System.Double[])">
+            <summary>
+            Computes the standard deviation of a variable.
+            </summary>
+            <param name="X">the values of the variable.</param>
+            <returns>the standard deviation.</returns>
+        </member>
+        <member name="M:NumericalTools.Fitting.RMS(System.Double[0:,0:])">
+            <summary>
+            Computes the standard deviation of a bivariate variable.
+            </summary>
+            <param name="X">the values of the variable.</param>
+            <returns>the standard deviation.</returns>
+        </member>
+        <member name="M:NumericalTools.Fitting.Prepare_Custom_Distribution(System.Double[],System.Int16,System.Double,System.Int32,System.Double[]@,System.Double[]@,System.Double[]@)">
+            <summary>
+            Prepares a custom distribution.
+            </summary>
+            <param name="Vec">the data values (e.g. measured flight lengths).</param>
+            <param name="HistoOpt">if set to 2, the domain of the distribution coincides with the minimum and maximum values; if set to 1, the domain is enlarged by half Delta up and down.</param>
+            <param name="Delta">the bin size.</param>
+            <param name="N_Cat">the number of categories.</param>
+            <param name="X_Mean">the central values of the categories.</param>
+            <param name="Y_Vec">the cumulative values per category.</param>
+            <param name="N_Y_Vec">the normalized values per category.</param>
+            <returns>the outcome of the computation.</returns>
+        </member>
+        <member name="M:NumericalTools.Fitting.Prepare_IntCounts_Distribution(System.Int32[],System.Int32,System.Int32[]@,System.Int32[]@,System.Double[]@)">
+            <summary>
+            Prepares a custom distribution.
+            </summary>
+            <param name="Vec">the data values (e.g. measured flight lengths).</param>
+            <param name="Delta">the bin size.</param>
+            <param name="X_Mean">the central values of the categories.</param>
+            <param name="Y_Vec">the cumulative counts per category.</param>
+            <param name="N_Y_Vec">the normalized counts per category.</param>
+            <returns>the outcome of the computation.</returns>
+        </member>
+        <member name="M:NumericalTools.Fitting.GroupScatter(System.Double[],System.Double[],System.Int16,System.Double,System.Int32,System.Int16,System.Double[]@,System.Double[]@,System.Double[]@,System.Int32[]@)">
+            <summary>
+            Computes a group scatter dataset.
+            </summary>
+            <param name="X">the set of independent values.</param>
+            <param name="Y">the set of dependent values.</param>
+            <param name="SetInterval">if set to 1, the number of intervals is imposed, and the bin size is computed; vice-versa if it is 2.</param>
+            <param name="dx">the bin size.</param>
+            <param name="Nint">the number of intervals.</param>
+            <param name="SetX">can be 1, 2, 3; 1 = the central value of the bins, 2 = the lower value of the bins, 3 = the upper value of the bins.</param>
+            <param name="Xout">the bins.</param>
+            <param name="Yout">the average Y per bin.</param>
+            <param name="SYout">the errors on the average Y per bin.</param>
+            <param name="Entries">the count of the entries per each bin.</param>
+            <returns>the outcome of the computation.</returns>
+        </member>
+        <member name="M:NumericalTools.Fitting.Prepare_2DCustom_Distribution(System.Double[],System.Double[],System.Double,System.Double,System.Double[]@,System.Double[]@,System.Double[0:,0:]@,System.Double[0:,0:]@)">
+            <summary>
+            Prepares a bivariate distribution.
+            </summary>
+            <param name="X">the set of X values.</param>
+            <param name="Y">the set of Y values.</param>
+            <param name="DeltaX">the X bin.</param>
+            <param name="DeltaY">the Y bin.</param>
+            <param name="X_Mean">the values of the reference points for the X bins.</param>
+            <param name="Y_Mean">the values of the reference points for the Y bins.</param>
+            <param name="Z_Vec">the set of Z values.</param>
+            <param name="N_Z_Vec">the count of the Z values.</param>
+            <returns>the outcome of the computation.</returns>
+        </member>
+        <member name="M:NumericalTools.Fitting.Prepare_2DCustom_Distribution(System.Double[],System.Double[],System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double[]@,System.Double[]@,System.Double[0:,0:]@,System.Double[0:,0:]@)">
+            <summary>
+            Prepares a bivariate distribution with cuts.
+            </summary>
+            <param name="X">the set of X values.</param>
+            <param name="Y">the set of Y values.</param>
+            <param name="DeltaX">the X bin.</param>
+            <param name="DeltaY">the Y bin.</param>
+            <param name="InfX">the lower boundary of X.</param>
+            <param name="SupX">the upper boundary of X.</param>
+            <param name="InfY">the lower boundary of Y.</param>
+            <param name="SupY">the upper boundary of Y.</param>
+            <param name="X_Mean">the values of the reference points for the X bins.</param>
+            <param name="Y_Mean">the values of the reference points for the Y bins.</param>
+            <param name="Z_Vec">the set of Z values.</param>
+            <param name="N_Z_Vec">the count of the Z values.</param>
+            <returns>the outcome of the computation.</returns>
+        </member>
+        <member name="M:NumericalTools.Fitting.Prepare_2DCustom_Distribution_ZVal(System.Double[],System.Double[],System.Double[],System.Double,System.Double,System.Double[]@,System.Double[]@,System.Double[0:,0:]@,System.Double[0:,0:]@,System.Int32[0:,0:]@)">
+            <summary>
+            Prepares a bivariate distribution of Z values.
+            </summary>
+            <param name="X">the set of X values.</param>
+            <param name="Y">the set of Y values.</param>
+            <param name="Z">the set of Z values.</param>
+            <param name="DeltaX">the X bin.</param>
+            <param name="DeltaY">the Y bin.</param>
+            <param name="X_Mean">the values of the reference points for the X bins.</param>
+            <param name="Y_Mean">the values of the reference points for the Y bins.</param>		
+            <param name="Mean_Z_Vec">Z averages per bin.</param>
+            <param name="RMS_Z_Vec">Z standard deviations per bin.</param>
+            <param name="Entries">The number of entries per bin.</param>
+            <returns>the outcome of the computation.</returns>
+        </member>
+        <member name="M:NumericalTools.Fitting.Prepare_2DCustom_Distribution_ZVal(System.Double[],System.Double[],System.Double[],System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double[]@,System.Double[]@,System.Double[0:,0:]@,System.Double[0:,0:]@,System.Int32[0:,0:]@)">
+            <summary>
+            Prepares a bivariate distribution of Z values with cuts.
+            </summary>
+            <param name="X">the set of X values.</param>
+            <param name="Y">the set of Y values.</param>
+            <param name="Z">the set of Z values.</param>
+            <param name="DeltaX">the X bin.</param>
+            <param name="DeltaY">the Y bin.</param>
+            <param name="InfX">the lower bound of X.</param>
+            <param name="SupX">the upper bound of X.</param>
+            <param name="InfY">the lower bound of Y.</param>
+            <param name="SupY">the upper bound of Y.</param>
+            <param name="X_Mean">the values of the reference points for the X bins.</param>
+            <param name="Y_Mean">the values of the reference points for the Y bins.</param>		
+            <param name="Mean_Z_Vec">Z averages per bin.</param>
+            <param name="RMS_Z_Vec">Z standard deviations per bin.</param>
+            <param name="Entries">The number of entries per bin.</param>
+            <returns>the outcome of the computation.</returns>
+        </member>
+        <member name="M:NumericalTools.Fitting.ForwardElimination(System.Double[0:,0:],System.Double[0:,0:]@)">
+            <summary>
+            Forward elimination procedure for linear system-solving.
+            Currently limited to square matrices as large as 2..15 components per row/column.
+            </summary>
+            <param name="inA">input matrix.</param>
+            <param name="outA">output matrix.</param>
+            <returns>the outcome of the computation.</returns>
+        </member>
+        <member name="M:NumericalTools.Fitting.SolveLinearSystem(System.Double[0:,0:],System.Double[]@)">
+            <summary>
+            Solves a Linear System.
+            </summary>
+            <param name="inA">matrix of coefficients.</param>
+            <param name="outX">vector of data values.</param>
+            <returns>the outcome of the computation.</returns>
+        </member>
+        <member name="M:NumericalTools.Fitting.SolveLinearSystemGJ(System.Double[0:,0:],System.Double[]@,System.Boolean)">
+            <summary>
+            Solves a linear system with the Gauss-Jordan algorithm.
+            </summary>
+            <param name="inA">matrix of coefficients.</param>
+            <param name="outX">vector of data values.</param>
+            <param name="StoreInverseMatrix">if true, the matrix of coefficients receives the inverse matrix on return.</param>
+            <returns>the outcome of the computation.</returns>
+            <returns></returns>
+        </member>
+        <member name="M:NumericalTools.Fitting.NewSolutionGJ(System.Double[],System.Double[]@)">
+            <summary>
+            Computes a new solution for a new vector of data, using a stored solution for Gauss-Jordan elimination.
+            </summary>
+            <param name="inX">the new vector of data.</param>
+            <param name="Sol">the new solution.</param>
+            <returns>the outcome of the computation.</returns>
+        </member>
+        <member name="M:NumericalTools.Fitting.Affine_Focusing(System.Double[],System.Double[],System.Double[],System.Double[],System.Double[],System.Double[],System.Double[]@)">
+            <summary>
+            Computes an affine transformation + longitudinal zoom.
+            </summary>
+            <param name="inDX">input vector of X displacements.</param>
+            <param name="inDY">input vector of Y displacements.</param>
+            <param name="inX">input vector of X positions.</param>
+            <param name="inY">input vector of Y positions.</param>
+            <param name="inSX">input vector of X slopes.</param>
+            <param name="inSY">input vector of Y slopes.</param>
+            <param name="outPar">output parameters.
+            <list type="table">
+            <listheader><term>Parameter number</term><description>Meaning</description></listheader>
+            <item><term>0</term><description>AXX</description></item>
+            <item><term>1</term><description>AXY</description></item>
+            <item><term>2</term><description>AYX</description></item>
+            <item><term>3</term><description>AYY</description></item>
+            <item><term>4</term><description>TX</description></item>
+            <item><term>5</term><description>TY</description></item>
+            <item><term>6</term><description>TZ</description></item>
+            </list>
+            </param>
+            <returns>the outcome of the computation.</returns>
+        </member>
+        <member name="M:NumericalTools.Fitting.Affine(System.Double[],System.Double[],System.Double[],System.Double[],System.Double[]@)">
+            <summary>
+            Computes an affine transformation.
+            </summary>
+            <param name="inDX">input vector of X displacements.</param>
+            <param name="inDY">input vector of Y displacements.</param>
+            <param name="inX">input vector of X positions.</param>
+            <param name="inY">input vector of Y positions.</param>
+            <param name="inSX">input vector of X slopes.</param>
+            <param name="inSY">input vector of Y slopes.</param>
+            <param name="outPar">output parameters.
+            <list type="table">
+            <listheader><term>Parameter number</term><description>Meaning</description></listheader>
+            <item><term>0</term><description>AXX</description></item>
+            <item><term>1</term><description>AXY</description></item>
+            <item><term>2</term><description>AYX</description></item>
+            <item><term>3</term><description>AYY</description></item>
+            <item><term>4</term><description>TX</description></item>
+            <item><term>5</term><description>TY</description></item>
+            </list>
+            </param>
+            <remarks>The zoom translation (along Z) is set to 0.</remarks>
+            <returns>the outcome of the computation.</returns>
+        </member>
+        <member name="M:NumericalTools.Fitting.Affine_Focusing(System.Single[],System.Single[],System.Single[],System.Single[],System.Single[],System.Single[],System.Single[]@)">
+            <summary>
+            Computes an affine transformation + longitudinal zoom.
+            </summary>
+            <param name="inDX">input vector of X displacements.</param>
+            <param name="inDY">input vector of Y displacements.</param>
+            <param name="inX">input vector of X positions.</param>
+            <param name="inY">input vector of Y positions.</param>
+            <param name="inSX">input vector of X slopes.</param>
+            <param name="inSY">input vector of Y slopes.</param>
+            <param name="outPar">output parameters.
+            <list type="table">
+            <listheader><term>Parameter number</term><description>Meaning</description></listheader>
+            <item><term>0</term><description>AXX</description></item>
+            <item><term>1</term><description>AXY</description></item>
+            <item><term>2</term><description>AYX</description></item>
+            <item><term>3</term><description>AYY</description></item>
+            <item><term>4</term><description>TX</description></item>
+            <item><term>5</term><description>TY</description></item>
+            <item><term>6</term><description>TZ</description></item>
+            </list>
+            </param>
+            <returns>the outcome of the computation.</returns>
+        </member>
+        <member name="M:NumericalTools.Fitting.PolynomialFit(System.Double[],System.Double[],System.Int16,System.Double[]@,System.Double@)">
+            <summary>
+            Computes a polynomial fit.
+            </summary>
+            <param name="inX">values of the independent variable.</param>
+            <param name="inY">values of the dependent variable.</param>
+            <param name="Degree">the degree of the polynomial.</param>
+            <param name="outA">the output coefficients, in ascending order.</param>
+            <param name="CCorr">the correlation coefficient.</param>
+            <returns>the outcome of the computation.</returns>
+        </member>
+        <member name="M:NumericalTools.Fitting.LM_GaussianRegression(System.Double[],System.Double,System.Double,System.Int32,System.Int32,System.Int32,System.Double[]@,System.Int32[]@,System.Double@,System.Int16@)">
+            <summary>
+            Computes the Gaussian fit of a set of values.
+            </summary>
+            <param name="X">the values for which mean and sigma are sought.</param>
+            <param name="BinSize">the size of bins.</param>
+            <param name="MinChi2Change">if the difference in chi<sup>2</sup> between two iterations is smaller than this, iteration stops.</param>
+            <param name="MaxUnsuccessIter">maximum number of unsuccessful iterations.</param>
+            <param name="MaxIters">maximum number of iterations.</param>
+            <param name="MaxAttempts">if the first attempt fails, other attempts are performed starting from random points, until the fit converges or this number of attempts is exceeded.</param>
+            <param name="Parameters">output parameters:
+            <list type="table">
+            <listheader><term>Parameter Number</term><description>Meaning</description></listheader>
+            <item><term>0</term><description>Mu</description></item>
+            <item><term>1</term><description>Sigma</description></item>
+            <item><term>2</term><description>Normalization</description></item>
+            </list>
+            </param>
+            <param name="Iter">iterations per attempt.</param>
+            <param name="Chi2Fit">chi<sup>2</sup> of the fit.</param>
+            <param name="FitResult">the result of the fit.
+            <list type="table">
+            <listheader><term>Fit Code</term><description>Meaning</description></listheader>
+            <item><term>1</term><description>Fit OK</description></item>
+            <item><term>2</term><description>Maximum unsuccessful iterations exceeded</description></item>
+            <item><term>3</term><description>Fit OK with stationary chi<sup>2</sup></description></item>
+            <item><term>4</term><description>Maximum iterations exceeded</description></item>
+            <item><term>5</term><description>Fit converged to an anomalous result</description></item>
+            </list>
+            </param>
+        </member>
+        <member name="M:NumericalTools.Fitting.LM_InverseGaussianRegression(System.Double[],System.Double,System.Double,System.Int32,System.Int32,System.Int32,System.Double[]@,System.Int32[]@,System.Double@,System.Int16@)">
+            <summary>
+            Computes the Inverse Gaussian fit of a set of values.
+            </summary>
+            <param name="X">the values for which mean and sigma are sought.</param>
+            <param name="BinSize">the size of bins.</param>
+            <param name="MinChi2Change">if the difference in chi<sup>2</sup> between two iterations is smaller than this, iteration stops.</param>
+            <param name="MaxUnsuccessIter">maximum number of unsuccessful iterations.</param>
+            <param name="MaxIters">maximum number of iterations.</param>
+            <param name="MaxAttempts">if the first attempt fails, other attempts are performed starting from random points, until the fit converges or this number of attempts is exceeded.</param>
+            <param name="Parameters">output parameters:
+            <list type="table">
+            <listheader><term>Parameter Number</term><description>Meaning</description></listheader>
+            <item><term>0</term><description>Mu</description></item>
+            <item><term>1</term><description>Sigma</description></item>
+            <item><term>2</term><description>Normalization</description></item>
+            </list>
+            </param>
+            <param name="Iter">iterations per attempt.</param>
+            <param name="Chi2Fit">chi<sup>2</sup> of the fit.</param>
+            <param name="FitResult">the result of the fit.
+            <list type="table">
+            <listheader><term>Fit Code</term><description>Meaning</description></listheader>
+            <item><term>1</term><description>Fit OK</description></item>
+            <item><term>2</term><description>Maximum unsuccessful iterations exceeded</description></item>
+            <item><term>3</term><description>Fit OK with stationary chi<sup>2</sup></description></item>
+            <item><term>4</term><description>Maximum iterations exceeded</description></item>
+            </list>
+            </param>		
+        </member>
+        <member name="M:NumericalTools.Fitting.MultipleLinearRegression(System.Double[0:,0:],System.Double[],System.Double[]@,System.Double@)">
+            <summary>
+            Performs multiple linear regression of up to 15 variables.
+            </summary>
+            <param name="inX">values of independent vectors, stored by rows</param>
+            <param name="inZ">values of dependent variable</param>
+            <param name="outA">vector of regression results; the value at index 0 is the constant</param>
+            <param name="CCorr">correlation coefficient</param>
+            <returns>the outcome of the computation</returns>
+        </member>
+        <member name="M:NumericalTools.Fitting.PolynomialFit(System.Double[],System.Double[],System.Int16,System.Double[],System.Double)">
+            <summary>
+            Polynomial fit.
+            </summary>
+            <param name="inX">values of the independent variable</param>
+            <param name="inY">values of the dependent variable</param>
+            <param name="Degree">the degree of the polynomial</param>
+            <param name="outA">the output coefficients, in order of ascending degree</param>
+            <param name="CCorr">the correlation coefficient</param>
+            <returns>the outcome of the computation</returns>
+        </member>
+        <member name="M:NumericalTools.Fitting.RejectAllByChauvenet(System.Double[],System.Double[]@,System.Double,System.Double)">
+            <summary>
+            Implements rejection by Chauvenet's criterion
+            </summary>
+            <param name="VecIn">input values</param>
+            <param name="VecOut">output values (i.e., survivors)</param>
+            <param name="MeanOut">mean value</param>
+            <param name="RMSOut">standard deviation</param>
+            <returns>the outcome of the computation</returns>
+        </member>
+        <member name="T:NumericalTools.MonteCarlo">
+            <summary>
+            Implements several procedures useful in random distribution generation
+            </summary>
+        </member>
+        <member name="M:NumericalTools.MonteCarlo.#ctor">
+            <summary>
+            Prevents instantiation of this class. Only static methods are supported.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.MonteCarlo.Gaussian_Rnd_Number(System.Double,System.Double,System.Double@)">
+            <summary>
+            Generates a Gaussian random number.
+            </summary>
+            <param name="M">the value of the Mu parameter for the Gaussian distribution.</param>
+            <param name="S">the value of the Sigma parameter for the Gaussian distribution.</param>
+            <param name="Number">the generated number.</param>
+            <returns>the outcome of the computation.</returns>
+        </member>
+        <member name="M:NumericalTools.MonteCarlo.Gaussian_Rnd_Number(System.Double,System.Double)">
+            <summary>
+            Generates a Gaussian random number.
+            </summary>
+            <param name="M">the value of the Mu parameter for the Gaussian distribution.</param>
+            <param name="S">the value of the Sigma parameter for the Gaussian distribution.</param>
+            <returns>the generated number.</returns>
+        </member>
+        <member name="M:NumericalTools.MonteCarlo.Flat_Rnd_Number(System.Double,System.Double,System.Double@)">
+            <summary>
+            Generates a uniformly distributed random number between the specified extents.
+            </summary>
+            <param name="Inf">the lower bound of the distribution.</param>
+            <param name="Sup">the upper bound of the distribution.</param>
+            <param name="Value">the generated value.</param>
+            <returns>the outcome of the computation</returns>
+        </member>
+        <member name="M:NumericalTools.MonteCarlo.Flat_Rnd_Number(System.Double,System.Double)">
+            <summary>
+            Generates a uniformly distributed random number between the specified extents.
+            </summary>
+            <param name="Inf">the lower bound of the distribution.</param>
+            <param name="Sup">the upper bound of the distribution.</param>		
+            <param name="Value">the generated value.</param>
+            <returns>the generated value.</returns>
+        </member>
+        <member name="M:NumericalTools.MonteCarlo.Poisson_Rnd_Number(System.Double,System.Int32)">
+            <summary>
+            Generates a Poissonian random number
+            </summary>
+            <param name="Mu">the average of the Poisson distribution.</param>
+            <param name="Number">the generated number.</param>
+            <returns>the outcome of the computation</returns>
+        </member>
+        <member name="M:NumericalTools.MonteCarlo.Binomial_Rnd_Number(System.Double,System.Int32,System.Int32@)">
+            <summary>
+            Generates a Binomial random number
+            </summary>
+            <param name="P">the average of the Binomial distribution.</param>
+            <param name="N">the number of trials.</param>
+            <param name="Number">the generated number.</param>
+            <returns>the outcome of the computation</returns>
+        </member>
+        <member name="M:NumericalTools.MonteCarlo.Factorial(System.Int32,System.UInt64@)">
+            <summary>
+            Computes the factorial of a number.
+            </summary>
+            <param name="N">the number whose factorial is sought.</param>
+            <param name="Number">the value of the factorial.</param>
+            <returns>the outcome of the computation.</returns>
+        </member>
+        <member name="M:NumericalTools.MonteCarlo.Binomial_Coeff(System.Int32,System.Int32,System.Double@)">
+            <summary>
+            Computes the binomial coefficient.
+            </summary>
+            <param name="N">the N (upper) parameter.</param>
+            <param name="V">the V (lower) parameter.</param>
+            <param name="Number">the value of the binomial coefficient.</param>
+            <returns>the outcome of the computation</returns>
+        </member>
+        <member name="M:NumericalTools.MonteCarlo.Corr_Gaussian_Rnd_Number(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double@)">
+            <summary>
+            The behaviour of this method is unknown.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.MonteCarlo.Var_Gaussian_Rnd_Number(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double@)">
+            <summary>
+            The behaviour of this method is unknown.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.MonteCarlo.Linear_Rnd_Number(System.Double,System.Double,System.Double,System.Double,System.Double@)">
+            <summary>
+            The behaviour of this method is unknown.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.MonteCarlo.Custom_Rnd_Number(System.Double[],System.Double[],System.Int32,System.Double@)">
+            <summary>
+            The behaviour of this method is unknown.
+            </summary>
+        </member>
+        <member name="T:NumericalTools.Transformation">
+            <summary>
+            Coordinate transformations.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Transformation.#ctor">
+            <summary>
+            Prevents instantiation of this class. Only static methods are supported.
+            </summary>
+        </member>
+        <member name="M:NumericalTools.Transformation.ConcentricRelativeCoordinates(System.Double)">
+            <summary>
+            Generates discrete 2D shells centered on (0,0).
+            </summary>
+            <param name="Radius">the maximum radius.</param>
+            <returns>the shells in order of distance from (0,0)</returns>
+        </member>
+        <member name="M:NumericalTools.Transformation.RotationInPlane(System.Double[],System.Double,System.Double[]@)">
+            <summary>
+            Rotates a 2D vector in the plane.
+            </summary>
+            <param name="Xi">input vector (must be 2-component vector).</param>
+            <param name="Phi">the rotation angle.</param>
+            <param name="Xf">output 2-component vector.</param>
+            <returns>the outcome of the computation</returns>
+        </member>
+        <member name="M:NumericalTools.Transformation.FindPhi(System.Double,System.Double)">
+            <summary>
+            Computes the phase of an (X,Y) vector.
+            </summary>
+            <param name="X">X component.</param>
+            <param name="Y">Y component.</param>
+            <returns>the phase.</returns>
+        </member>
+        <member name="M:NumericalTools.Transformation.RotationInSpace(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double,System.Double@,System.Double@,System.Double@)">
+            <summary>
+            Performs a rotation in space.
+            </summary>
+            <param name="Xi">X component of the vector to be rotated.</param>
+            <param name="Yi">Y component of the vector to be rotated.</param>
+            <param name="Zi">Z component of the vector to be rotated.</param>
+            <param name="OrX">X component of rotation center.</param>
+            <param name="OrY">Y component of rotation center.</param>
+            <param name="OrZ">Z component of rotation center.</param>
+            <param name="AX">X component of rotation axis.</param>
+            <param name="AY">Y component of rotation axis.</param>
+            <param name="AZ">Z component of rotation axis.</param>
+            <param name="Xo">output X component of the rotated vector.</param>
+            <param name="Yo">output Y component of the rotated vector.</param>
+            <param name="Zo">output Z component of the rotated vector.</param>
+            <returns>the outcome of the computation</returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+ <head>
+    <title>Decay Search Step #8</title>
+    <MYSTYLE />
+ </head>
+ <body>
+  <h1>Decay Search Step #8</h1>
+  <h2>Final checks and writing to the DB</h2>
+  <div>
+      At this point of the procedure, all the tracks included in the feedback should have the feedback information filled in. Go to the "Feedback" tab of each track to ensure that this is true.<br />
+      Save the TSR for book-keeping, then click on "Export to OperaFeedback" on the main panel. If you read the event number from the DB, it should be automatically shown in OperaFeedback; otherwise 
+      you have to enter it manually. Tracks with hints for decays are shown with an orange bar: they have either IP &gt; 10 &mu;m or they show a kink point along the track. If this is not what you meant
+      to report, close OperaFeedback and check again the track that shows the kink hint.<br />
+      Once you are ready, type the brick number (with the "1000000" offset) and click on "Write to DB".<br />
+      In case of errors, nothing is written on the DB; if however you want to have an ASCII dumpfile to check before writing to the DB, perform a test by enabling the "Test" button and clicking "Write to DB": 
+      you will be presented with a form with the ASCII dump of the result of table insertion. Beware that no data has been written (the transaction is rolled back), and you still have to write data unchecking "Test".<br />
+      For each track you can check the list of segments, and the 3D interactive plot shows you the segments you are about to write.<br />
+      You can also load feedbacks from the DB by selecting the brick, clicking on the "&gt;" button to select the operation and then clicking on "Read".<br />
+      <b><font color="fuchsia">Congratulations: your decay search for this event is complete! Now go for the next event!</font></b><br />
+  <a href="DSApage7.htm">Previous</a>
+  </div>
+ </body>
+</html>
+

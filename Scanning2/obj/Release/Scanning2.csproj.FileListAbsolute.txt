@@ -1,0 +1,12 @@
+/home/kryss/Documenti/SySal/Scanning2/bin/Release/Scanning.dll
+/home/kryss/Documenti/SySal/Scanning2/bin/Release/Scanning2.xml
+/home/kryss/Documenti/SySal/Scanning2/bin/Release/DAQSystem.dll
+/home/kryss/Documenti/SySal/Scanning2/bin/Release/Imaging.dll
+/home/kryss/Documenti/SySal/Scanning2/bin/Release/SySalCore.dll
+/home/kryss/Documenti/SySal/Scanning2/bin/Release/Tracking.dll
+/home/kryss/Documenti/SySal/Scanning2/bin/Release/DAQSystem.xml
+/home/kryss/Documenti/SySal/Scanning2/bin/Release/Imaging.xml
+/home/kryss/Documenti/SySal/Scanning2/bin/Release/SySalCore.xml
+/home/kryss/Documenti/SySal/Scanning2/obj/Release/Scanning2.csprojAssemblyReference.cache
+/home/kryss/Documenti/SySal/Scanning2/obj/Release/Scanning2.csproj.CopyComplete
+/home/kryss/Documenti/SySal/Scanning2/obj/Release/Scanning.dll

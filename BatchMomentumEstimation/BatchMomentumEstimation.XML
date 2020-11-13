@@ -1,0 +1,185 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BatchMomentumEstimation</name>
+    </assembly>
+    <members>
+        <member name="F:SySal.Processing.MCSLikelihood.EditConfigForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.MCSLikelihood.EditConfigForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SySal.Processing.MCSLikelihood.EditConfigForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Processing.MCSLikelihood.Configuration">
+            <summary>
+            Configuration for MomentumEstimator.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.MCSLikelihood.Configuration.#ctor">
+            <summary>
+            Builds an unitialized configuration.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.MCSLikelihood.Configuration.#ctor(System.String)">
+            <summary>
+            Builds a configuration with the specified name.
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="F:SySal.Processing.MCSLikelihood.Configuration.ConfidenceLevel">
+            <summary>
+            The Confidence Level for which bounds are computed.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.MCSLikelihood.Configuration.SlopeError">
+            <summary>
+            The measurement error on slopes (to be applied separately on each projection).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.MCSLikelihood.Configuration.MinimumMomentum">
+            <summary>
+            Minimum value of the momentum to be considered.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.MCSLikelihood.Configuration.MaximumMomentum">
+            <summary>
+            Maximum value of the momentum to be considered.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.MCSLikelihood.Configuration.MomentumStep">
+            <summary>
+            The spanning step of the momentum interval defined by <see cref="F:SySal.Processing.MCSLikelihood.Configuration.MinimumMomentum"/> and <see cref="F:SySal.Processing.MCSLikelihood.Configuration.MaximumMomentum"/>. Output and bounds will not be more fine-grained than this value.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.MCSLikelihood.Configuration.MinimumRadiationLengths">
+            <summary>
+            Minimum number of radiation lengths to use when building scattering angles. It need not be an integer number, and is a generalization of the concept of the measurement cell. Set to <c>0</c> to let the algorithm auto-adjust it to the best value.
+            </summary>
+            <remarks>Higher values of this parameter (e.g. 4 or more) yield access to higher momenta, but reduce the number of usable measurements, thus increasing fluctuations. In practice, the maximum measurable momentum is approximately given in GeV/c by <c>(0.0136/SlopeError) Sqrt(MinimumRadiationLengths)</c>.</remarks>
+        </member>
+        <member name="F:SySal.Processing.MCSLikelihood.Configuration.Geometry">
+            <summary>
+            The geometry of the scattering volumes.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.MCSLikelihood.Configuration.Clone">
+            <summary>
+            Yields a copy of this object.
+            </summary>
+            <returns>the cloned object.</returns>
+        </member>
+        <member name="T:SySal.Processing.MCSLikelihood.MomentumEstimator">
+            <summary>
+            Provides momentum estimation using Multiple Coulomb Scattering.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.MCSLikelihood.MomentumEstimator.#ctor">
+            <summary>
+            Builds a new MomentumEstimator and initializes its configuration to default values.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.MCSLikelihood.MomentumEstimator.m_angularDiffDumpFile">
+            <summary>
+            Member field on which the <see cref="P:SySal.Processing.MCSLikelihood.MomentumEstimator.AngularDiffDumpFile"/> property relies.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.MCSLikelihood.MomentumEstimator.m_tkDumpFile">
+            <summary>
+            Member field on which the <see cref="P:SySal.Processing.MCSLikelihood.MomentumEstimator.TrackingDumpFile"/> property relies.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.MCSLikelihood.MomentumEstimator.m_cvDumpFile">
+            <summary>
+            Member field on which the <see cref="P:SySal.Processing.MCSLikelihood.MomentumEstimator.CovarianceDumpFile"/> property relies.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.MCSLikelihood.MomentumEstimator.m_lkDumpFile">
+            <summary>
+            Member field on which the <see cref="P:SySal.Processing.MCSLikelihood.MomentumEstimator.LikelihoodDumpFile"/> property relies.
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.MCSLikelihood.MomentumEstimator.AngularDiffDumpFile">
+            <summary>
+            Sets the name of the file to which the angular difference information is dumped. Set to <c>null</c> to disable dumping. It is useful to check that the distribution of scattering data is as expected.
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.MCSLikelihood.MomentumEstimator.TrackingDumpFile">
+            <summary>
+            Sets the name of the file to which the tracking information is dumped. Set to <c>null</c> to disable dumping. It is useful to check how elements of the covariance matrix are built.
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.MCSLikelihood.MomentumEstimator.CovarianceDumpFile">
+            <summary>
+            Sets the name of the file to which the covariance matrix is dumped. Set to <c>null</c> to disable dumping. It is useful to check the covariance matrix are built.
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.MCSLikelihood.MomentumEstimator.LikelihoodDumpFile">
+            <summary>
+            Sets the name of the file to which the likelihood function is dumped. Set to <c>null</c> to disable dumping. It is useful to check the shape of the curve.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.MCSLikelihood.MomentumEstimator.ProcessData(SySal.Tracking.MIPEmulsionTrackInfo[])">
+            <summary>
+            Computes the momentum and confidence limits using positions and slopes provided.
+            </summary>
+            <param name="data">the position and slopes of the track (even Z-unordered).</param>
+            <returns>the momentum and confidence limits.</returns>
+        </member>
+        <member name="M:SySal.Processing.MCSLikelihood.MomentumEstimator.ProcessData(SySal.Tracking.MIPEmulsionTrackInfo[],NumericalTools.Likelihood@)">
+            <summary>
+            Computes the momentum and confidence limits using positions and slopes provided.
+            </summary>
+            <param name="data">the position and slopes of the track (even Z-unordered).</param>
+            <param name="likelihood">the output variable that will contain the likelihood function.</param>
+            <returns>the momentum and confidence limits.</returns>
+        </member>
+        <member name="F:SySal.Processing.MCSLikelihood.MomentumEstimator.m_Name">
+            <summary>
+            Member field on which the Name property relies.
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.MCSLikelihood.MomentumEstimator.Name">
+            <summary>
+            The name of the momentum estimator.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.MCSLikelihood.MomentumEstimator.C">
+            <summary>
+            Member field on which the Configuration property relies.
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.MCSLikelihood.MomentumEstimator.Config">
+            <summary>
+            The configuration of the momentum estimator. Includes operational settings (such as momentum bounds) as well the specification of the material geometry.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.MCSLikelihood.MomentumEstimator.EditConfiguration(SySal.Management.Configuration@)">
+            <summary>
+            Allows the user to edit the supplied configuration.
+            </summary>
+            <param name="c">the configuration to be edited.</param>
+            <returns><c>true</c> if the configuration has been modified, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="P:SySal.Processing.MCSLikelihood.MomentumEstimator.Connections">
+            <summary>
+            List of connections. It is always empty for MomentumEstimator.
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.MCSLikelihood.MomentumEstimator.MonitorEnabled">
+            <summary>
+            Monitor enable/disable. Monitoring is currently not supported (enabling the monitor results in an exception).
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,13 @@
+/home/kryss/Documenti/SySal/VolumeTracks/bin/Release/VolumeTracks.dll
+/home/kryss/Documenti/SySal/VolumeTracks/bin/Release/VolumeTracks.xml
+/home/kryss/Documenti/SySal/VolumeTracks/bin/Release/NumericalTools.dll
+/home/kryss/Documenti/SySal/VolumeTracks/bin/Release/Scanning.dll
+/home/kryss/Documenti/SySal/VolumeTracks/bin/Release/SySalCore.dll
+/home/kryss/Documenti/SySal/VolumeTracks/bin/Release/Tracking.dll
+/home/kryss/Documenti/SySal/VolumeTracks/bin/Release/DAQSystem.dll
+/home/kryss/Documenti/SySal/VolumeTracks/bin/Release/NumericalTools.xml
+/home/kryss/Documenti/SySal/VolumeTracks/bin/Release/SySalCore.xml
+/home/kryss/Documenti/SySal/VolumeTracks/bin/Release/DAQSystem.xml
+/home/kryss/Documenti/SySal/VolumeTracks/obj/Release/VolumeTracks.csprojAssemblyReference.cache
+/home/kryss/Documenti/SySal/VolumeTracks/obj/Release/VolumeTracks.csproj.CopyComplete
+/home/kryss/Documenti/SySal/VolumeTracks/obj/Release/VolumeTracks.dll

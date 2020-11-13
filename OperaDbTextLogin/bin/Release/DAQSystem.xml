@@ -1,0 +1,847 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DAQSystem</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.DAQSystem.OperaPort">
+            <summary>
+            The ports for Opera services.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.OperaPort.ScanServer">
+            <summary>
+            Scanning server port number.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.OperaPort.BatchServer">
+            <summary>
+            Batch server port number.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.OperaPort.DataProcessingServer">
+            <summary>
+            Data processing server port number.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Frame">
+            <summary>
+            Types of reference frames.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Frame.Cartesian">
+            <summary>
+            Cartesian reference frame (X, Y).
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Frame.Polar">
+            <summary>
+            Polar reference frame (Azimuth, Radius; also denoted as Transverse, Longitudinal).
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Scanning.ZoneDesc">
+            <summary>
+            A zone to be scanned
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.ZoneDesc.Series">
+            <summary>
+            Free tag.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.ZoneDesc.MinX">
+            <summary>
+            Minimum X extent of the zone.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.ZoneDesc.MaxX">
+            <summary>
+            Maximum X extent of the zone.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.ZoneDesc.MinY">
+            <summary>
+            Minimum Y extent of the zone.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.ZoneDesc.MaxY">
+            <summary>
+            Maximum Y extent of the zone.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.ZoneDesc.Outname">
+            <summary>
+            Output path for the raw data files.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.ZoneDesc.UsePresetSlope">
+            <summary>
+            If microtracks must to be acquired only in a slope window, this member is set to <c>true</c>; <c>false</c> otherwise.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.ZoneDesc.PresetSlope">
+            <summary>
+            Preselected slope (ignored if <c>UsePresetSlope</c> is <c>false</c>).
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.ZoneDesc.PresetSlopeAcc">
+            <summary>
+            X and Y acceptance bands for preset slope (ignored if <c>UsePresetSlope</c> is <c>false</c>). 
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Scanning.MountPlateDesc">
+            <summary>
+            Plate to be mounted on a microscope
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.MountPlateDesc.BrickId">
+            <summary>
+            Brick identifier.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.MountPlateDesc.PlateId">
+            <summary>
+            Plate identifier.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.MountPlateDesc.TextDesc">
+            <summary>
+            Text description of the plate.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.MountPlateDesc.MapInitString">
+            <summary>
+            Initialization string for the map. Can be a path to a map file or inline ASCII map string.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Scanning.IntercalibrationInfo">
+            <summary>
+            Intercalibration information.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.IntercalibrationInfo.MXX">
+            <summary>
+            XX component of the affine transformation matrix.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.IntercalibrationInfo.MXY">
+            <summary>
+            XY component of the affine transformation matrix.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.IntercalibrationInfo.MYX">
+            <summary>
+            YX component of the affine transformation matrix.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.IntercalibrationInfo.MYY">
+            <summary>
+            YY component of the affine transformation matrix.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.IntercalibrationInfo.TX">
+            <summary>
+            X component of the translation.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.IntercalibrationInfo.TY">
+            <summary>
+            Y component of the translation.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.IntercalibrationInfo.TZ">
+            <summary>
+            Z component of the translation.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.IntercalibrationInfo.RX">
+            <summary>
+            X coordinate of the reference center.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.IntercalibrationInfo.RY">
+            <summary>
+            Y coordinate of the reference center.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Scanning.IntercalibrationInfo.Transform(SySal.BasicTypes.Vector2)">
+            <summary>
+            Transforms a point according to the affine transformation.
+            </summary>
+            <param name="inV">the input 2D point.</param>
+            <returns>the transformed point.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.Scanning.IntercalibrationInfo.Transform(SySal.BasicTypes.Vector)">
+            <summary>
+            Transforms a point according to the affine transformation.
+            </summary>
+            <param name="inV">the input 3D point.</param>
+            <returns>the transformed point.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.Scanning.IntercalibrationInfo.Deform(SySal.BasicTypes.Vector2)">
+            <summary>
+            Deforms a vector using the linear deformation.
+            </summary>
+            <param name="inV">the input vector.</param>
+            <returns>the transformed vector.</returns>
+        </member>
+        <member name="M:SySal.DAQSystem.Scanning.IntercalibrationInfo.Deform(SySal.BasicTypes.Vector)">
+            <summary>
+            Deforms a vector using the linear deformation.
+            </summary>
+            <param name="inV">the input vector.</param>
+            <returns>the transformed vector.</returns>
+        </member>
+        <member name="T:SySal.DAQSystem.Scanning.ManualCheck">
+            <summary>
+            This class hosts types and methods for manual check of tracks by a human operator.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Scanning.ManualCheck.InputBaseTrack">
+            <summary>
+            The input for a manual check of a base track by a human operator.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.ManualCheck.InputBaseTrack.Id">
+            <summary>
+            The Id of the track to be searched.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.ManualCheck.InputBaseTrack.Position">
+            <summary>
+            The position where the track is expected to be.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.ManualCheck.InputBaseTrack.Slope">
+            <summary>
+            The expected slope of the track.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.ManualCheck.InputBaseTrack.PositionTolerance">
+            <summary>
+            Position tolerance.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.ManualCheck.InputBaseTrack.SlopeTolerance">
+            <summary>
+            Slope tolerance.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Scanning.ManualCheck.OutputBaseTrack">
+            <summary>
+            The result of a manual check of a base track by a human operator.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.ManualCheck.OutputBaseTrack.Id">
+            <summary>
+            The Id of the track checked.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.ManualCheck.OutputBaseTrack.CheckDone">
+            <summary>
+            <c>true</c> if the check was successfully performed, <c>false</c> if an error occurred.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.ManualCheck.OutputBaseTrack.Found">
+            <summary>
+            <c>true</c> if the track has been found, <c>false</c> otherwise. Ignored if <c>CheckDone</c> is <c>false</c>.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.ManualCheck.OutputBaseTrack.Grains">
+            <summary>
+            Number of grains of the base track. Meaningful only if <c>CheckDone</c> and <c>Found</c> are both true.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.ManualCheck.OutputBaseTrack.Position">
+            <summary>
+            Position where the base track was found. Meaningful only if <c>CheckDone</c> and <c>Found</c> are both true.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.ManualCheck.OutputBaseTrack.Slope">
+            <summary>
+            Slope of trhe base track found. Meaningful only if <c>CheckDone</c> and <c>Found</c> are both true.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Scanning.ImageDumpRequest">
+            <summary>
+            Request to dump the sequence of images in a field of view.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.ImageDumpRequest.Id">
+            <summary>
+            Identifier of the dataset.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.ImageDumpRequest.OutputPath">
+            <summary>
+            Path where the output file should be stored.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.ImageDumpRequest.Position">
+            <summary>
+            Center of the field of view.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.ImageDumpRequest.Slope">
+            <summary>
+            Slope of the track to be checked (if applicable).
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Scanning.PlateQuality">
+            <summary>
+            This class hosts types and methods for plate quality definition and monitoring.
+            </summary>        
+        </member>
+        <member name="T:SySal.DAQSystem.Scanning.PlateQuality.FogThicknessSet">
+            <summary>
+            Set of quality data with fog and thickness.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.PlateQuality.FogThicknessSet.TopFogGrains_1000MicronCubed">
+            <summary>
+            Average number of fog grains on top side in a volume of 1000 micron cubed.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.PlateQuality.FogThicknessSet.BottomFogGrains_1000MicronCubed">
+            <summary>
+            Average number of fog grains on bottom side in a volume of 1000 micron cubed.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.PlateQuality.FogThicknessSet.TopThickness">
+            <summary>
+            Thickness of the top layer of emulsion in micron.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.PlateQuality.FogThicknessSet.BaseThickness">
+            <summary>
+            Thickness of the base in micron.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Scanning.PlateQuality.FogThicknessSet.BottomThickness">
+            <summary>
+            Thickness of the bottom layer of emulsion in micron.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.DriverType">
+            <summary>
+            Driver types.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.DriverType.Lowest">
+            <summary>
+            The program is a computing module or a scanning setup.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.DriverType.Scanning">
+            <summary>
+            The program is a scanning driver.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.DriverType.Volume">
+            <summary>
+            The program is a volume driver.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.DriverType.Brick">
+            <summary>
+            The program is a brick driver.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.DriverType.System">
+            <summary>
+            The program is a system driver.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.DriverInfo">
+            <summary>
+            The description of a driver.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.DriverInfo.Name">
+            <summary>
+            The name of the driver process.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.DriverInfo.Description">
+            <summary>
+            Description of the driver.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.DriverInfo.DriverType">
+            <summary>
+            Type of the driver.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.DriverInfo.Clone">
+            <summary>
+            Clones the DriverInfo.
+            </summary>
+            <returns>the object clone.</returns>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.TaskStartupInfo">
+            <summary>
+            Information needed by driver programs to perform their work.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TaskStartupInfo.OPERAUsername">
+            <summary>
+            Opera Computing Infrastructure username associated to the process token.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TaskStartupInfo.OPERAPassword">
+            <summary>
+            Opera Computing Infrastructure password.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TaskStartupInfo.DBUserName">
+            <summary>
+            Opera DB User that the driver should impersonate.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TaskStartupInfo.DBPassword">
+            <summary>
+            Opera DB password of the impersonated user.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TaskStartupInfo.DBServers">
+            <summary>
+            List of the possible DB servers to use.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TaskStartupInfo.ScratchDir">
+            <summary>
+            Scratch directory for the driver.
+            </summary>				
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TaskStartupInfo.ExeRepository">
+            <summary>
+            Repository for computing executables to be batch-launched if needed.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TaskStartupInfo.ProgressFile">
+            <summary>
+            Full pathname of the file that states the progress of the task.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TaskStartupInfo.RecoverFromProgressFile">
+            <summary>
+            If true, the task is restarted where it was interrupted by using information from the progress file.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TaskStartupInfo.ProcessOperationId">
+            <summary>
+            The process operation id of this task.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TaskStartupInfo.ProgramSettingsId">
+            <summary>
+            Opera Computing Infrastructure Program Settings that the driver should use.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TaskStartupInfo.MachineId">
+            <summary>
+            Id of the scanning machine associated with this task or -1 if none.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TaskStartupInfo.Notes">
+            <summary>
+            Notes for the process operation.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TaskStartupInfo.RawDataPath">
+            <summary>
+            Full path (without the .rwc extension) where the raw data are to be stored.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TaskStartupInfo.LinkedZonePath">
+            <summary>
+            Full path (without the .tlg extension) where the linked zone output is to be stored.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.TaskStartupInfo.Clone">
+            <summary>
+            Clones the object.
+            </summary>
+            <returns>the cloned object.</returns>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.TaskProgressInfo">
+            <summary>
+            Progress information for a task.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TaskProgressInfo.Progress">
+            <summary>
+            Progress (fraction from 0 to 1) of the task.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TaskProgressInfo.StartTime">
+            <summary>
+            Start time of the task.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TaskProgressInfo.FinishTime">
+            <summary>
+            Finish time (expected if the task is not complete yet).
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TaskProgressInfo.CustomInfo">
+            <summary>
+            Additional information (depends on the specific driver).
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TaskProgressInfo.Complete">
+            <summary>
+            True if the task is complete (with or without errors).
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TaskProgressInfo.ExitException">
+            <summary>
+            When Complete is true, if this is null the process completed successfully; if it is not null, the exception that terminated the process is saved here.
+            If Complete is false, this is the exception that put the process in a paused state.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.TaskProgressInfo.LastProcessedInterruptId">
+            <summary>
+            The Id of the last processed interrupt.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.Prediction">
+            <summary>
+            Prediction to drive the scanning.
+            Extends ZoneDesc to incorporate the notion of a predicted track.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Prediction.ToleranceFrame">
+            <summary>
+            Frame type of tolerances fro positions and slopes.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Prediction.PredictedPosX">
+            <summary>
+            Predicted X coordinate.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Prediction.PredictedPosY">
+            <summary>
+            Predicted Y coordinate.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Prediction.PositionTolerance1">
+            <summary>
+            First position tolerance to accept the candidate. Depending on the frame type, can be the Transverse (Azimuthal) or X coordinate.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Prediction.PositionTolerance2">
+            <summary>
+            Second position tolerance to accept the candidate. Depending on the frame type, can be the Longitudinal (Radial) or Y coordinate.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Prediction.PredictedSlopeX">
+            <summary>
+            Slope X coordinate.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Prediction.PredictedSlopeY">
+            <summary>
+            Slope Y coordinate.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Prediction.SlopeTolerance1">
+            <summary>
+            First slope tolerance to accept the candidate. Depending on the frame type, can be the Transverse (Azimuthal) or X coordinate.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Prediction.SlopeTolerance2">
+            <summary>
+            Second slope tolerance to accept the candidate. Depending on the frame type, can be the Longitudinal (Radial) or Y coordinate.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Prediction.MinGrains">
+            <summary>
+            Minimum number of grains to accept the candidate.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Prediction.MaxSigma">
+            <summary>
+            Maximum sigma to accept the candidate.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Prediction.MaxTrials">
+            <summary>
+            Maximum scanning trials before giving up when no candidate is found.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Prediction.CandidateIndex">
+            <summary>
+            Index of the candidate track found.
+            -1 if not found, >= 0 otherwise.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Prediction.CandidateInfo">
+            <summary>
+            Global parameters of the candidate track.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.MarkType">
+            <summary>
+            The shape and type of mark.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.MarkType.None">
+            <summary>
+            No mark.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.MarkType.SpotOptical">
+            <summary>
+            Spot mark obtained by optical grid printing.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.MarkType.SpotXRay">
+            <summary>
+            Spot mark obtained by X-ray gun.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.MarkType.LineXRay">
+            <summary>
+            Lateral X-ray line.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.MarkChar">
+            <summary>
+            Contains definition of constant string for <c>MarkType</c> to <c>char</c> conversions.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.MarkChar.None">
+            <summary>
+            No mark.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.MarkChar.SpotOptical">
+            <summary>
+            Spot mark obtained by optical grid printing.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.MarkChar.SpotXRay">
+            <summary>
+            Spot mark obtained by X-ray gun.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.MarkChar.LineXRay">
+            <summary>
+            Lateral X-ray line.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.ScanningStartupInfo">
+            <summary>
+            Startup information for a scanning driver.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.ScanningStartupInfo.Plate">
+            <summary>
+            Plate to be scanned.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.ScanningStartupInfo.Zones">
+            <summary>
+            Zones to be scanned.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.ScanningStartupInfo.CalibrationId">
+            <summary>
+            Id of the calibration to be used (zero or negative means NULL).
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.ScanningStartupInfo.MarkSet">
+            <summary>
+            Type of marks to be used. This is only relevant if <c>CalibrationId</c> is negative or zero (NULL calibration). 
+            When <c>CalibrationId</c> is positive, the type of mark is obtained implicitly from the calibration to be used.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.ScanningStartupInfo.Clone">
+            <summary>
+            Clones the object.
+            </summary>
+            <returns>the cloned object.</returns>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.BoxDesc">
+            <summary>
+            Descriptor of a box in a brick.
+            Scanback can also be initiated by this descriptor by setting TopPlate = BottomPlate.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.BoxDesc.Series">
+            <summary>
+            Free tag.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.BoxDesc.TopPlate">
+            <summary>
+            Top plate (included) of the box.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.BoxDesc.BottomPlate">
+            <summary>
+            Bottom plate (included) of the box.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.BoxDesc.ExtentsOnBottom">
+            <summary>
+            2D extents of the Box intersection with the bottom plate.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.BoxDesc.Slope">
+            <summary>
+            "Slope" of the box w.r.t. the vertical axis.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.BoxDesc.CenterOnBottom">
+            <summary>
+            Center of the Box in the bottom plate.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.VolumeOperationInfo">
+            <summary>
+            Startup information for a volume operation driver.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.VolumeOperationInfo.Boxes">
+            <summary>
+            Boxes to be scanned in the volume.
+            These can be scanback predictions as well.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.VolumeOperationInfo.BrickId">
+            <summary>
+            Id of the brick to be processed.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.VolumeOperationInfo.Clone">
+            <summary>
+            Clones the object.
+            </summary>
+            <returns>the object clone.</returns>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.BrickOperationInfo">
+            <summary>
+            Startup information for a brick operation driver.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.BrickOperationInfo.BrickId">
+            <summary>
+            Id of the brick to be processed.
+            </summary>
+        </member>
+        <member name="M:SySal.DAQSystem.Drivers.BrickOperationInfo.Clone">
+            <summary>
+            Clones the object.
+            </summary>
+            <returns>the object clone.</returns>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.Status">
+            <summary>
+            Status information for a driver process.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Status.Unknown">
+            <summary>
+            The process is unknown (it has never been scheduled).
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Status.Running">
+            <summary>
+            The process is running.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Status.Paused">
+            <summary>
+            The process is paused.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Status.Completed">
+            <summary>
+            The process is completed.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Status.Failed">
+            <summary>
+            The process failed.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.BatchSummary">
+            <summary>
+            Summarizes relevant information about a batch.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.BatchSummary.Id">
+            <summary>
+            Id of the process operation.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.BatchSummary.MachineId">
+            <summary>
+            The Id of the machine locked by the process operation.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.BatchSummary.StartTime">
+            <summary>
+            Time when the operation started.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.BatchSummary.ProgramSettingsId">
+            <summary>
+            The Id of the program settings used for the operation.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.BatchSummary.DriverLevel">
+            <summary>
+            The level of the process operation.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.BatchSummary.Executable">
+            <summary>
+            The name of the executable module.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.BatchSummary.BrickId">
+            <summary>
+            The Id of the brick involved in the operation (if applicable; otherwise it is 0).
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.BatchSummary.PlateId">
+            <summary>
+            The Id of the plate involved in the operation (if applicable; otherwise it is 0).
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.BatchSummary.Progress">
+            <summary>
+            The progress status of the operation.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.BatchSummary.ExpectedFinishTime">
+            <summary>
+            The expected finish time for the operation.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.BatchSummary.OpStatus">
+            <summary>
+            The status of the process operation.
+            </summary>
+        </member>
+        <member name="T:SySal.DAQSystem.Drivers.Interrupt">
+            <summary>
+            An interrupt to a driver process.
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Interrupt.Id">
+            <summary>
+            Interrupt id;
+            </summary>
+        </member>
+        <member name="F:SySal.DAQSystem.Drivers.Interrupt.Data">
+            <summary>
+            Interrupt data, in free format (depends on the driver).
+            </summary>
+        </member>
+    </members>
+</doc>

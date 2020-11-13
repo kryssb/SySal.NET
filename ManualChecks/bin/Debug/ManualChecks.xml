@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ManualChecks</name>
+    </assembly>
+    <members>
+        <member name="T:SySal.Executables.ManualChecks.Exe">
+            <summary>
+            ManualChecks - command line tool for efficiency estimation and to prepare massive manual checks campaigns.
+            </summary>
+            <remarks>
+            <para>
+            Usage: <c>ManualChecks &lt;mode&gt; &lt;input TSR&gt; &lt;output TXT&gt; [&lt;selection string&gt;]</c>
+            <list type="table">
+            <listheader><term>Mode</term><description>Behaviour</description></listheader>
+            <item><term>/3</term><description>check on the center plate of 3</description></item>
+            <item><term>/3f</term><description>check on the center plate of 3 and dump found only</description></item>
+            <item><term>/3n</term><description>check on the center plate of 3 and dump not found only</description></item>
+            <item><term>/3a</term><description>check on the center plate of 3 and dump found and not found</description></item>
+            <item><term>/u</term><description>check on the upstream plate</description></item>
+            <item><term>/uf</term><description>check on the upstream plate and dump found only</description></item>
+            <item><term>/un</term><description>check on the upstream plate and dump not found only</description></item>
+            <item><term>/ua</term><description>check on the upstream plate and dump found and not found</description></item>
+            <item><term>/d</term><description>check on the downstream plate</description></item>
+            <item><term>/df</term><description>check on the downstream plate and dump found only</description></item>
+            <item><term>/dn</term><description>check on the downstream plate and dump not found only</description></item>
+            <item><term>/da</term><description>check on the downstream plate and dump found and not found</description></item>
+            </list>
+            </para>
+            <para>If the selection string is not null, the tracks on which checks have to be performed are those that pass the selection.</para>	
+            <para>
+            Known selection variables:
+            <list type="table">
+            <listheader><term>Name</term><description>Meaning</description></listheader>
+            <item><term>N</term><description>Number of segments</description></item>
+            <item><term>DZ</term><description>Downstream Z</description></item>
+            <item><term>DSX, DSY</term><description>Downstream Slope X,Y</description></item>
+            <item><term>D0X, D0Y</term><description>Downstream Position X,Y (at Z = 0)</description></item>
+            <item><term>DPX, DPY</term><description>Downstream Position X,Y (at Z = DZ)</description></item>
+            <item><term>UZ</term><description>Upstream Z</description></item>
+            <item><term>USX, USY</term><description>Upstream Slope X,Y</description></item>
+            <item><term>U0X, U0Y</term><description>Upstream Position X,Y (at Z = 0)</description></item>
+            <item><term>UPX, UPY</term><description>Upstream Position X,Y (at Z = UZ)</description></item>
+            </list>
+            </para>
+            <para>The format of the output file is an ASCII n-tuple such as</para>
+            <para><c>ID PX PY SX SY PLATES</c></para>	
+            <para>The <c>PLATES</c> field denotes the number of plates on which the corresponding volume track has been found.</para>
+            </remarks>
+        </member>
+        <member name="M:SySal.Executables.ManualChecks.Exe.Main(System.String[])">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BatchMCSAnnecy</name>
+    </assembly>
+    <members>
+        <member name="F:SySal.Processing.MCSAnnecy.EditConfigForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.MCSAnnecy.EditConfigForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SySal.Processing.MCSAnnecy.EditConfigForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SySal.Processing.MCSAnnecy.Configuration">
+            <summary>
+            Configuration for MomentumEstimator.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.MCSAnnecy.Configuration.#ctor">
+            <summary>
+            Builds a configuration initialized with default parameters.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.MCSAnnecy.Configuration.#ctor(System.String)">
+            <summary>
+            Builds a configuration initialized with default parameters, and with the specified name.
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="F:SySal.Processing.MCSAnnecy.Configuration.IgnoreTransverse">
+            <summary>
+            Set to <c>true</c> to ignore transverse information.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.MCSAnnecy.Configuration.IgnoreLongitudinal">
+            <summary>
+            Set to <c>true</c> to ignore longitudinal information.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.MCSAnnecy.Configuration.RadiationLength">
+            <summary>
+            Radiation length.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.MCSAnnecy.Configuration.MinEntries">
+            <summary>
+            min number of entries in the cell to accept it for fitting (def=1).
+            </summary>
+        </member>
+        <member name="T:SySal.Processing.MCSAnnecy.MomentumEstimator">
+            <summary>
+            Provides momentum estimation using Multiple Coulomb Scattering.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.MCSAnnecy.MomentumEstimator.C">
+            <summary>
+            Member field on which the Configuration property relies.
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.MCSAnnecy.MomentumEstimator.Config">
+            <summary>
+            The configuration of the momentum estimator. Includes operational settings (such as momentum bounds) as well the specification of the material geometry.
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.MCSAnnecy.MomentumEstimator.Connections">
+            <summary>
+            List of connections. It is always empty for MomentumEstimator.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.MCSAnnecy.MomentumEstimator.EditConfiguration(SySal.Management.Configuration@)">
+            <summary>
+            GUI editor to configure the algorithm parameters.
+            </summary>
+            <param name="c">the configuration to be edited.</param>
+            <returns><c>true</c> if the configuration is accepted, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="P:SySal.Processing.MCSAnnecy.MomentumEstimator.MonitorEnabled">
+            <summary>
+            Monitor enable/disable. Monitoring is currently not supported (enabling the monitor results in an exception).
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.MCSAnnecy.MomentumEstimator.m_Name">
+            <summary>
+            Member field on which the Name property relies.
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.MCSAnnecy.MomentumEstimator.Name">
+            <summary>
+            The name of the momentum estimator.
+            </summary>
+        </member>
+        <member name="M:SySal.Processing.MCSAnnecy.MomentumEstimator.ProcessData(SySal.Tracking.MIPEmulsionTrackInfo[])">
+            <summary>
+            Computes the momentum and confidence limits using positions and slopes provided.
+            </summary>
+            <param name="data">the position and slopes of the track (even Z-unordered). The <c>Field</c> member is used to define the plate.</param>
+            <returns>the momentum and confidence limits.</returns>
+        </member>
+        <member name="F:SySal.Processing.MCSAnnecy.MomentumEstimator.m_DiffLog">
+            <summary>
+            Property backer for <c>DiffDump</c>.
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.MCSAnnecy.MomentumEstimator.DiffLog">
+            <summary>
+            The stream used to log the slope differences. Set to <c>null</c> to disable logging.
+            </summary>
+        </member>
+        <member name="F:SySal.Processing.MCSAnnecy.MomentumEstimator.m_FitLog">
+            <summary>
+            Property backer for <c>FitLog</c>.
+            </summary>
+        </member>
+        <member name="P:SySal.Processing.MCSAnnecy.MomentumEstimator.FitLog">
+            <summary>
+            The stream used to log the fit procedure. Set to <c>null</c> to disable logging.
+            </summary>
+        </member>
+    </members>
+</doc>
